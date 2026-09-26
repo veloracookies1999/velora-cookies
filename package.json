@@ -1,0 +1,21 @@
+{
+  "name": "velora-cookies-node-supabase",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VELORA Cookies full-stack e-commerce with Node.js, Express, Supabase and Vercel",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env --watch server.js",
+    "start": "node --env-file=.env server.js",
+    "check": "node --check server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "cors": "^2.8.5"
+  }
+}
