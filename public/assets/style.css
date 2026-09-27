@@ -12827,3 +12827,737 @@ body:has(.hero) .top .nav a[href="#/"]{
     font-size: 13px;
   }
 }
+/* =========================================================
+   PASSWORD RECOVERY
+   ========================================================= */
+
+#authModal .auth-forgot {
+  display: block;
+
+  margin:
+    -4px 0
+    16px auto;
+
+  padding: 3px 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #7b43ca;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+#authModal .auth-forgot:hover {
+  color: #5f2aa8;
+  text-decoration: underline;
+}
+
+#authModal .auth-forgot.is-hidden {
+  display: none;
+}
+
+#forgotPasswordModal .auth-card,
+#resetPasswordModal .auth-card {
+  animation:
+    veloraAuthCard .42s cubic-bezier(.16,1,.3,1) both;
+}
+/* =========================================================
+   VELORA — FORGOT / RESET PASSWORD PREMIUM
+   ========================================================= */
+
+#forgotPasswordModal.modal,
+#resetPasswordModal.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  place-items: center;
+
+  padding: 18px;
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(159, 104, 255, .20),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 88% 80%,
+      rgba(124, 58, 237, .15),
+      transparent 30%
+    ),
+    rgba(35, 24, 42, .58);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  animation: veloraRecoveryOverlay .28s ease both;
+}
+
+#forgotPasswordModal .auth-shell,
+#resetPasswordModal .auth-shell {
+  position: relative;
+
+  width: min(100%, 500px);
+  max-width: 500px;
+
+  max-height: calc(100vh - 36px);
+  max-height: calc(100dvh - 36px);
+
+  box-sizing: border-box;
+
+  isolation: isolate;
+}
+
+#forgotPasswordModal .auth-card,
+#resetPasswordModal .auth-card {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+
+  max-height: calc(100vh - 36px);
+  max-height: calc(100dvh - 36px);
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  padding: 30px;
+
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.99),
+      rgba(249,246,253,.99)
+    );
+
+  color: #2c2132;
+
+  box-shadow:
+    0 35px 90px rgba(31,17,42,.28),
+    0 12px 30px rgba(91,44,132,.10);
+
+  scrollbar-width: thin;
+  scrollbar-color: #d8c7e6 transparent;
+
+  animation:
+    veloraRecoveryCard .42s cubic-bezier(.16,1,.3,1) both;
+}
+
+#forgotPasswordModal .auth-card::-webkit-scrollbar,
+#resetPasswordModal .auth-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+#forgotPasswordModal .auth-card::-webkit-scrollbar-track,
+#resetPasswordModal .auth-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#forgotPasswordModal .auth-card::-webkit-scrollbar-thumb,
+#resetPasswordModal .auth-card::-webkit-scrollbar-thumb {
+  background: #d7c7e4;
+  border-radius: 999px;
+}
+
+/* Decorative glow */
+
+#forgotPasswordModal .auth-glow,
+#resetPasswordModal .auth-glow {
+  position: absolute;
+  z-index: 0;
+
+  border-radius: 999px;
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+#forgotPasswordModal .auth-glow-a,
+#resetPasswordModal .auth-glow-a {
+  width: 180px;
+  height: 180px;
+
+  top: -60px;
+  left: -55px;
+
+  background: rgba(156,101,255,.18);
+}
+
+#forgotPasswordModal .auth-glow-b,
+#resetPasswordModal .auth-glow-b {
+  width: 170px;
+  height: 170px;
+
+  right: -55px;
+  bottom: -60px;
+
+  background: rgba(214,170,244,.16);
+}
+
+/* Top bar */
+
+#forgotPasswordModal .auth-topbar,
+#resetPasswordModal .auth-topbar {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+#forgotPasswordModal .auth-brand-mark,
+#resetPasswordModal .auth-brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #7b48d2;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: .25em;
+}
+
+#forgotPasswordModal .auth-brand-dot,
+#resetPasswordModal .auth-brand-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #c084fc
+    );
+
+  box-shadow:
+    0 0 0 5px rgba(139,92,246,.08);
+}
+
+#forgotPasswordModal .auth-close,
+#resetPasswordModal .auth-close {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #e3d9e9;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,.92);
+
+  color: #34283b;
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+#forgotPasswordModal .auth-close:hover,
+#resetPasswordModal .auth-close:hover {
+  transform: rotate(4deg) scale(1.03);
+
+  border-color: #d2c0df;
+
+  background: #fff;
+
+  box-shadow:
+    0 8px 22px rgba(65,35,79,.08);
+}
+
+/* Intro */
+
+#forgotPasswordModal .auth-intro,
+#resetPasswordModal .auth-intro {
+  position: relative;
+  z-index: 2;
+
+  margin-bottom: 26px;
+}
+
+#forgotPasswordModal .auth-eyebrow,
+#resetPasswordModal .auth-eyebrow {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #8a59df;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: .28em;
+}
+
+#forgotPasswordModal .auth-intro h3,
+#resetPasswordModal .auth-intro h3 {
+  margin: 0;
+
+  color: #2b2031;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(31px, 7vw, 42px);
+
+  line-height: 1.05;
+
+  letter-spacing: -.045em;
+}
+
+#forgotPasswordModal .auth-intro p,
+#resetPasswordModal .auth-intro p {
+  max-width: 420px;
+
+  margin: 13px 0 0;
+
+  color: #83778b;
+
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+/* Form */
+
+#forgotPasswordModal .auth-form,
+#resetPasswordModal .auth-form {
+  position: relative;
+  z-index: 2;
+}
+
+#forgotPasswordModal .auth-field,
+#resetPasswordModal .auth-field {
+  margin: 0 0 17px;
+}
+
+#forgotPasswordModal .auth-field label,
+#resetPasswordModal .auth-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #382b40;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+#forgotPasswordModal .auth-input-wrap,
+#resetPasswordModal .auth-input-wrap {
+  position: relative;
+
+  width: 100%;
+}
+
+#forgotPasswordModal .auth-input,
+#resetPasswordModal .auth-input {
+  width: 100%;
+  height: 56px;
+
+  box-sizing: border-box;
+
+  padding: 0 17px 0 46px;
+
+  border: 1px solid #dfd4e6;
+  border-radius: 17px;
+
+  outline: none;
+
+  background: #faf8fc;
+  color: #2e2334;
+
+  font-size: 14px;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
+}
+
+#forgotPasswordModal .auth-input:focus,
+#resetPasswordModal .auth-input:focus {
+  border-color: #965fe5;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 4px rgba(145,82,226,.10);
+}
+
+#forgotPasswordModal .auth-input::placeholder,
+#resetPasswordModal .auth-input::placeholder {
+  color: #b3a8b8;
+}
+
+#forgotPasswordModal .auth-input-icon,
+#resetPasswordModal .auth-input-icon {
+  position: absolute;
+
+  top: 50%;
+  left: 16px;
+
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  color: #988c9f;
+
+  pointer-events: none;
+}
+
+#forgotPasswordModal .auth-input-wrap:focus-within .auth-input-icon,
+#resetPasswordModal .auth-input-wrap:focus-within .auth-input-icon {
+  color: #7c3aed;
+}
+
+/* Password eye */
+
+#resetPasswordModal .auth-input {
+  padding-right: 54px;
+}
+
+#resetPasswordModal .auth-password-toggle {
+  position: absolute;
+
+  top: 50%;
+  right: 9px;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  border: 0;
+  border-radius: 11px;
+
+  background: transparent;
+
+  color: #928598;
+
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    color .18s ease;
+}
+
+#resetPasswordModal .auth-password-toggle:hover {
+  background: #f1ebf6;
+  color: #7137bf;
+}
+
+/* Main submit */
+
+#forgotPasswordModal .auth-submit,
+#resetPasswordModal .auth-submit {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  min-height: 56px;
+
+  margin-top: 4px;
+
+  border: 0;
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #9333ea
+    );
+
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 17px 32px rgba(124,58,237,.20);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    filter .2s ease;
+}
+
+#forgotPasswordModal .auth-submit:hover,
+#resetPasswordModal .auth-submit:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 21px 38px rgba(124,58,237,.27);
+
+  filter: brightness(1.03);
+}
+
+#forgotPasswordModal .auth-submit:disabled,
+#resetPasswordModal .auth-submit:disabled {
+  opacity: .75;
+  cursor: wait;
+  transform: none;
+}
+
+/* Back button */
+
+#forgotPasswordModal .auth-switch {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  min-height: 48px;
+
+  margin-top: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e3d8eb;
+  border-radius: 15px;
+
+  background: #f8f4fb;
+
+  color: #7540c5;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background .2s ease;
+}
+
+#forgotPasswordModal .auth-switch:hover {
+  transform: translateY(-1px);
+
+  border-color: #d3c2df;
+
+  background: #fcfaff;
+}
+
+/* Secure note */
+
+#forgotPasswordModal .auth-secure,
+#resetPasswordModal .auth-secure {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 19px;
+  padding-top: 17px;
+
+  border-top: 1px solid #eee6f2;
+
+  color: #a096a7;
+
+  font-size: 10.5px;
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+#forgotPasswordModal .auth-secure-icon,
+#resetPasswordModal .auth-secure-icon {
+  flex: 0 0 auto;
+
+  display: grid;
+  place-items: center;
+
+  color: #8b65c1;
+}
+
+/* Spinner */
+
+#forgotPasswordModal .auth-spinner,
+#resetPasswordModal .auth-spinner {
+  display: inline-block;
+
+  width: 15px;
+  height: 15px;
+
+  margin-right: 8px;
+
+  vertical-align: -3px;
+
+  border:
+    2px solid rgba(255,255,255,.4);
+
+  border-top-color: #fff;
+
+  border-radius: 50%;
+
+  animation:
+    veloraRecoverySpin .65s linear infinite;
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+
+  #forgotPasswordModal.modal,
+  #resetPasswordModal.modal {
+    padding: 10px;
+    align-items: end;
+  }
+
+  #forgotPasswordModal .auth-shell,
+  #resetPasswordModal .auth-shell {
+    width: 100%;
+    max-width: none;
+
+    max-height:
+      calc(100vh - 20px);
+
+    max-height:
+      calc(100dvh - 20px);
+  }
+
+  #forgotPasswordModal .auth-card,
+  #resetPasswordModal .auth-card {
+    max-height:
+      calc(100vh - 20px);
+
+    max-height:
+      calc(100dvh - 20px);
+
+    padding:
+      24px 18px 20px;
+
+    border-radius: 26px;
+  }
+
+  #forgotPasswordModal .auth-topbar,
+  #resetPasswordModal .auth-topbar {
+    margin-bottom: 24px;
+  }
+
+  #forgotPasswordModal .auth-intro,
+  #resetPasswordModal .auth-intro {
+    margin-bottom: 22px;
+  }
+
+  #forgotPasswordModal .auth-intro h3,
+  #resetPasswordModal .auth-intro h3 {
+    font-size: 34px;
+  }
+
+  #forgotPasswordModal .auth-intro p,
+  #resetPasswordModal .auth-intro p {
+    font-size: 13px;
+  }
+
+  #forgotPasswordModal .auth-input,
+  #resetPasswordModal .auth-input {
+    height: 54px;
+  }
+
+  #forgotPasswordModal .auth-submit,
+  #resetPasswordModal .auth-submit,
+  #forgotPasswordModal .auth-switch {
+    min-height: 54px;
+  }
+}
+
+@media (max-width: 380px) {
+
+  #forgotPasswordModal.modal,
+  #resetPasswordModal.modal {
+    padding: 7px;
+  }
+
+  #forgotPasswordModal .auth-card,
+  #resetPasswordModal .auth-card {
+    padding:
+      21px 15px 18px;
+
+    border-radius: 23px;
+  }
+
+  #forgotPasswordModal .auth-intro h3,
+  #resetPasswordModal .auth-intro h3 {
+    font-size: 30px;
+  }
+}
+
+@keyframes veloraRecoveryOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes veloraRecoveryCard {
+  from {
+    opacity: 0;
+    transform:
+      translateY(18px)
+      scale(.975);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes veloraRecoverySpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

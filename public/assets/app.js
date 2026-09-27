@@ -161,17 +161,19 @@ async function boot() {
       return;
     }
 
-    S.sb = window.supabase.createClient(
-      S.cfg.supabaseUrl,
-      S.cfg.supabasePublishableKey,
-      {
-        auth: {
-          persistSession: true,
-          autoRefreshToken: true,
-          detectSessionInUrl: true
-        }
-      }
-    );
+   S.sb = window.supabase.createClient(
+  S.cfg.supabaseUrl,
+  S.cfg.supabasePublishableKey,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
+);
+
+initPasswordRecovery();
 
     const sessionResult = await S.sb.auth.getSession();
     S.session = sessionResult.data?.session || null;
@@ -8306,7 +8308,6 @@ async function markAllNotifications() {
 ========================================================= */
 
 function authModal() {
-
   const oldModal = $("#authModal");
 
   if (oldModal) {
@@ -8381,6 +8382,7 @@ function authModal() {
           </div>
 
           <div class="auth-field">
+
             <div class="auth-label-row">
               <label for="authPassword">
                 Password
@@ -8413,6 +8415,14 @@ function authModal() {
               </button>
             </div>
           </div>
+
+          <button
+            type="button"
+            class="auth-forgot"
+            id="forgotPassword"
+          >
+            Lupa password?
+          </button>
 
           <div
             class="auth-field auth-name-field"
@@ -8458,6 +8468,7 @@ function authModal() {
           type="button"
         >
           <span class="auth-google-logo" aria-hidden="true">
+
             <svg
               viewBox="0 0 24 24"
               width="19"
@@ -8468,19 +8479,23 @@ function authModal() {
                 fill="#4285F4"
                 d="M21.35 12.27c0-.78-.07-1.53-.2-2.25H12v4.26h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.4Z"
               />
+
               <path
                 fill="#34A853"
                 d="M12 21.74c2.64 0 4.86-.87 6.48-2.37l-3.14-2.45c-.87.58-1.98.93-3.34.93-2.56 0-4.73-1.73-5.51-4.05H3.25v2.53A9.74 9.74 0 0 0 12 21.74Z"
               />
+
               <path
                 fill="#FBBC05"
                 d="M6.49 13.8A5.87 5.87 0 0 1 6.18 12c0-.62.11-1.22.31-1.8V7.67H3.25A9.74 9.74 0 0 0 2.22 12c0 1.57.38 3.05 1.03 4.33l3.24-2.53Z"
               />
+
               <path
                 fill="#EA4335"
                 d="M12 6.15c1.44 0 2.73.5 3.75 1.48l2.81-2.81C16.86 3.18 14.64 2.26 12 2.26a9.79 9.79 0 0 0-8.75 5.41l3.24 2.53C7.27 7.88 9.44 6.15 12 6.15Z"
               />
             </svg>
+
           </span>
 
           <span id="googleText">
@@ -8519,8 +8534,9 @@ function authModal() {
   const card =
     modal.querySelector(".auth-card");
 
-  const close =
-    () => modal.remove();
+  const close = () => {
+    modal.remove();
+  };
 
   const closeButton =
     modal.querySelector("#ax");
@@ -8555,40 +8571,59 @@ function authModal() {
   const googleText =
     modal.querySelector("#googleText");
 
+  const forgotButton =
+    modal.querySelector("#forgotPassword");
+
+  /* -----------------------------------------
+     CLOSE BUTTON
+     ----------------------------------------- */
+
   closeButton?.addEventListener(
     "click",
     close
   );
 
+  /* -----------------------------------------
+     CLICK OUTSIDE
+     ----------------------------------------- */
+
   modal.addEventListener(
     "click",
     event => {
+
       if (event.target === modal) {
         close();
       }
+
     }
   );
 
-  document.addEventListener(
-    "keydown",
-    function authEscape(event) {
-      if (!document.querySelector("#authModal")) {
-        document.removeEventListener(
-          "keydown",
-          authEscape
-        );
-        return;
-      }
+  /* -----------------------------------------
+     ESC KEY
+     ----------------------------------------- */
+
+  const escapeHandler =
+    event => {
 
       if (event.key === "Escape") {
         close();
+
         document.removeEventListener(
           "keydown",
-          authEscape
+          escapeHandler
         );
       }
-    }
+
+    };
+
+  document.addEventListener(
+    "keydown",
+    escapeHandler
   );
+
+  /* -----------------------------------------
+     PASSWORD VISIBILITY
+     ----------------------------------------- */
 
   passwordToggle?.addEventListener(
     "click",
@@ -8598,7 +8633,9 @@ function authModal() {
         password.type === "text";
 
       password.type =
-        showing ? "password" : "text";
+        showing
+          ? "password"
+          : "text";
 
       passwordToggle.innerHTML =
         showing
@@ -8616,6 +8653,10 @@ function authModal() {
     }
   );
 
+  /* -----------------------------------------
+     LOGIN / REGISTER SWITCH
+     ----------------------------------------- */
+
   toggle?.addEventListener(
     "click",
     () => {
@@ -8624,18 +8665,34 @@ function authModal() {
         modal.dataset.mode !== "signup";
 
       modal.dataset.mode =
-        signup ? "signup" : "login";
+        signup
+          ? "signup"
+          : "login";
 
       nameField.classList.toggle(
         "is-visible",
         signup
       );
 
-      nameField.querySelector("input").required =
-        signup;
+      const nameInput =
+        nameField.querySelector(
+          'input[name="name"]'
+        );
+
+      if (nameInput) {
+        nameInput.required =
+          signup;
+      }
+
+      forgotButton.classList.toggle(
+        "is-hidden",
+        signup
+      );
 
       submit.textContent =
-        signup ? "Buat akun" : "Masuk";
+        signup
+          ? "Buat akun"
+          : "Masuk";
 
       toggle.textContent =
         signup
@@ -8664,6 +8721,34 @@ function authModal() {
     }
   );
 
+  /* -----------------------------------------
+     FORGOT PASSWORD
+     ----------------------------------------- */
+
+  forgotButton?.addEventListener(
+    "click",
+    () => {
+
+      const emailInput =
+        modal.querySelector(
+          'input[name="email"]'
+        );
+
+      const email =
+        String(
+          emailInput?.value || ""
+        ).trim();
+
+      close();
+
+      forgotPasswordModal(email);
+    }
+  );
+
+  /* -----------------------------------------
+     EMAIL LOGIN / REGISTER
+     ----------------------------------------- */
+
   form?.addEventListener(
     "submit",
     async event => {
@@ -8675,6 +8760,7 @@ function authModal() {
           "Supabase belum siap.",
           "bad"
         );
+
         return;
       }
 
@@ -8686,17 +8772,65 @@ function authModal() {
       const mode =
         modal.dataset.mode || "login";
 
+      const email =
+        String(
+          formData.email || ""
+        ).trim();
+
+      const passwordValue =
+        String(
+          formData.password || ""
+        );
+
+      const name =
+        String(
+          formData.name || ""
+        ).trim();
+
+      if (!email) {
+        toast(
+          "Email wajib diisi.",
+          "bad"
+        );
+
+        return;
+      }
+
+      if (passwordValue.length < 6) {
+        toast(
+          "Password minimal 6 karakter.",
+          "bad"
+        );
+
+        return;
+      }
+
+      if (
+        mode === "signup" &&
+        !name
+      ) {
+        toast(
+          "Nama wajib diisi.",
+          "bad"
+        );
+
+        return;
+      }
+
       try {
 
         submit.disabled = true;
         googleButton.disabled = true;
-
-        const oldSubmit =
-          submit.innerHTML;
+        forgotButton.disabled = true;
+        toggle.disabled = true;
 
         submit.innerHTML = `
           <span class="auth-spinner"></span>
-          ${mode === "signup" ? "Membuat akun..." : "Memproses..."}
+          ${
+            mode === "signup"
+              ? "Membuat akun..."
+              : "Memproses..."
+          }
         `;
 
         let result;
@@ -8705,14 +8839,14 @@ function authModal() {
 
           result =
             await S.sb.auth.signUp({
-              email: formData.email,
-              password: formData.password,
+              email,
+              password: passwordValue,
+
               options: {
                 data: {
                   name:
-                    formData.name ||
-                    formData.email
-                      .split("@")[0]
+                    name ||
+                    email.split("@")[0]
                 }
               }
             });
@@ -8721,19 +8855,23 @@ function authModal() {
 
           result =
             await S.sb.auth.signInWithPassword({
-              email: formData.email,
-              password: formData.password
+              email,
+              password: passwordValue
             });
 
         }
 
-        if (result.error) {
+        if (result?.error) {
           throw result.error;
         }
 
+        /* -------------------------------------
+           SIGNUP WITHOUT SESSION
+           ------------------------------------- */
+
         if (
           mode === "signup" &&
-          !result.data?.session
+          !result?.data?.session
         ) {
 
           toast(
@@ -8741,14 +8879,19 @@ function authModal() {
             "good"
           );
 
-          modal.remove();
+          close();
+
           return;
         }
 
-        modal.remove();
+        /* -------------------------------------
+           SUCCESS
+           ------------------------------------- */
+
+        close();
 
         S.session =
-          result.data?.session ||
+          result?.data?.session ||
           S.session;
 
         await me();
@@ -8769,6 +8912,8 @@ function authModal() {
 
         submit.disabled = false;
         googleButton.disabled = false;
+        forgotButton.disabled = false;
+        toggle.disabled = false;
 
         submit.textContent =
           mode === "signup"
@@ -8776,13 +8921,17 @@ function authModal() {
             : "Masuk";
 
         toast(
-          error.message ||
+          error?.message ||
           "Autentikasi gagal.",
           "bad"
         );
       }
     }
   );
+
+  /* -----------------------------------------
+     GOOGLE LOGIN
+     ----------------------------------------- */
 
   googleButton?.addEventListener(
     "click",
@@ -8793,12 +8942,16 @@ function authModal() {
           "Supabase belum siap.",
           "bad"
         );
+
         return;
       }
 
       try {
 
         googleButton.disabled = true;
+        submit.disabled = true;
+        toggle.disabled = true;
+        forgotButton.disabled = true;
 
         googleText.textContent =
           "Menghubungkan ke Google...";
@@ -8806,13 +8959,14 @@ function authModal() {
         const result =
           await S.sb.auth.signInWithOAuth({
             provider: "google",
+
             options: {
               redirectTo:
                 window.location.origin
             }
           });
 
-        if (result.error) {
+        if (result?.error) {
           throw result.error;
         }
 
@@ -8824,6 +8978,9 @@ function authModal() {
         );
 
         googleButton.disabled = false;
+        submit.disabled = false;
+        toggle.disabled = false;
+        forgotButton.disabled = false;
 
         googleText.textContent =
           modal.dataset.mode === "signup"
@@ -8831,8 +8988,681 @@ function authModal() {
             : "Lanjut dengan Google";
 
         toast(
-          error.message ||
+          error?.message ||
           "Login dengan Google gagal.",
+          "bad"
+        );
+      }
+    }
+  );
+
+  /* -----------------------------------------
+     ANIMATION + AUTO FOCUS
+     ----------------------------------------- */
+
+  requestAnimationFrame(() => {
+
+    modal.classList.add(
+      "is-ready"
+    );
+
+    const firstInput =
+      modal.querySelector(
+        'input[name="email"]'
+      );
+
+    firstInput?.focus();
+  });
+}
+
+function forgotPasswordModal(prefill = "") {
+
+  const oldModal =
+    $("#forgotPasswordModal");
+
+  if (oldModal) {
+    oldModal.remove();
+  }
+
+  const modal =
+    document.createElement("div");
+
+  modal.className = "modal";
+  modal.id = "forgotPasswordModal";
+
+  modal.innerHTML = `
+    <div class="auth-shell">
+
+      <div class="auth-glow auth-glow-a"></div>
+      <div class="auth-glow auth-glow-b"></div>
+
+      <div class="auth-card">
+
+        <div class="auth-topbar">
+
+          <div class="auth-brand-mark">
+            <span class="auth-brand-dot"></span>
+            <span>VELORA</span>
+          </div>
+
+          <button
+            class="auth-close"
+            id="forgotClose"
+            type="button"
+            aria-label="Tutup"
+          >
+            ${icon("x", 18)}
+          </button>
+
+        </div>
+
+        <div class="auth-intro">
+
+          <span class="auth-eyebrow">
+            ACCOUNT RECOVERY
+          </span>
+
+          <h3>
+            Lupa password?
+          </h3>
+
+          <p>
+            Masukkan email akunmu. Kami akan
+            mengirimkan link untuk membuat password baru.
+          </p>
+
+        </div>
+
+        <form
+          id="forgotPasswordForm"
+          class="auth-form"
+        >
+
+          <div class="auth-field">
+
+            <label for="forgotEmail">
+              Email
+            </label>
+
+            <div class="auth-input-wrap">
+
+              <span class="auth-input-icon">
+                ${icon("mail", 17)}
+              </span>
+
+              <input
+                id="forgotEmail"
+                class="input auth-input"
+                name="email"
+                type="email"
+                value="${esc(prefill)}"
+                placeholder="nama@email.com"
+                autocomplete="email"
+                required
+              >
+
+            </div>
+
+          </div>
+
+          <button
+            class="auth-submit"
+            type="submit"
+            id="forgotSubmit"
+          >
+            Kirim link reset
+          </button>
+
+        </form>
+
+        <button
+          class="auth-switch"
+          id="backToLogin"
+          type="button"
+        >
+          Kembali ke Masuk
+        </button>
+
+        <div class="auth-secure">
+
+          <span class="auth-secure-icon">
+            ${icon("shield-check", 14)}
+          </span>
+
+          <span>
+            Link reset hanya dapat digunakan melalui email akunmu.
+          </span>
+
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  refreshIcons();
+
+  const close = () => {
+    modal.remove();
+  };
+
+  const closeButton =
+    modal.querySelector("#forgotClose");
+
+  const backToLogin =
+    modal.querySelector("#backToLogin");
+
+  const form =
+    modal.querySelector("#forgotPasswordForm");
+
+  const submitButton =
+    modal.querySelector("#forgotSubmit");
+
+  closeButton?.addEventListener(
+    "click",
+    close
+  );
+
+  modal.addEventListener(
+    "click",
+    event => {
+
+      if (event.target === modal) {
+        close();
+      }
+
+    }
+  );
+
+  const escapeHandler =
+    event => {
+
+      if (event.key === "Escape") {
+
+        close();
+
+        document.removeEventListener(
+          "keydown",
+          escapeHandler
+        );
+      }
+
+    };
+
+  document.addEventListener(
+    "keydown",
+    escapeHandler
+  );
+
+  backToLogin?.addEventListener(
+    "click",
+    () => {
+
+      close();
+
+      authModal();
+    }
+  );
+
+  form?.addEventListener(
+    "submit",
+    async event => {
+
+      event.preventDefault();
+
+      if (!S.sb) {
+        toast(
+          "Supabase belum siap.",
+          "bad"
+        );
+
+        return;
+      }
+
+      const formData =
+        Object.fromEntries(
+          new FormData(form).entries()
+        );
+
+      const email =
+        String(
+          formData.email || ""
+        ).trim();
+
+      if (!email) {
+        toast(
+          "Masukkan email terlebih dahulu.",
+          "bad"
+        );
+
+        return;
+      }
+
+      try {
+
+        submitButton.disabled = true;
+
+        submitButton.innerHTML = `
+          <span class="auth-spinner"></span>
+          Mengirim...
+        `;
+
+        const {
+          error
+        } =
+          await S.sb.auth.resetPasswordForEmail(
+            email,
+            {
+              redirectTo:
+                `${window.location.origin}/?recovery=1`
+            }
+          );
+
+        if (error) {
+          throw error;
+        }
+
+        /*
+         * Jangan membocorkan apakah email
+         * benar-benar terdaftar.
+         */
+
+        toast(
+          "Link reset sudah dikirim. Cek email kamu.",
+          "good"
+        );
+
+        close();
+
+      } catch (error) {
+
+        console.error(
+          "FORGOT PASSWORD ERROR:",
+          error
+        );
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Kirim link reset";
+
+        toast(
+          error?.message ||
+          "Gagal mengirim link reset.",
+          "bad"
+        );
+      }
+    }
+  );
+
+  requestAnimationFrame(() => {
+
+    modal.classList.add(
+      "is-ready"
+    );
+
+    modal.querySelector(
+      "#forgotEmail"
+    )?.focus();
+
+  });
+}
+
+
+function resetPasswordModal() {
+  const oldModal = $("#resetPasswordModal");
+
+  if (oldModal) {
+    oldModal.remove();
+  }
+
+  const modal = document.createElement("div");
+
+  modal.className = "modal";
+  modal.id = "resetPasswordModal";
+
+  modal.innerHTML = `
+    <div class="auth-shell">
+
+      <div class="auth-glow auth-glow-a"></div>
+      <div class="auth-glow auth-glow-b"></div>
+
+      <div class="auth-card">
+
+        <div class="auth-topbar">
+
+          <div class="auth-brand-mark">
+            <span class="auth-brand-dot"></span>
+            <span>VELORA</span>
+          </div>
+
+        </div>
+
+        <div class="auth-intro">
+
+          <span class="auth-eyebrow">
+            PASSWORD RESET
+          </span>
+
+          <h3>
+            Buat password baru.
+          </h3>
+
+          <p>
+            Masukkan password baru untuk mengamankan
+            kembali akun VELORA kamu.
+          </p>
+
+        </div>
+
+        <form
+          id="resetPasswordForm"
+          class="auth-form"
+        >
+
+          <div class="auth-field">
+
+            <label for="newPassword">
+              Password baru
+            </label>
+
+            <div class="auth-input-wrap">
+
+              <span class="auth-input-icon">
+                ${icon("lock-keyhole", 17)}
+              </span>
+
+              <input
+                id="newPassword"
+                class="input auth-input"
+                name="password"
+                type="password"
+                minlength="6"
+                autocomplete="new-password"
+                placeholder="Minimal 6 karakter"
+                required
+              >
+
+              <button
+                type="button"
+                class="auth-password-toggle"
+                id="newPasswordToggle"
+                aria-label="Tampilkan password"
+              >
+                ${icon("eye", 17)}
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="auth-field">
+
+            <label for="confirmPassword">
+              Konfirmasi password
+            </label>
+
+            <div class="auth-input-wrap">
+
+              <span class="auth-input-icon">
+                ${icon("shield-check", 17)}
+              </span>
+
+              <input
+                id="confirmPassword"
+                class="input auth-input"
+                name="confirmPassword"
+                type="password"
+                minlength="6"
+                autocomplete="new-password"
+                placeholder="Ulangi password baru"
+                required
+              >
+
+              <button
+                type="button"
+                class="auth-password-toggle"
+                id="confirmPasswordToggle"
+                aria-label="Tampilkan password"
+              >
+                ${icon("eye", 17)}
+              </button>
+
+            </div>
+
+          </div>
+
+          <button
+            class="auth-submit"
+            id="resetPasswordSubmit"
+            type="submit"
+          >
+            Simpan password baru
+          </button>
+
+        </form>
+
+        <div class="auth-secure">
+
+          <span class="auth-secure-icon">
+            ${icon("shield-check", 14)}
+          </span>
+
+          <span>
+            Password diperbarui dengan aman melalui Supabase Auth.
+          </span>
+
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  refreshIcons();
+
+  const form =
+    modal.querySelector("#resetPasswordForm");
+
+  const submitButton =
+    modal.querySelector("#resetPasswordSubmit");
+
+  const newPassword =
+    modal.querySelector("#newPassword");
+
+  const confirmPassword =
+    modal.querySelector("#confirmPassword");
+
+  const newPasswordToggle =
+    modal.querySelector("#newPasswordToggle");
+
+  const confirmPasswordToggle =
+    modal.querySelector("#confirmPasswordToggle");
+
+  const close = () => {
+    modal.remove();
+  };
+
+  function bindPasswordToggle(input, button) {
+    button?.addEventListener(
+      "click",
+      () => {
+        const showing =
+          input.type === "text";
+
+        input.type =
+          showing
+            ? "password"
+            : "text";
+
+        button.innerHTML =
+          showing
+            ? icon("eye", 17)
+            : icon("eye-off", 17);
+
+        button.setAttribute(
+          "aria-label",
+          showing
+            ? "Tampilkan password"
+            : "Sembunyikan password"
+        );
+
+        refreshIcons();
+      }
+    );
+  }
+
+  bindPasswordToggle(
+    newPassword,
+    newPasswordToggle
+  );
+
+  bindPasswordToggle(
+    confirmPassword,
+    confirmPasswordToggle
+  );
+
+  const escapeHandler =
+    event => {
+      if (event.key === "Escape") {
+        close();
+
+        document.removeEventListener(
+          "keydown",
+          escapeHandler
+        );
+      }
+    };
+
+  document.addEventListener(
+    "keydown",
+    escapeHandler
+  );
+
+  modal.addEventListener(
+    "click",
+    event => {
+      if (event.target === modal) {
+        close();
+      }
+    }
+  );
+
+  form?.addEventListener(
+    "submit",
+    async event => {
+      event.preventDefault();
+
+      if (!S.sb) {
+        toast(
+          "Supabase belum siap.",
+          "bad"
+        );
+        return;
+      }
+
+      const values =
+        Object.fromEntries(
+          new FormData(form).entries()
+        );
+
+      const password =
+        String(values.password || "");
+
+      const confirmPasswordValue =
+        String(values.confirmPassword || "");
+
+      if (password.length < 6) {
+        toast(
+          "Password minimal 6 karakter.",
+          "bad"
+        );
+        return;
+      }
+
+      if (password !== confirmPasswordValue) {
+        toast(
+          "Konfirmasi password tidak cocok.",
+          "bad"
+        );
+        return;
+      }
+
+      try {
+        submitButton.disabled = true;
+
+        submitButton.innerHTML = `
+          <span class="auth-spinner"></span>
+          Menyimpan...
+        `;
+
+        const {
+          data: sessionData,
+          error: sessionError
+        } = await S.sb.auth.getSession();
+
+        if (sessionError) {
+          throw sessionError;
+        }
+
+        if (!sessionData?.session) {
+          throw new Error(
+            "Sesi reset password sudah tidak valid. Minta link reset baru."
+          );
+        }
+
+        const { error } =
+          await S.sb.auth.updateUser({
+            password
+          });
+
+        if (error) {
+          throw error;
+        }
+
+        toast(
+          "Password berhasil diubah.",
+          "good"
+        );
+
+        close();
+
+        await S.sb.auth.signOut();
+
+        S.session = null;
+        S.user = null;
+        S.admin = false;
+
+        if ("role" in S) {
+          S.role = null;
+        }
+
+        if ("directCheckout" in S) {
+          S.directCheckout = null;
+        }
+
+        go("/");
+
+        setTimeout(() => {
+          authModal();
+        }, 350);
+
+      } catch (error) {
+        console.error(
+          "RESET PASSWORD ERROR:",
+          error
+        );
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Simpan password baru";
+
+        toast(
+          error?.message ||
+          "Gagal mengubah password.",
           "bad"
         );
       }
@@ -8841,8 +9671,141 @@ function authModal() {
 
   requestAnimationFrame(() => {
     modal.classList.add("is-ready");
-    card?.querySelector("input")?.focus();
+    newPassword?.focus();
   });
+}
+
+function initPasswordRecovery() {
+
+  if (!S.sb) {
+    return;
+  }
+
+  if (S.__passwordRecoveryBound) {
+    return;
+  }
+
+  S.__passwordRecoveryBound = true;
+
+  /*
+   * Supabase mengirim PASSWORD_RECOVERY
+   * ketika user datang melalui reset-password link.
+   */
+
+  S.sb.auth.onAuthStateChange(
+    (event, session) => {
+
+      if (
+        event === "PASSWORD_RECOVERY"
+      ) {
+
+        S.session =
+          session ||
+          S.session;
+
+        setTimeout(() => {
+
+          const existing =
+            $("#resetPasswordModal");
+
+          if (!existing) {
+            resetPasswordModal();
+          }
+
+        }, 80);
+      }
+
+    }
+  );
+
+  /*
+   * Fallback untuk URL:
+   * ?recovery=1
+   */
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const isRecovery =
+    params.get("recovery") === "1";
+
+  if (!isRecovery) {
+    return;
+  }
+
+  /*
+   * Bersihkan query parameter
+   * tanpa reload halaman.
+   */
+
+  try {
+
+    const cleanUrl =
+      window.location.origin +
+      window.location.pathname +
+      window.location.hash;
+
+    window.history.replaceState(
+      {},
+      document.title,
+      cleanUrl
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "RECOVERY URL CLEANUP:",
+      error
+    );
+  }
+
+  /*
+   * Cek session recovery sebagai
+   * fallback tambahan.
+   */
+
+  S.sb.auth
+    .getSession()
+    .then(({ data, error }) => {
+
+      if (error) {
+        console.error(
+          "RECOVERY SESSION ERROR:",
+          error
+        );
+
+        return;
+      }
+
+      if (!data?.session) {
+        return;
+      }
+
+      S.session =
+        data.session;
+
+      setTimeout(() => {
+
+        const existing =
+          $("#resetPasswordModal");
+
+        if (!existing) {
+          resetPasswordModal();
+        }
+
+      }, 150);
+
+    })
+    .catch(error => {
+
+      console.error(
+        "RECOVERY SESSION ERROR:",
+        error
+      );
+
+    });
 }
 /* =========================================================
    VOUCHER
