@@ -8307,149 +8307,206 @@ async function markAllNotifications() {
 
 function authModal() {
 
-  const oldModal =
-    $("#authModal");
+  const oldModal = $("#authModal");
 
   if (oldModal) {
     oldModal.remove();
   }
 
-  const modal =
-    document.createElement("div");
+  const modal = document.createElement("div");
 
   modal.className = "modal";
   modal.id = "authModal";
 
   modal.innerHTML = `
-    <div class="modal-card">
+    <div class="auth-shell">
 
-      <div class="modal-head">
+      <div class="auth-glow auth-glow-a"></div>
+      <div class="auth-glow auth-glow-b"></div>
 
-        <div>
+      <div class="auth-card">
 
-          <span class="eyebrow">
+        <div class="auth-topbar">
+          <div class="auth-brand-mark">
+            <span class="auth-brand-dot"></span>
+            <span>VELORA</span>
+          </div>
+
+          <button
+            class="auth-close"
+            id="ax"
+            type="button"
+            aria-label="Tutup"
+          >
+            ${icon("x", 18)}
+          </button>
+        </div>
+
+        <div class="auth-intro">
+          <span class="auth-eyebrow">
             VELORA ACCOUNT
           </span>
 
-          <h3>
-            Masuk
+          <h3 id="authTitle">
+            Selamat datang kembali.
           </h3>
 
+          <p id="authSubtitle">
+            Masuk untuk melanjutkan perjalananmu di VELORA.
+          </p>
+        </div>
+
+        <form id="auth" class="auth-form">
+
+          <div class="auth-field">
+            <label for="authEmail">
+              Email
+            </label>
+
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">
+                ${icon("mail", 17)}
+              </span>
+
+              <input
+                id="authEmail"
+                class="input auth-input"
+                name="email"
+                type="email"
+                placeholder="nama@email.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="auth-field">
+            <div class="auth-label-row">
+              <label for="authPassword">
+                Password
+              </label>
+            </div>
+
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">
+                ${icon("lock-keyhole", 17)}
+              </span>
+
+              <input
+                id="authPassword"
+                class="input auth-input auth-password-input"
+                name="password"
+                type="password"
+                placeholder="Minimal 6 karakter"
+                minlength="6"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="auth-password-toggle"
+                id="authPasswordToggle"
+                aria-label="Tampilkan password"
+              >
+                ${icon("eye", 17)}
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="auth-field auth-name-field"
+            id="nameF"
+          >
+            <label for="authName">
+              Nama
+            </label>
+
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">
+                ${icon("user-round", 17)}
+              </span>
+
+              <input
+                id="authName"
+                class="input auth-input"
+                name="name"
+                type="text"
+                placeholder="Nama lengkap"
+                autocomplete="name"
+              >
+            </div>
+          </div>
+
+          <button
+            class="auth-submit"
+            id="authSubmit"
+            type="submit"
+          >
+            Masuk
+          </button>
+
+        </form>
+
+        <div class="auth-divider">
+          <span>atau lanjut dengan</span>
         </div>
 
         <button
-          class="icon-btn"
-          id="ax"
+          class="auth-google"
+          id="google"
           type="button"
         >
-          ${icon("x")}
+          <span class="auth-google-logo" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="19"
+              height="19"
+              aria-hidden="true"
+            >
+              <path
+                fill="#4285F4"
+                d="M21.35 12.27c0-.78-.07-1.53-.2-2.25H12v4.26h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.4Z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 21.74c2.64 0 4.86-.87 6.48-2.37l-3.14-2.45c-.87.58-1.98.93-3.34.93-2.56 0-4.73-1.73-5.51-4.05H3.25v2.53A9.74 9.74 0 0 0 12 21.74Z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M6.49 13.8A5.87 5.87 0 0 1 6.18 12c0-.62.11-1.22.31-1.8V7.67H3.25A9.74 9.74 0 0 0 2.22 12c0 1.57.38 3.05 1.03 4.33l3.24-2.53Z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 6.15c1.44 0 2.73.5 3.75 1.48l2.81-2.81C16.86 3.18 14.64 2.26 12 2.26a9.79 9.79 0 0 0-8.75 5.41l3.24 2.53C7.27 7.88 9.44 6.15 12 6.15Z"
+              />
+            </svg>
+          </span>
+
+          <span id="googleText">
+            Lanjut dengan Google
+          </span>
         </button>
-
-      </div>
-
-      <form id="auth">
-
-        <div class="field">
-
-          <label>
-            Email
-          </label>
-
-          <input
-            class="input"
-            name="email"
-            type="email"
-            required
-          >
-
-        </div>
-
-        <div
-          class="field"
-          style="margin-top:10px"
-        >
-
-          <label>
-            Password
-          </label>
-
-          <input
-            class="input"
-            name="password"
-            type="password"
-            minlength="6"
-            required
-          >
-
-        </div>
-
-        <div
-          class="field"
-          id="nameF"
-          style="
-            display:none;
-            margin-top:10px
-          "
-        >
-
-          <label>
-            Nama
-          </label>
-
-          <input
-            class="input"
-            name="name"
-          >
-
-        </div>
 
         <button
-          class="btn primary"
-          style="
-            width:100%;
-            margin-top:14px
-          "
-          type="submit"
+          class="auth-switch"
+          id="toggle"
+          type="button"
         >
-          Masuk
+          Buat akun baru
         </button>
 
-      </form>
+        <div class="auth-secure">
+          <span class="auth-secure-icon">
+            ${icon("shield-check", 14)}
+          </span>
 
-      <div class="divider">
-        atau
+          <span>
+            Akun kamu diamankan oleh Supabase Auth.
+          </span>
+        </div>
+
       </div>
-
-      <button
-        class="btn soft"
-        style="width:100%"
-        id="google"
-        type="button"
-      >
-        ${icon("globe", 16)}
-        Continue with Google
-      </button>
-
-      <button
-        class="btn ghost"
-        style="
-          width:100%;
-          margin-top:9px
-        "
-        id="toggle"
-        type="button"
-      >
-        Buat akun baru
-      </button>
-
-      <p
-        class="muted"
-        style="font-size:12px"
-      >
-        Google Login dapat digunakan setelah
-        Google Provider diaktifkan di Supabase.
-      </p>
-
     </div>
   `;
 
@@ -8457,38 +8514,159 @@ function authModal() {
 
   refreshIcons();
 
+  modal.dataset.mode = "login";
+
+  const card =
+    modal.querySelector(".auth-card");
+
   const close =
     () => modal.remove();
 
-  $("#ax").onclick = close;
+  const closeButton =
+    modal.querySelector("#ax");
 
-  $("#toggle").onclick = () => {
+  const form =
+    modal.querySelector("#auth");
 
-    const nameField =
-      $("#nameF");
+  const toggle =
+    modal.querySelector("#toggle");
 
-    const signup =
-      nameField.style.display === "none";
+  const nameField =
+    modal.querySelector("#nameF");
 
-    nameField.style.display =
-      signup ? "block" : "none";
+  const submit =
+    modal.querySelector("#authSubmit");
 
-    $("#auth button[type=submit]")
-      .textContent =
-      signup ? "Daftar" : "Masuk";
+  const title =
+    modal.querySelector("#authTitle");
 
-    $("#toggle").textContent =
-      signup
-        ? "Sudah punya akun"
-        : "Buat akun baru";
+  const subtitle =
+    modal.querySelector("#authSubtitle");
 
-    modal.dataset.mode =
-      signup ? "signup" : "login";
+  const password =
+    modal.querySelector("#authPassword");
 
-  };
+  const passwordToggle =
+    modal.querySelector("#authPasswordToggle");
 
-  $("#auth").onsubmit =
-    async (event) => {
+  const googleButton =
+    modal.querySelector("#google");
+
+  const googleText =
+    modal.querySelector("#googleText");
+
+  closeButton?.addEventListener(
+    "click",
+    close
+  );
+
+  modal.addEventListener(
+    "click",
+    event => {
+      if (event.target === modal) {
+        close();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    function authEscape(event) {
+      if (!document.querySelector("#authModal")) {
+        document.removeEventListener(
+          "keydown",
+          authEscape
+        );
+        return;
+      }
+
+      if (event.key === "Escape") {
+        close();
+        document.removeEventListener(
+          "keydown",
+          authEscape
+        );
+      }
+    }
+  );
+
+  passwordToggle?.addEventListener(
+    "click",
+    () => {
+
+      const showing =
+        password.type === "text";
+
+      password.type =
+        showing ? "password" : "text";
+
+      passwordToggle.innerHTML =
+        showing
+          ? icon("eye", 17)
+          : icon("eye-off", 17);
+
+      passwordToggle.setAttribute(
+        "aria-label",
+        showing
+          ? "Tampilkan password"
+          : "Sembunyikan password"
+      );
+
+      refreshIcons();
+    }
+  );
+
+  toggle?.addEventListener(
+    "click",
+    () => {
+
+      const signup =
+        modal.dataset.mode !== "signup";
+
+      modal.dataset.mode =
+        signup ? "signup" : "login";
+
+      nameField.classList.toggle(
+        "is-visible",
+        signup
+      );
+
+      nameField.querySelector("input").required =
+        signup;
+
+      submit.textContent =
+        signup ? "Buat akun" : "Masuk";
+
+      toggle.textContent =
+        signup
+          ? "Sudah punya akun"
+          : "Buat akun baru";
+
+      title.textContent =
+        signup
+          ? "Mulai bersama VELORA."
+          : "Selamat datang kembali.";
+
+      subtitle.textContent =
+        signup
+          ? "Buat akun dan temukan pengalaman VELORA."
+          : "Masuk untuk melanjutkan perjalananmu di VELORA.";
+
+      googleText.textContent =
+        signup
+          ? "Daftar dengan Google"
+          : "Lanjut dengan Google";
+
+      googleButton.classList.toggle(
+        "is-signup",
+        signup
+      );
+    }
+  );
+
+  form?.addEventListener(
+    "submit",
+    async event => {
 
       event.preventDefault();
 
@@ -8502,18 +8680,28 @@ function authModal() {
 
       const formData =
         Object.fromEntries(
-          new FormData(
-            event.currentTarget
-          ).entries()
+          new FormData(form).entries()
         );
+
+      const mode =
+        modal.dataset.mode || "login";
 
       try {
 
+        submit.disabled = true;
+        googleButton.disabled = true;
+
+        const oldSubmit =
+          submit.innerHTML;
+
+        submit.innerHTML = `
+          <span class="auth-spinner"></span>
+          ${mode === "signup" ? "Membuat akun..." : "Memproses..."}
+        `;
+
         let result;
 
-        if (
-          modal.dataset.mode === "signup"
-        ) {
+        if (mode === "signup") {
 
           result =
             await S.sb.auth.signUp({
@@ -8544,17 +8732,16 @@ function authModal() {
         }
 
         if (
-          modal.dataset.mode === "signup" &&
+          mode === "signup" &&
           !result.data?.session
         ) {
 
           toast(
-            "Akun dibuat. Cek email untuk konfirmasi.",
+            "Akun berhasil dibuat. Cek email untuk konfirmasi.",
             "good"
           );
 
           modal.remove();
-
           return;
         }
 
@@ -8575,25 +8762,53 @@ function authModal() {
 
       } catch (error) {
 
-        toast(
-          error.message,
-          "bad"
+        console.error(
+          "AUTH ERROR:",
+          error
         );
 
+        submit.disabled = false;
+        googleButton.disabled = false;
+
+        submit.textContent =
+          mode === "signup"
+            ? "Buat akun"
+            : "Masuk";
+
+        toast(
+          error.message ||
+          "Autentikasi gagal.",
+          "bad"
+        );
       }
+    }
+  );
 
-    };
-
-  $("#google").onclick =
+  googleButton?.addEventListener(
+    "click",
     async () => {
 
+      if (!S.sb) {
+        toast(
+          "Supabase belum siap.",
+          "bad"
+        );
+        return;
+      }
+
       try {
+
+        googleButton.disabled = true;
+
+        googleText.textContent =
+          "Menghubungkan ke Google...";
 
         const result =
           await S.sb.auth.signInWithOAuth({
             provider: "google",
             options: {
-              redirectTo: location.origin
+              redirectTo:
+                window.location.origin
             }
           });
 
@@ -8603,16 +8818,32 @@ function authModal() {
 
       } catch (error) {
 
-        toast(
-          error.message,
-          "bad"
+        console.error(
+          "GOOGLE LOGIN ERROR:",
+          error
         );
 
+        googleButton.disabled = false;
+
+        googleText.textContent =
+          modal.dataset.mode === "signup"
+            ? "Daftar dengan Google"
+            : "Lanjut dengan Google";
+
+        toast(
+          error.message ||
+          "Login dengan Google gagal.",
+          "bad"
+        );
       }
+    }
+  );
 
-    };
+  requestAnimationFrame(() => {
+    modal.classList.add("is-ready");
+    card?.querySelector("input")?.focus();
+  });
 }
-
 /* =========================================================
    VOUCHER
 ========================================================= */
