@@ -17087,3 +17087,177 @@ body:has(.hero) .top .nav a[href="#/"]{
   56%,80%{width:100%}
   92%,100%{width:0}
 }
+
+
+/* =========================================================
+   VELORA MOBILE APP NAV — FINAL POLISH
+   Mobile only. Desktop is intentionally untouched.
+========================================================= */
+@media (max-width: 650px){
+  :root{
+    --mobile-nav-height: 78px;
+  }
+
+  /* Reserve real space so the fixed dock never covers content/footer. */
+  body{
+    padding-bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom)) !important;
+  }
+
+  .mobile-bottom-nav{
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: var(--mobile-nav-height) !important;
+    min-height: var(--mobile-nav-height) !important;
+    box-sizing: border-box !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 2px !important;
+
+    padding: 7px 8px max(7px, env(safe-area-inset-bottom)) !important;
+
+    background: rgba(255,255,255,.97) !important;
+    border: 0 !important;
+    border-top: 1px solid rgba(33,26,43,.07) !important;
+    box-shadow: 0 -12px 34px rgba(33,26,43,.10) !important;
+
+    backdrop-filter: blur(22px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(150%) !important;
+
+    z-index: 99999 !important;
+    isolation: isolate;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  .mobile-bottom-item{
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 62px !important;
+    margin: 0 !important;
+    padding: 6px 3px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+
+    border-radius: 17px !important;
+    color: #938c98 !important;
+    background: transparent !important;
+
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      color .2s ease,
+      background-color .2s ease,
+      transform .18s ease !important;
+  }
+
+  .mobile-bottom-item.active{
+    color: #7c3aed !important;
+    background: #f3eaff !important;
+    font-weight: 700 !important;
+  }
+
+  .mobile-bottom-item.active::before{
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 22px;
+    height: 3px;
+    border-radius: 99px;
+    background: #7c3aed;
+    transform: translateX(-50%);
+    opacity: .9;
+  }
+
+  .mobile-bottom-item:active{
+    transform: scale(.93) !important;
+  }
+
+  .mobile-bottom-icon{
+    width: 25px !important;
+    height: 25px !important;
+    display: grid !important;
+    place-items: center !important;
+    flex: 0 0 25px !important;
+  }
+
+  .mobile-bottom-icon svg{
+    width: 24px !important;
+    height: 24px !important;
+    stroke-width: 1.9 !important;
+    transition: transform .2s ease, stroke-width .2s ease !important;
+  }
+
+  .mobile-bottom-item.active .mobile-bottom-icon svg{
+    transform: translateY(-1px) scale(1.03);
+    stroke-width: 2.2 !important;
+  }
+
+  .mobile-bottom-label{
+    display: block !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+
+    font-size: 9px !important;
+    line-height: 1 !important;
+    letter-spacing: -.01em !important;
+  }
+
+  /* Prevent footer content from visually merging into the app dock. */
+  .velora-footer{
+    padding-bottom: calc(24px + var(--mobile-nav-height)) !important;
+  }
+
+  .footer{
+    padding-bottom: calc(18px + var(--mobile-nav-height)) !important;
+  }
+}
+
+@media (max-width: 390px){
+  :root{
+    --mobile-nav-height: 74px;
+  }
+
+  .mobile-bottom-nav{
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  .mobile-bottom-item{
+    height: 59px !important;
+    border-radius: 15px !important;
+  }
+
+  .mobile-bottom-icon,
+  .mobile-bottom-icon svg{
+    width: 23px !important;
+    height: 23px !important;
+  }
+
+  .mobile-bottom-label{
+    font-size: 8px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .mobile-bottom-item,
+  .mobile-bottom-icon svg{
+    transition: none !important;
+  }
+}
