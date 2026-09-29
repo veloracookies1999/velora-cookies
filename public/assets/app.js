@@ -363,6 +363,25 @@ function mobileBottomNav() {
     </a>
   `;
 
+  /* Keep the mobile dock outside the app/footer DOM tree so fixed positioning
+     is truly viewport-based even if a page wrapper creates a containing block. */
+  if (window.innerWidth <= 650) {
+    setTimeout(() => {
+      const freshNav = document.querySelector("#app .mobile-bottom-nav") || document.querySelector(".mobile-bottom-nav");
+      if (!freshNav) return;
+
+      document.querySelectorAll(".mobile-bottom-nav").forEach((node) => {
+        if (node !== freshNav) node.remove();
+      });
+
+      if (freshNav.parentElement !== document.body) {
+        document.body.appendChild(freshNav);
+      }
+
+      refreshIcons();
+    }, 0);
+  }
+
   return `
     <nav
       class="mobile-bottom-nav"
