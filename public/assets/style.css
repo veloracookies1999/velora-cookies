@@ -16437,3 +16437,410 @@ body:has(.hero) .top .nav a[href="#/"]{
     display:none!important;
   }
 }
+
+/* =========================================================
+   VELORA HOMEPAGE — FINAL CLEAN POLISH
+   Scoped to homepage; mobile + desktop.
+   ========================================================= */
+
+.velora-home{
+  background:#fbf9fd;
+}
+
+.velora-home .hero-home{
+  min-height:680px;
+  border-bottom:1px solid rgba(61,42,66,.07);
+}
+
+.velora-home .hero-home-inner{
+  min-height:680px;
+  gap:64px;
+}
+
+.velora-home .hero-home-copy{
+  padding:20px 0 12px;
+}
+
+.velora-home .hero-home-copy .eyebrow{
+  margin-bottom:16px;
+}
+
+.velora-home .hero-title-type{
+  max-width:650px;
+  margin:0 0 22px;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(50px,6.2vw,78px);
+  line-height:.95;
+  letter-spacing:-.055em;
+  color:#17121b;
+}
+
+.velora-home .hero-title-type .type-line-two{
+  color:#7b4b8c;
+  font-style:italic;
+}
+
+.velora-home .hero-description{
+  max-width:545px;
+  margin:0;
+  font-size:15px;
+  line-height:1.8;
+  color:#766d79;
+}
+
+.velora-home .hero-actions{
+  margin-top:27px;
+  gap:10px;
+}
+
+.velora-home .hero-actions .btn{
+  min-height:48px;
+  padding:0 19px;
+  border-radius:14px;
+}
+
+.velora-home .hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:22px;
+}
+
+.velora-home .hero-meta span{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  min-height:31px;
+  padding:0 10px;
+  border:1px solid rgba(124,58,237,.10);
+  border-radius:999px;
+  background:rgba(255,255,255,.7);
+  color:#766b7d;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.01em;
+}
+
+.velora-home .hero-meta svg{
+  color:#7c3aed;
+}
+
+.velora-home .hero-home-visual{
+  min-width:0;
+  min-height:560px;
+}
+
+.velora-home .hero-image-wrap{
+  position:relative;
+  z-index:2;
+  width:min(100%,620px);
+  margin:0 auto;
+  border-radius:34px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(56,33,69,.14);
+}
+
+.velora-home .hero-main-image{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1.08/1;
+  object-fit:cover;
+  transition:transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.velora-home .hero-image-wrap:hover .hero-main-image{
+  transform:scale(1.025);
+}
+
+.velora-home .hero-float-card{
+  z-index:4;
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 16px 35px rgba(49,29,59,.13);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+.velora-home .brand-strip{
+  background:#fff;
+}
+
+.velora-home .brand-strip-inner{
+  max-width:1180px;
+  min-height:70px;
+  gap:20px;
+  font-size:9px;
+}
+
+.velora-home .home-products{
+  padding-top:88px !important;
+  padding-bottom:92px !important;
+  background:#fff;
+}
+
+.velora-home .home-products .section-head,
+.velora-home .home-faq .section-head{
+  margin-bottom:28px !important;
+}
+
+.velora-home .home-products .section-head h2,
+.velora-home .home-faq .section-head h2{
+  margin:6px 0 0;
+  font-size:clamp(34px,4vw,48px);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+
+.velora-home .text-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#6d28d9;
+  font-size:12px;
+  font-weight:800;
+}
+
+.velora-home .product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+
+.velora-home .product-grid .product{
+  border-color:#ece5f0;
+  border-radius:20px;
+  box-shadow:0 10px 32px rgba(54,35,63,.055);
+}
+
+.velora-home .product-grid .product:hover{
+  transform:translateY(-5px);
+  box-shadow:0 22px 50px rgba(54,35,63,.11);
+}
+
+.velora-home .product-grid .media{
+  height:245px;
+}
+
+.velora-home .home-story{
+  padding:105px 0;
+}
+
+.velora-home .home-story-grid{
+  gap:72px;
+}
+
+.velora-home .story-points{
+  margin-top:28px;
+  display:grid;
+  gap:0;
+}
+
+.velora-home .story-point{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:14px 0;
+  border-top:1px solid rgba(80,55,88,.09);
+}
+
+.velora-home .story-point:last-child{
+  border-bottom:1px solid rgba(80,55,88,.09);
+}
+
+.velora-home .story-point > span{
+  flex:0 0 30px;
+  font-size:10px;
+  font-weight:800;
+  color:#8a4de0;
+}
+
+.velora-home .story-point strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:13px;
+}
+
+.velora-home .story-point p{
+  margin:0;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.velora-home .home-faq{
+  padding-top:88px;
+  padding-bottom:100px;
+}
+
+.velora-home .faq-preview-grid{
+  gap:14px;
+}
+
+.velora-home .faq-preview-item{
+  min-height:190px;
+  padding:24px;
+  border-radius:20px;
+}
+
+.velora-home .faq-preview-item > span{
+  width:31px;
+  height:31px;
+  margin-bottom:18px;
+}
+
+@media (max-width:1050px){
+  .velora-home .hero-home{
+    min-height:auto;
+  }
+
+  .velora-home .hero-home-inner{
+    min-height:auto;
+    gap:35px;
+    padding-top:58px;
+    padding-bottom:65px;
+  }
+
+  .velora-home .hero-home-copy{
+    text-align:center;
+  }
+
+  .velora-home .hero-home-copy .eyebrow,
+  .velora-home .hero-meta{
+    justify-content:center;
+  }
+
+  .velora-home .hero-description{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .velora-home .hero-actions{
+    justify-content:center;
+  }
+
+  .velora-home .hero-home-visual{
+    min-height:460px;
+  }
+
+  .velora-home .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:650px){
+  .velora-home .hero-home-inner{
+    padding-top:34px;
+    padding-bottom:38px;
+  }
+
+  .velora-home .hero-home-copy{
+    padding:4px 0;
+  }
+
+  .velora-home .hero-title-type{
+    font-size:clamp(40px,12.5vw,54px);
+    line-height:.98;
+    margin-bottom:17px;
+  }
+
+  .velora-home .hero-description{
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  .velora-home .hero-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    margin-top:20px;
+  }
+
+  .velora-home .hero-actions .btn{
+    width:100%;
+    min-height:45px;
+    padding:0 10px;
+    font-size:11px;
+  }
+
+  .velora-home .hero-meta{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:17px;
+  }
+
+  .velora-home .hero-meta span{
+    justify-content:center;
+    min-height:29px;
+    padding:0 7px;
+    font-size:8.5px;
+  }
+
+  .velora-home .hero-meta span:last-child{
+    grid-column:1/-1;
+  }
+
+  .velora-home .hero-home-visual{
+    min-height:0;
+  }
+
+  .velora-home .hero-image-wrap{
+    width:100%;
+    border-radius:24px;
+  }
+
+  .velora-home .hero-float-card{
+    font-size:9px;
+  }
+
+  .velora-home .brand-strip-inner{
+    min-height:48px;
+    gap:10px;
+    padding:0 14px;
+  }
+
+  .velora-home .home-products{
+    padding-top:62px !important;
+    padding-bottom:68px !important;
+  }
+
+  .velora-home .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  .velora-home .product-grid .media{
+    height:auto;
+    aspect-ratio:1/1;
+  }
+
+  .velora-home .home-story{
+    padding:68px 0 !important;
+  }
+
+  .velora-home .home-story-grid{
+    gap:30px;
+  }
+
+  .velora-home .home-faq{
+    padding-top:62px;
+    padding-bottom:70px;
+  }
+
+  .velora-home .home-faq .section-head h2,
+  .velora-home .home-products .section-head h2{
+    font-size:31px;
+  }
+}
+
+@media (max-width:380px){
+  .velora-home .hero-actions{
+    grid-template-columns:1fr;
+  }
+
+  .velora-home .hero-meta{
+    grid-template-columns:1fr;
+  }
+
+  .velora-home .hero-meta span:last-child{
+    grid-column:auto;
+  }
+}
