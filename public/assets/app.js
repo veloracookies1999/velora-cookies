@@ -143,6 +143,56 @@ async function boot() {
   try {
     S.cfg = await fetch("/api/config").then((r) => r.json());
 
+    async function loadMidtransSnap() {
+  if (window.snap) {
+    return true;
+  }
+
+  const clientKey =
+    S.cfg?.midtransClientKey;
+
+  if (!clientKey) {
+    console.warn(
+      "Midtrans Client Key tidak tersedia."
+    );
+
+    return false;
+  }
+
+  const isProduction =
+    S.cfg?.midtransIsProduction === true;
+
+  const script = document.createElement("script");
+
+  script.src = isProduction
+    ? "https://app.midtrans.com/snap/snap.js"
+    : "https://app.sandbox.midtrans.com/snap/snap.js";
+
+  script.setAttribute(
+    "data-client-key",
+    clientKey
+  );
+
+  script.async = true;
+
+  await new Promise(
+    (resolve, reject) => {
+      script.onload = resolve;
+
+      script.onerror = () =>
+        reject(
+          new Error(
+            "Midtrans Snap gagal dimuat."
+          )
+        );
+
+      document.head.appendChild(script);
+    }
+  );
+
+  return Boolean(window.snap);
+}
+
     if (
       !S.cfg?.supabaseUrl ||
       !S.cfg?.supabasePublishableKey
@@ -153,6 +203,14 @@ async function boot() {
       );
       return;
     }
+    try {
+  await loadMidtransSnap();
+} catch (error) {
+  console.error(
+    "MIDTRANS SNAP ERROR:",
+    error
+  );
+}
 
     if (!window.supabase?.createClient) {
       renderError(
