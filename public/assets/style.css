@@ -16426,3 +16426,14 @@ body:has(.hero) .top .nav a[href="#/"]{
     min-height:45px!important;
   }
 }
+
+
+/* =========================================================
+   MOBILE AUTH — HIDE APP DOCK WHILE LOGIN / REGISTER IS OPEN
+   Mobile only; desktop untouched.
+   ========================================================= */
+@media (max-width:650px){
+  body:has(#authModal) .mobile-bottom-nav{
+    display:none!important;
+  }
+}
