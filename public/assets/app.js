@@ -306,6 +306,109 @@ function renderError(message) {
    NAVBAR / FOOTER
 ========================================================= */
 
+function mobileBottomNav() {
+  const r = route();
+
+  const active = (key) => {
+    if (key === "home") {
+      return r === "/";
+    }
+
+    if (key === "shop") {
+      return (
+        r === "/shop" ||
+        r.startsWith("/shop?") ||
+        r.startsWith("/product/")
+      );
+    }
+
+    if (key === "orders") {
+      return r.startsWith("/orders");
+    }
+
+    if (key === "wishlist") {
+      return r.startsWith("/wishlist");
+    }
+
+    if (key === "profile") {
+      return (
+        r.startsWith("/profile") ||
+        r.startsWith("/notifications")
+      );
+    }
+
+    return false;
+  };
+
+  const item = (
+    key,
+    href,
+    iconName,
+    label,
+    requiresAuth = false
+  ) => `
+    <a
+      class="mobile-bottom-item ${active(key) ? "active" : ""}"
+      href="${href}"
+      ${requiresAuth ? `data-mobile-auth="1"` : ""}
+      aria-label="${label}"
+    >
+      <span class="mobile-bottom-icon">
+        ${icon(iconName, 20)}
+      </span>
+
+      <span class="mobile-bottom-label">
+        ${label}
+      </span>
+    </a>
+  `;
+
+  return `
+    <nav
+      class="mobile-bottom-nav"
+      aria-label="Navigasi mobile"
+    >
+      ${item(
+        "home",
+        "#/",
+        "house",
+        "Beranda"
+      )}
+
+      ${item(
+        "shop",
+        "#/shop",
+        "layout-grid",
+        "Koleksi"
+      )}
+
+      ${item(
+        "orders",
+        "#/orders",
+        "package",
+        "Pesanan",
+        true
+      )}
+
+      ${item(
+        "wishlist",
+        "#/wishlist",
+        "heart",
+        "Wishlist",
+        true
+      )}
+
+      ${item(
+        "profile",
+        S.user ? "#/profile" : "#",
+        "user-round",
+        "Akun",
+        true
+      )}
+    </nav>
+  `;
+}
+
 function top() {
   const count = S.cart.reduce((a,b)=>a+b.qty,0);
 
@@ -372,8 +475,11 @@ function top() {
         }
       </div>
     </header>
+
+${mobileBottomNav()}
   `;
 }
+
 
 function foot() {
   return `
@@ -7170,6 +7276,15 @@ function initHeroSlider(){
 
 
   function bind() {
+
+    $$("[data-mobile-auth]").forEach(link => {
+  link.addEventListener("click", event => {
+    if (!S.user) {
+      event.preventDefault();
+      authModal();
+    }
+  });
+});
 
   /* =========================================================
      ADMIN HERO
