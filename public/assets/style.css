@@ -15969,3 +15969,180 @@ body:has(.hero) .top .nav a[href="#/"]{
   .price{font-size:11px!important}
   .mobile-bottom-nav{left:5px!important;right:5px!important;bottom:5px!important}
 }
+
+
+/* =========================================================
+   VELORA MOBILE BOTTOM NAV — MODERN APP DOCK
+   Mobile only. Desktop remains untouched.
+   ========================================================= */
+
+@media (max-width:650px){
+
+  body{
+    padding-bottom:calc(88px + env(safe-area-inset-bottom))!important;
+  }
+
+  .mobile-bottom-nav{
+    position:fixed!important;
+    left:12px!important;
+    right:12px!important;
+    bottom:calc(10px + env(safe-area-inset-bottom))!important;
+    width:auto!important;
+    height:66px!important;
+    min-height:66px!important;
+    padding:5px!important;
+    box-sizing:border-box!important;
+
+    display:grid!important;
+    grid-template-columns:repeat(5,1fr)!important;
+    align-items:stretch!important;
+    gap:3px!important;
+
+    background:rgba(255,255,255,.88)!important;
+    border:1px solid rgba(255,255,255,.95)!important;
+    border-radius:22px!important;
+
+    box-shadow:
+      0 18px 45px rgba(35,22,48,.16),
+      0 3px 12px rgba(35,22,48,.06),
+      inset 0 1px 0 rgba(255,255,255,.95)!important;
+
+    backdrop-filter:blur(24px) saturate(150%)!important;
+    -webkit-backdrop-filter:blur(24px) saturate(150%)!important;
+
+    z-index:9999!important;
+  }
+
+  .mobile-bottom-item{
+    position:relative!important;
+    min-width:0!important;
+    min-height:56px!important;
+    height:56px!important;
+    padding:5px 2px!important;
+    box-sizing:border-box!important;
+
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+
+    color:#98919e!important;
+    background:transparent!important;
+    border-radius:17px!important;
+    text-decoration:none!important;
+
+    transition:
+      color .2s ease,
+      background .2s ease,
+      transform .18s ease!important;
+  }
+
+  .mobile-bottom-item::before{
+    content:"";
+    position:absolute;
+    top:4px;
+    left:50%;
+    width:22px;
+    height:3px;
+    border-radius:999px;
+    background:transparent;
+    transform:translateX(-50%) scaleX(.4);
+    transition:all .22s ease;
+  }
+
+  .mobile-bottom-item.active{
+    color:#7135c4!important;
+    background:linear-gradient(
+      180deg,
+      #f5edff 0%,
+      #f9f5fd 100%
+    )!important;
+  }
+
+  .mobile-bottom-item.active::before{
+    background:#7c3aed;
+    transform:translateX(-50%) scaleX(1);
+  }
+
+  .mobile-bottom-icon{
+    width:25px!important;
+    height:25px!important;
+    display:grid!important;
+    place-items:center!important;
+    position:relative!important;
+    transition:transform .2s ease!important;
+  }
+
+  .mobile-bottom-icon svg{
+    width:20px!important;
+    height:20px!important;
+    stroke-width:1.9!important;
+  }
+
+  .mobile-bottom-item.active .mobile-bottom-icon{
+    transform:translateY(-1px)!important;
+  }
+
+  .mobile-bottom-label{
+    display:block!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+
+    font-size:8.5px!important;
+    line-height:1!important;
+    font-weight:700!important;
+    letter-spacing:-.01em!important;
+  }
+
+  .mobile-bottom-item:not(.active) .mobile-bottom-label{
+    font-weight:600!important;
+  }
+
+  .mobile-bottom-item:active{
+    transform:scale(.92)!important;
+  }
+
+  /* Small notification/count treatment if one is added later */
+  .mobile-bottom-item .count,
+  .mobile-bottom-item [data-count]{
+    position:absolute!important;
+    top:5px!important;
+    right:calc(50% - 17px)!important;
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .mobile-bottom-item.active .mobile-bottom-icon{
+      animation:veloraNavPop .28s ease-out;
+    }
+  }
+}
+
+@keyframes veloraNavPop{
+  0%{transform:translateY(2px) scale(.88)}
+  65%{transform:translateY(-2px) scale(1.08)}
+  100%{transform:translateY(-1px) scale(1)}
+}
+
+@media (max-width:380px){
+  .mobile-bottom-nav{
+    left:7px!important;
+    right:7px!important;
+    bottom:calc(7px + env(safe-area-inset-bottom))!important;
+    height:63px!important;
+    min-height:63px!important;
+    border-radius:20px!important;
+  }
+
+  .mobile-bottom-item{
+    min-height:53px!important;
+    height:53px!important;
+    border-radius:15px!important;
+  }
+
+  .mobile-bottom-label{
+    font-size:8px!important;
+  }
+}
