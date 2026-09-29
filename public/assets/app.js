@@ -2327,21 +2327,12 @@ function checkout() {
         )
       : null;
 
-  /*
-    Jika sedang direct checkout tetapi produk
-    tidak ditemukan, jangan diam-diam fallback
-    ke keranjang.
-  */
   if (isDirectCheckout && !direct) {
-
     return wrap(
       "Checkout",
       `
         <div class="panel empty">
-
-          <h3>
-            Produk tidak ditemukan
-          </h3>
+          <h3>Produk tidak ditemukan</h3>
 
           <p class="muted">
             Produk yang ingin kamu beli sudah tidak tersedia
@@ -2356,17 +2347,11 @@ function checkout() {
           >
             Kembali ke toko
           </a>
-
         </div>
       `
     );
   }
 
-  /*
-    Tentukan item checkout:
-    - Beli Sekarang → produk direct
-    - Checkout biasa → semua isi keranjang
-  */
   const checkoutItems =
     direct
       ? [
@@ -2383,7 +2368,6 @@ function checkout() {
       : S.cart;
 
   if (!checkoutItems.length) {
-
     return wrap(
       "Checkout",
       `
@@ -2426,39 +2410,72 @@ function checkout() {
   const orderItemsHTML =
     checkoutItems
       .map(
-        item => `
-          <div class="sum">
+        item => {
 
-            <span>
-              ${esc(
-                item.products.name || "Produk"
-              )}
+          const product =
+            item.products || {};
 
-              ×
+          const qty =
+            Number(item.qty || 1);
 
-              ${Number(item.qty || 0)}
-            </span>
+          const lineTotal =
+            Number(product.price || 0) *
+            qty;
 
-            <b>
-              ${money(
-                Number(item.qty || 0) *
-                Number(item.products.price || 0)
-              )}
-            </b>
+          return `
+            <div class="checkout-product">
 
-          </div>
-        `
+              <div class="checkout-product-media">
+                ${visual(product)}
+              </div>
+
+              <div class="checkout-product-info">
+
+                <span class="checkout-product-category">
+                  ${esc(
+                    product.categories?.name ||
+                    "VELORA COOKIES"
+                  )}
+                </span>
+
+                <strong>
+                  ${esc(
+                    product.name ||
+                    "Produk"
+                  )}
+                </strong>
+
+                <span>
+                  ${money(
+                    Number(product.price || 0)
+                  )}
+                  × ${qty}
+                </span>
+
+              </div>
+
+              <b class="checkout-product-price">
+                ${money(lineTotal)}
+              </b>
+
+            </div>
+          `;
+        }
       )
       .join("");
 
   return `
-    <div>
+    <div class="velora-checkout">
 
       ${top()}
 
-      <main class="container page">
+      <main class="container page checkout-page">
 
-        <div class="page-title">
+        <!-- =========================================
+             CHECKOUT HEADER
+        ========================================== -->
+
+        <section class="checkout-hero">
 
           <div>
 
@@ -2467,304 +2484,743 @@ function checkout() {
             </span>
 
             <h1>
-              Checkout
+              Selesaikan pesananmu.
             </h1>
+
+            <p>
+              Tinggal isi detail pengiriman,
+              pilih pembayaran, lalu biarkan kami
+              menyiapkan cookies favoritmu.
+            </p>
+
+          </div>
+
+          <div class="checkout-secure">
+
+            <span class="checkout-secure-icon">
+              ${icon("shield-check",18)}
+            </span>
+
+            <div>
+              <strong>
+                Secure checkout
+              </strong>
+
+              <small>
+                Data pesanan terlindungi
+              </small>
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =========================================
+             PROGRESS
+        ========================================== -->
+
+        <div class="checkout-progress">
+
+          <div class="checkout-progress-step active">
+
+            <span>
+              01
+            </span>
+
+            <div>
+              <b>
+                Detail
+              </b>
+
+              <small>
+                Pengiriman
+              </small>
+            </div>
+
+          </div>
+
+          <div class="checkout-progress-line"></div>
+
+          <div class="checkout-progress-step active">
+
+            <span>
+              02
+            </span>
+
+            <div>
+              <b>
+                Pembayaran
+              </b>
+
+              <small>
+                Pilih metode
+              </small>
+            </div>
+
+          </div>
+
+          <div class="checkout-progress-line"></div>
+
+          <div class="checkout-progress-step">
+
+            <span>
+              03
+            </span>
+
+            <div>
+              <b>
+                Selesai
+              </b>
+
+              <small>
+                Pesanan diproses
+              </small>
+            </div>
 
           </div>
 
         </div>
 
+
+        <!-- =========================================
+             CHECKOUT FORM
+        ========================================== -->
+
         <form
           id="checkout"
-          class="checkout-grid"
+          class="checkout-layout"
+          data-subtotal="${subtotal}"
         >
 
-          <!-- =========================================
-               INFORMASI PENGIRIMAN
-          ========================================== -->
+          <!-- =======================================
+               LEFT
+          ======================================== -->
 
-          <div class="panel">
+          <div class="checkout-main">
 
-            <div class="form-grid">
 
-              <div class="field">
+            <!-- DELIVERY CARD -->
 
-                <label>
-                  Nama
-                </label>
+            <section class="checkout-card">
 
-                <input
-                  class="input"
-                  name="recipient"
-                  value="${esc(
-                    S.user.name || ""
-                  )}"
-                  required
-                >
+              <div class="checkout-card-head">
 
-              </div>
+                <div class="checkout-section-number">
+                  01
+                </div>
 
-              <div class="field">
+                <div>
 
-                <label>
-                  WhatsApp
-                </label>
+                  <span class="eyebrow">
+                    DELIVERY DETAILS
+                  </span>
 
-                <input
-                  class="input"
-                  name="phone"
-                  value="${esc(
-                    S.user.phone || ""
-                  )}"
-                  required
-                >
+                  <h2>
+                    Detail pengiriman
+                  </h2>
 
-              </div>
-
-              <div class="field full">
-
-                <label>
-                  Alamat
-                </label>
-
-                <textarea
-                  class="textarea"
-                  rows="4"
-                  name="address"
-                  required
-                >${esc(
-                  S.user.address || ""
-                )}</textarea>
-
-              </div>
-
-              <div class="field">
-
-                <label>
-                  Kurir
-                </label>
-
-                <select
-                  class="select"
-                  name="shipping"
-                  id="shipping"
-                >
-
-                  <option value="regular">
-                    Regular - Rp 12.000
-                  </option>
-
-                  <option value="express">
-                    Express - Rp 25.000
-                  </option>
-
-                </select>
-
-              </div>
-
-              <div class="field">
-
-                <label>
-                  Payment
-                </label>
-
-                <select
-                  class="select"
-                  name="paymentMethod"
-                >
-
-                  <option value="cod">
-                    COD
-                  </option>
-
-                  <option value="transfer">
-                    Transfer manual
-                  </option>
-
-                  <option value="qris">
-                    QRIS demo
-                  </option>
-
-                </select>
-
-              </div>
-
-              <div class="field full">
-
-                <label>
-                  Voucher
-                </label>
-
-                <div
-                  style="
-                    display:flex;
-                    gap:8px;
-                  "
-                >
-
-                  <input
-                    class="input"
-                    id="vc"
-                    name="voucherCode"
-                    placeholder="WELCOME10"
-                  >
-
-                  <button
-                    type="button"
-                    class="btn soft"
-                    id="cv"
-                  >
-                    Pakai
-                  </button>
+                  <p>
+                    Pastikan informasi penerima
+                    sudah benar.
+                  </p>
 
                 </div>
 
-                <small
-                  id="vi"
-                  class="muted"
-                ></small>
+              </div>
+
+
+              <div class="form-grid checkout-form-grid">
+
+                <div class="field">
+
+                  <label>
+                    Nama penerima
+                  </label>
+
+                  <div class="checkout-input-wrap">
+
+                    ${icon("user-round",16)}
+
+                    <input
+                      class="input"
+                      name="recipient"
+                      value="${esc(
+                        S.user.name || ""
+                      )}"
+                      placeholder="Nama lengkap"
+                      required
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <div class="field">
+
+                  <label>
+                    WhatsApp
+                  </label>
+
+                  <div class="checkout-input-wrap">
+
+                    ${icon("phone",16)}
+
+                    <input
+                      class="input"
+                      name="phone"
+                      value="${esc(
+                        S.user.phone || ""
+                      )}"
+                      placeholder="08xxxxxxxxxx"
+                      required
+                    >
+
+                  </div>
+
+                </div>
+
+
+                <div class="field full">
+
+                  <label>
+                    Alamat lengkap
+                  </label>
+
+                  <div class="checkout-input-wrap textarea-wrap">
+
+                    ${icon("map-pin",16)}
+
+                    <textarea
+                      class="textarea"
+                      rows="4"
+                      name="address"
+                      placeholder="Nama jalan, nomor rumah, kecamatan, kota..."
+                      required
+                    >${esc(
+                      S.user.address || ""
+                    )}</textarea>
+
+                  </div>
+
+                </div>
+
+
+                <div class="field full">
+
+                  <label>
+                    Pengiriman
+                  </label>
+
+                  <div class="checkout-shipping-box">
+
+                    <div class="checkout-shipping-icon">
+                      ${icon("truck",18)}
+                    </div>
+
+                    <div class="checkout-shipping-info">
+
+                      <strong>
+                        Kurir pengiriman
+                      </strong>
+
+                      <small>
+                        Estimasi pengiriman sesuai layanan
+                      </small>
+
+                    </div>
+
+                    <select
+                      class="select checkout-shipping-select"
+                      name="shipping"
+                      id="shipping"
+                    >
+
+                      <option value="regular">
+                        Regular · Rp 12.000
+                      </option>
+
+                      <option value="express">
+                        Express · Rp 25.000
+                      </option>
+
+                    </select>
+
+                  </div>
+
+                </div>
 
               </div>
 
-              <div class="field full">
+            </section>
 
-                <label>
-                  Catatan
+
+            <!-- PAYMENT CARD -->
+
+            <section class="checkout-card">
+
+              <div class="checkout-card-head">
+
+                <div class="checkout-section-number">
+                  02
+                </div>
+
+                <div>
+
+                  <span class="eyebrow">
+                    PAYMENT
+                  </span>
+
+                  <h2>
+                    Pilih pembayaran
+                  </h2>
+
+                  <p>
+                    Gunakan metode yang paling nyaman
+                    untuk pesananmu.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="payment-options">
+
+
+                <!-- MIDTRANS -->
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="midtrans"
+                    checked
+                  >
+
+                  <div class="payment-option-box">
+
+                    <div class="payment-option-icon payment-purple">
+                      ${icon("credit-card",19)}
+                    </div>
+
+                    <div class="payment-option-content">
+
+                      <div class="payment-option-title">
+
+                        <strong>
+                          Midtrans
+                        </strong>
+
+                        <span class="payment-recommended">
+                          RECOMMENDED
+                        </span>
+
+                      </div>
+
+                      <p>
+                        Pembayaran online melalui
+                        QRIS, Virtual Account, e-wallet,
+                        dan channel yang tersedia di Snap.
+                      </p>
+
+                    </div>
+
+                    <div class="payment-option-radio">
+                      <span></span>
+                    </div>
+
+                  </div>
+
                 </label>
 
-                <textarea
-                  class="textarea"
-                  rows="3"
-                  name="note"
-                  placeholder="Catatan untuk pesanan..."
-                ></textarea>
+
+                <!-- COD -->
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="cod"
+                  >
+
+                  <div class="payment-option-box">
+
+                    <div class="payment-option-icon payment-green">
+                      ${icon("hand-coins",19)}
+                    </div>
+
+                    <div class="payment-option-content">
+
+                      <div class="payment-option-title">
+
+                        <strong>
+                          COD
+                        </strong>
+
+                      </div>
+
+                      <p>
+                        Bayar saat pesanan
+                        diterima.
+                      </p>
+
+                    </div>
+
+                    <div class="payment-option-radio">
+                      <span></span>
+                    </div>
+
+                  </div>
+
+                </label>
+
+
+                <!-- TRANSFER -->
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="transfer"
+                  >
+
+                  <div class="payment-option-box">
+
+                    <div class="payment-option-icon payment-dark">
+                      ${icon("building-2",19)}
+                    </div>
+
+                    <div class="payment-option-content">
+
+                      <div class="payment-option-title">
+
+                        <strong>
+                          Transfer manual
+                        </strong>
+
+                      </div>
+
+                      <p>
+                        Lakukan transfer dan
+                        konfirmasi pembayaran
+                        sesuai instruksi.
+                      </p>
+
+                    </div>
+
+                    <div class="payment-option-radio">
+                      <span></span>
+                    </div>
+
+                  </div>
+
+                </label>
+
+
+              </div>
+
+
+              <div class="payment-security">
+
+                <span>
+                  ${icon("shield-check",16)}
+                </span>
+
+                <div>
+
+                  <strong>
+                    Pembayaran aman
+                  </strong>
+
+                  <p>
+                    Untuk Midtrans, detail pembayaran
+                    akan diproses melalui halaman
+                    pembayaran resmi Midtrans.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- VOUCHER + NOTE -->
+
+            <section class="checkout-card">
+
+              <div class="checkout-card-head compact">
+
+                <div class="checkout-section-number">
+                  03
+                </div>
+
+                <div>
+
+                  <span class="eyebrow">
+                    EXTRA
+                  </span>
+
+                  <h2>
+                    Voucher & catatan
+                  </h2>
+
+                </div>
+
+              </div>
+
+
+              <div class="form-grid checkout-form-grid">
+
+                <div class="field full">
+
+                  <label>
+                    Kode voucher
+                  </label>
+
+                  <div class="voucher-box">
+
+                    <div class="checkout-input-wrap">
+
+                      ${icon("ticket-percent",16)}
+
+                      <input
+                        class="input"
+                        id="vc"
+                        name="voucherCode"
+                        placeholder="Masukkan kode voucher"
+                        autocomplete="off"
+                      >
+
+                    </div>
+
+                    <button
+                      type="button"
+                      class="btn soft voucher-button"
+                      id="cv"
+                    >
+                      Terapkan
+                    </button>
+
+                  </div>
+
+                  <small
+                    id="vi"
+                    class="checkout-voucher-info"
+                  ></small>
+
+                </div>
+
+
+                <div class="field full">
+
+                  <label>
+                    Catatan pesanan
+                  </label>
+
+                  <div class="checkout-input-wrap textarea-wrap">
+
+                    ${icon("notebook-pen",16)}
+
+                    <textarea
+                      class="textarea"
+                      rows="3"
+                      name="note"
+                      placeholder="Contoh: Tolong packing dengan aman..."
+                    ></textarea>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+
+          <!-- =======================================
+               RIGHT SUMMARY
+          ======================================== -->
+
+          <aside class="checkout-summary">
+
+            <div class="checkout-summary-inner">
+
+              <div class="checkout-summary-top">
+
+                <div>
+
+                  <span class="eyebrow">
+                    ${
+                      isDirectCheckout
+                        ? "BUY NOW"
+                        : "YOUR ORDER"
+                    }
+                  </span>
+
+                  <h2>
+                    Ringkasan pesanan
+                  </h2>
+
+                </div>
+
+                <span class="checkout-summary-count">
+                  ${checkoutItems.length}
+                  ${checkoutItems.length === 1 ? "item" : "items"}
+                </span>
+
+              </div>
+
+
+              <!-- PRODUCTS -->
+
+              <div class="checkout-products">
+
+                ${orderItemsHTML}
+
+              </div>
+
+
+              <!-- TOTALS -->
+
+              <div class="checkout-total-list">
+
+                <div class="checkout-total-row">
+
+                  <span>
+                    Subtotal
+                  </span>
+
+                  <strong>
+                    ${money(subtotal)}
+                  </strong>
+
+                </div>
+
+
+                <div class="checkout-total-row">
+
+                  <span>
+                    Diskon
+                  </span>
+
+                  <strong
+                    id="disc"
+                    class="discount-value"
+                  >
+                    ${money(0)}
+                  </strong>
+
+                </div>
+
+
+                <div class="checkout-total-row">
+
+                  <span>
+                    Ongkir
+                  </span>
+
+                  <strong id="ship">
+                    ${money(defaultShipping)}
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="checkout-grand-total">
+
+                <div>
+
+                  <span>
+                    Total pembayaran
+                  </span>
+
+                  <small>
+                    Sudah termasuk ongkir
+                  </small>
+
+                </div>
+
+                <strong id="total">
+                  ${money(
+                    subtotal +
+                    defaultShipping
+                  )}
+                </strong>
+
+              </div>
+
+
+              <!-- CTA -->
+
+              <button
+                class="checkout-submit"
+                type="submit"
+              >
+
+                <span>
+
+                  <small>
+                    ${
+                      isDirectCheckout
+                        ? "Beli sekarang"
+                        : "Lanjutkan checkout"
+                    }
+                  </small>
+
+                  <strong>
+                    Lanjut ke pembayaran
+                  </strong>
+
+                </span>
+
+                <span class="checkout-submit-icon">
+                  ${icon("arrow-right",19)}
+                </span>
+
+              </button>
+
+
+              <div class="checkout-trust">
+
+                <div>
+                  ${icon("shield-check",15)}
+                  Secure checkout
+                </div>
+
+                <div>
+                  ${icon("lock-keyhole",15)}
+                  Data terenkripsi
+                </div>
+
+              </div>
+
+
+              <div class="checkout-mini-note">
+
+                <span>
+                  ${icon("cookie",16)}
+                </span>
+
+                <p>
+                  Cookies dibuat dengan perhatian
+                  untuk setiap pesanan VELORA.
+                </p>
 
               </div>
 
             </div>
 
-          </div>
-
-          <!-- =========================================
-               RINGKASAN PESANAN
-          ========================================== -->
-
-          <div class="panel">
-
-            <div
-              style="
-                display:flex;
-                align-items:center;
-                justify-content:space-between;
-                gap:12px;
-                margin-bottom:14px;
-              "
-            >
-
-              <h3>
-                Ringkasan
-              </h3>
-
-              ${
-                isDirectCheckout
-                  ? `
-                    <span class="eyebrow">
-                      Beli Sekarang
-                    </span>
-                  `
-                  : `
-                    <span class="eyebrow">
-                      Keranjang
-                    </span>
-                  `
-              }
-
-            </div>
-
-            <!-- ITEM CHECKOUT -->
-
-            ${orderItemsHTML}
-
-            <!-- SUBTOTAL -->
-
-            <div class="sum">
-
-              <span>
-                Subtotal
-              </span>
-
-              <b>
-                ${money(subtotal)}
-              </b>
-
-            </div>
-
-            <!-- DISKON -->
-
-            <div class="sum">
-
-              <span>
-                Diskon
-              </span>
-
-              <b id="disc">
-                ${money(0)}
-              </b>
-
-            </div>
-
-            <!-- ONGKIR -->
-
-            <div class="sum">
-
-              <span>
-                Ongkir
-              </span>
-
-              <b id="ship">
-                ${money(defaultShipping)}
-              </b>
-
-            </div>
-
-            <!-- TOTAL -->
-
-            <div class="sum total">
-
-              <span>
-                Total
-              </span>
-
-              <b id="total">
-                ${money(
-                  subtotal +
-                  defaultShipping
-                )}
-              </b>
-
-            </div>
-
-            <!-- SUBMIT -->
-
-            <button
-              class="btn primary"
-              style="
-                width:100%;
-                margin-top:12px;
-              "
-              type="submit"
-            >
-
-              Buat Pesanan
-
-              ${icon(
-                "arrow-right",
-                15
-              )}
-
-            </button>
-
-          </div>
+          </aside>
 
         </form>
 
@@ -2775,7 +3231,6 @@ function checkout() {
     </div>
   `;
 }
-
 
 
 /* =========================================================
@@ -9816,57 +10271,73 @@ async function voucherCheck() {
   try {
 
     const subtotal =
-      S.cart.reduce(
-        (sum, item) =>
-          sum +
-          Number(item.products.price) *
-          Number(item.qty),
-        0
+      Number(
+        $("#checkout")?.dataset?.subtotal || 0
       );
+
+    const code =
+      String(
+        $("#vc")?.value || ""
+      ).trim();
+
+    if (!code) {
+      $("#vi").textContent =
+        "Masukkan kode voucher terlebih dahulu.";
+
+      updateCheckoutTotal(0);
+      return;
+    }
 
     const result =
       await api(
         "/api/voucher/check",
         {
           method: "POST",
+
           body: {
-            code: $("#vc")?.value || "",
+            code,
             subtotal
           }
         }
       );
 
+    const discount =
+      Number(
+        result.discount || 0
+      );
+
     $("#vi").textContent =
-      `Diskon ${money(result.discount)} berhasil diterapkan.`;
+      `Diskon ${money(discount)} berhasil diterapkan.`;
+
+    $("#vi").classList.add(
+      "success"
+    );
 
     updateCheckoutTotal(
-      Number(result.discount || 0)
+      discount
     );
 
   } catch (error) {
 
     $("#vi").textContent =
-      error.message;
+      error.message ||
+      "Voucher tidak dapat digunakan.";
+
+    $("#vi").classList.remove(
+      "success"
+    );
 
     updateCheckoutTotal(0);
 
   }
 }
 
-function updateCheckoutShipping() {
 
-  const subtotal =
-    S.cart.reduce(
-      (sum, item) =>
-        sum +
-        Number(item.products.price) *
-        Number(item.qty),
-      0
-    );
+function updateCheckoutShipping() {
 
   const discount =
     Number(
-      ($("#vi")?.dataset?.discount || 0)
+      $("#vi")?.dataset?.discount || 0
     );
 
   updateCheckoutTotal(
@@ -9874,17 +10345,14 @@ function updateCheckoutShipping() {
   );
 }
 
+
 function updateCheckoutTotal(
   discount = 0
 ) {
 
   const subtotal =
-    S.cart.reduce(
-      (sum, item) =>
-        sum +
-        Number(item.products.price) *
-        Number(item.qty),
-      0
+    Number(
+      $("#checkout")?.dataset?.subtotal || 0
     );
 
   const shipping =
@@ -9893,7 +10361,18 @@ function updateCheckoutTotal(
       : 12000;
 
   const discountValue =
-    Number(discount || 0);
+    Math.max(
+      0,
+      Number(discount || 0)
+    );
+
+  const total =
+    Math.max(
+      0,
+      subtotal +
+      shipping -
+      discountValue
+    );
 
   if ($("#disc")) {
     $("#disc").textContent =
@@ -9907,11 +10386,7 @@ function updateCheckoutTotal(
 
   if ($("#total")) {
     $("#total").textContent =
-      money(
-        subtotal +
-        shipping -
-        discountValue
-      );
+      money(total);
   }
 
   if ($("#vi")) {
@@ -9919,6 +10394,176 @@ function updateCheckoutTotal(
       String(discountValue);
   }
 }
+async function ensureMidtransSnap() {
+
+  if (window.snap?.pay) {
+    return true;
+  }
+
+  const src =
+    String(
+      S.cfg?.midtransSnapJs ||
+      ""
+    ).trim();
+
+  const clientKey =
+    String(
+      S.cfg?.midtransClientKey ||
+      ""
+    ).trim();
+
+  if (!src || !clientKey) {
+    throw new Error(
+      "Midtrans belum dikonfigurasi di server."
+    );
+  }
+
+  await new Promise((resolve, reject) => {
+
+    const existing =
+      document.querySelector(
+        'script[data-velora-midtrans="1"]'
+      );
+
+    if (existing) {
+
+      if (window.snap?.pay) {
+        resolve();
+        return;
+      }
+
+      existing.addEventListener(
+        "load",
+        resolve,
+        { once: true }
+      );
+
+      existing.addEventListener(
+        "error",
+        () =>
+          reject(
+            new Error(
+              "Gagal memuat Midtrans Snap."
+            )
+          ),
+        { once: true }
+      );
+
+      return;
+    }
+
+    const script =
+      document.createElement("script");
+
+    script.src = src;
+    script.dataset.veloraMidtrans = "1";
+    script.async = true;
+
+    script.onload = () => resolve();
+
+    script.onerror = () =>
+      reject(
+        new Error(
+          "Gagal memuat Midtrans Snap."
+        )
+      );
+
+    document.head.appendChild(script);
+
+  });
+
+  if (!window.snap?.pay) {
+    throw new Error(
+      "Midtrans Snap belum siap."
+    );
+  }
+
+  return true;
+}
+
+
+async function openMidtransPayment(
+  orderId,
+  orderCode
+) {
+
+  await ensureMidtransSnap();
+
+  const result =
+    await api(
+      "/api/payment/create",
+      {
+        method: "POST",
+        body: {
+          orderId
+        }
+      }
+    );
+
+  if (!result?.token) {
+    throw new Error(
+      "Snap Token tidak diterima dari server."
+    );
+  }
+
+  window.snap.pay(
+    result.token,
+    {
+      onSuccess: async () => {
+
+        toast(
+          `Pembayaran ${orderCode} berhasil dikirim ke Midtrans.`,
+          "good"
+        );
+
+        await data();
+
+        go("/orders");
+
+      },
+
+      onPending: async () => {
+
+        toast(
+          `Pembayaran ${orderCode} masih menunggu.`,
+          "good"
+        );
+
+        await data();
+
+        go("/orders");
+
+      },
+
+      onError: async () => {
+
+        toast(
+          `Pembayaran ${orderCode} gagal.`,
+          "bad"
+        );
+
+        await data();
+
+        go("/orders");
+
+      },
+
+      onClose: async () => {
+
+        toast(
+          "Pembayaran ditutup. Pesanan tetap tersimpan sebagai pending.",
+          "good"
+        );
+
+        await data();
+
+        go("/orders");
+
+      }
+    }
+  );
+}
+
 
 async function checkoutSubmit(event) {
 
@@ -9962,13 +10607,38 @@ async function checkoutSubmit(event) {
         }
       );
 
+    const paymentMethod =
+      String(
+        payload.paymentMethod ||
+        "cod"
+      ).trim();
+
+    S.directCheckout =
+      null;
+
+    /*
+     * Midtrans:
+     * order dibuat terlebih dahulu oleh backend,
+     * kemudian backend membuat Snap Token.
+     *
+     * Status paid/failed/expired TIDAK ditentukan
+     * oleh callback browser. Status final berasal
+     * dari notification Midtrans ke server.
+     */
+    if (paymentMethod === "midtrans") {
+
+      await openMidtransPayment(
+        result.orderId,
+        result.orderCode
+      );
+
+      return;
+    }
+
     toast(
       `Pesanan ${result.orderCode} berhasil dibuat.`,
       "good"
     );
-
-    S.directCheckout =
-      null;
 
     await data();
 

@@ -39,6 +39,31 @@ const sb =
 
 
 /* =========================================================
+   MIDTRANS
+========================================================= */
+
+const MIDTRANS_SERVER_KEY =
+  process.env.MIDTRANS_SERVER_KEY || "";
+
+const MIDTRANS_CLIENT_KEY =
+  process.env.MIDTRANS_CLIENT_KEY || "";
+
+const MIDTRANS_IS_PRODUCTION =
+  String(process.env.MIDTRANS_IS_PRODUCTION || "false")
+    .toLowerCase() === "true";
+
+const MIDTRANS_SNAP_URL =
+  MIDTRANS_IS_PRODUCTION
+    ? "https://app.midtrans.com/snap/v1/transactions"
+    : "https://app.sandbox.midtrans.com/snap/v1/transactions";
+
+const MIDTRANS_SNAP_JS =
+  MIDTRANS_IS_PRODUCTION
+    ? "https://app.midtrans.com/snap/snap.js"
+    : "https://app.sandbox.midtrans.com/snap/snap.js";
+
+
+/* =========================================================
    UPLOAD
 ========================================================= */
 
@@ -309,6 +334,15 @@ app.get(
           process.env.STORE_PHONE ||
           "+62 858-6430-6671",
 
+        midtransClientKey:
+          MIDTRANS_CLIENT_KEY,
+
+        midtransProduction:
+          MIDTRANS_IS_PRODUCTION,
+
+        midtransSnapJs:
+          MIDTRANS_SNAP_JS,
+
         heroImage
 
       });
@@ -336,6 +370,15 @@ app.get(
         storePhone:
           process.env.STORE_PHONE ||
           "+62 858-6430-6671",
+
+        midtransClientKey:
+          MIDTRANS_CLIENT_KEY,
+
+        midtransProduction:
+          MIDTRANS_IS_PRODUCTION,
+
+        midtransSnapJs:
+          MIDTRANS_SNAP_JS,
 
         heroImage:
           ""
@@ -1793,6 +1836,596 @@ app.post(
 
         message:
           error.message
+
+      });
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   MIDTRANS PAYMENT
+========================================================= */
+
+function midtransAuthHeader() {
+
+  if (!MIDTRANS_SERVER_KEY) {
+    throw new Error(
+      "MIDTRANS_SERVER_KEY belum dikonfigurasi."
+    );
+  }
+
+  return `Basic ${Buffer.from(
+    `${MIDTRANS_SERVER_KEY}:`
+  ).toString("base64")}`;
+
+}
+
+
+async function midtransCreateSnap(payload) {
+
+  const response =
+    await fetch(
+      MIDTRANS_SNAP_URL,
+      {
+        method: "POST",
+
+        headers: {
+          Accept:
+            "application/json",
+
+          "Content-Type":
+            "application/json",
+
+          Authorization:
+            midtransAuthHeader()
+        },
+
+        body:
+          JSON.stringify(payload)
+      }
+    );
+
+  const raw =
+    await response.text();
+
+  let data = null;
+
+  try {
+    data =
+      raw
+        ? JSON.parse(raw)
+        : null;
+  } catch {
+    data = null;
+  }
+
+  if (!response.ok) {
+
+    const message =
+      data?.error_messages?.join(", ") ||
+      data?.status_message ||
+      `Midtrans gagal membuat transaksi (${response.status}).`;
+
+    throw new Error(message);
+  }
+
+  return data;
+
+}
+
+
+/*
+ * Membuat Snap Token untuk order yang SUDAH dibuat.
+ *
+ * Frontend hanya mengirim orderId.
+ * Harga/gross_amount selalu diambil dari database,
+ * bukan dipercaya dari browser.
+ */
+app.post(
+  "/api/payment/create",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      const x =
+        await actor(
+          req,
+          res
+        );
+
+      if (!x) {
+        return;
+      }
+
+      const orderId =
+        String(
+          req.body?.orderId ||
+          ""
+        ).trim();
+
+      if (!orderId) {
+
+        return res.status(400).json({
+          ok: false,
+          message:
+            "ID pesanan diperlukan."
+        });
+
+      }
+
+      const {
+        data: order,
+        error: orderError
+      } =
+        await sb
+          .from("orders")
+          .select(
+            "id,order_code,user_id,total,status,payment_method,payment_status,payment_expired_at"
+          )
+          .eq(
+            "id",
+            orderId
+          )
+          .eq(
+            "user_id",
+            x.auth.id
+          )
+          .maybeSingle();
+
+      if (orderError) {
+        throw orderError;
+      }
+
+      if (!order) {
+
+        return res.status(404).json({
+          ok: false,
+          message:
+            "Pesanan tidak ditemukan."
+        });
+
+      }
+
+      if (
+        order.payment_method !==
+        "midtrans"
+      ) {
+
+        return res.status(400).json({
+          ok: false,
+          message:
+            "Pesanan ini tidak menggunakan Midtrans."
+        });
+
+      }
+
+      if (
+        order.payment_status ===
+        "paid"
+      ) {
+
+        return res.status(400).json({
+          ok: false,
+          message:
+            "Pesanan ini sudah dibayar."
+        });
+
+      }
+
+      const grossAmount =
+        Math.round(
+          num(
+            order.total,
+            0
+          )
+        );
+
+      if (
+        grossAmount <= 0
+      ) {
+
+        return res.status(400).json({
+          ok: false,
+          message:
+            "Total pembayaran tidak valid."
+        });
+
+      }
+
+      const payload = {
+
+        transaction_details: {
+          order_id:
+            String(
+              order.order_code
+            ),
+          gross_amount:
+            grossAmount
+        },
+
+        credit_card: {
+          secure: true
+        },
+
+        customer_details: {
+          first_name:
+            String(
+              x.profile?.name ||
+              x.auth.user_metadata?.name ||
+              "Customer"
+            ).trim(),
+
+          email:
+            x.auth.email || ""
+        },
+
+        page_expiry: {
+          duration: 24,
+          unit: "hours"
+        },
+
+        custom_field1:
+          String(order.id)
+
+      };
+
+      const snap =
+        await midtransCreateSnap(
+          payload
+        );
+
+      if (!snap?.token) {
+
+        throw new Error(
+          "Midtrans tidak mengembalikan Snap Token."
+        );
+
+      }
+
+      const {
+        error: updateError
+      } =
+        await sb
+          .from("orders")
+          .update({
+
+            snap_token:
+              snap.token,
+
+            payment_expired_at:
+              new Date(
+                Date.now() +
+                24 * 60 * 60 * 1000
+              ).toISOString(),
+
+            payment_status:
+              "pending"
+
+          })
+          .eq(
+            "id",
+            order.id
+          )
+          .eq(
+            "user_id",
+            x.auth.id
+          );
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      res.json({
+
+        ok: true,
+
+        orderId:
+          order.id,
+
+        orderCode:
+          order.order_code,
+
+        token:
+          snap.token,
+
+        redirectUrl:
+          snap.redirect_url ||
+          null
+
+      });
+
+    } catch (error) {
+
+      console.error(
+        "MIDTRANS CREATE ERROR:",
+        error
+      );
+
+      res.status(500).json({
+
+        ok: false,
+
+        message:
+          error.message ||
+          "Gagal membuat pembayaran Midtrans."
+
+      });
+
+    }
+
+  }
+);
+
+
+/*
+ * Midtrans HTTP Notification.
+ *
+ * Signature:
+ * SHA512(order_id + status_code + gross_amount + ServerKey)
+ *
+ * Status pembayaran ditentukan dari notification server,
+ * bukan dari callback browser.
+ */
+app.post(
+  "/api/payment/notification",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      need();
+
+      if (!MIDTRANS_SERVER_KEY) {
+
+        return res.status(500).json({
+          ok: false,
+          message:
+            "MIDTRANS_SERVER_KEY belum dikonfigurasi."
+        });
+
+      }
+
+      const notification =
+        req.body || {};
+
+      const orderCode =
+        String(
+          notification.order_id ||
+          ""
+        ).trim();
+
+      const statusCode =
+        String(
+          notification.status_code ||
+          ""
+        ).trim();
+
+      const grossAmount =
+        String(
+          notification.gross_amount ||
+          ""
+        ).trim();
+
+      const signature =
+        String(
+          notification.signature_key ||
+          ""
+        ).trim();
+
+      if (
+        !orderCode ||
+        !statusCode ||
+        !grossAmount ||
+        !signature
+      ) {
+
+        return res.status(400).json({
+          ok: false,
+          message:
+            "Notification Midtrans tidak lengkap."
+        });
+
+      }
+
+      const crypto =
+        await import(
+          "node:crypto"
+        );
+
+      const expected =
+        crypto
+          .createHash("sha512")
+          .update(
+            orderCode +
+            statusCode +
+            grossAmount +
+            MIDTRANS_SERVER_KEY
+          )
+          .digest("hex");
+
+      const signatureBuffer =
+        Buffer.from(
+          signature,
+          "utf8"
+        );
+
+      const expectedBuffer =
+        Buffer.from(
+          expected,
+          "utf8"
+        );
+
+      if (
+        signatureBuffer.length !==
+          expectedBuffer.length ||
+        !crypto.timingSafeEqual(
+          signatureBuffer,
+          expectedBuffer
+        )
+      ) {
+
+        return res.status(401).json({
+          ok: false,
+          message:
+            "Signature notification tidak valid."
+        });
+
+      }
+
+      const {
+        data: order,
+        error: findError
+      } =
+        await sb
+          .from("orders")
+          .select(
+            "id,total,payment_status"
+          )
+          .eq(
+            "order_code",
+            orderCode
+          )
+          .maybeSingle();
+
+      if (findError) {
+        throw findError;
+      }
+
+      if (!order) {
+
+        return res.status(404).json({
+          ok: false,
+          message:
+            "Order tidak ditemukan."
+        });
+
+      }
+
+      const transactionStatus =
+        String(
+          notification.transaction_status ||
+          ""
+        ).toLowerCase();
+
+      const fraudStatus =
+        String(
+          notification.fraud_status ||
+          ""
+        ).toLowerCase();
+
+      let paymentStatus =
+        "pending";
+
+      if (
+        [
+          "settlement",
+          "capture"
+        ].includes(
+          transactionStatus
+        ) &&
+        (
+          !fraudStatus ||
+          fraudStatus === "accept"
+        )
+      ) {
+
+        paymentStatus =
+          "paid";
+
+      } else if (
+        [
+          "deny",
+          "cancel"
+        ].includes(
+          transactionStatus
+        )
+      ) {
+
+        paymentStatus =
+          "failed";
+
+      } else if (
+        [
+          "expire"
+        ].includes(
+          transactionStatus
+        )
+      ) {
+
+        paymentStatus =
+          "expired";
+
+      }
+
+      const update = {
+
+        payment_status:
+          paymentStatus,
+
+        transaction_id:
+          String(
+            notification.transaction_id ||
+            ""
+          ) || null,
+
+        payment_raw:
+          notification
+
+      };
+
+      if (
+        paymentStatus ===
+        "paid"
+      ) {
+
+        update.paid_at =
+          new Date().toISOString();
+
+      }
+
+      const {
+        error: updateError
+      } =
+        await sb
+          .from("orders")
+          .update(
+            update
+          )
+          .eq(
+            "id",
+            order.id
+          );
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      res.json({
+        ok: true
+      });
+
+    } catch (error) {
+
+      console.error(
+        "MIDTRANS NOTIFICATION ERROR:",
+        error
+      );
+
+      res.status(500).json({
+
+        ok: false,
+
+        message:
+          error.message ||
+          "Gagal memproses notification Midtrans."
 
       });
 
