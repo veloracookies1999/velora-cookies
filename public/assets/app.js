@@ -875,366 +875,171 @@ function home() {
 
   return `
     <div class="velora-home">
-
       ${top()}
 
       <main>
+        <section class="hero-home hero-redesign">
+          <div class="hero-orbit hero-orbit-a"></div>
+          <div class="hero-orbit hero-orbit-b"></div>
 
-        <!-- =====================================================
-             HERO — SINGLE SLIDE
-             ===================================================== -->
+          <div class="container hero-redesign-grid">
+            <div class="hero-redesign-copy">
+              <div class="hero-kicker">
+                <span class="hero-kicker-line"></span>
+                VELORA COOKIES · SMALL BATCH
+              </div>
 
-        <section class="hero-home">
-
-          <div class="container hero-home-inner">
-
-            <!-- LEFT -->
-            <div class="hero-home-copy">
-
-              <span class="eyebrow">
-                BAKED WITH INTENTION
-              </span>
-
-              <h1 class="hero-title-type">
-                <span class="type-line type-line-one">
-                  Cookies kecil,
-                </span>
-                <br>
-                <span class="type-line type-line-two">
-                  mood besar.
-                </span>
+              <h1 class="hero-redesign-title">
+                Cookies kecil.
+                <span>Mood besar.</span>
               </h1>
 
-              <p class="hero-description">
-                Cookies premium dengan tekstur chewy,
-                bahan pilihan, dan rasa yang dibuat
-                untuk bikin hari terasa lebih baik.
+              <p class="hero-redesign-lead">
+                Baked fresh in small batches, crafted with premium ingredients,
+                and finished for that soft, chewy bite you keep coming back to.
               </p>
 
-              <div class="hero-actions">
-
-                <a href="#/shop" class="btn primary">
-                  Jelajahi koleksi
+              <div class="hero-redesign-actions">
+                <a href="#/shop" class="btn primary hero-main-cta">
+                  Jelajahi koleksi ${icon("arrow-up-right", 17)}
                 </a>
-
-                <a href="#/about" class="btn ghost">
-                  Cerita VELORA
+                <a href="#/about" class="hero-story-link">
+                  <span class="hero-story-icon">${icon("play", 14)}</span>
+                  Cerita di balik VELORA
                 </a>
-
               </div>
 
-              <div class="hero-meta">
-                <span></span>
-                <span class=""></span>
-                <span></span>
+              <div class="hero-proof-row">
+                <div class="hero-proof">
+                  <strong>01</strong>
+                  <span>Small batch</span>
+                </div>
+                <div class="hero-proof">
+                  <strong>02</strong>
+                  <span>Freshly baked</span>
+                </div>
+                <div class="hero-proof">
+                  <strong>03</strong>
+                  <span>Made with care</span>
+                </div>
               </div>
-
             </div>
 
-
-            <!-- RIGHT -->
-            <div class="hero-home-visual">
-
-              <div class="hero-glow"></div>
-
-              <div class="hero-image-wrap">
+            <div class="hero-redesign-visual">
+              <div class="hero-image-frame">
+                <div class="hero-image-badge">
+                  <span class="hero-badge-dot"></span>
+                  Fresh from the oven
+                </div>
 
                 <img
                   src="/assets/hero-cookies.png"
                   alt="VELORA Cookies"
-                  class="hero-main-image"
+                  class="hero-main-image hero-redesign-image"
                 >
 
+                <div class="hero-image-caption">
+                  <div>
+                    <span>THE VELORA STANDARD</span>
+                    <strong>Soft. Rich. Unforgettable.</strong>
+                  </div>
+                  <span class="hero-caption-arrow">${icon("arrow-down-right", 18)}</span>
+                </div>
               </div>
 
-              <div class="hero-float-card hero-float-one">
-
-                <span class="hero-float-dot"></span>
-
-                Freshly baked
-
+              <div class="hero-side-note">
+                <span>EST.</span>
+                <strong>2026</strong>
+                <i></i>
+                <span>INDONESIA</span>
               </div>
-
-
-              <div class="hero-float-card hero-float-two">
-
-                Customer favorite
-
-              </div>
-
             </div>
-
           </div>
-
         </section>
 
-
-        <!-- =====================================================
-             BRAND STRIP
-             ===================================================== -->
-
-        <section class="brand-strip">
-
-          <div class="container brand-strip-inner">
-
+        <section class="brand-strip brand-redesign">
+          <div class="container brand-redesign-inner">
+            <span>HANDCRAFTED</span>
+            <i></i>
             <span>SMALL BATCH</span>
-
             <i></i>
-
-            <span>FRESHLY BAKED</span>
-
+            <span>FRESH DAILY</span>
             <i></i>
-
-            <span>MADE WITH CARE</span>
-
-            <i></i>
-
             <span>VELORA COOKIES</span>
-
           </div>
-
         </section>
 
-
-        <!-- =====================================================
-             BEST SELLERS
-             ===================================================== -->
-
-        <section class="section home-products">
-
+        <section class="section home-products home-products-redesign">
           <div class="container">
-
-            <div class="section-head">
-
+            <div class="section-head redesign-section-head">
               <div>
-
-                <span class="eyebrow">
-                  CURATED FOR YOU
-                </span>
-
-                <h2>
-                  Best sellers.
-                </h2>
-
+                <span class="eyebrow">CURATED FOR YOU</span>
+                <h2>Made for your next good mood.</h2>
               </div>
-
-              <a
-                href="#/shop"
-                class="text-link"
-              >
-                Lihat semua ${icon("arrow-right")}
-              </a>
-
+              <a href="#/shop" class="text-link">Lihat semua ${icon("arrow-up-right")}</a>
             </div>
-
 
             <div class="product-grid">
-
-              ${
-                best.length
-                  ? best.map(card).join("")
-                  : `
-                    <div class="empty">
-                      Belum ada produk unggulan.
-                    </div>
-                  `
-              }
-
+              ${best.length
+                ? best.map(card).join("")
+                : `<div class="empty">Belum ada produk unggulan.</div>`}
             </div>
-
           </div>
-
         </section>
 
+        <section class="home-story home-story-redesign">
+          <div class="container home-story-grid">
+            <div class="home-story-copy">
+              <span class="eyebrow">THE VELORA STANDARD</span>
+              <h2>Sesederhana cookies, <span>sedetail itu prosesnya.</span></h2>
+              <p>
+                Kami percaya cookies yang bagus bukan hanya soal rasa.
+                Tekstur, aroma, bahan, dan cara kami membuat setiap batch
+                semuanya punya cerita.
+              </p>
 
-        <!-- =====================================================
-             STORY
-             ===================================================== -->
-
-        <section class="home-story">
-
-  <div class="container home-story-grid">
-
-    <!-- LEFT -->
-    <div class="home-story-copy">
-
-      <span class="eyebrow">
-        THE VELORA STANDARD
-      </span>
-
-      <h2>
-        Sesederhana cookies,
-        <span>sedetail itu prosesnya.</span>
-      </h2>
-
-      <p>
-        Kami percaya cookies yang bagus bukan hanya soal rasa.
-        Tekstur, aroma, bahan, dan cara kami membuat setiap batch
-        semuanya punya cerita.
-      </p>
-
-      <div class="story-actions">
-        <a href="#/about" class="btn dark">
-          Kenal lebih jauh
-        </a>
-      </div>
-
-      <!-- DETAIL KECIL -->
-      <div class="story-points">
-
-        <div class="story-point">
-          <span>01</span>
-          <div>
-            <strong>Small batch</strong>
-            <p>Dibuat dalam jumlah terkontrol.</p>
-          </div>
-        </div>
-
-        <div class="story-point">
-          <span>02</span>
-          <div>
-            <strong>Freshly baked</strong>
-            <p>Menjaga tekstur dan rasa tetap nyaman.</p>
-          </div>
-        </div>
-
-        <div class="story-point">
-          <span>03</span>
-          <div>
-            <strong>Made with care</strong>
-            <p>Detail kecil yang menjadi ciri VELORA.</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- RIGHT -->
-    <div class="home-story-mark">
-
-  <div class="velora-3d-logo">
-
-    <div class="velora-3d-ring ring-back"></div>
-    <div class="velora-3d-ring ring-mid"></div>
-
-    <div class="velora-3d-disc">
-
-      <div class="velora-logo-top">
-        VELORA
-      </div>
-
-      <div class="velora-logo-v">
-        V
-      </div>
-
-      <div class="velora-logo-bottom">
-        COOKIES · EST. 2026
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="velora-emblem-caption">
-    SMALL BATCH <span>•</span> FRESHLY BAKED
-  </div>
-
-</div>
-</section>
-
-        <!-- =====================================================
-             FAQ PREVIEW
-             ===================================================== -->
-
-        <section class="section home-faq">
-
-          <div class="container">
-
-            <div class="section-head">
-
-              <div>
-
-                <span class="eyebrow">
-                  NEED TO KNOW
-                </span>
-
-                <h2>
-                  Sebelum checkout.
-                </h2>
-
+              <div class="story-actions">
+                <a href="#/about" class="btn dark">Kenal lebih jauh ${icon("arrow-up-right", 16)}</a>
               </div>
 
-              <a
-                href="#/faq"
-                class="text-link"
-              >
-                Lihat FAQ ${icon("arrow-right")}
-              </a>
-
+              <div class="story-points">
+                <div class="story-point"><span>01</span><div><strong>Small batch</strong><p>Dibuat dalam jumlah terkontrol.</p></div></div>
+                <div class="story-point"><span>02</span><div><strong>Freshly baked</strong><p>Menjaga tekstur dan rasa tetap nyaman.</p></div></div>
+                <div class="story-point"><span>03</span><div><strong>Made with care</strong><p>Detail kecil yang menjadi ciri VELORA.</p></div></div>
+              </div>
             </div>
 
+            <div class="home-story-mark story-mark-redesign">
+              <div class="story-mark-card">
+                <span class="story-mark-label">VELORA</span>
+                <div class="story-mark-v">V</div>
+                <span class="story-mark-small">COOKIES · EST. 2026</span>
+              </div>
+              <span class="velora-emblem-caption">SMALL BATCH <b>•</b> FRESHLY BAKED</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section home-faq home-faq-redesign">
+          <div class="container">
+            <div class="section-head redesign-section-head">
+              <div>
+                <span class="eyebrow">NEED TO KNOW</span>
+                <h2>Sebelum checkout.</h2>
+              </div>
+              <a href="#/faq" class="text-link">Lihat FAQ ${icon("arrow-up-right")}</a>
+            </div>
 
             <div class="faq-preview-grid">
-
-              <div class="faq-preview-item">
-
-                <span>01</span>
-
-                <strong>
-                  Berapa lama pengiriman?
-                </strong>
-
-                <p>
-                  Informasi estimasi pengiriman
-                  tersedia di halaman checkout.
-                </p>
-
-              </div>
-
-
-              <div class="faq-preview-item">
-
-                <span>02</span>
-
-                <strong>
-                  Apakah cookies fresh?
-                </strong>
-
-                <p>
-                  Setiap batch dibuat dengan
-                  perhatian pada rasa dan tekstur.
-                </p>
-
-              </div>
-
-
-              <div class="faq-preview-item">
-
-                <span>03</span>
-
-                <strong>
-                  Bagaimana cara order?
-                </strong>
-
-                <p>
-                  Pilih produk, masukkan ke keranjang,
-                  lalu lanjutkan checkout.
-                </p>
-
-              </div>
-
+              <div class="faq-preview-item"><span>01</span><strong>Berapa lama pengiriman?</strong><p>Informasi estimasi pengiriman tersedia di halaman checkout.</p></div>
+              <div class="faq-preview-item"><span>02</span><strong>Apakah cookies fresh?</strong><p>Setiap batch dibuat dengan perhatian pada rasa dan tekstur.</p></div>
+              <div class="faq-preview-item"><span>03</span><strong>Bagaimana cara order?</strong><p>Pilih produk, masukkan ke keranjang, lalu lanjutkan checkout.</p></div>
             </div>
-
           </div>
-
         </section>
-
       </main>
 
       ${foot()}
-
     </div>
   `;
 }
