@@ -15734,3 +15734,619 @@ body:has(.hero) .top .nav a[href="#/"]{
   .velora-home .product-grid .product-body h3{font-size:12px!important}
   .velora-home .product-grid .price{font-size:12px!important}
 }
+
+
+/* =========================================================
+   VELORA MOBILE 3.0 — FINAL POLISH
+   Mobile only. Desktop styles remain untouched.
+   ========================================================= */
+@media (max-width:650px){
+
+  body{
+    background:#fff;
+    color:#17131a;
+    overflow-x:hidden;
+  }
+
+  .velora-home{
+    width:100%;
+    overflow:hidden;
+  }
+
+  /* ---------- HEADER ---------- */
+  .velora-home .top{
+    position:sticky;
+    top:0;
+    z-index:100;
+    min-height:118px;
+    padding:10px 14px 10px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-rows:42px 46px;
+    gap:8px 10px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(58,35,70,.08);
+    box-shadow:0 8px 24px rgba(43,25,53,.06);
+  }
+
+  .velora-home .top .brand{
+    min-width:0;
+    grid-column:1;
+    grid-row:1;
+    gap:8px;
+  }
+
+  .velora-home .top .brand .logo{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+  }
+
+  .velora-home .top .brand b{
+    font-size:11px;
+    letter-spacing:.18em;
+  }
+
+  .velora-home .top .brand small{
+    font-size:6px;
+    letter-spacing:.3em;
+  }
+
+  .velora-home .top .actions{
+    grid-column:2;
+    grid-row:1;
+    gap:5px;
+    margin:0;
+  }
+
+  .velora-home .top .actions .icon-btn{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+  }
+
+  .velora-home .top .actions .icon-btn:first-child{
+    display:none;
+  }
+
+  .velora-home .top .actions .avatar{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+  }
+
+  .velora-home .top .search{
+    grid-column:1 / -1;
+    grid-row:2;
+    width:100%;
+    height:42px;
+    min-width:0;
+    border-radius:14px;
+  }
+
+  .velora-home .top .search input{
+    width:100%;
+    height:42px;
+    font-size:12px;
+    border-radius:14px;
+    padding:0 42px 0 14px;
+    background:#faf8fc;
+  }
+
+  .velora-home .top .nav{
+    display:none;
+  }
+
+  /* ---------- HERO ---------- */
+  .velora-home .hero-home{
+    min-height:0!important;
+    background:
+      radial-gradient(circle at 100% 4%,rgba(151,91,218,.14),transparent 28%),
+      radial-gradient(circle at 0 46%,rgba(244,190,157,.15),transparent 31%),
+      linear-gradient(180deg,#fff 0%,#fcf8ff 65%,#f7effa 100%);
+  }
+
+  .velora-home .hero-home-inner{
+    min-height:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:30px!important;
+    padding:44px 18px 48px!important;
+  }
+
+  .velora-home .hero-home-copy{
+    width:100%;
+    padding:0!important;
+  }
+
+  .velora-home .hero-home-copy .eyebrow{
+    margin:0 0 18px!important;
+    font-size:8px;
+    letter-spacing:.17em;
+  }
+
+  .velora-home .hero-home-copy .eyebrow::before{
+    width:22px;
+  }
+
+  /* REAL TYPEWRITER — restore animation on mobile */
+  .velora-home .hero-title-type{
+    max-width:100%;
+    margin:0;
+    font-size:clamp(42px,13.1vw,56px)!important;
+    line-height:.94!important;
+    letter-spacing:-.055em!important;
+    font-weight:750;
+    overflow:visible;
+  }
+
+  .velora-home .hero-title-type br{
+    display:block!important;
+    line-height:0;
+  }
+
+  .velora-home .hero-title-type .type-line{
+    display:inline-block!important;
+    width:0!important;
+    max-width:max-content!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    vertical-align:bottom;
+    color:#17131a!important;
+    animation-duration:12s!important;
+    animation-timing-function:linear!important;
+    animation-iteration-count:infinite!important;
+    animation-fill-mode:both!important;
+  }
+
+  .velora-home .hero-title-type .type-line-one{
+    animation-name:veloraTypeOne!important;
+  }
+
+  .velora-home .hero-title-type .type-line-two{
+    color:#7b35c9!important;
+    animation-name:veloraTypeTwo!important;
+  }
+
+  .velora-home .hero-home-copy .hero-description{
+    margin:22px 0 0!important;
+    max-width:330px;
+    font-size:13px;
+    line-height:1.72;
+    color:#706874;
+  }
+
+  .velora-home .hero-home-copy .hero-actions{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:9px!important;
+    margin-top:23px!important;
+  }
+
+  .velora-home .hero-home-copy .hero-actions .btn{
+    width:100%!important;
+    min-height:48px;
+    border-radius:14px;
+    justify-content:center;
+  }
+
+  .velora-home .hero-home-copy .hero-actions .btn.primary{
+    box-shadow:0 12px 28px rgba(125,55,202,.2);
+  }
+
+  .velora-home .hero-home-copy .hero-meta{
+    display:none!important;
+  }
+
+  /* Hero image */
+  .velora-home .hero-home-visual{
+    width:100%;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .velora-home .hero-home-visual .hero-glow{
+    width:250px;
+    height:250px;
+    opacity:.55;
+  }
+
+  .velora-home .hero-home-visual .hero-image-wrap{
+    width:100%!important;
+    max-width:none!important;
+    padding:7px!important;
+    border-radius:22px!important;
+    transform:none!important;
+    background:rgba(255,255,255,.78);
+    box-shadow:0 22px 50px rgba(56,37,66,.14)!important;
+  }
+
+  .velora-home .hero-home-visual .hero-main-image{
+    width:100%!important;
+    display:block;
+    aspect-ratio:1/1.03!important;
+    object-fit:cover!important;
+    border-radius:17px!important;
+  }
+
+  .velora-home .hero-home-visual .hero-float-card{
+    padding:8px 10px!important;
+    border-radius:10px!important;
+    font-size:8px!important;
+    line-height:1;
+  }
+
+  .velora-home .hero-home-visual .hero-float-one{
+    left:10px!important;
+    top:16px!important;
+  }
+
+  .velora-home .hero-home-visual .hero-float-two{
+    right:10px!important;
+    bottom:16px!important;
+  }
+
+  /* ---------- BRAND STRIP ---------- */
+  .velora-home .brand-strip{
+    height:52px;
+    overflow:hidden;
+  }
+
+  .velora-home .brand-strip-inner{
+    width:max-content;
+    height:52px;
+    min-height:52px;
+    padding:0 18px;
+    gap:12px;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+  }
+
+  .velora-home .brand-strip-inner span{
+    font-size:7px;
+    letter-spacing:.15em;
+  }
+
+  /* ---------- PRODUCTS ---------- */
+  .velora-home .home-products{
+    padding:70px 0 76px!important;
+  }
+
+  .velora-home .home-products .section-head{
+    display:flex;
+    flex-direction:row;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:25px!important;
+  }
+
+  .velora-home .home-products .section-head h2{
+    max-width:245px;
+    margin-top:7px;
+    font-size:31px;
+    line-height:1.02;
+    letter-spacing:-.045em;
+  }
+
+  .velora-home .home-products .section-head .text-link{
+    flex:0 0 auto;
+    font-size:10px;
+    white-space:nowrap;
+  }
+
+  .velora-home .home-products .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+
+  .velora-home .home-products .card.product{
+    min-width:0;
+    overflow:hidden;
+    border:1px solid rgba(61,38,71,.08);
+    border-radius:18px!important;
+    background:#fff;
+    box-shadow:0 10px 28px rgba(48,29,57,.06)!important;
+  }
+
+  .velora-home .home-products .media{
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:1/1;
+    border-radius:0!important;
+  }
+
+  .velora-home .home-products .product-body{
+    padding:11px!important;
+  }
+
+  .velora-home .home-products .product-body .eyebrow{
+    font-size:7px;
+  }
+
+  .velora-home .home-products .product-body h3{
+    font-size:12px!important;
+    line-height:1.3!important;
+    margin:5px 0!important;
+  }
+
+  .velora-home .home-products .price{
+    font-size:12px!important;
+  }
+
+  .velora-home .home-products .meta{
+    margin-top:9px;
+  }
+
+  .velora-home .home-products .meta .stars,
+  .velora-home .home-products .btn[data-buy]{
+    display:none!important;
+  }
+
+  .velora-home .home-products .meta>div{
+    width:100%;
+  }
+
+  .velora-home .home-products .btn[data-add]{
+    width:100%!important;
+    min-height:34px!important;
+    padding:0 6px!important;
+    border-radius:10px!important;
+    font-size:9px!important;
+    justify-content:center;
+  }
+
+  /* ---------- STORY ---------- */
+  .velora-home .home-story{
+    padding:78px 0!important;
+    background:linear-gradient(145deg,#f5edf9 0%,#fff8f3 100%)!important;
+  }
+
+  .velora-home .home-story-grid{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:42px!important;
+  }
+
+  .velora-home .home-story-copy h2{
+    margin:16px 0 18px!important;
+    font-size:36px!important;
+    line-height:1.01!important;
+  }
+
+  .velora-home .home-story-copy>p{
+    font-size:13px;
+    line-height:1.72;
+  }
+
+  .velora-home .story-actions .btn{
+    width:100%;
+    min-height:48px;
+    border-radius:14px;
+    justify-content:center;
+  }
+
+  .velora-home .story-points{
+    margin-top:25px;
+  }
+
+  .velora-home .story-point{
+    padding:14px 0!important;
+  }
+
+  .velora-home .home-story-mark{
+    min-height:250px!important;
+  }
+
+  .velora-home .velora-3d-logo{
+    transform:scale(.68);
+  }
+
+  /* ---------- FAQ ---------- */
+  .velora-home .home-faq{
+    padding:72px 0 84px!important;
+    background:#fff;
+  }
+
+  .velora-home .home-faq .section-head{
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:14px;
+    margin-bottom:23px!important;
+  }
+
+  .velora-home .home-faq .section-head h2{
+    margin-top:7px;
+    font-size:32px!important;
+    line-height:1.02;
+  }
+
+  .velora-home .home-faq .section-head .text-link{
+    font-size:10px;
+    white-space:nowrap;
+  }
+
+  .velora-home .faq-preview-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+    border:0!important;
+  }
+
+  .velora-home .faq-preview-item{
+    min-height:126px;
+    padding:21px 18px!important;
+    border:1px solid rgba(69,44,79,.08)!important;
+    border-radius:17px!important;
+    background:linear-gradient(135deg,#fff,#fbf7fd)!important;
+    box-shadow:0 9px 26px rgba(55,34,65,.05)!important;
+  }
+
+  .velora-home .faq-preview-item>span{
+    width:27px!important;
+    height:27px!important;
+    margin-bottom:13px!important;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#f0e5f8;
+    color:#8a49bf;
+    font-size:8px;
+  }
+
+  .velora-home .faq-preview-item strong{
+    display:block;
+    font-size:14px;
+    line-height:1.35;
+  }
+
+  .velora-home .faq-preview-item p{
+    margin:7px 0 0;
+    font-size:11px;
+    line-height:1.55;
+    color:#817783;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .velora-home .velora-footer{
+    padding-bottom:86px!important;
+    background:#17121c!important;
+  }
+
+  .velora-home .footer-main{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:30px 22px!important;
+    padding-top:48px!important;
+    padding-bottom:38px!important;
+  }
+
+  .velora-home .footer-brand{
+    grid-column:1/-1;
+    max-width:320px;
+  }
+
+  .velora-home .footer-brand p{
+    max-width:290px;
+    font-size:11px;
+    line-height:1.7;
+  }
+
+  .velora-home .footer-column h3{
+    margin-bottom:13px;
+    font-size:11px;
+  }
+
+  .velora-home .footer-column a,
+  .velora-home .footer-column span{
+    display:block;
+    margin:8px 0;
+    font-size:10px;
+    line-height:1.4;
+  }
+
+  .velora-home .footer-contact{
+    grid-column:1/-1;
+  }
+
+  .velora-home .footer-payment{
+    padding-top:28px!important;
+    padding-bottom:28px!important;
+  }
+
+  .velora-home .footer-payment-head{
+    display:block;
+  }
+
+  .velora-home .footer-payment-head h3{
+    font-size:16px;
+    margin:5px 0;
+  }
+
+  .velora-home .footer-payment-note{
+    display:block;
+    margin-top:5px;
+    font-size:9px;
+  }
+
+  .velora-home .payment-logo-row{
+    display:grid!important;
+    grid-template-columns:repeat(3,1fr)!important;
+    gap:8px!important;
+    margin-top:18px;
+  }
+
+  .velora-home .payment-logo{
+    height:32px!important;
+    min-height:32px!important;
+    border-radius:9px!important;
+  }
+
+  .velora-home .payment-logo img{
+    max-width:70%;
+    max-height:20px;
+  }
+
+  .velora-home .footer-bottom{
+    padding-top:20px!important;
+    padding-bottom:16px!important;
+    display:grid!important;
+    grid-template-columns:1fr auto!important;
+    gap:7px 15px;
+    align-items:center!important;
+  }
+
+  .velora-home .footer-tagline{
+    display:none;
+  }
+
+  .velora-home .footer-copy{
+    font-size:8px;
+  }
+
+  .velora-home .footer-bottom-links{
+    display:flex;
+    gap:12px;
+    font-size:8px;
+  }
+}
+
+@media(max-width:390px){
+  .velora-home .top{
+    padding-left:11px;
+    padding-right:11px;
+  }
+
+  .velora-home .hero-home-inner{
+    padding-left:15px!important;
+    padding-right:15px!important;
+  }
+
+  .velora-home .hero-title-type{
+    font-size:40px!important;
+  }
+
+  .velora-home .home-products .container,
+  .velora-home .home-faq .container{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .velora-home .home-products .product-grid{
+    gap:9px!important;
+  }
+
+  .velora-home .home-products .product-body{
+    padding:9px!important;
+  }
+
+  .velora-home .home-products .product-body h3{
+    font-size:11px!important;
+  }
+}
