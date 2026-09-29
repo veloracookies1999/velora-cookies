@@ -943,9 +943,9 @@ function home() {
               </div>
 
               <div class="hero-meta">
-                <span></span>
-                <span class=""></span>
-                <span></span>
+                <span>${icon("sparkles",14)} Small batch</span>
+                <span>${icon("flame",14)} Freshly baked</span>
+                <span>${icon("shield-check",14)} Secure checkout</span>
               </div>
 
             </div>
