@@ -16287,3 +16287,142 @@ body:has(.hero) .top .nav a[href="#/"]{
     font-size:7.5px!important;
   }
 }
+
+
+/* =========================================================
+   MOBILE AUTH — COMPACT APP-SIZE
+   Mobile only; desktop untouched.
+   ========================================================= */
+@media (max-width:650px){
+  #authModal{
+    padding:10px!important;
+    align-items:center!important;
+  }
+
+  #authModal .auth-shell{
+    width:min(100%, 390px)!important;
+    max-width:390px!important;
+    max-height:calc(100dvh - 20px)!important;
+  }
+
+  #authModal .auth-card,
+  .auth-card{
+    padding:21px 17px 18px!important;
+    border-radius:22px!important;
+  }
+
+  #authModal .auth-top{
+    margin-bottom:3px!important;
+  }
+
+  #authModal .auth-close{
+    width:36px!important;
+    height:36px!important;
+    border-radius:12px!important;
+  }
+
+  #authModal .auth-brand{
+    margin-top:0!important;
+    margin-bottom:16px!important;
+  }
+
+  #authModal .auth-brand .eyebrow{
+    margin-bottom:7px!important;
+    font-size:9px!important;
+    letter-spacing:.22em!important;
+  }
+
+  #authModal .auth-brand h2{
+    font-size:31px!important;
+    line-height:1!important;
+  }
+
+  #authModal .auth-brand p{
+    margin-top:8px!important;
+    font-size:12px!important;
+    line-height:1.5!important;
+  }
+
+  #authModal .auth-field{
+    margin-bottom:12px!important;
+  }
+
+  #authModal .auth-field label{
+    margin-bottom:5px!important;
+    font-size:11px!important;
+  }
+
+  #authModal .auth-field input{
+    height:48px!important;
+    min-height:48px!important;
+    padding:0 14px!important;
+    border-radius:14px!important;
+    font-size:13px!important;
+  }
+
+  #authModal .auth-password-toggle{
+    width:32px!important;
+    height:32px!important;
+    right:8px!important;
+  }
+
+  #authModal .auth-submit,
+  #authModal .google-login-btn{
+    min-height:48px!important;
+    height:48px!important;
+    border-radius:14px!important;
+    font-size:13px!important;
+  }
+
+  #authModal .auth-divider{
+    margin:16px 0!important;
+    font-size:10px!important;
+    gap:9px!important;
+  }
+
+  #authModal .auth-bottom{
+    margin-top:15px!important;
+  }
+
+  #authModal .auth-bottom-text{
+    font-size:11px!important;
+  }
+
+  #authModal .auth-register{
+    margin-top:4px!important;
+    font-size:12px!important;
+  }
+
+  #authModal .auth-meta{
+    margin-top:14px!important;
+    padding-top:12px!important;
+    font-size:9px!important;
+  }
+}
+
+@media (max-width:380px){
+  #authModal{
+    padding:7px!important;
+  }
+
+  #authModal .auth-card,
+  .auth-card{
+    padding:18px 14px 15px!important;
+    border-radius:20px!important;
+  }
+
+  #authModal .auth-brand h2{
+    font-size:28px!important;
+  }
+
+  #authModal .auth-brand p{
+    font-size:11px!important;
+  }
+
+  #authModal .auth-field input,
+  #authModal .auth-submit,
+  #authModal .google-login-btn{
+    height:45px!important;
+    min-height:45px!important;
+  }
+}
