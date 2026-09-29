@@ -2986,6 +2986,114 @@ app.get(
 
 
 /* =========================================================
+   DELETE CUSTOMER ORDER
+========================================================= */
+
+app.delete(
+  "/api/orders/:id",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      const x =
+        await actor(
+          req,
+          res
+        );
+
+      if (!x) {
+        return;
+      }
+
+      const {
+        data: order,
+        error: orderError
+      } =
+        await sb
+          .from("orders")
+          .select(
+            "id,status,order_code"
+          )
+          .eq(
+            "id",
+            req.params.id
+          )
+          .eq(
+            "user_id",
+            x.auth.id
+          )
+          .maybeSingle();
+
+      if (orderError) {
+        throw orderError;
+      }
+
+      if (!order) {
+        return res.status(404).json({
+          ok: false,
+          message: "Pesanan tidak ditemukan."
+        });
+      }
+
+      const { error: itemError } =
+        await sb
+          .from("order_items")
+          .delete()
+          .eq(
+            "order_id",
+            order.id
+          );
+
+      if (itemError) {
+        throw itemError;
+      }
+
+      const { error: deleteError } =
+        await sb
+          .from("orders")
+          .delete()
+          .eq(
+            "id",
+            order.id
+          )
+          .eq(
+            "user_id",
+            x.auth.id
+          );
+
+      if (deleteError) {
+        throw deleteError;
+      }
+
+      res.json({
+        ok: true,
+        message: "Pesanan berhasil dihapus."
+      });
+
+    } catch (error) {
+
+      console.error(
+        "DELETE /api/orders/:id:",
+        error
+      );
+
+      res.status(400).json({
+        ok: false,
+        message:
+          error?.message ||
+          "Pesanan gagal dihapus."
+      });
+
+    }
+
+  }
+);
+
+
+/* =========================================================
    REVIEW
 ========================================================= */
 
@@ -4369,6 +4477,103 @@ app.get(
         message:
           error.message
 
+      });
+
+    }
+
+  }
+);
+
+
+app.delete(
+  "/api/admin/orders/:id",
+  async (
+    req,
+    res
+  ) => {
+
+    const x =
+      await admin(
+        req,
+        res
+      );
+
+    if (!x) {
+      return;
+    }
+
+    try {
+
+      const {
+        data: order,
+        error: orderError
+      } =
+        await sb
+          .from("orders")
+          .select(
+            "id,order_code,status"
+          )
+          .eq(
+            "id",
+            req.params.id
+          )
+          .maybeSingle();
+
+      if (orderError) {
+        throw orderError;
+      }
+
+      if (!order) {
+        return res.status(404).json({
+          ok: false,
+          message: "Pesanan tidak ditemukan."
+        });
+      }
+
+      const { error: itemError } =
+        await sb
+          .from("order_items")
+          .delete()
+          .eq(
+            "order_id",
+            order.id
+          );
+
+      if (itemError) {
+        throw itemError;
+      }
+
+      const { error: deleteError } =
+        await sb
+          .from("orders")
+          .delete()
+          .eq(
+            "id",
+            order.id
+          );
+
+      if (deleteError) {
+        throw deleteError;
+      }
+
+      res.json({
+        ok: true,
+        message:
+          `Pesanan ${order.order_code} berhasil dihapus.`
+      });
+
+    } catch (error) {
+
+      console.error(
+        "DELETE /api/admin/orders/:id:",
+        error
+      );
+
+      res.status(400).json({
+        ok: false,
+        message:
+          error?.message ||
+          "Pesanan gagal dihapus."
       });
 
     }

@@ -6646,6 +6646,16 @@ function orders() {
                       ${icon("arrow-right")}
                     </a>
 
+                    <button
+                      type="button"
+                      class="btn ghost sm order-delete-btn"
+                      data-order-delete="${esc(o.id)}"
+                      title="Hapus pesanan"
+                    >
+                      ${icon("trash-2")}
+                      Hapus
+                    </button>
+
                   </div>
 
                 </div>
@@ -6668,6 +6678,62 @@ function orders() {
 function initOrdersPage(){
   const filters = document.querySelectorAll("[data-order-filter]");
   const cards = document.querySelectorAll("[data-order-card]");
+  const deleteButtons = document.querySelectorAll("[data-order-delete]");
+
+  deleteButtons.forEach((button) => {
+
+    button.addEventListener("click", async () => {
+
+      const orderId =
+        String(button.dataset.orderDelete || "").trim();
+
+      if (!orderId) return;
+
+      const confirmed = confirm(
+        "Hapus pesanan ini dari riwayat? Pesanan yang sedang diproses tidak dapat dihapus."
+      );
+
+      if (!confirmed) return;
+
+      try {
+
+        button.disabled = true;
+
+        await api(
+          `/api/orders/${orderId}`,
+          {
+            method: "DELETE"
+          }
+        );
+
+        toast(
+          "Pesanan berhasil dihapus.",
+          "good"
+        );
+
+        await data();
+        await render();
+
+      } catch (error) {
+
+        console.error(
+          "DELETE ORDER ERROR:",
+          error
+        );
+
+        toast(
+          error.message ||
+          "Pesanan gagal dihapus.",
+          "bad"
+        );
+
+        button.disabled = false;
+
+      }
+
+    });
+
+  });
 
   if(!filters.length || !cards.length) return;
 
@@ -10974,6 +11040,7 @@ async function adminOrders() {
           <th>Total</th>
           <th>Payment</th>
           <th>Status</th>
+          <th>Aksi</th>
 
         </tr>
 
@@ -11036,6 +11103,20 @@ async function adminOrders() {
                       .join("")}
 
                   </select>
+
+                </td>
+
+                <td>
+
+                  <button
+                    type="button"
+                    class="icon-btn order-admin-delete"
+                    data-od="${esc(order.id)}"
+                    title="Hapus pesanan"
+                    aria-label="Hapus pesanan ${esc(order.order_code)}"
+                  >
+                    ${icon("trash-2", 15)}
+                  </button>
 
                 </td>
 
@@ -11903,6 +11984,63 @@ function adminBind(section) {
               error.message,
               "bad"
             );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+  $$(["[data-od]"]).forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        async () => {
+
+          const confirmed =
+            confirm(
+              "Hapus pesanan ini secara permanen? Tindakan ini tidak dapat dibatalkan."
+            );
+
+          if (!confirmed) {
+            return;
+          }
+
+          try {
+
+            button.disabled = true;
+
+            await api(
+              `/api/admin/orders/${button.dataset.od}`,
+              {
+                method: "DELETE"
+              }
+            );
+
+            toast(
+              "Pesanan berhasil dihapus.",
+              "good"
+            );
+
+            await render();
+
+          } catch (error) {
+
+            console.error(
+              "ADMIN DELETE ORDER ERROR:",
+              error
+            );
+
+            toast(
+              error.message ||
+              "Pesanan gagal dihapus.",
+              "bad"
+            );
+
+            button.disabled = false;
 
           }
 
