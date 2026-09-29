@@ -16146,3 +16146,144 @@ body:has(.hero) .top .nav a[href="#/"]{
     font-size:8px!important;
   }
 }
+
+
+/* =========================================================
+   MOBILE NAV — TRUE APP-STYLE FIX
+   Fixed to viewport, never part of document/footer flow.
+   Desktop untouched.
+   ========================================================= */
+
+@media (max-width:650px){
+
+  html,body{
+    min-height:100%;
+  }
+
+  body{
+    padding-bottom:0!important;
+  }
+
+  .mobile-bottom-nav{
+    position:fixed!important;
+    inset:auto 12px calc(10px + env(safe-area-inset-bottom)) 12px!important;
+
+    width:auto!important;
+    height:64px!important;
+    min-height:64px!important;
+    max-height:64px!important;
+    margin:0!important;
+
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    align-items:center!important;
+    gap:2px!important;
+
+    padding:4px!important;
+    box-sizing:border-box!important;
+
+    background:rgba(255,255,255,.94)!important;
+    border:1px solid rgba(222,214,229,.9)!important;
+    border-radius:20px!important;
+
+    box-shadow:
+      0 12px 32px rgba(31,20,40,.15),
+      0 2px 7px rgba(31,20,40,.06)!important;
+
+    backdrop-filter:blur(22px) saturate(160%)!important;
+    -webkit-backdrop-filter:blur(22px) saturate(160%)!important;
+
+    z-index:2147483000!important;
+    transform:translateZ(0)!important;
+    will-change:transform!important;
+  }
+
+  .mobile-bottom-item{
+    position:relative!important;
+    width:100%!important;
+    height:54px!important;
+    min-height:54px!important;
+    margin:0!important;
+    padding:4px 2px!important;
+    box-sizing:border-box!important;
+
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+
+    border-radius:15px!important;
+    color:#938b99!important;
+    background:transparent!important;
+
+    text-decoration:none!important;
+    overflow:visible!important;
+  }
+
+  .mobile-bottom-item.active{
+    color:#6d32bf!important;
+    background:#f4edfb!important;
+  }
+
+  .mobile-bottom-icon{
+    width:25px!important;
+    height:25px!important;
+    flex:0 0 25px!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+
+  .mobile-bottom-icon svg{
+    width:20px!important;
+    height:20px!important;
+    stroke-width:1.9!important;
+  }
+
+  .mobile-bottom-label{
+    display:block!important;
+    width:100%!important;
+    text-align:center!important;
+    font-size:8px!important;
+    line-height:1!important;
+    font-weight:650!important;
+    white-space:nowrap!important;
+  }
+
+  /* Prevent the footer from visually swallowing the fixed dock. */
+  .velora-footer{
+    position:relative!important;
+    z-index:1!important;
+  }
+
+  /* Extra bottom breathing room belongs to pages, not body/nav. */
+  main,
+  .page{
+    padding-bottom:82px!important;
+  }
+
+  .mobile-bottom-item:active{
+    transform:scale(.93)!important;
+  }
+}
+
+@media (max-width:380px){
+  .mobile-bottom-nav{
+    left:7px!important;
+    right:7px!important;
+    bottom:calc(7px + env(safe-area-inset-bottom))!important;
+    height:61px!important;
+    min-height:61px!important;
+    max-height:61px!important;
+    border-radius:19px!important;
+  }
+
+  .mobile-bottom-item{
+    height:51px!important;
+    min-height:51px!important;
+  }
+
+  .mobile-bottom-label{
+    font-size:7.5px!important;
+  }
+}
