@@ -17508,3 +17508,361 @@ body:has(.hero) .top .nav a[href="#/"]{
     .mc-promo{margin-left:12px!important;margin-right:12px!important}
   }
 }
+
+
+/* =========================================================
+   VELORA MOBILE — HARD FINAL POLISH
+   Dedicated mobile homepage only. Desktop is untouched.
+   ========================================================= */
+@media (max-width:650px){
+
+  /* IMPORTANT: only the dedicated mobile homepage is rendered. */
+  .velora-home > main:not(.mobile-commerce-home){
+    display:none!important;
+    visibility:hidden!important;
+  }
+  .velora-home > main.mobile-commerce-home{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+
+  .mobile-commerce-home{
+    position:relative!important;
+    width:100%!important;
+    min-height:100vh!important;
+    padding:0 0 calc(105px + env(safe-area-inset-bottom))!important;
+    overflow:hidden!important;
+    background:
+      radial-gradient(circle at 82% 7%,rgba(139,92,246,.12),transparent 23%),
+      linear-gradient(180deg,#fcfbff 0%,#f8f6fb 54%,#f4f0f7 100%)!important;
+  }
+
+  /* HERO */
+  .mobile-commerce-home .mc-hero{
+    display:grid!important;
+    grid-template-columns:minmax(0,1.04fr) minmax(145px,.96fr)!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:25px 15px 19px!important;
+    min-height:315px!important;
+  }
+
+  .mobile-commerce-home .mc-hero-copy{
+    position:relative!important;
+    z-index:2!important;
+    min-width:0!important;
+    animation:veloraMobileCopyIn .65s cubic-bezier(.22,1,.36,1) both!important;
+  }
+
+  .mobile-commerce-home .mc-kicker{
+    display:block!important;
+    margin:0!important;
+    color:#8757bc!important;
+    font-size:6.8px!important;
+    font-weight:900!important;
+    line-height:1.2!important;
+    letter-spacing:.15em!important;
+    white-space:nowrap!important;
+  }
+
+  .mobile-commerce-home .mc-hero h1{
+    margin:10px 0 12px!important;
+    color:#151217!important;
+    font-family:Georgia,"Times New Roman",serif!important;
+    font-size:clamp(31px,9.5vw,42px)!important;
+    line-height:.91!important;
+    letter-spacing:-.065em!important;
+  }
+
+  /*
+    CSS-ONLY TYPEWRITER.
+    clip-path is used instead of width so it cannot collapse the grid.
+  */
+  .mobile-commerce-home .mc-type{
+    display:inline-block!important;
+    position:relative!important;
+    width:auto!important;
+    max-width:none!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+    vertical-align:bottom!important;
+    padding-right:3px!important;
+    border-right:2px solid #7c3aed!important;
+    clip-path:inset(0 100% 0 0)!important;
+    animation-timing-function:steps(15,end)!important;
+    animation-iteration-count:infinite!important;
+    animation-fill-mode:both!important;
+  }
+
+  .mobile-commerce-home .mc-type-one{
+    animation:veloraMobileTypeOne 6.8s infinite!important;
+  }
+
+  .mobile-commerce-home .mc-type-two{
+    animation:veloraMobileTypeTwo 6.8s infinite!important;
+  }
+
+  @keyframes veloraMobileTypeOne{
+    0%,5%{clip-path:inset(0 100% 0 0);border-right-color:#7c3aed}
+    35%,62%{clip-path:inset(0 0 0 0);border-right-color:#7c3aed}
+    67%,100%{clip-path:inset(0 100% 0 0);border-right-color:#7c3aed}
+  }
+
+  @keyframes veloraMobileTypeTwo{
+    0%,34%{clip-path:inset(0 100% 0 0);border-right-color:#7c3aed}
+    42%,67%{clip-path:inset(0 0 0 0);border-right-color:#7c3aed}
+    72%,100%{clip-path:inset(0 100% 0 0);border-right-color:#7c3aed}
+  }
+
+  .mobile-commerce-home .mc-hero-copy p{
+    max-width:205px!important;
+    margin:0!important;
+    color:#756f79!important;
+    font-size:9.3px!important;
+    line-height:1.55!important;
+  }
+
+  .mobile-commerce-home .mc-hero-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:6px!important;
+    margin-top:13px!important;
+  }
+
+  .mobile-commerce-home .mc-btn{
+    min-height:36px!important;
+    border-radius:11px!important;
+    font-size:8.7px!important;
+    font-weight:850!important;
+    transition:transform .2s ease,box-shadow .2s ease!important;
+  }
+
+  .mobile-commerce-home .mc-btn:active{
+    transform:scale(.965)!important;
+  }
+
+  .mobile-commerce-home .mc-btn-primary{
+    background:linear-gradient(135deg,#8738ef,#7134d8)!important;
+    box-shadow:0 9px 22px rgba(124,58,237,.22)!important;
+  }
+
+  .mobile-commerce-home .mc-btn-secondary{
+    background:rgba(255,255,255,.88)!important;
+    border:1px solid rgba(38,25,48,.09)!important;
+  }
+
+  /* HERO IMAGE */
+  .mobile-commerce-home .mc-hero-media{
+    position:relative!important;
+    z-index:1!important;
+    width:100%!important;
+    min-width:0!important;
+    aspect-ratio:4/5!important;
+    overflow:hidden!important;
+    border-radius:22px!important;
+    background:#eee5e9!important;
+    box-shadow:0 16px 34px rgba(44,27,57,.15)!important;
+    animation:veloraMobileImageIn .75s cubic-bezier(.22,1,.36,1) .08s both!important;
+  }
+
+  .mobile-commerce-home .mc-hero-media img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    transform:scale(1.015)!important;
+    transition:transform .7s cubic-bezier(.22,1,.36,1)!important;
+  }
+
+  .mobile-commerce-home .mc-hero-media:active img{
+    transform:scale(1.06)!important;
+  }
+
+  .mobile-commerce-home .mc-hero-media::after{
+    content:""!important;
+    position:absolute!important;
+    inset:0!important;
+    pointer-events:none!important;
+    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(35,19,42,.12))!important;
+  }
+
+  .mobile-commerce-home .mc-badge{
+    z-index:4!important;
+    font-size:7px!important;
+    padding:7px 9px!important;
+    border-radius:10px!important;
+  }
+
+  .mobile-commerce-home .mc-rating{
+    z-index:4!important;
+    font-size:8px!important;
+    padding:6px 8px!important;
+    border-radius:9px!important;
+  }
+
+  @keyframes veloraMobileCopyIn{
+    from{opacity:0;transform:translateX(-18px)}
+    to{opacity:1;transform:translateX(0)}
+  }
+
+  @keyframes veloraMobileImageIn{
+    from{opacity:0;transform:translateX(18px) scale(.96)}
+    to{opacity:1;transform:translateX(0) scale(1)}
+  }
+
+  /* QUICK ACTIONS */
+  .mobile-commerce-home .mc-quick{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:7px!important;
+    padding:3px 14px 0!important;
+    animation:veloraMobileUp .65s cubic-bezier(.22,1,.36,1) .18s both!important;
+  }
+
+  .mobile-commerce-home .mc-quick-card{
+    min-width:0!important;
+    min-height:75px!important;
+    padding:9px 8px!important;
+    border:1px solid rgba(54,34,68,.07)!important;
+    border-radius:15px!important;
+    background:rgba(255,255,255,.86)!important;
+    box-shadow:0 7px 20px rgba(47,28,61,.045)!important;
+    transition:transform .2s ease,box-shadow .2s ease!important;
+  }
+
+  .mobile-commerce-home .mc-quick-card:active{
+    transform:translateY(-3px)!important;
+    box-shadow:0 12px 25px rgba(47,28,61,.09)!important;
+  }
+
+  /* SECTION / PRODUCTS */
+  .mobile-commerce-home .mc-section{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    padding:29px 14px 0!important;
+    animation:veloraMobileUp .7s cubic-bezier(.22,1,.36,1) .25s both!important;
+  }
+
+  .mobile-commerce-home .mc-section-head{
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+    margin-bottom:13px!important;
+  }
+
+  .mobile-commerce-home .mc-section-head h2{
+    margin:5px 0 0!important;
+    color:#211a26!important;
+    font-family:Georgia,"Times New Roman",serif!important;
+    font-size:26px!important;
+    line-height:1!important;
+    letter-spacing:-.05em!important;
+  }
+
+  .mobile-commerce-home .mc-products{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .mobile-commerce-home .mc-products .card{
+    min-width:0!important;
+    overflow:hidden!important;
+    border:1px solid rgba(47,29,60,.065)!important;
+    border-radius:16px!important;
+    background:#fff!important;
+    box-shadow:0 8px 22px rgba(45,27,59,.055)!important;
+    transition:transform .22s ease,box-shadow .22s ease!important;
+  }
+
+  .mobile-commerce-home .mc-products .card:active{
+    transform:translateY(-3px)!important;
+    box-shadow:0 13px 27px rgba(45,27,59,.11)!important;
+  }
+
+  /* PROMO */
+  .mobile-commerce-home .mc-promo{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    align-items:center!important;
+    margin:29px 14px 0!important;
+    padding:21px 18px!important;
+    min-height:180px!important;
+    overflow:hidden!important;
+    border-radius:23px!important;
+    animation:veloraMobileUp .7s cubic-bezier(.22,1,.36,1) .32s both!important;
+  }
+
+  .mobile-commerce-home .mc-promo-mark{
+    animation:veloraMobileFloat 4s ease-in-out infinite!important;
+  }
+
+  @keyframes veloraMobileFloat{
+    0%,100%{transform:rotate(-8deg) translateY(0)}
+    50%{transform:rotate(-3deg) translateY(-6px)}
+  }
+
+  /* FAQ */
+  .mobile-commerce-home .mc-faq-section{
+    animation-delay:.4s!important;
+  }
+
+  .mobile-commerce-home .mc-faq>a{
+    min-height:59px!important;
+    border-radius:15px!important;
+    transition:transform .2s ease,box-shadow .2s ease!important;
+  }
+
+  .mobile-commerce-home .mc-faq>a:active{
+    transform:translateX(2px)!important;
+  }
+
+  @keyframes veloraMobileUp{
+    from{opacity:0;transform:translateY(18px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* FOOTER */
+  .velora-home > .velora-footer,
+  .velora-home .velora-footer{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding-bottom:calc(98px + env(safe-area-inset-bottom))!important;
+  }
+
+  /* Prevent old reduced-motion rules from killing the required mobile motion,
+     while still respecting the OS setting for users who explicitly request it. */
+  @media (prefers-reduced-motion:reduce){
+    .mobile-commerce-home .mc-type,
+    .mobile-commerce-home .mc-hero-copy,
+    .mobile-commerce-home .mc-hero-media,
+    .mobile-commerce-home .mc-quick,
+    .mobile-commerce-home .mc-section,
+    .mobile-commerce-home .mc-promo{
+      animation-duration:1ms!important;
+      animation-iteration-count:1!important;
+    }
+  }
+
+  @media (max-width:380px){
+    .mobile-commerce-home .mc-hero{
+      grid-template-columns:minmax(0,1.02fr) minmax(128px,.98fr)!important;
+      gap:7px!important;
+      padding-left:12px!important;
+      padding-right:12px!important;
+    }
+    .mobile-commerce-home .mc-hero h1{font-size:29px!important}
+    .mobile-commerce-home .mc-hero-copy p{font-size:8.5px!important}
+    .mobile-commerce-home .mc-quick{padding-left:12px!important;padding-right:12px!important}
+    .mobile-commerce-home .mc-section{padding-left:12px!important;padding-right:12px!important}
+    .mobile-commerce-home .mc-promo{margin-left:12px!important;margin-right:12px!important}
+  }
+}
