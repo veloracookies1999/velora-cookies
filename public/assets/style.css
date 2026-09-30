@@ -15997,7 +15997,191 @@ body:has(.hero) .top .nav a[href="#/"]{
     grid-template-columns:repeat(5,1fr)!important;
     align-items:stretch!important;
     gap:3px!important;
+  }
+}
 
+/* =========================================================
+   MOBILE HOMEPAGE — FINAL CLEAN OVERRIDE
+   This block is intentionally mobile-only.
+   ========================================================= */
+@media (max-width:650px){
+
+  body{
+    overflow-x:hidden!important;
+    background:#faf9fc!important;
+  }
+
+  /* Never use the duplicate mobile homepage. */
+  .velora-home .mobile-home-shell{
+    display:none!important;
+  }
+
+  .velora-home > main{
+    display:block!important;
+    width:100%!important;
+    overflow:visible!important;
+  }
+
+  .velora-home > .velora-footer,
+  .velora-home .velora-footer{
+    display:block!important;
+    visibility:visible!important;
+    height:auto!important;
+    opacity:1!important;
+  }
+
+  /* Header */
+  .velora-home > .top{
+    position:sticky!important;
+    top:0!important;
+    z-index:1200!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-areas:"brand actions" "search search"!important;
+    gap:9px!important;
+    padding:11px 15px 10px!important;
+    background:rgba(250,249,252,.96)!important;
+    border-bottom:1px solid rgba(35,25,45,.06)!important;
+    box-shadow:0 7px 22px rgba(35,25,45,.045)!important;
+    backdrop-filter:blur(18px)!important;
+  }
+
+  .velora-home > .top .brand{grid-area:brand!important;min-width:0!important}
+  .velora-home > .top .brand .logo{width:42px!important;height:42px!important;border-radius:13px!important}
+  .velora-home > .top .brand b{font-size:16px!important;letter-spacing:.08em!important}
+  .velora-home > .top .brand small{display:none!important}
+  .velora-home > .top .actions{grid-area:actions!important;gap:7px!important}
+  .velora-home > .top .actions .icon-btn{width:41px!important;height:41px!important;border-radius:13px!important}
+  .velora-home > .top .actions .icon-btn:first-child{display:none!important}
+  .velora-home > .top .actions .btn{min-height:41px!important;padding:0 14px!important;border-radius:13px!important;font-size:11px!important}
+  .velora-home > .top .search{grid-area:search!important;width:100%!important;height:45px!important;margin:0!important;border-radius:14px!important}
+
+  /* Horizontal hero: copy + cookie image side by side. */
+  .hero-home{padding:0!important;overflow:hidden!important}
+  .hero-home-inner{
+    display:grid!important;
+    grid-template-columns:minmax(0,1.08fr) minmax(118px,.92fr)!important;
+    align-items:center!important;
+    gap:10px!important;
+    padding:28px 15px 25px!important;
+    min-height:0!important;
+  }
+  .hero-home-copy{min-width:0!important;width:auto!important;padding:0!important}
+  .hero-home-copy .eyebrow{margin:0 0 13px!important;padding:6px 8px!important;font-size:7px!important;letter-spacing:.14em!important}
+  
+  /* DO NOT override width to max-content: the keyframes need width:0 -> animated width. */
+  .hero-title-type{
+    margin:0!important;
+    max-width:100%!important;
+    font-size:clamp(32px,10.3vw,42px)!important;
+    line-height:.92!important;
+    letter-spacing:-.055em!important;
+  }
+  .hero-title-type br{display:block!important}
+  .hero-title-type .type-line{
+    display:inline-block!important;
+    width:0!important;
+    max-width:max-content!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    vertical-align:bottom!important;
+    animation-duration:12s!important;
+  }
+
+  .hero-home-copy .hero-description{
+    max-width:100%!important;
+    margin:13px 0 0!important;
+    font-size:9.5px!important;
+    line-height:1.55!important;
+  }
+  .hero-home-copy .hero-actions{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:7px!important;
+    margin-top:13px!important;
+  }
+  .hero-home-copy .hero-actions .btn{
+    min-height:36px!important;
+    padding:0 8px!important;
+    border-radius:11px!important;
+    font-size:8.5px!important;
+  }
+  .hero-home-copy .hero-meta{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:5px!important;
+    margin-top:8px!important;
+  }
+  .hero-home-copy .hero-meta span{
+    min-width:0!important;
+    min-height:26px!important;
+    justify-content:center!important;
+    padding:0 3px!important;
+    border-radius:8px!important;
+    font-size:6.8px!important;
+    white-space:nowrap!important;
+  }
+  .hero-home-copy .hero-meta span:last-child{grid-column:1/-1!important}
+
+  .hero-home-visual{
+    position:relative!important;
+    width:100%!important;
+    min-width:0!important;
+    align-self:center!important;
+  }
+  .hero-glow{display:none!important}
+  .hero-image-wrap{
+    width:100%!important;
+    aspect-ratio:4/5!important;
+    border-radius:17px!important;
+    overflow:hidden!important;
+  }
+  .hero-main-image{width:100%!important;height:100%!important;object-fit:cover!important}
+  .hero-float-card{display:none!important}
+
+  /* Keep the rest compact but flowing vertically. */
+  .brand-strip{padding:10px 0!important;overflow:hidden!important}
+  .brand-strip-inner{width:max-content!important;min-width:100%!important;gap:9px!important;padding:0 15px!important;font-size:7px!important}
+
+  .home-products{padding:25px 0 0!important}
+  .home-products .container{padding-left:15px!important;padding-right:15px!important}
+  .home-products .product-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .home-story{margin-top:27px!important;padding:27px 0!important}
+  .home-story-grid{display:block!important;padding:0 15px!important}
+  .home-story-mark{display:none!important}
+
+  .home-faq{padding:27px 0 32px!important}
+  .home-faq .container{padding:0 15px!important}
+  .faq-preview-grid{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+
+  /* Footer is intentionally visible. */
+  .velora-footer{
+    display:block!important;
+    visibility:visible!important;
+    padding-bottom:calc(92px + env(safe-area-inset-bottom))!important;
+  }
+
+  @media (max-width:380px){
+    .hero-home-inner{
+      grid-template-columns:minmax(0,1.05fr) minmax(105px,.95fr)!important;
+      gap:8px!important;
+      padding-left:12px!important;
+      padding-right:12px!important;
+    }
+    .hero-title-type{font-size:31px!important}
+    .hero-home-copy .hero-description{font-size:8.5px!important}
+    .hero-home-copy .hero-actions .btn{font-size:8px!important}
+  }
+}
+
+@media (min-width:651px){
+  .velora-home .mobile-home-shell{display:none!important}
+}
 
 /* =========================================================
    MOBILE HOMEPAGE FINAL — ORIGINAL HOME + TYPEWRITER
