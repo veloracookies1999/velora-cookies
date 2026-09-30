@@ -892,10 +892,671 @@ function home() {
     .filter(product => product.featured)
     .slice(0, 4);
 
+  const mobileProducts = best.map((product) => {
+    const wishActive = S.wish.some(
+      item => String(item.id) === String(product.id)
+    );
+
+    return `
+      <article class="mh-product" data-product="${product.id}">
+        <div class="mh-product-media">
+          ${visual(product)}
+          <button
+            class="mh-wish ${wishActive ? "on" : ""}"
+            data-wish="${product.id}"
+            type="button"
+            aria-label="Wishlist"
+          >
+            ${icon("heart", 16)}
+          </button>
+        </div>
+
+        <div class="mh-product-body">
+          <span class="mh-product-cat">
+            ${esc(product.categories?.name || "Cookies")}
+          </span>
+
+          <h3>${esc(product.name)}</h3>
+
+          <div class="mh-product-bottom">
+            <div class="mh-price">
+              ${money(product.price)}
+              <small>/ ${esc(product.unit || "box")}</small>
+            </div>
+
+            <button
+              class="mh-add"
+              data-add="${product.id}"
+              type="button"
+              aria-label="Tambah ke keranjang"
+            >
+              ${icon("plus", 16)}
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
   return `
     <div class="velora-home">
 
       ${top()}
+
+      <style id="velora-mobile-home-style">
+        @media (max-width:650px){
+          body:has(.mobile-home-shell){
+            background:#faf9fc!important;
+            overflow-x:hidden!important;
+          }
+
+          .velora-home > main{
+            display:none!important;
+          }
+
+          .velora-home > .velora-footer{
+            display:none!important;
+          }
+
+          .mobile-home-shell{
+            display:block!important;
+            width:100%;
+            overflow:hidden;
+            padding:0 0 calc(92px + env(safe-area-inset-bottom));
+          }
+
+          .mh-hero{
+            padding:18px 18px 0;
+          }
+
+          .mh-hero-card{
+            position:relative;
+            overflow:hidden;
+            padding:23px 18px 18px;
+            border:1px solid rgba(118,80,180,.10);
+            border-radius:28px;
+            background:
+              radial-gradient(circle at 90% 5%,rgba(143,75,255,.13),transparent 34%),
+              linear-gradient(145deg,#fff 0%,#fbf8ff 58%,#f4effb 100%);
+            box-shadow:0 14px 38px rgba(50,30,80,.08);
+          }
+
+          .mh-eyebrow{
+            display:inline-flex;
+            align-items:center;
+            min-height:29px;
+            padding:0 10px;
+            border:1px solid rgba(123,76,189,.13);
+            border-radius:999px;
+            background:rgba(255,255,255,.78);
+            color:#7b4db6;
+            font-size:9px;
+            font-weight:800;
+            letter-spacing:.17em;
+            text-transform:uppercase;
+          }
+
+          .mh-title{
+            margin:16px 0 11px;
+            max-width:100%;
+            color:#151218;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:clamp(39px,11.5vw,54px);
+            font-weight:500;
+            line-height:.94;
+            letter-spacing:-.055em;
+          }
+
+          .mh-title em{
+            color:#7b36e8;
+            font-style:italic;
+          }
+
+          .mh-desc{
+            margin:0;
+            max-width:330px;
+            color:#77727c;
+            font-size:13px;
+            line-height:1.62;
+          }
+
+          .mh-actions{
+            display:grid;
+            grid-template-columns:1.12fr .88fr;
+            gap:9px;
+            margin-top:18px;
+          }
+
+          .mh-actions a{
+            min-height:47px!important;
+            padding:0 12px!important;
+            border-radius:14px!important;
+            font-size:12px!important;
+            font-weight:800!important;
+            text-decoration:none;
+          }
+
+          .mh-trust{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:7px;
+            margin-top:9px;
+          }
+
+          .mh-trust span{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:6px;
+            min-height:34px;
+            padding:0 7px;
+            border:1px solid rgba(118,80,180,.08);
+            border-radius:11px;
+            background:rgba(255,255,255,.84);
+            color:#77727c;
+            font-size:9px;
+            font-weight:700;
+            white-space:nowrap;
+          }
+
+          .mh-trust span:last-child{
+            grid-column:1/-1;
+          }
+
+          .mh-trust svg{
+            flex:0 0 auto;
+            color:#873bea;
+          }
+
+          .mh-visual{
+            position:relative;
+            margin-top:16px;
+            border-radius:21px;
+            overflow:hidden;
+            aspect-ratio:1.28/1;
+            background:#eee5ee;
+            box-shadow:0 10px 26px rgba(46,30,66,.12);
+          }
+
+          .mh-visual img{
+            width:100%;
+            height:100%;
+            display:block;
+            object-fit:cover;
+            object-position:center;
+          }
+
+          .mh-visual-badge{
+            position:absolute;
+            left:10px;
+            bottom:10px;
+            display:flex;
+            align-items:center;
+            gap:7px;
+            padding:9px 11px;
+            border:1px solid rgba(255,255,255,.68);
+            border-radius:12px;
+            background:rgba(255,255,255,.88);
+            box-shadow:0 7px 20px rgba(35,25,45,.12);
+            color:#4f4855;
+            font-size:10px;
+            font-weight:800;
+            backdrop-filter:blur(12px);
+          }
+
+          .mh-visual-badge i{
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            background:#873bea;
+            box-shadow:0 0 0 4px rgba(135,59,234,.10);
+          }
+
+          .mh-section{
+            padding:30px 18px 0;
+          }
+
+          .mh-section-head{
+            display:flex;
+            align-items:flex-end;
+            justify-content:space-between;
+            gap:12px;
+            margin-bottom:14px;
+          }
+
+          .mh-kicker{
+            display:block;
+            margin-bottom:5px;
+            color:#8a62b7;
+            font-size:9px;
+            font-weight:800;
+            letter-spacing:.16em;
+            text-transform:uppercase;
+          }
+
+          .mh-section-title{
+            margin:0;
+            color:#18151b;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:29px;
+            font-weight:500;
+            line-height:1;
+            letter-spacing:-.04em;
+          }
+
+          .mh-see-all{
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+            color:#7134d7;
+            font-size:10px;
+            font-weight:800;
+            text-decoration:none;
+            white-space:nowrap;
+          }
+
+          .mh-product-grid{
+            display:grid;
+            grid-template-columns:repeat(2,minmax(0,1fr));
+            gap:10px;
+          }
+
+          .mh-product{
+            min-width:0;
+            overflow:hidden;
+            border:1px solid rgba(42,30,55,.07);
+            border-radius:18px;
+            background:#fff;
+            box-shadow:0 8px 22px rgba(42,30,55,.06);
+          }
+
+          .mh-product-media{
+            position:relative;
+            aspect-ratio:1/1;
+            overflow:hidden;
+            background:#f1edf3;
+          }
+
+          .mh-product-media > img{
+            width:100%;
+            height:100%;
+            display:block;
+            object-fit:cover;
+          }
+
+          .mh-product-media .mini-cookie{
+            width:58%;
+            height:58%;
+            margin:21% auto 0;
+          }
+
+          .mh-wish{
+            position:absolute;
+            top:8px;
+            right:8px;
+            display:grid;
+            place-items:center;
+            width:31px;
+            height:31px;
+            padding:0;
+            border:1px solid rgba(30,20,40,.08);
+            border-radius:50%;
+            background:rgba(255,255,255,.92);
+            color:#77717c;
+            box-shadow:0 5px 12px rgba(30,20,40,.08);
+          }
+
+          .mh-wish.on{
+            color:#873bea;
+          }
+
+          .mh-product-body{
+            padding:10px 10px 11px;
+          }
+
+          .mh-product-cat{
+            display:block;
+            overflow:hidden;
+            color:#9a8ea2;
+            font-size:8px;
+            font-weight:800;
+            letter-spacing:.08em;
+            text-overflow:ellipsis;
+            text-transform:uppercase;
+            white-space:nowrap;
+          }
+
+          .mh-product h3{
+            margin:4px 0 8px;
+            overflow:hidden;
+            color:#211c25;
+            font-size:12px;
+            font-weight:800;
+            line-height:1.25;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+          }
+
+          .mh-product-bottom{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:6px;
+          }
+
+          .mh-price{
+            min-width:0;
+            color:#6f2fd3;
+            font-size:11px;
+            font-weight:900;
+            white-space:nowrap;
+          }
+
+          .mh-price small{
+            color:#aaa1ad;
+            font-size:8px;
+            font-weight:600;
+          }
+
+          .mh-add{
+            display:grid;
+            place-items:center;
+            width:30px;
+            height:30px;
+            flex:0 0 auto;
+            padding:0;
+            border:0;
+            border-radius:10px;
+            background:#7d36e5;
+            color:#fff;
+          }
+
+          .mh-story{
+            margin:30px 18px 0;
+            padding:21px 18px 18px;
+            border-radius:23px;
+            background:#17131b;
+            color:#fff;
+            box-shadow:0 13px 30px rgba(22,16,28,.16);
+          }
+
+          .mh-story .mh-kicker{
+            color:#c49bea;
+          }
+
+          .mh-story h2{
+            margin:7px 0 9px;
+            font-family:Georgia,"Times New Roman",serif;
+            font-size:28px;
+            font-weight:500;
+            line-height:1.03;
+            letter-spacing:-.04em;
+          }
+
+          .mh-story h2 em{
+            color:#c58af8;
+          }
+
+          .mh-story p{
+            margin:0;
+            color:#c7c0cb;
+            font-size:12px;
+            line-height:1.6;
+          }
+
+          .mh-story-link{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            margin-top:15px;
+            color:#fff;
+            font-size:11px;
+            font-weight:800;
+            text-decoration:none;
+          }
+
+          .mh-story-points{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:6px;
+            margin-top:17px;
+          }
+
+          .mh-story-point{
+            min-width:0;
+            padding:10px 7px;
+            border:1px solid rgba(255,255,255,.10);
+            border-radius:12px;
+            background:rgba(255,255,255,.045);
+          }
+
+          .mh-story-point strong{
+            display:block;
+            margin-bottom:3px;
+            color:#fff;
+            font-size:9px;
+          }
+
+          .mh-story-point span{
+            display:block;
+            color:#9f96a6;
+            font-size:8px;
+            line-height:1.35;
+          }
+
+          .mh-faq{
+            padding:30px 18px 0;
+          }
+
+          .mh-faq-list{
+            display:grid;
+            gap:8px;
+          }
+
+          .mh-faq-item{
+            display:grid;
+            grid-template-columns:27px 1fr;
+            gap:9px;
+            align-items:start;
+            padding:13px 12px;
+            border:1px solid rgba(35,25,45,.07);
+            border-radius:15px;
+            background:#fff;
+            box-shadow:0 6px 18px rgba(35,25,45,.045);
+          }
+
+          .mh-faq-no{
+            display:grid;
+            place-items:center;
+            width:27px;
+            height:27px;
+            border-radius:9px;
+            background:#f0e6ff;
+            color:#7433d4;
+            font-size:9px;
+            font-weight:900;
+          }
+
+          .mh-faq-item strong{
+            display:block;
+            color:#27212b;
+            font-size:11px;
+            line-height:1.3;
+          }
+
+          .mh-faq-item p{
+            margin:4px 0 0;
+            color:#918994;
+            font-size:10px;
+            line-height:1.45;
+          }
+
+          .mh-footer{
+            margin:30px 18px 0;
+            padding:18px 16px 2px;
+            border-top:1px solid rgba(35,25,45,.08);
+            text-align:center;
+          }
+
+          .mh-footer strong{
+            display:block;
+            color:#201a24;
+            font-size:13px;
+            letter-spacing:.08em;
+          }
+
+          .mh-footer p{
+            margin:6px 0 0;
+            color:#99919d;
+            font-size:9px;
+          }
+
+          @media (max-width:380px){
+            .mh-hero{padding-left:14px;padding-right:14px}
+            .mh-section,.mh-faq{padding-left:14px;padding-right:14px}
+            .mh-story{margin-left:14px;margin-right:14px}
+            .mh-footer{margin-left:14px;margin-right:14px}
+            .mh-title{font-size:37px}
+            .mh-actions a{font-size:11px!important}
+            .mh-product-grid{gap:8px}
+            .mh-product-body{padding:9px}
+          }
+        }
+
+        @media (min-width:651px){
+          .mobile-home-shell{display:none!important}
+        }
+
+        .mobile-home-shell{display:none}
+      </style>
+
+      <section class="mobile-home-shell">
+
+        <div class="mh-hero">
+          <div class="mh-hero-card">
+
+            <span class="mh-eyebrow">BAKED WITH INTENTION</span>
+
+            <h1 class="mh-title">
+              Cookies kecil,<br>
+              <em>mood besar.</em>
+            </h1>
+
+            <p class="mh-desc">
+              Cookies premium dengan tekstur chewy, bahan pilihan,
+              dan rasa yang dibuat untuk bikin hari terasa lebih baik.
+            </p>
+
+            <div class="mh-actions">
+              <a href="#/shop" class="btn primary">Jelajahi koleksi</a>
+              <a href="#/about" class="btn ghost">Cerita VELORA</a>
+            </div>
+
+            <div class="mh-trust">
+              <span>${icon("sparkles",13)} Small batch</span>
+              <span>${icon("flame",13)} Freshly baked</span>
+              <span>${icon("shield-check",13)} Secure checkout</span>
+            </div>
+
+            <div class="mh-visual">
+              <img src="/assets/hero-cookies.png" alt="VELORA Cookies">
+              <div class="mh-visual-badge">
+                <i></i>
+                Freshly baked
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <section class="mh-section">
+          <div class="mh-section-head">
+            <div>
+              <span class="mh-kicker">CURATED FOR YOU</span>
+              <h2 class="mh-section-title">Best sellers.</h2>
+            </div>
+            <a href="#/shop" class="mh-see-all">
+              Lihat semua ${icon("arrow-right",13)}
+            </a>
+          </div>
+
+          <div class="mh-product-grid">
+            ${mobileProducts || `
+              <div class="empty">Belum ada produk unggulan.</div>
+            `}
+          </div>
+        </section>
+
+        <section class="mh-story">
+          <span class="mh-kicker">THE VELORA STANDARD</span>
+          <h2>Sesederhana cookies,<br><em>sedetail itu prosesnya.</em></h2>
+          <p>
+            Kami percaya cookies yang bagus bukan hanya soal rasa.
+            Tekstur, aroma, bahan, dan cara kami membuat setiap batch
+            semuanya punya cerita.
+          </p>
+          <a href="#/about" class="mh-story-link">
+            Kenal lebih jauh ${icon("arrow-right",13)}
+          </a>
+
+          <div class="mh-story-points">
+            <div class="mh-story-point">
+              <strong>01 · Small batch</strong>
+              <span>Dibuat dalam jumlah terkontrol.</span>
+            </div>
+            <div class="mh-story-point">
+              <strong>02 · Freshly baked</strong>
+              <span>Menjaga tekstur dan rasa.</span>
+            </div>
+            <div class="mh-story-point">
+              <strong>03 · Made with care</strong>
+              <span>Detail kecil khas VELORA.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="mh-faq">
+          <div class="mh-section-head">
+            <div>
+              <span class="mh-kicker">NEED TO KNOW</span>
+              <h2 class="mh-section-title">Sebelum checkout.</h2>
+            </div>
+            <a href="#/faq" class="mh-see-all">
+              Lihat FAQ ${icon("arrow-right",13)}
+            </a>
+          </div>
+
+          <div class="mh-faq-list">
+            <article class="mh-faq-item">
+              <span class="mh-faq-no">01</span>
+              <div>
+                <strong>Berapa lama pengiriman?</strong>
+                <p>Estimasi pengiriman tersedia saat checkout.</p>
+              </div>
+            </article>
+            <article class="mh-faq-item">
+              <span class="mh-faq-no">02</span>
+              <div>
+                <strong>Apakah cookies fresh?</strong>
+                <p>Setiap batch dibuat dengan perhatian pada rasa dan tekstur.</p>
+              </div>
+            </article>
+            <article class="mh-faq-item">
+              <span class="mh-faq-no">03</span>
+              <div>
+                <strong>Bagaimana cara order?</strong>
+                <p>Pilih produk, masukkan ke keranjang, lalu lanjutkan checkout.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <footer class="mh-footer">
+          <strong>VELORA COOKIES</strong>
+          <p>Crafted for a sweeter day · © 2026</p>
+        </footer>
+
+      </section>
 
       <main>
 
@@ -907,9 +1568,7 @@ function home() {
 
           <div class="container hero-home-inner">
 
-            <!-- LEFT -->
             <div class="hero-home-copy">
-
               <span class="eyebrow">
                 BAKED WITH INTENTION
               </span>
@@ -931,15 +1590,8 @@ function home() {
               </p>
 
               <div class="hero-actions">
-
-                <a href="#/shop" class="btn primary">
-                  Jelajahi koleksi
-                </a>
-
-                <a href="#/about" class="btn ghost">
-                  Cerita VELORA
-                </a>
-
+                <a href="#/shop" class="btn primary">Jelajahi koleksi</a>
+                <a href="#/about" class="btn ghost">Cerita VELORA</a>
               </div>
 
               <div class="hero-meta">
@@ -947,307 +1599,108 @@ function home() {
                 <span>${icon("flame",14)} Freshly baked</span>
                 <span>${icon("shield-check",14)} Secure checkout</span>
               </div>
-
             </div>
 
-
-            <!-- RIGHT -->
             <div class="hero-home-visual">
-
               <div class="hero-glow"></div>
-
               <div class="hero-image-wrap">
-
                 <img
                   src="/assets/hero-cookies.png"
                   alt="VELORA Cookies"
                   class="hero-main-image"
                 >
-
               </div>
-
               <div class="hero-float-card hero-float-one">
-
                 <span class="hero-float-dot"></span>
-
                 Freshly baked
-
               </div>
-
-
               <div class="hero-float-card hero-float-two">
-
                 Customer favorite
-
               </div>
-
             </div>
 
           </div>
-
         </section>
-
-
-        <!-- =====================================================
-             BRAND STRIP
-             ===================================================== -->
 
         <section class="brand-strip">
-
           <div class="container brand-strip-inner">
-
-            <span>SMALL BATCH</span>
-
-            <i></i>
-
-            <span>FRESHLY BAKED</span>
-
-            <i></i>
-
-            <span>MADE WITH CARE</span>
-
-            <i></i>
-
+            <span>SMALL BATCH</span><i></i>
+            <span>FRESHLY BAKED</span><i></i>
+            <span>MADE WITH CARE</span><i></i>
             <span>VELORA COOKIES</span>
-
           </div>
-
         </section>
-
-
-        <!-- =====================================================
-             BEST SELLERS
-             ===================================================== -->
 
         <section class="section home-products">
-
           <div class="container">
-
             <div class="section-head">
-
               <div>
-
-                <span class="eyebrow">
-                  CURATED FOR YOU
-                </span>
-
-                <h2>
-                  Best sellers.
-                </h2>
-
+                <span class="eyebrow">CURATED FOR YOU</span>
+                <h2>Best sellers.</h2>
               </div>
-
-              <a
-                href="#/shop"
-                class="text-link"
-              >
+              <a href="#/shop" class="text-link">
                 Lihat semua ${icon("arrow-right")}
               </a>
-
             </div>
-
 
             <div class="product-grid">
-
-              ${
-                best.length
-                  ? best.map(card).join("")
-                  : `
-                    <div class="empty">
-                      Belum ada produk unggulan.
-                    </div>
-                  `
-              }
-
+              ${best.length ? best.map(card).join("") : `
+                <div class="empty">Belum ada produk unggulan.</div>
+              `}
             </div>
-
           </div>
-
         </section>
 
-
-        <!-- =====================================================
-             STORY
-             ===================================================== -->
-
         <section class="home-story">
-
-  <div class="container home-story-grid">
-
-    <!-- LEFT -->
-    <div class="home-story-copy">
-
-      <span class="eyebrow">
-        THE VELORA STANDARD
-      </span>
-
-      <h2>
-        Sesederhana cookies,
-        <span>sedetail itu prosesnya.</span>
-      </h2>
-
-      <p>
-        Kami percaya cookies yang bagus bukan hanya soal rasa.
-        Tekstur, aroma, bahan, dan cara kami membuat setiap batch
-        semuanya punya cerita.
-      </p>
-
-      <div class="story-actions">
-        <a href="#/about" class="btn dark">
-          Kenal lebih jauh
-        </a>
-      </div>
-
-      <!-- DETAIL KECIL -->
-      <div class="story-points">
-
-        <div class="story-point">
-          <span>01</span>
-          <div>
-            <strong>Small batch</strong>
-            <p>Dibuat dalam jumlah terkontrol.</p>
+          <div class="container home-story-grid">
+            <div class="home-story-copy">
+              <span class="eyebrow">THE VELORA STANDARD</span>
+              <h2>Sesederhana cookies, <span>sedetail itu prosesnya.</span></h2>
+              <p>
+                Kami percaya cookies yang bagus bukan hanya soal rasa.
+                Tekstur, aroma, bahan, dan cara kami membuat setiap batch
+                semuanya punya cerita.
+              </p>
+              <div class="story-actions">
+                <a href="#/about" class="btn dark">Kenal lebih jauh</a>
+              </div>
+              <div class="story-points">
+                <div class="story-point"><span>01</span><div><strong>Small batch</strong><p>Dibuat dalam jumlah terkontrol.</p></div></div>
+                <div class="story-point"><span>02</span><div><strong>Freshly baked</strong><p>Menjaga tekstur dan rasa tetap nyaman.</p></div></div>
+                <div class="story-point"><span>03</span><div><strong>Made with care</strong><p>Detail kecil yang menjadi ciri VELORA.</p></div></div>
+              </div>
+            </div>
+            <div class="home-story-mark">
+              <div class="velora-3d-logo">
+                <div class="velora-3d-ring ring-back"></div>
+                <div class="velora-3d-ring ring-mid"></div>
+                <div class="velora-3d-disc">
+                  <div class="velora-logo-top">VELORA</div>
+                  <div class="velora-logo-v">V</div>
+                  <div class="velora-logo-bottom">COOKIES · EST. 2026</div>
+                </div>
+              </div>
+              <div class="velora-emblem-caption">SMALL BATCH <span>•</span> FRESHLY BAKED</div>
+            </div>
           </div>
-        </div>
-
-        <div class="story-point">
-          <span>02</span>
-          <div>
-            <strong>Freshly baked</strong>
-            <p>Menjaga tekstur dan rasa tetap nyaman.</p>
-          </div>
-        </div>
-
-        <div class="story-point">
-          <span>03</span>
-          <div>
-            <strong>Made with care</strong>
-            <p>Detail kecil yang menjadi ciri VELORA.</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- RIGHT -->
-    <div class="home-story-mark">
-
-  <div class="velora-3d-logo">
-
-    <div class="velora-3d-ring ring-back"></div>
-    <div class="velora-3d-ring ring-mid"></div>
-
-    <div class="velora-3d-disc">
-
-      <div class="velora-logo-top">
-        VELORA
-      </div>
-
-      <div class="velora-logo-v">
-        V
-      </div>
-
-      <div class="velora-logo-bottom">
-        COOKIES · EST. 2026
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="velora-emblem-caption">
-    SMALL BATCH <span>•</span> FRESHLY BAKED
-  </div>
-
-</div>
-</section>
-
-        <!-- =====================================================
-             FAQ PREVIEW
-             ===================================================== -->
+        </section>
 
         <section class="section home-faq">
-
           <div class="container">
-
             <div class="section-head">
-
               <div>
-
-                <span class="eyebrow">
-                  NEED TO KNOW
-                </span>
-
-                <h2>
-                  Sebelum checkout.
-                </h2>
-
+                <span class="eyebrow">NEED TO KNOW</span>
+                <h2>Sebelum checkout.</h2>
               </div>
-
-              <a
-                href="#/faq"
-                class="text-link"
-              >
-                Lihat FAQ ${icon("arrow-right")}
-              </a>
-
+              <a href="#/faq" class="text-link">Lihat FAQ ${icon("arrow-right")}</a>
             </div>
-
 
             <div class="faq-preview-grid">
-
-              <div class="faq-preview-item">
-
-                <span>01</span>
-
-                <strong>
-                  Berapa lama pengiriman?
-                </strong>
-
-                <p>
-                  Informasi estimasi pengiriman
-                  tersedia di halaman checkout.
-                </p>
-
-              </div>
-
-
-              <div class="faq-preview-item">
-
-                <span>02</span>
-
-                <strong>
-                  Apakah cookies fresh?
-                </strong>
-
-                <p>
-                  Setiap batch dibuat dengan
-                  perhatian pada rasa dan tekstur.
-                </p>
-
-              </div>
-
-
-              <div class="faq-preview-item">
-
-                <span>03</span>
-
-                <strong>
-                  Bagaimana cara order?
-                </strong>
-
-                <p>
-                  Pilih produk, masukkan ke keranjang,
-                  lalu lanjutkan checkout.
-                </p>
-
-              </div>
-
+              <div class="faq-preview-item"><span>01</span><strong>Berapa lama pengiriman?</strong><p>Informasi estimasi pengiriman tersedia di halaman checkout.</p></div>
+              <div class="faq-preview-item"><span>02</span><strong>Apakah cookies fresh?</strong><p>Setiap batch dibuat dengan perhatian pada rasa dan tekstur.</p></div>
+              <div class="faq-preview-item"><span>03</span><strong>Bagaimana cara order?</strong><p>Pilih produk, masukkan ke keranjang, lalu lanjutkan checkout.</p></div>
             </div>
-
           </div>
-
         </section>
 
       </main>
@@ -1257,7 +1710,6 @@ function home() {
     </div>
   `;
 }
-
 /* =========================================================
    SHOP
 ========================================================= */
