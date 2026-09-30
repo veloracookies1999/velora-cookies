@@ -5735,6 +5735,86 @@ function faqpage() {
    RENDER
 ========================================================= */
 
+function initMobileMotion() {
+  if (window.innerWidth > 650) return;
+
+  const root = document.querySelector(".mobile-commerce-home");
+  if (!root) return;
+
+  // Real JS typewriter: works independently from CSS keyframes.
+  root.querySelectorAll(".mc-type").forEach((el, index) => {
+    if (el.dataset.typed === "1") return;
+    const text = el.textContent.trim();
+    el.dataset.typed = "1";
+    el.textContent = "";
+    el.style.width = "auto";
+    el.style.maxWidth = "100%";
+    el.style.borderRight = "2px solid #7c3aed";
+
+    let i = 0;
+    let deleting = false;
+    const typeSpeed = index === 0 ? 82 : 96;
+    const deleteSpeed = 48;
+
+    const tick = () => {
+      if (!document.body.contains(el)) return;
+
+      if (!deleting) {
+        i++;
+        el.textContent = text.slice(0, i);
+        if (i >= text.length) {
+          deleting = true;
+          setTimeout(tick, 1250);
+          return;
+        }
+        setTimeout(tick, typeSpeed);
+      } else {
+        i--;
+        el.textContent = text.slice(0, Math.max(0, i));
+        if (i <= 0) {
+          deleting = false;
+          setTimeout(tick, 450);
+          return;
+        }
+        setTimeout(tick, deleteSpeed);
+      }
+    };
+
+    setTimeout(tick, index * 700 + 250);
+  });
+
+  // Entrance animation for every mobile commerce section.
+  root.querySelectorAll(".mc-quick, .mc-section, .mc-promo").forEach((el, i) => {
+    el.classList.add("mc-reveal");
+    el.style.setProperty("--mc-delay", Math.min(i * 70, 280) + "ms");
+  });
+
+  // Gentle image/parallax motion while scrolling.
+  const media = root.querySelector(".mc-hero-media");
+  if (media && !media.dataset.motionBound) {
+    media.dataset.motionBound = "1";
+    let ticking = false;
+    const update = () => {
+      const y = Math.min(window.scrollY, 180);
+      media.style.transform = "translate3d(0," + (y * -0.035) + "px,0)";
+      ticking = false;
+    };
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    root.querySelectorAll("*").forEach(el => {
+      el.style.animationDuration = "0.01ms";
+      el.style.transitionDuration = "0.01ms";
+    });
+  }
+}
+
 async function render() {
 
   const r = route();
@@ -6029,6 +6109,7 @@ async function render() {
 
     bind();
 refreshIcons();
+initMobileMotion();
 
 if(r === "/orders"){
   initOrdersPage();
