@@ -17866,3 +17866,32 @@ body:has(.hero) .top .nav a[href="#/"]{
     .mobile-commerce-home .mc-promo{margin-left:12px!important;margin-right:12px!important}
   }
 }
+
+
+/* FINAL MOBILE TYPEWRITER FIX — keep it running even when reduced-motion rules exist */
+@media (max-width:650px){
+  .mobile-commerce-home .mc-type{
+    display:inline-block!important;
+    position:relative!important;
+    width:auto!important;
+    max-width:none!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+    vertical-align:bottom!important;
+    padding-right:3px!important;
+    border-right:2px solid #7c3aed!important;
+    clip-path:inset(0 100% 0 0)!important;
+    animation-iteration-count:infinite!important;
+    animation-direction:normal!important;
+    animation-fill-mode:both!important;
+    animation-play-state:running!important;
+  }
+
+  .mobile-commerce-home .mc-type-one{
+    animation:veloraMobileTypeOne 6.8s steps(15,end) infinite!important;
+  }
+
+  .mobile-commerce-home .mc-type-two{
+    animation:veloraMobileTypeTwo 6.8s steps(11,end) infinite!important;
+  }
+}
