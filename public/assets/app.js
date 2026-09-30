@@ -1018,6 +1018,65 @@ function home() {
         </section>
       </main>
 
+      <!-- Mobile-only commerce homepage. Desktop markup above remains untouched. -->
+      <main class="mobile-commerce-home">
+        <section class="mc-hero">
+          <div class="mc-hero-copy">
+            <span class="mc-kicker">VELORA BAKERY · SMALL BATCH</span>
+            <h1><span class="mc-type mc-type-one">Cookies kecil,</span><br><span class="mc-type mc-type-two">mood besar.</span></h1>
+            <p>Freshly baked cookies dengan tekstur chewy dan rasa yang dibuat untuk menemani harimu.</p>
+            <div class="mc-hero-actions">
+              <a class="mc-btn mc-btn-primary" href="#/shop">Belanja sekarang ${icon("arrow-up-right",15)}</a>
+              <a class="mc-btn mc-btn-secondary" href="#/shop">Lihat semua</a>
+            </div>
+          </div>
+          <div class="mc-hero-media">
+            <div class="mc-hero-glow"></div>
+            <img src="/assets/hero-cookies.png" alt="VELORA Cookies">
+            <span class="mc-badge"><b></b> Freshly baked</span>
+            <span class="mc-rating">${icon("star",12)} 4.9 <small>favorite</small></span>
+          </div>
+        </section>
+
+        <section class="mc-quick">
+          <a href="#/shop" class="mc-quick-card"><span>${icon("sparkles",17)}</span><b>Best Seller</b><small>Paling dicari</small></a>
+          <a href="#/shop" class="mc-quick-card"><span>${icon("flame",17)}</span><b>Fresh Baked</b><small>Batch hari ini</small></a>
+          <a href="#/shop" class="mc-quick-card"><span>${icon("gift",17)}</span><b>Gift Box</b><small>Untuk orang spesial</small></a>
+        </section>
+
+        <section class="mc-section">
+          <div class="mc-section-head">
+            <div><span class="mc-label">CURATED FOR YOU</span><h2>Best sellers</h2></div>
+            <a href="#/shop">Lihat semua ${icon("arrow-right",14)}</a>
+          </div>
+          <div class="mc-products">
+            ${best.length ? best.map(card).join("") : `<div class="mc-empty">Belum ada produk unggulan.</div>`}
+          </div>
+        </section>
+
+        <section class="mc-promo">
+          <div>
+            <span class="mc-label">THE VELORA STANDARD</span>
+            <h2>Fresh from<br><em>our oven.</em></h2>
+            <p>Setiap batch dibuat dalam jumlah terkontrol untuk menjaga rasa, aroma, dan tekstur.</p>
+            <a href="#/about">Kenal VELORA ${icon("arrow-right",14)}</a>
+          </div>
+          <div class="mc-promo-mark">V</div>
+        </section>
+
+        <section class="mc-section mc-faq-section">
+          <div class="mc-section-head">
+            <div><span class="mc-label">NEED TO KNOW</span><h2>Sebelum checkout</h2></div>
+            <a href="#/faq">FAQ ${icon("arrow-right",14)}</a>
+          </div>
+          <div class="mc-faq">
+            <a href="#/faq"><span>01</span><div><b>Berapa lama pengiriman?</b><small>Cek estimasi di checkout.</small></div>${icon("chevron-right",16)}</a>
+            <a href="#/faq"><span>02</span><div><b>Apakah cookies fresh?</b><small>Setiap batch dibuat dengan perhatian.</small></div>${icon("chevron-right",16)}</a>
+            <a href="#/faq"><span>03</span><div><b>Bagaimana cara order?</b><small>Pilih, masukkan keranjang, checkout.</small></div>${icon("chevron-right",16)}</a>
+          </div>
+        </section>
+      </main>
+
       ${foot()}
     </div>
   `;
