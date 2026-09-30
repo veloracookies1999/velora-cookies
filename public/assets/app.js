@@ -1428,6 +1428,106 @@ function home() {
         }
 
         .mobile-home-shell{display:none}
+        /* MOBILE FINAL POLISH — desktop is untouched */
+        @media (max-width:650px){
+          .velora-home > .top{
+            position:sticky!important;top:0!important;z-index:1200!important;
+            display:grid!important;grid-template-columns:1fr auto!important;
+            grid-template-areas:"brand actions" "search search"!important;
+            gap:9px!important;padding:11px 15px 10px!important;
+            min-height:0!important;border:0!important;
+            border-bottom:1px solid rgba(40,25,55,.055)!important;
+            background:rgba(250,249,252,.95)!important;
+            box-shadow:0 7px 22px rgba(40,25,55,.045)!important;
+            backdrop-filter:blur(18px)!important;
+          }
+          .velora-home > .top .brand{grid-area:brand!important;min-width:0!important}
+          .velora-home > .top .brand .logo{
+            width:42px!important;height:42px!important;border-radius:13px!important;
+          }
+          .velora-home > .top .brand b{font-size:16px!important;letter-spacing:.08em!important}
+          .velora-home > .top .brand small{display:none!important}
+          .velora-home > .top .actions{grid-area:actions!important;gap:7px!important}
+          .velora-home > .top .actions .icon-btn{
+            width:41px!important;height:41px!important;border-radius:13px!important;
+          }
+          .velora-home > .top .actions .icon-btn:first-child{display:none!important}
+          .velora-home > .top .actions .btn{
+            min-height:41px!important;padding:0 14px!important;border-radius:13px!important;
+            font-size:11px!important;
+          }
+          .velora-home > .top .search{
+            grid-area:search!important;width:100%!important;height:45px!important;
+            margin:0!important;border-radius:14px!important;
+          }
+          .velora-home > .top .search input{font-size:13px!important}
+
+          .mobile-home-shell{
+            padding-bottom:100px!important;
+            background:linear-gradient(180deg,#faf9fc 0%,#fbfafd 55%,#f8f5fb 100%)!important;
+          }
+          .mh-hero{padding:13px 14px 0!important}
+          .mh-hero-card{
+            padding:20px 16px 16px!important;border-radius:25px!important;
+            box-shadow:0 10px 30px rgba(45,27,60,.07)!important;
+          }
+          .mh-title{
+            margin:14px 0 10px!important;
+            font-size:clamp(37px,10.8vw,50px)!important;
+            line-height:.91!important;
+          }
+          .mh-desc{font-size:12px!important;line-height:1.55!important}
+          .mh-actions{margin-top:15px!important;gap:8px!important}
+          .mh-actions a{min-height:44px!important;border-radius:13px!important}
+          .mh-trust{margin-top:8px!important;gap:6px!important}
+          .mh-trust span{min-height:31px!important;border-radius:10px!important;font-size:8.5px!important}
+          .mh-visual{
+            margin-top:13px!important;aspect-ratio:1.18/1!important;
+            border-radius:19px!important;box-shadow:0 9px 24px rgba(40,25,55,.10)!important;
+          }
+          .mh-visual-badge{left:9px!important;bottom:9px!important;padding:8px 10px!important;border-radius:11px!important;font-size:9px!important}
+
+          .mh-section,.mh-faq{padding-top:28px!important}
+          .mh-section-head{margin-bottom:12px!important}
+          .mh-section-title{font-size:27px!important}
+          .mh-kicker{font-size:8px!important}
+          .mh-see-all{font-size:9px!important}
+          .mh-product-grid{gap:9px!important}
+          .mh-product{border-radius:16px!important;box-shadow:0 7px 18px rgba(40,25,55,.055)!important}
+          .mh-product-body{padding:9px!important}
+          .mh-product h3{font-size:11px!important;margin:4px 0 7px!important}
+          .mh-price{font-size:10px!important}
+          .mh-add{width:29px!important;height:29px!important;border-radius:9px!important}
+
+          .mh-story{
+            margin:28px 14px 0!important;padding:19px 16px 16px!important;
+            border-radius:21px!important;
+          }
+          .mh-story h2{font-size:26px!important;margin:7px 0 8px!important}
+          .mh-story p{font-size:11px!important;line-height:1.55!important}
+          .mh-story-points{gap:5px!important;margin-top:14px!important}
+          .mh-story-point{padding:9px 6px!important;border-radius:10px!important}
+          .mh-story-point strong{font-size:8px!important}
+          .mh-story-point span{font-size:7.5px!important}
+
+          .mh-faq-list{gap:7px!important}
+          .mh-faq-item{padding:11px!important;border-radius:13px!important}
+          .mh-faq-no{width:25px!important;height:25px!important}
+          .mh-faq-item strong{font-size:10px!important}
+          .mh-faq-item p{font-size:9px!important}
+          .mh-footer{margin:27px 14px 0!important;padding-top:16px!important}
+        }
+
+        @media (max-width:380px){
+          .velora-home > .top{padding-left:12px!important;padding-right:12px!important}
+          .velora-home > .top .brand .logo{width:40px!important;height:40px!important}
+          .velora-home > .top .brand b{font-size:15px!important}
+          .velora-home > .top .actions .icon-btn,
+          .velora-home > .top .actions .btn{height:40px!important;min-height:40px!important}
+          .mh-title{font-size:35px!important}
+          .mh-section-title{font-size:25px!important}
+        }
+
       </style>
 
       <section class="mobile-home-shell">
