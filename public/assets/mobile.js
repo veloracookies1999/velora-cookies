@@ -98,58 +98,6 @@
   }
 
 
-  function startMobileTypewriter() {
-    if (!mobile()) return;
-
-    document.querySelectorAll(".m3-type").forEach(el => {
-      if (el.dataset.typewriterBound === "1") return;
-      el.dataset.typewriterBound = "1";
-
-      const fullText = el.textContent.trim();
-      el.textContent = "";
-      el.style.width = "0ch";
-
-      let index = 0;
-      let deleting = false;
-      let timer = null;
-
-      const tick = () => {
-        if (!document.body.contains(el) || !mobile()) return;
-
-        if (!deleting) {
-          index = Math.min(fullText.length, index + 1);
-          el.textContent = fullText.slice(0, index);
-          el.style.width = Math.max(index, 1) + "ch";
-          el.classList.add("is-typing");
-
-          if (index >= fullText.length) {
-            deleting = true;
-            timer = window.setTimeout(tick, 1450);
-            return;
-          }
-
-          timer = window.setTimeout(tick, index < 4 ? 90 : 62);
-          return;
-        }
-
-        index = Math.max(0, index - 1);
-        el.textContent = fullText.slice(0, index);
-        el.style.width = index ? index + "ch" : "0ch";
-
-        if (index === 0) {
-          deleting = false;
-          el.classList.remove("is-typing");
-          timer = window.setTimeout(tick, 260);
-          return;
-        }
-
-        timer = window.setTimeout(tick, 38);
-      };
-
-      tick();
-    });
-  }
-
   function bindSearch() {
     const form = document.querySelector("[data-vm-search]");
     if (!form || form.dataset.bound) return;
