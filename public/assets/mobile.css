@@ -127,3 +127,228 @@ body.vm-active .velora-home .hero-title-type{font-size:31px!important}
 body.vm-active .velora-home .hero-home-copy .hero-description{font-size:8.5px!important}
 body.vm-active .velora-home .home-products .container,body.vm-active .velora-home .home-faq .container{padding-left:12px!important;padding-right:12px!important}
 }
+
+/* =========================================================
+   MOBILE RESPONSIVE REBUILD — v2
+   Goal: clean spacing, no overflow, readable touch UI.
+   ========================================================= */
+@media (max-width:767px){
+  *{box-sizing:border-box}
+  html{font-size:16px!important}
+  body.vm-active{margin:0!important;padding:0 0 calc(88px + env(safe-area-inset-bottom))!important;min-width:0!important}
+  body.vm-active #app{min-width:0!important;width:100%!important;overflow:hidden!important}
+  body.vm-active #app>*{min-width:0!important;max-width:100%!important}
+  body.vm-active .container{width:100%!important;padding-left:16px!important;padding-right:16px!important;margin-left:0!important;margin-right:0!important}
+  body.vm-active main{width:100%!important;min-width:0!important}
+  body.vm-active section{max-width:100%!important}
+  body.vm-active img{max-width:100%!important;height:auto}
+  body.vm-active button,body.vm-active a,body.vm-active input,body.vm-active select,body.vm-active textarea{max-width:100%}
+  body.vm-active .page{padding:20px 0 32px!important}
+  
+  /* MOBILE HEADER */
+  .vm-header{height:auto!important;min-height:0!important;padding:10px 14px 11px!important}
+  .vm-head-row{min-width:0!important;height:42px!important}
+  .vm-brand{min-width:0!important;flex:1!important}
+  .vm-brand-mark{flex:0 0 38px!important}
+  .vm-brand strong{font-size:11px!important}
+  .vm-brand small{font-size:6px!important}
+  .vm-head-actions{flex:0 0 auto!important}
+  .vm-head-btn{width:40px!important;height:40px!important;flex:0 0 40px!important}
+  .vm-search{height:43px!important;margin-top:9px!important}
+  .vm-search input{min-width:0!important;font-size:13px!important}
+  
+  /* BOTTOM NAV */
+  .vm-bottom{left:8px!important;right:8px!important;bottom:calc(7px + env(safe-area-inset-bottom))!important;height:67px!important;min-height:67px!important}
+  .vm-bottom a{min-width:0!important;padding:4px 2px!important;font-size:8px!important;overflow:hidden!important}
+  .vm-bottom a span:not(.vm-dot){white-space:nowrap!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis}
+  
+  /* REMOVE OLD MOBILE UI COMPLETELY */
+  .mobile-appbar,.mobile-bottom-nav{display:none!important}
+  
+  /* GENERIC HEADINGS */
+  body.vm-active .page-title{display:block!important;margin-bottom:18px!important}
+  body.vm-active .page-title h1{font-size:30px!important;margin:0!important}
+  body.vm-active .page-title p{font-size:11px!important;line-height:1.6!important;margin-top:7px!important}
+  
+  /* HOME */
+  body.vm-active .velora-home{width:100%!important;overflow:hidden!important}
+  body.vm-active .velora-home .hero-home-inner{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(118px,.82fr)!important;
+    gap:12px!important;
+    padding:24px 16px!important;
+    align-items:center!important
+  }
+  body.vm-active .velora-home .hero-home-copy{min-width:0!important}
+  body.vm-active .velora-home .hero-title-type{
+    font-size:clamp(31px,10.4vw,42px)!important;
+    line-height:.96!important;
+    max-width:100%!important;
+    overflow:visible!important
+  }
+  body.vm-active .velora-home .hero-title-type .type-line{
+    max-width:100%!important
+  }
+  body.vm-active .velora-home .hero-description{
+    font-size:10px!important;
+    line-height:1.55!important;
+    max-width:100%!important
+  }
+  body.vm-active .velora-home .hero-actions .btn{
+    min-height:37px!important;
+    padding:0 8px!important;
+    font-size:8.5px!important
+  }
+  body.vm-active .velora-home .hero-meta{display:none!important}
+  body.vm-active .velora-home .hero-image-wrap{
+    width:100%!important;
+    padding:4px!important;
+    border-radius:18px!important
+  }
+  body.vm-active .velora-home .hero-main-image{border-radius:14px!important}
+  
+  /* SECTIONS */
+  body.vm-active .home-products,
+  body.vm-active .home-story,
+  body.vm-active .home-faq{width:100%!important;overflow:hidden!important}
+  body.vm-active .home-products{padding:28px 0 8px!important}
+  body.vm-active .home-story{padding:30px 0!important;margin:20px 0 0!important}
+  body.vm-active .home-faq{padding:30px 0 38px!important}
+  body.vm-active .section-head{gap:8px!important}
+  body.vm-active .section-head h2{font-size:24px!important;line-height:1.05!important}
+  
+  /* PRODUCT GRID — strict two columns */
+  body.vm-active .grid,
+  body.vm-active .product-grid,
+  body.vm-active .wishlist-grid{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    align-items:start!important
+  }
+  body.vm-active .card.product,
+  body.vm-active .product{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    overflow:hidden!important;
+    border-radius:16px!important
+  }
+  body.vm-active .product .media,
+  body.vm-active .card.product .media{
+    width:100%!important;
+    aspect-ratio:1/1!important;
+    min-height:0!important;
+    overflow:hidden!important
+  }
+  body.vm-active .product .media img,
+  body.vm-active .card.product .media img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important
+  }
+  body.vm-active .product-body{padding:10px!important;min-width:0!important}
+  body.vm-active .product-body h3{
+    margin:4px 0 5px!important;
+    font-size:11px!important;
+    line-height:1.3!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    overflow:hidden!important
+  }
+  body.vm-active .product .price{font-size:11px!important;white-space:nowrap!important}
+  body.vm-active .product .meta{min-width:0!important;overflow:hidden!important}
+  body.vm-active .product .meta>div{min-width:0!important;width:100%!important}
+  body.vm-active .product .meta .btn[data-add]{
+    width:100%!important;
+    min-height:35px!important;
+    padding:0 5px!important;
+    font-size:9px!important
+  }
+  body.vm-active .product .meta .btn[data-buy]{display:none!important}
+  body.vm-active .product .wish{width:32px!important;height:32px!important}
+  
+  /* SHOP */
+  body.vm-active .filters{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:8px!important;
+    padding:10px!important
+  }
+  body.vm-active .filters>*{min-width:0!important;width:100%!important}
+  body.vm-active .filters input,
+  body.vm-active .filters #goSearch{grid-column:1/-1!important}
+  body.vm-active .filters input{height:44px!important}
+  
+  /* DETAIL */
+  body.vm-active .detail{width:100%!important;display:flex!important;flex-direction:column!important;gap:18px!important}
+  body.vm-active .detail>*{width:100%!important;min-width:0!important}
+  body.vm-active .detail h1{font-size:29px!important;line-height:1.05!important}
+  body.vm-active .detail img{width:100%!important;max-height:none!important;object-fit:cover}
+  body.vm-active .detail .actions{display:flex!important;gap:8px!important}
+  body.vm-active .detail .actions>*{min-width:0!important;flex:1!important}
+  
+  /* CART */
+  body.vm-active .cart-layout{display:flex!important;flex-direction:column!important;gap:12px!important}
+  body.vm-active .cart-layout>*{width:100%!important;min-width:0!important}
+  body.vm-active .cart-item,
+  body.vm-active .cart-product-card{width:100%!important;min-width:0!important}
+  body.vm-active .cart-summary{position:static!important;width:100%!important}
+  
+  /* CHECKOUT */
+  body.vm-active .checkout-layout{display:flex!important;flex-direction:column!important;gap:12px!important}
+  body.vm-active .checkout-layout>*{width:100%!important;min-width:0!important}
+  body.vm-active .checkout-payment-panel{padding:14px!important}
+  body.vm-active .checkout-payment-head{display:block!important}
+  body.vm-active .checkout-secure-badge{margin-top:8px!important;display:inline-flex!important}
+  body.vm-active .snap-container{width:100%!important;min-height:480px!important;overflow:hidden!important}
+  
+  /* ORDERS / PROFILE / NOTIFICATIONS / CHAT */
+  body.vm-active .orders-grid,
+  body.vm-active .profile-grid{display:flex!important;flex-direction:column!important;gap:12px!important}
+  body.vm-active .orders-grid>*,
+  body.vm-active .profile-grid>*{width:100%!important;min-width:0!important}
+  body.vm-active .notification-list{width:100%!important}
+  body.vm-active .notification-card{width:100%!important;min-width:0!important}
+  body.vm-active .chat-shell{width:100%!important;min-width:0!important;border-radius:16px!important}
+  
+  /* FORMS */
+  body.vm-active form{max-width:100%!important}
+  body.vm-active .panel{width:100%!important;min-width:0!important;max-width:100%!important}
+  body.vm-active input,body.vm-active select,body.vm-active textarea{
+    width:100%!important;
+    min-width:0!important;
+    font-size:16px!important;
+  }
+  
+  /* ADMIN */
+  body.vm-active .admin-shell,
+  body.vm-active .admin-page,
+  body.vm-active .admin-content{width:100%!important;min-width:0!important}
+  body.vm-active .admin-table-wrap{width:100%!important;overflow-x:auto!important}
+  
+  /* FOOTER */
+  body.vm-active .velora-footer{width:100%!important;overflow:hidden!important;padding-bottom:105px!important}
+  body.vm-active .footer-main{width:100%!important;grid-template-columns:1fr 1fr!important;gap:22px 14px!important}
+  body.vm-active .footer-brand{grid-column:1/-1!important}
+  body.vm-active .footer-payment{width:100%!important}
+  body.vm-active .payment-logo-row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  body.vm-active .footer-bottom{grid-template-columns:1fr!important}
+}
+@media(max-width:420px){
+  body.vm-active .container{padding-left:13px!important;padding-right:13px!important}
+  .vm-header{padding-left:12px!important;padding-right:12px!important}
+  body.vm-active .velora-home .hero-home-inner{grid-template-columns:minmax(0,1fr) minmax(104px,.78fr)!important;gap:9px!important;padding-left:13px!important;padding-right:13px!important}
+  body.vm-active .velora-home .hero-title-type{font-size:30px!important}
+  body.vm-active .grid,body.vm-active .product-grid,body.vm-active .wishlist-grid{gap:8px!important}
+}
+@media(max-width:360px){
+  body.vm-active .velora-home .hero-home-inner{grid-template-columns:1fr!important}
+  body.vm-active .velora-home .hero-home-visual{max-width:210px!important;justify-self:center!important}
+  body.vm-active .velora-home .hero-title-type{font-size:38px!important}
+  body.vm-active .product-body{padding:8px!important}
+}
