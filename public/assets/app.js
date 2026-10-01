@@ -60,6 +60,98 @@ function refreshIcons() {
   }
 }
 
+function showPageLoader(message = "Menyiapkan halaman...") {
+  const loader = $("#veloraPageLoader");
+  if (!loader) return;
+
+  const copy = loader.querySelector(".velora-loader-copy span");
+  if (copy) {
+    copy.textContent = message;
+  }
+
+  loader.classList.remove("is-hidden");
+  loader.classList.add("is-active");
+}
+
+function hidePageLoader() {
+  const loader = $("#veloraPageLoader");
+  if (!loader) return;
+
+  window.setTimeout(() => {
+    loader.classList.remove("is-active");
+    loader.classList.add("is-hidden");
+  }, 180);
+}
+
+function welcomeOverlay() {
+  if (!S.user) return;
+
+  const existing = $("#veloraWelcome");
+  if (existing) existing.remove();
+
+  const name =
+    S.user.name ||
+    S.user.email?.split("@")[0] ||
+    "teman";
+
+  const overlay = document.createElement("div");
+  overlay.id = "veloraWelcome";
+  overlay.className = "velora-welcome";
+  overlay.innerHTML = `
+    <div class="velora-welcome-backdrop"></div>
+
+    <div class="velora-welcome-card">
+      <div class="velora-welcome-spark spark-a"></div>
+      <div class="velora-welcome-spark spark-b"></div>
+      <div class="velora-welcome-spark spark-c"></div>
+
+      <div class="velora-welcome-icon">
+        <span class="velora-welcome-ring"></span>
+        ${icon("cookie", 30)}
+      </div>
+
+      <span class="velora-welcome-eyebrow">
+        WELCOME TO VELORA
+      </span>
+
+      <h2>
+        Selamat datang,<br>
+        <strong>${esc(name)}</strong>
+      </h2>
+
+      <p>
+        Senang melihatmu kembali.
+        Yuk, lanjutkan perjalananmu di VELORA Cookies.
+      </p>
+
+      <div class="velora-welcome-meta">
+        <span>${icon("sparkles", 14)} Freshly baked</span>
+        <span>${icon("shield-check", 14)} Secure experience</span>
+      </div>
+
+      <div class="velora-welcome-progress">
+        <i></i>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  refreshIcons();
+
+  requestAnimationFrame(() => {
+    overlay.classList.add("is-visible");
+  });
+
+  window.setTimeout(() => {
+    overlay.classList.remove("is-visible");
+    overlay.classList.add("is-leaving");
+
+    window.setTimeout(() => {
+      overlay.remove();
+    }, 500);
+  }, 2400);
+}
+
 function toast(message, type = "good") {
   let root = $("#toast-root");
 
@@ -145,6 +237,7 @@ async function api(url, options = {}) {
 ========================================================= */
 
 async function boot() {
+  showPageLoader("Menyiapkan VELORA...");
   try {
     S.cfg = await fetch("/api/config").then((r) => r.json());
 
@@ -196,6 +289,19 @@ initPasswordRecovery();
         async (_event, session) => {
           S.session = session || null;
 
+          if (
+            _event === "SIGNED_IN" &&
+            !S.__welcomeShownForSession &&
+            session
+          ) {
+            S.__welcomeShownForSession = session.user?.id || true;
+            setTimeout(() => welcomeOverlay(), 260);
+          }
+
+          if (!session) {
+            S.__welcomeShownForSession = null;
+          }
+
           try {
             await me();
             await data();
@@ -211,9 +317,12 @@ initPasswordRecovery();
     await data();
     await render();
 
+    hidePageLoader();
+
   } catch (error) {
     console.error("BOOT ERROR:", error);
     renderError(error.message);
+    hidePageLoader();
   }
 }
 
@@ -9025,8 +9134,13 @@ function authModal() {
         await data();
         await render();
 
+        S.__welcomeShownForSession =
+          S.session?.user?.id || true;
+
+        welcomeOverlay();
+
         toast(
-          "Selamat datang di VELORA!",
+          "Login berhasil.",
           "good"
         );
 
@@ -13184,7 +13298,12 @@ function voucherModal() {
 window.addEventListener(
   "hashchange",
   async () => {
-    await render();
+    showPageLoader("Memuat halaman...");
+    try {
+      await render();
+    } finally {
+      hidePageLoader();
+    }
   }
 );
 
