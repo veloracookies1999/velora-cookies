@@ -130,6 +130,8 @@
     if (mobileHome && !mobileHome.dataset.vmDetached) {
       mobileHome.dataset.vmDetached = "1";
 
+      window.__VELORA_DESKTOP_HOME_ROOT__ = homeRoot;
+      window.__VELORA_DESKTOP_HOME_MAIN__ = homeRoot;
       const shell = document.createElement("div");
       shell.className = "vm-home-shell";
       shell.setAttribute("data-vm-home-shell", "1");
@@ -191,6 +193,18 @@
   function unmount() {
     document.body.classList.remove("vm-active");
     document.querySelectorAll("[data-vm-ui]").forEach(el => el.remove());
+
+    const desktopRoot = window.__VELORA_DESKTOP_HOME_ROOT__;
+    const shell = document.querySelector(".vm-home-shell");
+
+    if (desktopRoot && shell && !document.querySelector(".velora-home")) {
+      const app = document.querySelector("#app");
+      if (app) {
+        shell.replaceWith(desktopRoot);
+        window.__VELORA_DESKTOP_HOME_ROOT__ = null;
+        window.__VELORA_DESKTOP_HOME_MAIN__ = null;
+      }
+    }
   }
 
   let refreshQueued = false;
