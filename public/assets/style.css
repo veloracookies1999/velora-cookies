@@ -18887,3 +18887,424 @@ body:has(.hero) .top .nav a[href="#/"]{
     font-size:14px!important;
   }
 }
+
+
+/* =========================================================
+   VELORA — MODERN APP LOADING + WELCOME MOTION
+========================================================= */
+
+.velora-page-loader{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:17px;
+  background:
+    radial-gradient(circle at 50% 38%,rgba(139,92,246,.13),transparent 28%),
+    radial-gradient(circle at 20% 80%,rgba(196,181,253,.12),transparent 25%),
+    #fbf9ff;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:opacity .42s ease,visibility .42s ease;
+}
+
+.velora-page-loader.is-hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.velora-loader-orbit{
+  position:relative;
+  width:82px;
+  height:82px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(124,58,237,.14);
+  border-radius:50%;
+  box-shadow:
+    0 0 0 10px rgba(124,58,237,.025),
+    0 20px 60px rgba(76,29,149,.12);
+  animation:veloraLoaderFloat 2.8s ease-in-out infinite;
+}
+
+.velora-loader-orbit::before,
+.velora-loader-orbit::after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  border:1px solid rgba(124,58,237,.16);
+}
+
+.velora-loader-orbit::after{
+  inset:-7px;
+  border-color:transparent rgba(124,58,237,.22) transparent transparent;
+  animation:veloraLoaderSpin 1.4s linear infinite;
+}
+
+.velora-loader-cookie{
+  position:relative;
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(145deg,#a855f7,#7c3aed);
+  color:#fff;
+  box-shadow:0 12px 28px rgba(124,58,237,.3);
+  animation:veloraCookiePulse 1.8s ease-in-out infinite;
+}
+
+.velora-loader-cookie::before{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:12px;
+  right:-1px;
+  top:1px;
+  border-radius:50%;
+  background:#fbf9ff;
+}
+
+.velora-loader-cookie span{
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:rgba(255,255,255,.82);
+}
+
+.velora-loader-cookie span:nth-child(1){left:12px;top:13px}
+.velora-loader-cookie span:nth-child(2){left:25px;top:10px}
+.velora-loader-cookie span:nth-child(3){left:29px;top:25px}
+.velora-loader-cookie span:nth-child(4){left:14px;top:29px}
+.velora-loader-cookie span:nth-child(5){left:34px;top:17px}
+.velora-loader-cookie span:nth-child(6){left:21px;top:20px}
+
+.velora-loader-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+
+.velora-loader-copy strong{
+  color:#1f172a;
+  font-size:13px;
+  letter-spacing:.28em;
+  font-weight:800;
+}
+
+.velora-loader-copy span{
+  color:#8b7d96;
+  font-size:11px;
+}
+
+.velora-loader-line{
+  width:145px;
+  height:3px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#eee8f7;
+}
+
+.velora-loader-line i{
+  display:block;
+  width:45%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#7c3aed,#c084fc);
+  animation:veloraLoaderProgress 1.15s ease-in-out infinite;
+}
+
+@keyframes veloraLoaderSpin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes veloraLoaderFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+@keyframes veloraCookiePulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.055)}
+}
+
+@keyframes veloraLoaderProgress{
+  0%{transform:translateX(-115%)}
+  100%{transform:translateX(335%)}
+}
+
+/* WELCOME */
+
+.velora-welcome{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.velora-welcome.is-visible{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.velora-welcome.is-leaving{
+  opacity:0;
+  transition:opacity .5s ease;
+}
+
+.velora-welcome-backdrop{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 40%,rgba(124,58,237,.18),transparent 34%),
+    rgba(20,13,29,.58);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  opacity:0;
+  transition:opacity .55s ease;
+}
+
+.velora-welcome.is-visible .velora-welcome-backdrop{
+  opacity:1;
+}
+
+.velora-welcome-card{
+  position:relative;
+  width:min(470px,100%);
+  padding:42px 38px 30px;
+  overflow:hidden;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(168,85,247,.13),transparent 38%),
+    rgba(255,255,255,.96);
+  box-shadow:
+    0 40px 100px rgba(22,10,35,.28),
+    0 10px 30px rgba(76,29,149,.12);
+  transform:translateY(28px) scale(.94);
+  opacity:0;
+  transition:
+    transform .65s cubic-bezier(.16,1,.3,1),
+    opacity .45s ease;
+}
+
+.velora-welcome.is-visible .velora-welcome-card{
+  transform:none;
+  opacity:1;
+}
+
+.velora-welcome-icon{
+  position:relative;
+  width:72px;
+  height:72px;
+  margin:0 auto 19px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  border-radius:23px;
+  background:linear-gradient(145deg,#a855f7,#6d28d9);
+  box-shadow:0 16px 34px rgba(124,58,237,.28);
+  animation:veloraWelcomeIcon 2.2s ease-in-out infinite;
+}
+
+.velora-welcome-ring{
+  position:absolute;
+  inset:-8px;
+  border:1px solid rgba(139,92,246,.22);
+  border-radius:28px;
+  animation:veloraWelcomeRing 2.2s ease-out infinite;
+}
+
+.velora-welcome-eyebrow{
+  display:inline-block;
+  color:#7c3aed;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.24em;
+}
+
+.velora-welcome-card h2{
+  margin:12px 0 10px;
+  color:#20182a;
+  font-family:"Playfair Display",serif;
+  font-size:31px;
+  line-height:1.12;
+  letter-spacing:-.035em;
+}
+
+.velora-welcome-card h2 strong{
+  color:#7c3aed;
+}
+
+.velora-welcome-card p{
+  max-width:350px;
+  margin:0 auto;
+  color:#786b82;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.velora-welcome-meta{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:22px;
+}
+
+.velora-welcome-meta span{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 10px;
+  border:1px solid #eee5f7;
+  border-radius:999px;
+  background:#faf7ff;
+  color:#685a73;
+  font-size:9px;
+  font-weight:700;
+}
+
+.velora-welcome-meta svg{
+  color:#7c3aed;
+}
+
+.velora-welcome-progress{
+  width:100%;
+  height:3px;
+  margin-top:25px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#eee8f6;
+}
+
+.velora-welcome-progress i{
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#7c3aed,#c084fc);
+}
+
+.velora-welcome.is-visible .velora-welcome-progress i{
+  width:100%;
+  transition:width 2.25s linear;
+}
+
+.velora-welcome-spark{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#c084fc;
+  opacity:.6;
+  animation:veloraSpark 2.6s ease-in-out infinite;
+}
+
+.spark-a{left:12%;top:24%;animation-delay:.2s}
+.spark-b{right:15%;top:18%;animation-delay:.8s}
+.spark-c{right:9%;bottom:25%;animation-delay:1.3s}
+
+@keyframes veloraWelcomeIcon{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-4px) rotate(2deg)}
+}
+
+@keyframes veloraWelcomeRing{
+  0%{transform:scale(.9);opacity:.7}
+  70%,100%{transform:scale(1.14);opacity:0}
+}
+
+@keyframes veloraSpark{
+  0%,100%{transform:translateY(0) scale(1);opacity:.25}
+  50%{transform:translateY(-10px) scale(1.4);opacity:.75}
+}
+
+@media(max-width:650px){
+  .velora-page-loader{
+    padding:20px;
+  }
+
+  .velora-loader-orbit{
+    width:72px;
+    height:72px;
+  }
+
+  .velora-loader-cookie{
+    width:43px;
+    height:43px;
+  }
+
+  .velora-loader-copy strong{
+    font-size:12px;
+  }
+
+  .velora-loader-copy span{
+    font-size:10px;
+  }
+
+  .velora-welcome{
+    padding:16px;
+  }
+
+  .velora-welcome-card{
+    width:100%;
+    padding:34px 21px 23px;
+    border-radius:24px;
+  }
+
+  .velora-welcome-icon{
+    width:62px;
+    height:62px;
+    margin-bottom:16px;
+    border-radius:20px;
+  }
+
+  .velora-welcome-card h2{
+    font-size:26px;
+    margin-top:10px;
+  }
+
+  .velora-welcome-card p{
+    font-size:11px;
+    line-height:1.65;
+  }
+
+  .velora-welcome-meta{
+    gap:6px;
+    margin-top:18px;
+  }
+
+  .velora-welcome-meta span{
+    padding:7px 9px;
+    font-size:8px;
+  }
+
+  .velora-welcome-progress{
+    margin-top:21px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .velora-page-loader *,
+  .velora-welcome *{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+}
