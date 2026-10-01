@@ -1037,6 +1037,30 @@ function homeFaqPreview(){
   `;
 }
 
+function mobileProductCard(product) {
+  const wishActive = S.wish.some(item => String(item.id) === String(product.id));
+
+  return `
+    <article class="m3-product-card" data-product="${product.id}">
+      <div class="m3-product-media">
+        ${visual(product)}
+        <button class="m3-product-wish ${wishActive ? "on" : ""}" data-wish="${product.id}" type="button" aria-label="Wishlist">
+          ${icon("heart", 16)}
+        </button>
+      </div>
+      <div class="m3-product-body">
+        <span class="m3-product-eyebrow">${esc(product.categories?.name || "Cookies")}</span>
+        <h3>${esc(product.name)}</h3>
+        <div class="m3-product-price">${money(product.price)} <span>/ ${esc(product.unit || "pcs")}</span></div>
+        <div class="m3-product-footer">
+          <span class="m3-product-rating">★ 4.9</span>
+          <button class="m3-product-add" data-add="${product.id}" type="button">${icon("plus", 13)}<span>Tambah</span></button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 /* =========================================================
    HOME
 ========================================================= */
@@ -1201,7 +1225,7 @@ function home() {
         <section class="m3-section">
           <div class="m3-section-head"><div><small>CURATED FOR YOU</small><h2>Best sellers</h2></div><a href="#/shop">Lihat semua ${icon("arrow-right",14)}</a></div>
           <div class="m3-products">
-            ${best.length ? best.map(card).join("") : '<div class="m3-empty">Belum ada produk unggulan.</div>'}
+            ${best.length ? best.map(mobileProductCard).join("") : '<div class="m3-empty">Belum ada produk unggulan.</div>'}
           </div>
         </section>
         <section class="m3-story">
