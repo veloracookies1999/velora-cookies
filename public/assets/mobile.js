@@ -215,12 +215,14 @@
       refreshQueued = false;
       if (!mobile()) return unmount();
       setBodyState();
-      if (!document.querySelector(".vm-header")) mount();
-      else {
-        markExistingMobileRegions();
-refreshNav();
-        bindSearch();
-      }
+      /*
+       * IMPORTANT:
+       * app.js renders/re-renders #app asynchronously. The mobile
+       * controller can therefore run before .mobile-commerce-home
+       * exists. Always re-run mount() on mobile so the dedicated
+       * mobile home is captured after app.js finishes rendering.
+       */
+      mount();
     });
   }
 
