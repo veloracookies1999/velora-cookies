@@ -2874,3 +2874,302 @@
     }
   }
 }
+
+/* ============================================================
+   VELORA MOBILE — LAST OVERRIDE
+   This block intentionally comes LAST so no older mobile rules
+   can override the homepage redesign.
+============================================================ */
+@media (max-width:767px){
+
+  body.vm-active .m3-home{
+    display:block!important;
+    width:100%!important;
+    overflow:visible!important;
+  }
+
+  /* TYPEWRITER: JS owns the animation. Kill all legacy CSS loops. */
+  body.vm-active .m3-home .m3-title{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:92px!important;
+    margin:0 0 12px!important;
+    padding:0!important;
+    overflow:visible!important;
+    opacity:1!important;
+    visibility:visible!important;
+    color:#281b31!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:36px!important;
+    line-height:.98!important;
+    letter-spacing:-.055em!important;
+  }
+
+  body.vm-active .m3-home .m3-title .m3-type,
+  body.vm-active .m3-home .m3-title .m3-type-one,
+  body.vm-active .m3-home .m3-title .m3-type-two{
+    display:block!important;
+    position:relative!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:1.05em!important;
+    min-height:1.05em!important;
+    max-height:1.05em!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+    clip-path:none!important;
+    border:0!important;
+    opacity:1!important;
+    visibility:visible!important;
+    animation:none!important;
+    transition:none!important;
+    color:#281b31!important;
+  }
+
+  /* BEST SELLERS: one true horizontal rail */
+  body.vm-active .m3-home .m3-section{
+    display:block!important;
+    width:100%!important;
+    padding:28px 16px 0!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+
+  body.vm-active .m3-home .m3-section .m3-products{
+    display:flex!important;
+    flex-flow:row nowrap!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:14px!important;
+    width:calc(100% + 32px)!important;
+    height:auto!important;
+    margin:0 0 0 -16px!important;
+    padding:3px 16px 20px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    box-sizing:border-box!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+    scroll-snap-type:x mandatory!important;
+  }
+
+  body.vm-active .m3-home .m3-section .m3-products::-webkit-scrollbar{
+    display:none!important;
+    width:0!important;
+    height:0!important;
+  }
+
+  body.vm-active .m3-home .m3-section .m3-products > .m3-product-card{
+    display:flex!important;
+    flex:0 0 278px!important;
+    width:278px!important;
+    min-width:278px!important;
+    max-width:278px!important;
+    height:auto!important;
+    min-height:340px!important;
+    margin:0!important;
+    padding:0!important;
+    flex-direction:column!important;
+    align-self:stretch!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+    background:#fff!important;
+    border:1px solid rgba(55,34,68,.10)!important;
+    border-radius:22px!important;
+    box-shadow:0 14px 34px rgba(44,25,58,.10)!important;
+    scroll-snap-align:start!important;
+  }
+
+  body.vm-active .m3-home .m3-product-media{
+    position:relative!important;
+    display:block!important;
+    flex:0 0 180px!important;
+    width:100%!important;
+    height:180px!important;
+    min-height:180px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    background:#f3edf5!important;
+  }
+
+  body.vm-active .m3-home .m3-product-media img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+  }
+
+  body.vm-active .m3-home .m3-product-wish{
+    position:absolute!important;
+    top:11px!important;
+    right:11px!important;
+    z-index:5!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:38px!important;
+    height:38px!important;
+    min-height:38px!important;
+    padding:0!important;
+    border:1px solid rgba(255,255,255,.8)!important;
+    border-radius:13px!important;
+    background:rgba(255,255,255,.95)!important;
+    box-shadow:0 6px 18px rgba(35,20,45,.12)!important;
+  }
+
+  body.vm-active .m3-home .m3-product-body{
+    display:flex!important;
+    flex:1 1 auto!important;
+    flex-direction:column!important;
+    width:100%!important;
+    min-height:160px!important;
+    padding:15px 15px 14px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.vm-active .m3-home .m3-product-eyebrow{
+    display:block!important;
+    margin:0 0 6px!important;
+    color:#8050b7!important;
+    font-size:7px!important;
+    line-height:1!important;
+    font-weight:800!important;
+    letter-spacing:.18em!important;
+    text-transform:uppercase!important;
+  }
+
+  body.vm-active .m3-home .m3-product-body h3{
+    display:-webkit-box!important;
+    -webkit-box-orient:vertical!important;
+    -webkit-line-clamp:2!important;
+    width:100%!important;
+    height:36px!important;
+    min-height:36px!important;
+    max-height:36px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    color:#28212d!important;
+    font-size:13px!important;
+    line-height:1.38!important;
+    font-weight:750!important;
+  }
+
+  body.vm-active .m3-home .m3-product-price{
+    display:block!important;
+    margin:9px 0 0!important;
+    color:#5d2b9c!important;
+    font-size:14px!important;
+    line-height:1.1!important;
+    font-weight:850!important;
+  }
+
+  body.vm-active .m3-home .m3-product-price span{
+    color:#95899b!important;
+    font-size:9px!important;
+    font-weight:650!important;
+  }
+
+  body.vm-active .m3-home .m3-product-footer{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    width:100%!important;
+    gap:8px!important;
+    margin-top:auto!important;
+    padding-top:12px!important;
+  }
+
+  body.vm-active .m3-home .m3-product-rating{
+    display:inline-flex!important;
+    align-items:center!important;
+    flex:0 0 auto!important;
+    color:#a27a35!important;
+    font-size:9px!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-home .m3-product-add{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:0 0 88px!important;
+    width:88px!important;
+    min-width:88px!important;
+    max-width:88px!important;
+    height:36px!important;
+    min-height:36px!important;
+    margin:0!important;
+    padding:0!important;
+    gap:5px!important;
+    border:0!important;
+    border-radius:12px!important;
+    background:linear-gradient(135deg,#7633df 0%,#9b4bea 100%)!important;
+    color:#fff!important;
+    font-size:9px!important;
+    line-height:1!important;
+    font-weight:850!important;
+    white-space:nowrap!important;
+    box-shadow:0 8px 18px rgba(118,51,223,.24)!important;
+  }
+
+  body.vm-active .m3-home .m3-product-add span{
+    display:inline!important;
+    width:auto!important;
+    max-width:none!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-home .m3-product-add svg{
+    display:block!important;
+    flex:0 0 12px!important;
+    width:12px!important;
+    height:12px!important;
+  }
+
+  /* Story should start immediately after the rail, not float far away. */
+  body.vm-active .m3-home .m3-story{
+    width:calc(100% - 32px)!important;
+    min-height:220px!important;
+    margin:4px 16px 0!important;
+    padding:24px 22px!important;
+    box-sizing:border-box!important;
+    border-radius:23px!important;
+  }
+
+  body.vm-active .m3-home .m3-faq{
+    padding:25px 16px 22px!important;
+  }
+
+  @media(max-width:430px){
+    body.vm-active .m3-home .m3-title{
+      font-size:34px!important;
+      min-height:88px!important;
+    }
+    body.vm-active .m3-home .m3-section .m3-products > .m3-product-card{
+      flex-basis:calc(100vw - 74px)!important;
+      width:calc(100vw - 74px)!important;
+      min-width:calc(100vw - 74px)!important;
+      max-width:300px!important;
+    }
+  }
+
+  @media(max-width:380px){
+    body.vm-active .m3-home .m3-title{
+      font-size:31px!important;
+      min-height:80px!important;
+    }
+    body.vm-active .m3-home .m3-section .m3-products > .m3-product-card{
+      flex-basis:calc(100vw - 52px)!important;
+      width:calc(100vw - 52px)!important;
+      min-width:calc(100vw - 52px)!important;
+    }
+  }
+}
