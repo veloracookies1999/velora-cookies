@@ -609,7 +609,7 @@ function foot() {
           </a>
 
           <a
-            href="https://wa.me/${String(S.storeSettings.storePhone || S.cfg.storePhone || "").replace(/\\D/g, "")}"
+            href="https://wa.me/${String(S.storeSettings.storePhone || S.cfg.storePhone || "").replace(/\D/g, "")}"
             target="_blank"
             rel="noopener"
           >
