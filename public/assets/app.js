@@ -83,15 +83,16 @@ function hidePageLoader() {
   }, 180);
 }
 
-function welcomeOverlay() {
-  if (!S.user) return;
-
+function welcomeOverlay(displayName = null) {
   const existing = $("#veloraWelcome");
   if (existing) existing.remove();
 
   const name =
-    S.user.name ||
-    S.user.email?.split("@")[0] ||
+    displayName ||
+    S.user?.name ||
+    S.user?.email?.split("@")[0] ||
+    S.session?.user?.user_metadata?.name ||
+    S.session?.user?.email?.split("@")[0] ||
     "teman";
 
   const overlay = document.createElement("div");
@@ -9145,19 +9146,33 @@ function authModal() {
           result?.data?.session ||
           S.session;
 
-        await me();
-        await data();
-        await render();
+        const sessionUser =
+          S.session?.user;
 
+        const welcomeName =
+          sessionUser?.user_metadata?.name ||
+          name ||
+          sessionUser?.email?.split("@")[0] ||
+          "teman";
+
+        /*
+         * Show the welcome screen immediately after Supabase
+         * confirms authentication. The heavier profile/data/render
+         * work continues underneath it instead of delaying the UX.
+         */
         S.__welcomeShownForSession =
-          S.session?.user?.id || true;
+          sessionUser?.id || true;
 
-        welcomeOverlay();
+        welcomeOverlay(welcomeName);
 
         toast(
           "Login berhasil.",
           "good"
         );
+
+        await me();
+        await data();
+        await render();
 
       } catch (error) {
 
