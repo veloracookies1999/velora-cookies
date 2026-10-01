@@ -194,17 +194,25 @@
   }
 
   function init() {
+    // mobile.js is a classic script while app.js is a deferred module.
+    // Therefore app.js may render #app AFTER this controller starts.
+    // Observe the document body so the mobile layer also mounts when
+    // the SPA finishes its first render or rerenders the current route.
     refresh();
 
     window.addEventListener("hashchange", refresh);
     window.addEventListener("resize", refresh);
 
-    const app = document.querySelector("#app");
-    if (app) {
+    const root = document.body;
+    if (root) {
       const observer = new MutationObserver(() => {
         if (isMobile()) refresh();
       });
-      observer.observe(app, {childList:true, subtree:true});
+
+      observer.observe(root, {
+        childList: true,
+        subtree: true
+      });
     }
   }
 
