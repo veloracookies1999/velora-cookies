@@ -12206,7 +12206,7 @@ function adminBind(section) {
           return;
         }
 
-        if (payload.store_email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(payload.store_email)) {
+        if (payload.store_email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.store_email)) {
           toast("Format email toko tidak valid.", "bad");
           return;
         }
