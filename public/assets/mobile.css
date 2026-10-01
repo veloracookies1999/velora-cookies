@@ -3576,3 +3576,82 @@
     transform:none!important;
   }
 }
+
+
+/* ============================================================
+   VELORA MOBILE — HARD HOMEPAGE VISIBILITY + STATIC TITLE
+   ============================================================ */
+@media (max-width:767px){
+  /* The mobile storefront is a real second homepage.
+     Never let legacy desktop rules hide it. */
+  html body.vm-active .velora-home > main.mobile-commerce-home.m3-home{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+
+  /* Hide only the old desktop homepage main. */
+  html body.vm-active .velora-home > main:not(.mobile-commerce-home){
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+  }
+
+  /* Normal static heading. No animation, no typing effect. */
+  html body.vm-active .mobile-commerce-home .m3-title{
+    display:block!important;
+    position:relative!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0 0 12px!important;
+    padding:0!important;
+    overflow:visible!important;
+    visibility:visible!important;
+    opacity:1!important;
+    animation:none!important;
+    transform:none!important;
+    clip-path:none!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:36px!important;
+    line-height:1.02!important;
+    letter-spacing:-.055em!important;
+    color:#281b31!important;
+  }
+
+  html body.vm-active .mobile-commerce-home .m3-title .m3-type,
+  html body.vm-active .mobile-commerce-home .m3-title .m3-type-one,
+  html body.vm-active .mobile-commerce-home .m3-title .m3-type-two{
+    display:block!important;
+    position:static!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+    white-space:normal!important;
+    visibility:visible!important;
+    opacity:1!important;
+    animation:none!important;
+    transition:none!important;
+    clip-path:none!important;
+    color:#281b31!important;
+  }
+}
+
+@media (max-width:430px){
+  html body.vm-active .mobile-commerce-home .m3-title{
+    font-size:33px!important;
+  }
+}
