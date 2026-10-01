@@ -1324,3 +1324,352 @@
   }
 
 }
+
+/* ============================================================
+   VELORA MOBILE FINAL POLISH
+   Homepage product rail + desktop-inspired footer.
+   Desktop remains untouched because every rule is inside
+   the mobile breakpoint.
+   ============================================================ */
+
+  /* HOME — HORIZONTAL PRODUCT RAIL */
+  body.vm-active .m3-products {
+    display:flex !important;
+    width:calc(100% + 30px) !important;
+    margin-left:-15px !important;
+    padding:2px 15px 12px !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    flex-wrap:nowrap !important;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  body.vm-active .m3-products::-webkit-scrollbar {
+    display:none;
+  }
+
+  body.vm-active .m3-products > .product {
+    flex:0 0 72% !important;
+    width:72% !important;
+    max-width:285px !important;
+    scroll-snap-align:start;
+  }
+
+  body.vm-active .m3-products > .empty,
+  body.vm-active .m3-products > .m3-empty {
+    flex:0 0 100% !important;
+  }
+
+  /* Also keep the original desktop home product section horizontal
+     if it is ever visible on mobile. */
+  body.vm-active .home-products .product-grid {
+    display:flex !important;
+    width:calc(100% + 30px) !important;
+    margin-left:-15px !important;
+    padding:2px 15px 12px !important;
+    gap:12px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    flex-wrap:nowrap !important;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+  }
+
+  body.vm-active .home-products .product-grid::-webkit-scrollbar {
+    display:none;
+  }
+
+  body.vm-active .home-products .product-grid > .product {
+    flex:0 0 72% !important;
+    width:72% !important;
+    max-width:285px !important;
+    scroll-snap-align:start;
+  }
+
+  /* ------------------------------------------------------------
+     FOOTER — DESKTOP STRUCTURE, MOBILE COMPOSITION
+     ------------------------------------------------------------ */
+
+  body.vm-active .velora-footer {
+    position:relative;
+    margin-top:28px !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    background:#17121d !important;
+    color:#cfc6d7 !important;
+    border-radius:26px 26px 0 0 !important;
+  }
+
+  body.vm-active .velora-footer .container {
+    width:100% !important;
+    max-width:none !important;
+    padding-left:17px !important;
+    padding-right:17px !important;
+    margin:0 !important;
+  }
+
+  body.vm-active .velora-footer .footer-main {
+    display:grid !important;
+    grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) !important;
+    gap:24px 20px !important;
+    padding-top:30px !important;
+    padding-bottom:25px !important;
+  }
+
+  body.vm-active .velora-footer .footer-brand {
+    grid-column:1 / -1 !important;
+    min-width:0 !important;
+    padding-bottom:3px !important;
+  }
+
+  body.vm-active .velora-footer .footer-logo {
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:9px !important;
+    color:#fff !important;
+    text-decoration:none !important;
+  }
+
+  body.vm-active .velora-footer .footer-logo-mark {
+    width:39px !important;
+    height:39px !important;
+    display:grid !important;
+    place-items:center !important;
+    flex:0 0 39px !important;
+    border-radius:13px !important;
+    color:#fff !important;
+    background:linear-gradient(135deg,#7c3aed,#a855f7) !important;
+    box-shadow:0 10px 24px rgba(124,58,237,.24) !important;
+  }
+
+  body.vm-active .velora-footer .footer-logo-mark svg {
+    width:18px !important;
+    height:18px !important;
+  }
+
+  body.vm-active .velora-footer .footer-logo-text strong {
+    display:block !important;
+    color:#fff !important;
+    font-size:13px !important;
+    line-height:1 !important;
+    letter-spacing:.16em !important;
+  }
+
+  body.vm-active .velora-footer .footer-logo-text small {
+    display:block !important;
+    margin-top:4px !important;
+    color:#988da1 !important;
+    font-size:7px !important;
+    line-height:1 !important;
+    letter-spacing:.30em !important;
+  }
+
+  body.vm-active .velora-footer .footer-brand p {
+    max-width:340px !important;
+    margin:13px 0 10px !important;
+    color:#a99eaf !important;
+    font-size:11px !important;
+    line-height:1.65 !important;
+  }
+
+  body.vm-active .velora-footer .footer-brand-link {
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:6px !important;
+    color:#fff !important;
+    font-size:11px !important;
+    font-weight:700 !important;
+  }
+
+  body.vm-active .velora-footer .footer-brand-link svg {
+    width:13px !important;
+    height:13px !important;
+  }
+
+  body.vm-active .velora-footer .footer-column,
+  body.vm-active .velora-footer .footer-contact {
+    min-width:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:5px !important;
+  }
+
+  body.vm-active .velora-footer .footer-column h3,
+  body.vm-active .velora-footer .footer-contact h3 {
+    margin:0 0 6px !important;
+    color:#fff !important;
+    font-size:11px !important;
+    line-height:1.2 !important;
+    letter-spacing:.04em !important;
+  }
+
+  body.vm-active .velora-footer .footer-column a,
+  body.vm-active .velora-footer .footer-contact a,
+  body.vm-active .velora-footer .footer-contact span {
+    display:block !important;
+    max-width:100% !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    color:#a99eaf !important;
+    font-size:10px !important;
+    line-height:1.7 !important;
+    text-decoration:none !important;
+  }
+
+  body.vm-active .velora-footer .footer-column a:active,
+  body.vm-active .velora-footer .footer-contact a:active,
+  body.vm-active .velora-footer .footer-brand-link:active {
+    color:#d8c5ff !important;
+  }
+
+  /* PAYMENT AREA — same desktop information, horizontal on phone */
+  body.vm-active .velora-footer .footer-payment {
+    padding-top:20px !important;
+    padding-bottom:20px !important;
+    border-top:1px solid rgba(255,255,255,.08) !important;
+  }
+
+  body.vm-active .velora-footer .footer-payment-head {
+    display:flex !important;
+    align-items:flex-end !important;
+    justify-content:space-between !important;
+    gap:12px !important;
+    margin-bottom:12px !important;
+  }
+
+  body.vm-active .velora-footer .footer-payment-eyebrow {
+    display:block !important;
+    margin-bottom:5px !important;
+    color:#9e7de2 !important;
+    font-size:7px !important;
+    font-weight:800 !important;
+    letter-spacing:.17em !important;
+  }
+
+  body.vm-active .velora-footer .footer-payment-head h3 {
+    margin:0 !important;
+    color:#fff !important;
+    font-size:14px !important;
+    line-height:1.2 !important;
+  }
+
+  body.vm-active .velora-footer .footer-payment-note {
+    max-width:150px !important;
+    color:#8f8496 !important;
+    font-size:8px !important;
+    line-height:1.45 !important;
+    text-align:right !important;
+  }
+
+  body.vm-active .velora-footer .payment-logo-row {
+    display:flex !important;
+    width:calc(100% + 34px) !important;
+    margin-left:-17px !important;
+    padding:2px 17px 5px !important;
+    gap:8px !important;
+    overflow-x:auto !important;
+    flex-wrap:nowrap !important;
+    scrollbar-width:none !important;
+  }
+
+  body.vm-active .velora-footer .payment-logo-row::-webkit-scrollbar {
+    display:none;
+  }
+
+  body.vm-active .velora-footer .payment-logo {
+    flex:0 0 68px !important;
+    width:68px !important;
+    height:39px !important;
+    display:grid !important;
+    place-items:center !important;
+    border:1px solid rgba(255,255,255,.09) !important;
+    border-radius:10px !important;
+    background:#211a27 !important;
+  }
+
+  body.vm-active .velora-footer .payment-logo img {
+    max-width:52px !important;
+    max-height:22px !important;
+    width:auto !important;
+    height:auto !important;
+    object-fit:contain !important;
+  }
+
+  /* FOOTER BOTTOM — retain all desktop links, compact for mobile */
+  body.vm-active .velora-footer .footer-bottom {
+    display:grid !important;
+    grid-template-columns:1fr auto !important;
+    gap:9px 12px !important;
+    align-items:center !important;
+    padding-top:15px !important;
+    padding-bottom:calc(18px + var(--vm-bottom-safe)) !important;
+    border-top:1px solid rgba(255,255,255,.08) !important;
+  }
+
+  body.vm-active .velora-footer .footer-copy {
+    color:#8e8495 !important;
+    font-size:9px !important;
+  }
+
+  body.vm-active .velora-footer .footer-tagline {
+    color:#8e8495 !important;
+    font-size:9px !important;
+    text-align:right !important;
+  }
+
+  body.vm-active .velora-footer .footer-bottom-links {
+    grid-column:1 / -1 !important;
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:13px !important;
+  }
+
+  body.vm-active .velora-footer .footer-bottom-links a {
+    color:#aaa0b1 !important;
+    font-size:9px !important;
+    text-decoration:none !important;
+  }
+
+  @media (max-width:430px) {
+    body.vm-active .m3-products > .product,
+    body.vm-active .home-products .product-grid > .product {
+      flex-basis:78% !important;
+      width:78% !important;
+    }
+
+    body.vm-active .velora-footer .footer-main {
+      grid-template-columns:1fr 1fr !important;
+      column-gap:15px !important;
+    }
+
+    body.vm-active .velora-footer .footer-payment-head {
+      align-items:flex-start !important;
+      flex-direction:column !important;
+      gap:6px !important;
+    }
+
+    body.vm-active .velora-footer .footer-payment-note {
+      max-width:100% !important;
+      text-align:left !important;
+    }
+  }
+
+  @media (max-width:380px) {
+    body.vm-active .m3-products > .product,
+    body.vm-active .home-products .product-grid > .product {
+      flex-basis:82% !important;
+      width:82% !important;
+    }
+
+    body.vm-active .velora-footer .footer-main {
+      gap:20px 12px !important;
+    }
+
+    body.vm-active .velora-footer .footer-brand p {
+      font-size:10px !important;
+    }
+  }
