@@ -18785,3 +18785,105 @@ body:has(.hero) .top .nav a[href="#/"]{
     width:100%;
   }
 }
+
+
+/* =========================================================
+   MODERN TOAST NOTIFICATIONS
+========================================================= */
+
+.toast{
+  left:auto!important;
+  right:24px!important;
+  top:24px!important;
+  bottom:auto!important;
+  width:min(390px,calc(100vw - 32px))!important;
+  min-height:68px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  padding:13px 15px!important;
+  border:1px solid rgba(255,255,255,.55)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.94)!important;
+  color:var(--ink)!important;
+  box-shadow:0 24px 70px rgba(38,20,54,.18),0 4px 16px rgba(38,20,54,.07)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+  overflow:hidden!important;
+  animation:veloraToastIn .38s cubic-bezier(.22,1,.36,1) both!important;
+}
+
+.toast::before{
+  content:""!important;
+  flex:0 0 4px!important;
+  align-self:stretch!important;
+  border-radius:99px!important;
+  background:linear-gradient(180deg,var(--p2),var(--p))!important;
+}
+
+.toast::after{
+  content:"✓"!important;
+  width:32px!important;
+  height:32px!important;
+  flex:0 0 32px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:11px!important;
+  background:#f1e9ff!important;
+  color:#6d28d9!important;
+  font-size:15px!important;
+  font-weight:900!important;
+}
+
+.toast.good::before{
+  background:linear-gradient(180deg,#34d399,#16a34a)!important;
+}
+
+.toast.good::after{
+  content:"✓"!important;
+  background:#eaf8ef!important;
+  color:#15803d!important;
+}
+
+.toast.bad::before{
+  background:linear-gradient(180deg,#fb7185,#dc2626)!important;
+}
+
+.toast.bad::after{
+  content:"!"!important;
+  background:#fff0f1!important;
+  color:#b91c1c!important;
+}
+
+@keyframes veloraToastIn{
+  from{
+    opacity:0;
+    transform:translate3d(28px,-10px,0) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@media(max-width:650px){
+  .toast{
+    left:12px!important;
+    right:12px!important;
+    top:12px!important;
+    bottom:auto!important;
+    width:auto!important;
+    min-height:62px!important;
+    padding:11px 12px!important;
+    border-radius:16px!important;
+    font-size:12px!important;
+    text-align:left!important;
+  }
+
+  .toast::after{
+    width:29px!important;
+    height:29px!important;
+    flex-basis:29px!important;
+    font-size:14px!important;
+  }
+}
