@@ -3738,3 +3738,82 @@
     clip-path:none!important;
   }
 }
+
+
+/* HARD ISOLATED MOBILE HOME — STATIC TITLE, NO TYPEWRITER */
+@media (max-width:767px){
+  body.vm-active .vm-home-shell{
+    display:block!important;width:100%!important;max-width:100%!important;
+    min-width:0!important;margin:0!important;padding:0 0 96px!important;
+    overflow:visible!important;background:#faf9fc!important;
+  }
+  body.vm-active .vm-home-shell .m3-home{
+    display:block!important;width:100%!important;max-width:100%!important;
+    min-width:0!important;height:auto!important;min-height:0!important;
+    margin:0!important;padding:0 0 22px!important;
+    visibility:visible!important;opacity:1!important;overflow:visible!important;
+    background:linear-gradient(180deg,#fbfaff 0%,#faf9fc 62%,#f4eef9 100%)!important;
+  }
+  body.vm-active .vm-home-shell .m3-title{
+    display:block!important;width:100%!important;height:auto!important;
+    min-height:0!important;max-height:none!important;margin:0 0 12px!important;
+    padding:0!important;overflow:visible!important;visibility:visible!important;
+    opacity:1!important;white-space:normal!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:36px!important;line-height:1.02!important;
+    letter-spacing:-.055em!important;color:#281b31!important;
+    animation:none!important;transition:none!important;transform:none!important;clip-path:none!important;
+  }
+  body.vm-active .vm-home-shell .m3-title *{
+    display:block!important;width:auto!important;height:auto!important;min-height:0!important;
+    max-height:none!important;overflow:visible!important;white-space:normal!important;
+    opacity:1!important;visibility:visible!important;animation:none!important;
+    transition:none!important;transform:none!important;clip-path:none!important;
+  }
+  body.vm-active .vm-home-shell .m3-hero{
+    display:grid!important;grid-template-columns:minmax(0,1fr) 38%!important;
+    align-items:center!important;gap:14px!important;width:100%!important;
+    padding:24px 15px 20px!important;margin:0!important;
+  }
+  body.vm-active .vm-home-shell .m3-description{
+    max-width:250px!important;margin:10px 0 0!important;color:#817687!important;
+    font-size:11px!important;line-height:1.55!important;
+  }
+  body.vm-active .vm-home-shell .m3-actions{
+    display:flex!important;flex-direction:column!important;gap:7px!important;margin-top:14px!important;
+  }
+  body.vm-active .vm-home-shell .m3-primary,
+  body.vm-active .vm-home-shell .m3-secondary{
+    width:100%!important;min-height:39px!important;display:flex!important;
+    align-items:center!important;justify-content:center!important;border-radius:12px!important;
+    font-size:10px!important;font-weight:800!important;
+  }
+  body.vm-active .vm-home-shell .m3-visual{min-width:0!important;width:100%!important;position:relative!important}
+  body.vm-active .vm-home-shell .m3-visual img{
+    width:100%!important;height:auto!important;aspect-ratio:1/1!important;
+    object-fit:cover!important;border-radius:24px!important;
+    box-shadow:0 18px 40px rgba(50,28,72,.12)!important;
+  }
+  body.vm-active .vm-home-shell .m3-quick{
+    display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;padding:0 15px!important;margin:0 0 28px!important;
+  }
+  body.vm-active .vm-home-shell .m3-products{
+    display:flex!important;flex-wrap:nowrap!important;gap:12px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;padding:2px 15px 12px!important;
+    margin:0!important;scroll-snap-type:x mandatory!important;scrollbar-width:none!important;
+  }
+  body.vm-active .vm-home-shell .m3-products::-webkit-scrollbar{display:none!important}
+  body.vm-active .vm-home-shell .m3-product-card{
+    flex:0 0 min(78vw,285px)!important;width:min(78vw,285px)!important;
+    min-width:min(78vw,285px)!important;max-width:285px!important;scroll-snap-align:start!important;
+  }
+  body.vm-active .vm-home-shell .m3-story,
+  body.vm-active .vm-home-shell .m3-faq{
+    width:calc(100% - 30px)!important;margin-left:15px!important;margin-right:15px!important;
+  }
+}
+@media (max-width:430px){
+  body.vm-active .vm-home-shell .m3-title{font-size:33px!important}
+  body.vm-active .vm-home-shell .m3-hero{grid-template-columns:minmax(0,1fr) 38%!important;gap:10px!important}
+}
