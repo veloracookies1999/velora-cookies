@@ -20896,3 +20896,746 @@ body:has(.hero) .top .nav a[href="#/"]{
   }
 }
 
+
+
+/* =========================================================
+   VELORA MOBILE FINAL — SINGLE CLEAN OVERRIDE
+   Mobile only. Desktop is intentionally untouched.
+   This block wins over older mobile experiments.
+========================================================= */
+@media (max-width:650px){
+
+  :root{
+    --vm-bg:#faf8fc;
+    --vm-card:#ffffff;
+    --vm-ink:#21182a;
+    --vm-muted:#817487;
+    --vm-line:#eee7f3;
+    --vm-purple:#7c3aed;
+    --vm-purple-2:#a855f7;
+  }
+
+  *,
+  *::before,
+  *::after{
+    box-sizing:border-box!important;
+  }
+
+  html,
+  body{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+    background:var(--vm-bg)!important;
+  }
+
+  body{
+    margin:0!important;
+    padding-bottom:calc(88px + env(safe-area-inset-bottom))!important;
+  }
+
+  #app{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+  }
+
+  /* ---------- ONE COMPACT MOBILE HEADER ---------- */
+
+  .velora-home > .top,
+  .top{
+    position:sticky!important;
+    top:0!important;
+    z-index:9000!important;
+    width:100%!important;
+    height:64px!important;
+    min-height:64px!important;
+    max-height:64px!important;
+    margin:0!important;
+    padding:8px 14px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+    grid-template:none!important;
+    background:rgba(255,255,255,.92)!important;
+    border:0!important;
+    border-bottom:1px solid rgba(40,24,52,.07)!important;
+    border-radius:0!important;
+    box-shadow:0 5px 22px rgba(38,20,54,.055)!important;
+    backdrop-filter:blur(20px)!important;
+    -webkit-backdrop-filter:blur(20px)!important;
+  }
+
+  .top > .brand,
+  .top > .search,
+  .top > .nav,
+  .top > .actions{
+    display:none!important;
+  }
+
+  .top .mobile-appbar{
+    width:100%!important;
+    height:48px!important;
+    min-height:48px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+    margin:0!important;
+  }
+
+  .mobile-appbar-brand{
+    min-width:0!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    text-decoration:none!important;
+  }
+
+  .mobile-appbar-logo{
+    width:36px!important;
+    height:36px!important;
+    flex:0 0 36px!important;
+    border-radius:11px!important;
+    display:grid!important;
+    place-items:center!important;
+    color:#fff!important;
+    background:linear-gradient(145deg,#a855f7,#7c3aed)!important;
+    box-shadow:0 7px 18px rgba(124,58,237,.2)!important;
+  }
+
+  .mobile-appbar-brand b{
+    display:block!important;
+    color:#21182a!important;
+    font-size:12px!important;
+    line-height:1!important;
+    letter-spacing:.16em!important;
+  }
+
+  .mobile-appbar-brand small{
+    display:block!important;
+    margin-top:4px!important;
+    color:#9b8ea3!important;
+    font-size:6px!important;
+    line-height:1!important;
+    letter-spacing:.22em!important;
+  }
+
+  .mobile-appbar-actions{
+    display:flex!important;
+    align-items:center!important;
+    gap:7px!important;
+    flex:0 0 auto!important;
+  }
+
+  .mobile-appbar-action,
+  .mobile-appbar-avatar,
+  .mobile-appbar-login{
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    flex:0 0 38px!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+    border:1px solid #ebe3f0!important;
+    border-radius:12px!important;
+    background:#fff!important;
+    color:#2b2132!important;
+    box-shadow:0 4px 14px rgba(38,20,54,.05)!important;
+  }
+
+  .mobile-appbar-login{
+    width:auto!important;
+    min-width:66px!important;
+    padding:0 13px!important;
+    border:0!important;
+    color:#fff!important;
+    background:#21182a!important;
+    font-size:10px!important;
+    font-weight:800!important;
+  }
+
+  .mobile-appbar-avatar{
+    border:0!important;
+    color:#fff!important;
+    background:linear-gradient(145deg,#a855f7,#7c3aed)!important;
+    font-size:12px!important;
+    font-weight:800!important;
+  }
+
+  /* ---------- HOME: NO GIANT GAPS ---------- */
+
+  .velora-home{
+    width:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+
+  .velora-home > main:not(.mobile-commerce-home){
+    display:none!important;
+    visibility:hidden!important;
+  }
+
+  .velora-home > main.mobile-commerce-home{
+    display:block!important;
+    visibility:visible!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0 0 105px!important;
+    overflow:hidden!important;
+    background:linear-gradient(180deg,#fff 0%,#fcf9ff 46%,#f7f3fa 100%)!important;
+  }
+
+  .mobile-commerce-home .mc-hero{
+    width:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:25px 14px 17px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:16px!important;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(168,85,247,.11),transparent 32%)!important;
+  }
+
+  .mobile-commerce-home .mc-hero-copy{
+    width:100%!important;
+    min-width:0!important;
+    padding:0 2px!important;
+  }
+
+  .mobile-commerce-home .mc-kicker{
+    display:block!important;
+    margin:0!important;
+    font-size:7px!important;
+    line-height:1.3!important;
+    letter-spacing:.19em!important;
+    color:#7e6889!important;
+  }
+
+  .mobile-commerce-home .mc-hero h1{
+    width:100%!important;
+    min-height:80px!important;
+    margin:9px 0 10px!important;
+    color:#20182a!important;
+    font-size:clamp(34px,10.5vw,45px)!important;
+    line-height:.95!important;
+    letter-spacing:-.065em!important;
+    overflow:visible!important;
+  }
+
+  /*
+    Robust CSS-only typewriter.
+    No clip-path: it was causing the text to disappear on some
+    Chromium/mobile combinations.
+  */
+  .mobile-commerce-home .mc-type{
+    display:inline-block!important;
+    width:0!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    vertical-align:bottom!important;
+    padding-right:3px!important;
+    border-right:2px solid var(--vm-purple)!important;
+    clip-path:none!important;
+    visibility:visible!important;
+    opacity:1!important;
+    animation-fill-mode:both!important;
+    animation-iteration-count:infinite!important;
+    animation-direction:normal!important;
+    animation-play-state:running!important;
+  }
+
+  .mobile-commerce-home .mc-type-one{
+    animation:veloraMobileTypeOneFinal 6s steps(14,end) infinite!important;
+  }
+
+  .mobile-commerce-home .mc-type-two{
+    animation:veloraMobileTypeTwoFinal 6s steps(11,end) infinite!important;
+  }
+
+  @keyframes veloraMobileTypeOneFinal{
+    0%{width:0;border-right-color:var(--vm-purple)}
+    4%{width:0}
+    30%{width:100%}
+    57%{width:100%}
+    63%{width:0;border-right-color:transparent}
+    100%{width:0;border-right-color:transparent}
+  }
+
+  @keyframes veloraMobileTypeTwoFinal{
+    0%,30%{width:0;border-right-color:transparent}
+    34%{width:0;border-right-color:var(--vm-purple)}
+    58%{width:100%}
+    78%{width:100%}
+    84%,100%{width:0;border-right-color:transparent}
+  }
+
+  .mobile-commerce-home .mc-hero-copy p{
+    width:100%!important;
+    max-width:330px!important;
+    margin:0!important;
+    color:#766b7e!important;
+    font-size:10.5px!important;
+    line-height:1.65!important;
+  }
+
+  .mobile-commerce-home .mc-hero-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)!important;
+    gap:8px!important;
+    margin-top:14px!important;
+  }
+
+  .mobile-commerce-home .mc-btn{
+    min-width:0!important;
+    min-height:43px!important;
+    padding:0 10px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    border-radius:12px!important;
+    font-size:9.5px!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+  }
+
+  .mobile-commerce-home .mc-hero-media{
+    position:relative!important;
+    width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    aspect-ratio:1.45/1!important;
+    min-height:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+    border-radius:20px!important;
+    background:#f0e8f4!important;
+    box-shadow:0 15px 36px rgba(45,27,58,.12)!important;
+  }
+
+  .mobile-commerce-home .mc-hero-media img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    object-fit:cover!important;
+  }
+
+  .mobile-commerce-home .mc-badge{
+    left:10px!important;
+    bottom:10px!important;
+    max-width:calc(100% - 20px)!important;
+    padding:7px 9px!important;
+    font-size:7.5px!important;
+    border-radius:10px!important;
+  }
+
+  .mobile-commerce-home .mc-rating{
+    right:10px!important;
+    bottom:10px!important;
+    max-width:calc(100% - 20px)!important;
+    padding:7px 9px!important;
+    font-size:8px!important;
+    border-radius:10px!important;
+  }
+
+  /* ---------- HOME QUICK CARDS ---------- */
+
+  .mobile-commerce-home .mc-quick{
+    width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:7px!important;
+    padding:0 14px!important;
+    margin:0!important;
+  }
+
+  .mobile-commerce-home .mc-quick-card{
+    min-width:0!important;
+    min-height:84px!important;
+    padding:10px 7px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    border:1px solid var(--vm-line)!important;
+    border-radius:15px!important;
+    background:#fff!important;
+    box-shadow:0 7px 22px rgba(43,25,57,.045)!important;
+    overflow:hidden!important;
+  }
+
+  .mobile-commerce-home .mc-quick-card span{
+    width:27px!important;
+    height:27px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:9px!important;
+    background:#f1e8ff!important;
+    color:var(--vm-purple)!important;
+  }
+
+  .mobile-commerce-home .mc-quick-card b{
+    display:block!important;
+    max-width:100%!important;
+    margin-top:7px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    color:#2a2031!important;
+    font-size:9px!important;
+  }
+
+  .mobile-commerce-home .mc-quick-card small{
+    display:block!important;
+    max-width:100%!important;
+    margin-top:3px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    color:#938798!important;
+    font-size:7px!important;
+  }
+
+  /* ---------- HOME SECTIONS ---------- */
+
+  .mobile-commerce-home .mc-section{
+    width:100%!important;
+    min-width:0!important;
+    padding:30px 14px 0!important;
+    margin:0!important;
+  }
+
+  .mobile-commerce-home .mc-section-head{
+    width:100%!important;
+    min-width:0!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    margin-bottom:13px!important;
+  }
+
+  .mobile-commerce-home .mc-section-head > div{
+    min-width:0!important;
+  }
+
+  .mobile-commerce-home .mc-label{
+    display:block!important;
+    font-size:7px!important;
+    line-height:1.2!important;
+    letter-spacing:.17em!important;
+    color:#8a55a5!important;
+  }
+
+  .mobile-commerce-home .mc-section-head h2{
+    margin:5px 0 0!important;
+    color:#21182a!important;
+    font-size:25px!important;
+    line-height:1!important;
+    letter-spacing:-.045em!important;
+  }
+
+  .mobile-commerce-home .mc-section-head>a{
+    flex:0 0 auto!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    font-size:8px!important;
+    white-space:nowrap!important;
+  }
+
+  .mobile-commerce-home .mc-products{
+    width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .mobile-commerce-home .mc-products > *{
+    min-width:0!important;
+    max-width:100%!important;
+  }
+
+  /* ---------- PROMO ---------- */
+
+  .mobile-commerce-home .mc-promo{
+    width:auto!important;
+    min-width:0!important;
+    min-height:180px!important;
+    margin:30px 14px 0!important;
+    padding:21px 18px!important;
+    display:flex!important;
+    align-items:center!important;
+    border-radius:21px!important;
+    overflow:hidden!important;
+  }
+
+  .mobile-commerce-home .mc-promo h2{
+    margin:7px 0 8px!important;
+    font-size:25px!important;
+    line-height:1!important;
+  }
+
+  .mobile-commerce-home .mc-promo p{
+    max-width:230px!important;
+    margin:0!important;
+    font-size:9px!important;
+    line-height:1.6!important;
+  }
+
+  /* ---------- FAQ ---------- */
+
+  .mobile-commerce-home .mc-faq{
+    width:100%!important;
+    display:grid!important;
+    gap:7px!important;
+  }
+
+  .mobile-commerce-home .mc-faq>a{
+    width:100%!important;
+    min-width:0!important;
+    min-height:61px!important;
+    padding:10px 11px!important;
+    display:grid!important;
+    grid-template-columns:25px minmax(0,1fr) 16px!important;
+    align-items:center!important;
+    gap:8px!important;
+    border-radius:14px!important;
+    overflow:hidden!important;
+  }
+
+  .mobile-commerce-home .mc-faq>a > div{
+    min-width:0!important;
+  }
+
+  .mobile-commerce-home .mc-faq b,
+  .mobile-commerce-home .mc-faq small{
+    display:block!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+
+  /* ---------- ALL MOBILE PAGES: HARD WIDTH SAFETY ---------- */
+
+  main,
+  .page,
+  .container,
+  .panel,
+  .card,
+  .detail,
+  .profile-page,
+  .profile-shell,
+  .admin-main,
+  .admin-content{
+    min-width:0!important;
+    max-width:100%!important;
+  }
+
+  img,
+  video,
+  canvas,
+  iframe{
+    max-width:100%!important;
+  }
+
+  input,
+  select,
+  textarea,
+  button{
+    max-width:100%!important;
+  }
+
+  table{
+    max-width:100%!important;
+  }
+
+  /* Generic pages become clean single-column mobile layouts. */
+  .container.page{
+    width:100%!important;
+    padding:22px 14px 104px!important;
+    overflow:visible!important;
+  }
+
+  .page-title{
+    width:100%!important;
+    min-width:0!important;
+    gap:10px!important;
+  }
+
+  .page-title h1{
+    max-width:100%!important;
+    font-size:28px!important;
+    line-height:1.04!important;
+    letter-spacing:-.04em!important;
+  }
+
+  .filters{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+  }
+
+  .filters > *{
+    width:100%!important;
+    max-width:none!important;
+  }
+
+  .grid,
+  .product-grid,
+  .wishlist-grid{
+    width:100%!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .product-card{
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+
+  .product-card img{
+    width:100%!important;
+    aspect-ratio:1/1!important;
+    object-fit:cover!important;
+  }
+
+  /* Forms and panels */
+  .panel{
+    width:100%!important;
+    overflow:hidden!important;
+    border-radius:18px!important;
+  }
+
+  .field{
+    width:100%!important;
+    min-width:0!important;
+  }
+
+  .input,
+  .select,
+  textarea{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  .velora-home .velora-footer,
+  .velora-footer{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding-bottom:calc(100px + env(safe-area-inset-bottom))!important;
+    overflow:hidden!important;
+  }
+
+  .footer-main{
+    width:100%!important;
+    grid-template-columns:1fr!important;
+    gap:24px!important;
+  }
+
+  .footer-brand{
+    grid-column:auto!important;
+    min-width:0!important;
+  }
+
+  .footer-column{
+    min-width:0!important;
+  }
+
+  .footer-contact a{
+    overflow-wrap:anywhere!important;
+  }
+
+  /* ---------- BOTTOM NAV ---------- */
+
+  .mobile-bottom-nav{
+    left:10px!important;
+    right:10px!important;
+    bottom:calc(8px + env(safe-area-inset-bottom))!important;
+    width:auto!important;
+    height:66px!important;
+    padding:7px!important;
+    border-radius:20px!important;
+  }
+
+  .mobile-bottom-item{
+    min-width:0!important;
+  }
+
+}
+
+/* Small phones */
+@media(max-width:380px){
+  .top{
+    padding-left:11px!important;
+    padding-right:11px!important;
+  }
+
+  .mobile-appbar-brand b{
+    font-size:11px!important;
+  }
+
+  .mobile-appbar-logo{
+    width:35px!important;
+    height:35px!important;
+    flex-basis:35px!important;
+  }
+
+  .mobile-appbar-action,
+  .mobile-appbar-avatar{
+    width:36px!important;
+    height:36px!important;
+    min-width:36px!important;
+    flex-basis:36px!important;
+  }
+
+  .mobile-appbar-login{
+    min-width:62px!important;
+    height:36px!important;
+  }
+
+  .mobile-commerce-home .mc-hero{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+
+  .mobile-commerce-home .mc-quick{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+
+  .mobile-commerce-home .mc-section{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+
+  .mobile-commerce-home .mc-promo{
+    margin-left:12px!important;
+    margin-right:12px!important;
+  }
+
+  .grid,
+  .product-grid,
+  .wishlist-grid{
+    gap:7px!important;
+  }
+}
