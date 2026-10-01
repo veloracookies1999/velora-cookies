@@ -292,10 +292,15 @@ initPasswordRecovery();
           if (
             _event === "SIGNED_IN" &&
             !S.__welcomeShownForSession &&
-            session
+            session &&
+            S.__authAction !== "email"
           ) {
             S.__welcomeShownForSession = session.user?.id || true;
             setTimeout(() => welcomeOverlay(), 260);
+          }
+
+          if (_event === "SIGNED_IN") {
+            S.__authAction = null;
           }
 
           if (!session) {
@@ -9073,6 +9078,8 @@ function authModal() {
 
         if (mode === "signup") {
 
+          S.__authAction = "email";
+
           result =
             await S.sb.auth.signUp({
               email,
@@ -9088,6 +9095,8 @@ function authModal() {
             });
 
         } else {
+
+          S.__authAction = "email";
 
           result =
             await S.sb.auth.signInWithPassword({
@@ -9188,6 +9197,8 @@ function authModal() {
       }
 
       try {
+
+        S.__authAction = "google";
 
         googleButton.disabled = true;
         submit.disabled = true;
