@@ -1673,3 +1673,159 @@
       font-size:10px !important;
     }
   }
+
+
+/* =========================================================
+   MOBILE HOME — MATCH DESKTOP TYPEWRITER + REAL CAROUSEL
+========================================================= */
+@media (max-width:767px){
+
+  /* Desktop-style sequential typewriter:
+     line 1 types, line 2 follows, both stay visible,
+     then both disappear together. */
+  html body.vm-active .m3-home .m3-title{
+    display:block!important;
+    height:82px!important;
+    min-height:82px!important;
+    overflow:visible!important;
+    margin-bottom:7px!important;
+  }
+
+  html body.vm-active .m3-home .m3-title .m3-type{
+    display:block!important;
+    width:0!important;
+    max-width:max-content!important;
+    height:1em!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    box-sizing:content-box!important;
+    padding-right:3px!important;
+    border-right:0!important;
+    opacity:1!important;
+    visibility:visible!important;
+    animation-fill-mode:both!important;
+    animation-timing-function:linear!important;
+    animation-iteration-count:infinite!important;
+  }
+
+  html body.vm-active .m3-home .m3-title .m3-type-one{
+    animation:veloraTypeOne 12s linear infinite!important;
+  }
+
+  html body.vm-active .m3-home .m3-title .m3-type-two{
+    animation:veloraTypeTwo 12s linear infinite!important;
+  }
+
+  /* The desktop animation uses 100% width, so preserve that
+     behavior instead of a character-count approximation. */
+  @keyframes veloraTypeOne{
+    0%{width:0}
+    5%{width:0}
+    27%{width:100%}
+    68%{width:100%}
+    76%{width:100%}
+    86%{width:0}
+    100%{width:0}
+  }
+
+  @keyframes veloraTypeTwo{
+    0%{width:0}
+    27%{width:0}
+    28%{width:0}
+    49%{width:100%}
+    68%{width:100%}
+    76%{width:100%}
+    86%{width:0}
+    100%{width:0}
+  }
+
+  /* REAL horizontal Best Sellers rail */
+  html body.vm-active .m3-home .m3-section .m3-products{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    grid-template-columns:none!important;
+    width:calc(100% + 32px)!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin-left:-16px!important;
+    padding:3px 16px 18px!important;
+    gap:14px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products::-webkit-scrollbar{
+    display:none!important;
+    width:0!important;
+    height:0!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products > .card.product{
+    display:block!important;
+    flex:0 0 calc(100vw - 70px)!important;
+    width:calc(100vw - 70px)!important;
+    max-width:330px!important;
+    min-width:0!important;
+    margin:0!important;
+    scroll-snap-align:start!important;
+    scroll-snap-stop:always!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products > .card.product .media{
+    width:100%!important;
+    height:190px!important;
+    min-height:190px!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products > .card.product .product-body{
+    min-width:0!important;
+    padding:13px!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products > .card.product .meta{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    min-width:0!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products > .card.product .meta > div{
+    min-width:0!important;
+    max-width:58%!important;
+    flex-wrap:nowrap!important;
+    overflow:hidden!important;
+  }
+
+  html body.vm-active .m3-home .m3-section .m3-products > .card.product .meta .btn{
+    flex:0 0 auto!important;
+    min-width:0!important;
+    max-width:100%!important;
+    padding:9px 11px!important;
+    white-space:nowrap!important;
+    font-size:9px!important;
+  }
+
+  @media (max-width:380px){
+    html body.vm-active .m3-home .m3-section .m3-products > .card.product{
+      flex-basis:calc(100vw - 58px)!important;
+      width:calc(100vw - 58px)!important;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html body.vm-active .m3-home .m3-title .m3-type{
+      width:auto!important;
+      max-width:none!important;
+      overflow:visible!important;
+      animation:none!important;
+    }
+  }
+}
