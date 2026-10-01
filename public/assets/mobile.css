@@ -3692,3 +3692,49 @@
 @media (max-width:430px){
   body.vm-active .mobile-commerce-home .m3-title{font-size:33px !important;}
 }
+
+
+/* ============================================================
+   VELORA MOBILE — ABSOLUTE HOMEPAGE OVERRIDE
+   Mobile homepage is always visible on <=767px, independent of
+   the mobile controller/body class. Static title only.
+============================================================ */
+@media (max-width:767px){
+  .velora-home > main.mobile-commerce-home.m3-home{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    position:relative!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+
+  .velora-home > main:not(.mobile-commerce-home){
+    display:none!important;
+    visibility:hidden!important;
+    opacity:0!important;
+  }
+
+  .velora-home > .mobile-commerce-home .m3-title,
+  .velora-home > .mobile-commerce-home .m3-title *{
+    display:block!important;
+    width:auto!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:visible!important;
+    visibility:visible!important;
+    opacity:1!important;
+    white-space:normal!important;
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+    clip-path:none!important;
+  }
+}
