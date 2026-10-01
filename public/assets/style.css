@@ -25273,3 +25273,48 @@ body:has(.hero) .top .nav a[href="#/"]{
     min-height:0!important;
   }
 }
+
+/* =========================================================
+   VELORA MOBILE SAFETY OVERRIDE
+   Guarantees the dedicated m3 homepage and static hero title
+   are visible on every phone width up to 767px.
+========================================================= */
+@media (max-width:767px){
+  .velora-home > main.m3-home,
+  .velora-home > main.mobile-commerce-home.m3-home{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    overflow:visible!important;
+  }
+
+  .velora-home > main:not(.m3-home){
+    display:none!important;
+    visibility:hidden!important;
+  }
+
+  .m3-home .m3-title,
+  .m3-home .m3-title .m3-type,
+  .m3-home .m3-title .m3-type-one,
+  .m3-home .m3-title .m3-type-two{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:auto!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:visible!important;
+    white-space:normal!important;
+    clip-path:none!important;
+    animation:none!important;
+    transform:none!important;
+  }
+}
