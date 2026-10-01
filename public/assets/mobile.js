@@ -1,19 +1,15 @@
-/* VELORA COOKIES — MOBILE EXPERIENCE
-   Dedicated mobile UI controller.
-   Desktop layout is left untouched.
+/* VELORA COOKIES — DEDICATED MOBILE UI
+   Desktop remains untouched. No typewriter.
 */
 (() => {
   "use strict";
 
-  if (window.__VELORA_MOBILE_APP_V3__) return;
-  window.__VELORA_MOBILE_APP_V3__ = true;
-
   const BP = 767;
   const isMobile = () => window.innerWidth <= BP;
-  const currentRoute = () => (location.hash || "#/").replace(/^#/, "") || "/";
+  const route = () => (location.hash || "#/").replace(/^#/, "") || "/";
 
   const svg = (name) => {
-    const paths = {
+    const p = {
       home:'<path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/>',
       grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
       bag:'<path d="M6 8h12l1 13H5L6 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/>',
@@ -23,18 +19,18 @@
       bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>',
       arrow:'<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>'
     };
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name] || paths.grid)+'</svg>';
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(p[name]||p.grid)+'</svg>';
   };
 
-  function active(key) {
-    const r = currentRoute();
+  const active = key => {
+    const r = route();
     if (key === "home") return r === "/";
     if (key === "shop") return r === "/shop" || r.startsWith("/product/");
     if (key === "orders") return r.startsWith("/orders");
     if (key === "wishlist") return r.startsWith("/wishlist");
     if (key === "profile") return r.startsWith("/profile") || r.startsWith("/notifications");
     return false;
-  }
+  };
 
   function header() {
     return `
@@ -54,30 +50,62 @@
           <input name="q" inputmode="search" autocomplete="off" placeholder="Cari cookies favoritmu..." aria-label="Cari cookies">
           <button type="submit" aria-label="Cari">${svg("arrow")}</button>
         </form>
-      </header>
-    `;
+      </header>`;
   }
 
   function bottom() {
     const items = [
-      ["home","#/","Beranda"],
-      ["shop","#/shop","Koleksi"],
-      ["orders","#/orders","Pesanan"],
-      ["wishlist","#/wishlist","Wishlist"],
-      ["profile","#/profile","Akun"]
+      ["home","#/","Beranda"],["shop","#/shop","Koleksi"],["orders","#/orders","Pesanan"],
+      ["wishlist","#/wishlist","Wishlist"],["profile","#/profile","Akun"]
     ];
     return `
       <nav class="vm-bottom" data-vm-ui aria-label="Navigasi mobile">
         <div class="vm-bottom-inner">
           ${items.map(([key,href,label]) => `
-            <a class="vm-nav-item ${active(key) ? "active" : ""}" data-key="${key}" href="${href}">
-              <span class="vm-nav-icon">${svg(key==="shop"?"grid":key==="orders"?"bag":key==="wishlist"?"heart":key)} </span>
+            <a class="vm-nav-item ${active(key)?"active":""}" data-key="${key}" href="${href}">
+              <span class="vm-nav-icon">${svg(key==="shop"?"grid":key==="orders"?"bag":key==="wishlist"?"heart":key)}</span>
               <span class="vm-nav-label">${label}</span>
-            </a>
-          `).join("")}
+            </a>`).join("")}
         </div>
-      </nav>
-    `;
+      </nav>`;
+  }
+
+  function cleanLegacy() {
+    document.querySelectorAll(".top,.mobile-appbar,.mobile-bottom-nav").forEach(el => {
+      el.style.setProperty("display","none","important");
+    });
+  }
+
+  function ensureStaticHome() {
+    const app = document.querySelector("#app");
+    const home = app?.querySelector(".velora-home");
+    const mobile = home?.querySelector(":scope > main.mobile-commerce-home.m3-home");
+    const desktop = home?.querySelector(":scope > main:not(.mobile-commerce-home)");
+    if (!home || !mobile) return;
+
+    if (desktop) {
+      desktop.style.setProperty("display","none","important");
+      desktop.style.setProperty("visibility","hidden","important");
+    }
+
+    mobile.style.setProperty("display","block","important");
+    mobile.style.setProperty("visibility","visible","important");
+    mobile.style.setProperty("opacity","1","important");
+
+    const old = mobile.querySelector(".m3-title");
+    if (old) {
+      old.style.setProperty("display","block","important");
+      old.style.setProperty("width","100%","important");
+      old.style.setProperty("height","auto","important");
+      old.style.setProperty("min-height","0","important");
+      old.style.setProperty("max-height","none","important");
+      old.style.setProperty("overflow","visible","important");
+      old.style.setProperty("white-space","normal","important");
+      old.style.setProperty("animation","none","important");
+      old.style.setProperty("transition","none","important");
+      old.style.setProperty("transform","none","important");
+      old.textContent = "Cookies kecil, mood besar.";
+    }
   }
 
   function bindSearch() {
@@ -87,91 +115,31 @@
     form.addEventListener("submit", e => {
       e.preventDefault();
       const q = form.querySelector("input")?.value.trim() || "";
-      location.hash = q ? "/shop?q=" + encodeURIComponent(q) + "&category=&sort=featured" : "/shop";
+      location.hash = q ? "/shop?q="+encodeURIComponent(q)+"&category=&sort=featured" : "/shop";
     });
   }
 
-  function cleanLegacyMobileUI() {
-    document.querySelectorAll(".top,.mobile-appbar,.mobile-bottom-nav").forEach(el => {
-      el.style.setProperty("display","none","important");
+  function updateNav() {
+    document.querySelectorAll(".vm-nav-item").forEach(el => {
+      el.classList.toggle("active", active(el.dataset.key));
     });
-  }
-
-  function ensureHomeVisibility() {
-    const app = document.querySelector("#app");
-    if (!app) return;
-
-    const home = app.querySelector(".velora-home");
-    if (!home) return;
-
-    const desktopMain = home.querySelector(":scope > main:not(.mobile-commerce-home)");
-    const mobileMain = home.querySelector(":scope > main.mobile-commerce-home");
-
-    if (desktopMain) {
-      desktopMain.style.setProperty("display","none","important");
-      desktopMain.style.setProperty("visibility","hidden","important");
-      desktopMain.style.setProperty("opacity","0","important");
-    }
-
-    if (mobileMain) {
-      mobileMain.style.setProperty("display","block","important");
-      mobileMain.style.setProperty("visibility","visible","important");
-      mobileMain.style.setProperty("opacity","1","important");
-      mobileMain.hidden = false;
-
-      // Force a plain, permanent mobile title. No typewriter, no animated text.
-      let title = mobileMain.querySelector(".vm-mobile-static-title");
-      if (!title) {
-        title = document.createElement("h1");
-        title.className = "vm-mobile-static-title";
-        title.textContent = "Cookies kecil, mood besar.";
-        const copy = mobileMain.querySelector(".m3-hero-copy");
-        if (copy) copy.prepend(title);
-        else mobileMain.prepend(title);
-      }
-
-      title.textContent = "Cookies kecil, mood besar.";
-      Object.assign(title.style, {
-        display:"block",
-        visibility:"visible",
-        opacity:"1",
-        width:"100%",
-        height:"auto",
-        minHeight:"0",
-        maxHeight:"none",
-        overflow:"visible",
-        whiteSpace:"normal",
-        animation:"none",
-        transition:"none",
-        transform:"none",
-        clipPath:"none",
-        margin:"0 0 12px",
-        padding:"0",
-        color:"#281b31",
-        fontFamily:'"Playfair Display", Georgia, serif',
-        fontSize:"36px",
-        lineHeight:"1.02",
-        letterSpacing:"-.055em"
-      });
-    }
   }
 
   function mount() {
     if (!isMobile()) return;
-
     document.body.classList.add("vm-active");
-    cleanLegacyMobileUI();
+    cleanLegacy();
 
-    document.querySelectorAll("[data-vm-ui]").forEach(el => el.remove());
-    document.body.insertAdjacentHTML("afterbegin", header());
-    document.body.insertAdjacentHTML("beforeend", bottom());
+    if (!document.querySelector(".vm-header")) {
+      document.body.insertAdjacentHTML("afterbegin", header());
+    }
+    if (!document.querySelector(".vm-bottom")) {
+      document.body.insertAdjacentHTML("beforeend", bottom());
+    }
 
-    ensureHomeVisibility();
     bindSearch();
-
-    document.querySelectorAll(".vm-nav-item").forEach(el => {
-      el.classList.toggle("active", active(el.dataset.key));
-    });
+    updateNav();
+    ensureStaticHome();
   }
 
   function unmount() {
@@ -179,41 +147,32 @@
     document.querySelectorAll("[data-vm-ui]").forEach(el => el.remove());
   }
 
-  let queued = false;
+  let raf = 0;
   function refresh() {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(() => {
-      queued = false;
-      if (!isMobile()) {
-        unmount();
-        return;
-      }
-      mount();
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      if (isMobile()) mount();
+      else unmount();
     });
   }
 
   function init() {
-    // mobile.js is a classic script while app.js is a deferred module.
-    // Therefore app.js may render #app AFTER this controller starts.
-    // Observe the document body so the mobile layer also mounts when
-    // the SPA finishes its first render or rerenders the current route.
     refresh();
-
     window.addEventListener("hashchange", refresh);
     window.addEventListener("resize", refresh);
 
-    const root = document.body;
-    if (root) {
-      const observer = new MutationObserver(() => {
-        if (isMobile()) refresh();
-      });
+    const observer = new MutationObserver(records => {
+      if (!isMobile()) return;
+      const relevant = records.some(record =>
+        [...record.addedNodes, ...record.removedNodes].some(node =>
+          node.nodeType === 1 && !node.matches("[data-vm-ui], [data-vm-ui] *")
+        )
+      );
+      if (relevant) refresh();
+    });
 
-      observer.observe(root, {
-        childList: true,
-        subtree: true
-      });
-    }
+    observer.observe(document.body, {childList:true, subtree:true});
   }
 
   if (document.readyState === "loading") {
