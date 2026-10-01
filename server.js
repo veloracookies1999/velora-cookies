@@ -3366,6 +3366,44 @@ app.get(
 );
 
 
+app.delete(
+  "/api/notifications",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      const x = await actor(req, res);
+
+      if (!x) return;
+
+      const { error } = await sb
+        .from("notifications")
+        .delete()
+        .eq("user_id", x.auth.id);
+
+      if (error) throw error;
+
+      res.json({
+        ok: true,
+        message: "Semua notifikasi berhasil dihapus."
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        ok: false,
+        message: error?.message || "Gagal menghapus semua notifikasi."
+      });
+
+    }
+
+  }
+);
+
+
 app.post(
   "/api/notifications/:id/read",
   async (
