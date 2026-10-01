@@ -2560,3 +2560,317 @@
   html body.vm-active .m3-story p{max-width:250px!important;margin:11px 0 16px!important}
   html body.vm-active .m3-faq{padding-top:23px!important}
 }
+
+/* ============================================================
+   VELORA MOBILE — CLEAN FINAL OVERRIDE
+   Homepage only. Desktop remains untouched.
+============================================================ */
+@media (max-width:767px){
+
+  /* HERO / TYPEWRITER */
+  body.vm-active .m3-title{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:82px!important;
+    margin:0 0 12px!important;
+    overflow:visible!important;
+    opacity:1!important;
+    visibility:visible!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:36px!important;
+    line-height:.98!important;
+    letter-spacing:-.055em!important;
+    color:#2b1b31!important;
+  }
+
+  body.vm-active .m3-title .m3-type{
+    display:block!important;
+    width:auto!important;
+    height:1.02em!important;
+    min-height:1.02em!important;
+    overflow:visible!important;
+    white-space:nowrap!important;
+    clip-path:none!important;
+    animation:none!important;
+    opacity:1!important;
+    visibility:visible!important;
+    color:#2b1b31!important;
+  }
+
+  /* BEST SELLERS — actual mobile card */
+  body.vm-active .m3-section{
+    width:100%!important;
+    min-width:0!important;
+    padding:26px 16px 0!important;
+    box-sizing:border-box!important;
+  }
+
+  body.vm-active .m3-section-head{
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:12px!important;
+    margin:0 0 13px!important;
+  }
+
+  body.vm-active .m3-section-head > div{
+    min-width:0!important;
+  }
+
+  body.vm-active .m3-section-head small{
+    display:block!important;
+    margin:0 0 5px!important;
+    font-size:7px!important;
+    line-height:1!important;
+    letter-spacing:.19em!important;
+    color:#8953c0!important;
+    font-weight:800!important;
+  }
+
+  body.vm-active .m3-section-head h2{
+    margin:0!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:25px!important;
+    line-height:1!important;
+    letter-spacing:-.035em!important;
+    color:#281b2f!important;
+  }
+
+  body.vm-active .m3-section-head > a{
+    flex:0 0 auto!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    padding:0!important;
+    margin:0 0 2px!important;
+    font-size:9px!important;
+    line-height:1!important;
+    color:#7650a6!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-section .m3-products{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    align-items:stretch!important;
+    width:calc(100% + 32px)!important;
+    margin:0 0 0 -16px!important;
+    padding:2px 16px 18px!important;
+    gap:12px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+    scroll-snap-type:x mandatory!important;
+  }
+
+  body.vm-active .m3-section .m3-products::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  body.vm-active .m3-product-card{
+    position:relative!important;
+    display:flex!important;
+    flex:0 0 278px!important;
+    width:278px!important;
+    min-width:278px!important;
+    max-width:278px!important;
+    min-height:0!important;
+    flex-direction:column!important;
+    overflow:hidden!important;
+    background:#fff!important;
+    border:1px solid #e8e0ee!important;
+    border-radius:20px!important;
+    box-shadow:0 12px 30px rgba(45,27,58,.08)!important;
+    scroll-snap-align:start!important;
+  }
+
+  body.vm-active .m3-product-media{
+    position:relative!important;
+    width:100%!important;
+    height:184px!important;
+    min-height:184px!important;
+    flex:0 0 184px!important;
+    overflow:hidden!important;
+    background:linear-gradient(135deg,#eee7f1,#f8f4fa)!important;
+  }
+
+  body.vm-active .m3-product-media > img,
+  body.vm-active .m3-product-media > .mini-cookie,
+  body.vm-active .m3-product-media > .big-cookie{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:100%!important;
+    min-height:100%!important;
+    object-fit:cover!important;
+  }
+
+  body.vm-active .m3-product-wish{
+    position:absolute!important;
+    z-index:3!important;
+    top:10px!important;
+    right:10px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:36px!important;
+    height:36px!important;
+    min-height:36px!important;
+    padding:0!important;
+    border:1px solid rgba(255,255,255,.7)!important;
+    border-radius:12px!important;
+    background:rgba(255,255,255,.96)!important;
+    color:#786d80!important;
+    box-shadow:0 5px 14px rgba(35,22,46,.08)!important;
+  }
+
+  body.vm-active .m3-product-wish.on{
+    color:#7b3fe1!important;
+  }
+
+  body.vm-active .m3-product-body{
+    display:flex!important;
+    flex-direction:column!important;
+    min-height:142px!important;
+    padding:13px 13px 12px!important;
+    box-sizing:border-box!important;
+  }
+
+  body.vm-active .m3-product-eyebrow{
+    display:block!important;
+    margin:0 0 5px!important;
+    color:#8652bd!important;
+    font-size:7px!important;
+    line-height:1!important;
+    letter-spacing:.18em!important;
+    font-weight:800!important;
+    text-transform:uppercase!important;
+  }
+
+  body.vm-active .m3-product-body h3{
+    display:-webkit-box!important;
+    -webkit-box-orient:vertical!important;
+    -webkit-line-clamp:2!important;
+    height:34px!important;
+    min-height:34px!important;
+    max-height:34px!important;
+    margin:0!important;
+    overflow:hidden!important;
+    font-size:12px!important;
+    line-height:1.4!important;
+    font-weight:750!important;
+    color:#28202d!important;
+  }
+
+  body.vm-active .m3-product-price{
+    margin-top:7px!important;
+    color:#5d2b9e!important;
+    font-size:13px!important;
+    line-height:1.15!important;
+    font-weight:850!important;
+  }
+
+  body.vm-active .m3-product-price span{
+    color:#968b9c!important;
+    font-size:9px!important;
+    font-weight:650!important;
+  }
+
+  body.vm-active .m3-product-footer{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:8px!important;
+    width:100%!important;
+    margin-top:auto!important;
+    padding-top:10px!important;
+  }
+
+  body.vm-active .m3-product-rating{
+    flex:0 0 auto!important;
+    color:#a17b35!important;
+    font-size:8px!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-product-add{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:5px!important;
+    flex:0 0 82px!important;
+    width:82px!important;
+    min-width:82px!important;
+    max-width:82px!important;
+    height:34px!important;
+    min-height:34px!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:11px!important;
+    background:linear-gradient(135deg,#7836df,#9649e9)!important;
+    color:#fff!important;
+    font-size:9px!important;
+    font-weight:850!important;
+    line-height:1!important;
+    box-shadow:0 7px 16px rgba(120,54,223,.22)!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-product-add span{
+    display:inline!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-product-add svg{
+    flex:0 0 12px!important;
+    width:12px!important;
+    height:12px!important;
+  }
+
+  /* STORY + FAQ spacing */
+  body.vm-active .m3-story{
+    width:calc(100% - 32px)!important;
+    min-height:220px!important;
+    margin:17px 16px 0!important;
+    padding:24px 22px!important;
+    box-sizing:border-box!important;
+    border-radius:22px!important;
+  }
+
+  body.vm-active .m3-faq{
+    padding:25px 16px 22px!important;
+  }
+
+  @media(max-width:430px){
+    body.vm-active .m3-product-card{
+      flex-basis:calc(100vw - 70px)!important;
+      width:calc(100vw - 70px)!important;
+      min-width:calc(100vw - 70px)!important;
+      max-width:300px!important;
+    }
+  }
+
+  @media(max-width:380px){
+    body.vm-active .m3-title{
+      font-size:32px!important;
+      min-height:74px!important;
+    }
+    body.vm-active .m3-product-card{
+      flex-basis:calc(100vw - 48px)!important;
+      width:calc(100vw - 48px)!important;
+      min-width:calc(100vw - 48px)!important;
+    }
+    body.vm-active .m3-product-media{
+      height:170px!important;
+      min-height:170px!important;
+      flex-basis:170px!important;
+    }
+  }
+}
