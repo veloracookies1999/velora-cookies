@@ -300,20 +300,24 @@ initPasswordRecovery();
             S.__welcomeShownForSession = null;
           }
 
+          if (shouldWelcome) {
+            S.__welcomeShownForSession =
+              session.user?.id || true;
+
+            const immediateName =
+              session.user?.user_metadata?.name ||
+              session.user?.email?.split("@")[0] ||
+              "teman";
+
+            // Google/OAuth juga langsung mendapat welcome,
+            // tanpa menunggu profile/cart/order selesai dimuat.
+            welcomeOverlay(immediateName);
+          }
+
           try {
             await me();
             await data();
             await render();
-
-            if (shouldWelcome && S.user) {
-              S.__welcomeShownForSession =
-                session.user?.id || true;
-
-              setTimeout(
-                () => welcomeOverlay(),
-                180
-              );
-            }
           } catch (error) {
             console.error("Auth state error:", error);
           }
