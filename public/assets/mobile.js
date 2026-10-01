@@ -98,13 +98,6 @@
   }
 
 
-  function startMobileTypewriter() {
-    if (!mobile()) return;
-    const title = document.querySelector(".m3-title");
-    if (!title) return;
-    title.dataset.typewriterReady = "1";
-  }
-
   function bindSearch() {
     const form = document.querySelector("[data-vm-search]");
     if (!form || form.dataset.bound) return;
@@ -130,9 +123,7 @@
     document.body.insertAdjacentHTML("beforeend", bottom());
 
     markExistingMobileRegions();
-    startMobileTypewriter();
-    window.setTimeout(startMobileTypewriter, 180);
-    bindSearch();
+bindSearch();
     refreshNav();
   }
 
@@ -152,9 +143,7 @@
       if (!document.querySelector(".vm-header")) mount();
       else {
         markExistingMobileRegions();
-        startMobileTypewriter();
-        window.setTimeout(startMobileTypewriter, 180);
-        refreshNav();
+refreshNav();
         bindSearch();
       }
     });
