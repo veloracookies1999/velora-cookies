@@ -122,7 +122,7 @@
   function queue() {
     if (scheduled) return;
     scheduled=true;
-    requestAnimationFrame(()=>{scheduled=false;mount();});
+    requestAnimationFrame(()=>{scheduled=false;if(isMobile() && document.querySelector(".vm-header")) refresh(); else mount();});
   }
 
   window.addEventListener("resize",queue);
