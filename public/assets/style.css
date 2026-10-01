@@ -20475,3 +20475,9 @@ body:has(.hero) .top .nav a[href="#/"]{
     grid-template-columns:repeat(3,minmax(0,1fr))!important;
   }
 }
+
+
+/* Mobile-only markup stays invisible on desktop. */
+.mobile-appbar{
+  display:none;
+}
