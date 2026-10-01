@@ -3546,3 +3546,33 @@
     color:#8050bd!important;
   }
 }
+
+/* MOBILE: static hero title — no typewriter */
+@media (max-width:767px){
+  body.vm-active .m3-home .m3-title{
+    height:auto!important;
+    min-height:0!important;
+    display:block!important;
+    overflow:visible!important;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  body.vm-active .m3-home .m3-title .m3-type,
+  body.vm-active .m3-home .m3-title .m3-type-one,
+  body.vm-active .m3-home .m3-title .m3-type-two{
+    display:block!important;
+    width:auto!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:visible!important;
+    white-space:normal!important;
+    opacity:1!important;
+    visibility:visible!important;
+    clip-path:none!important;
+    animation:none!important;
+    transform:none!important;
+  }
+}
