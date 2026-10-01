@@ -119,22 +119,40 @@
       mobileMain.style.setProperty("opacity","1","important");
       mobileMain.hidden = false;
 
-      const title = mobileMain.querySelector(".m3-title");
-      if (title) {
+      // Force a plain, permanent mobile title. No typewriter, no animated text.
+      let title = mobileMain.querySelector(".vm-mobile-static-title");
+      if (!title) {
+        title = document.createElement("h1");
+        title.className = "vm-mobile-static-title";
         title.textContent = "Cookies kecil, mood besar.";
-        title.style.setProperty("display","block","important");
-        title.style.setProperty("visibility","visible","important");
-        title.style.setProperty("opacity","1","important");
-        title.style.setProperty("height","auto","important");
-        title.style.setProperty("min-height","0","important");
-        title.style.setProperty("max-height","none","important");
-        title.style.setProperty("width","100%","important");
-        title.style.setProperty("overflow","visible","important");
-        title.style.setProperty("white-space","normal","important");
-        title.style.setProperty("animation","none","important");
-        title.style.setProperty("transform","none","important");
-        title.style.setProperty("clip-path","none","important");
+        const copy = mobileMain.querySelector(".m3-hero-copy");
+        if (copy) copy.prepend(title);
+        else mobileMain.prepend(title);
       }
+
+      title.textContent = "Cookies kecil, mood besar.";
+      Object.assign(title.style, {
+        display:"block",
+        visibility:"visible",
+        opacity:"1",
+        width:"100%",
+        height:"auto",
+        minHeight:"0",
+        maxHeight:"none",
+        overflow:"visible",
+        whiteSpace:"normal",
+        animation:"none",
+        transition:"none",
+        transform:"none",
+        clipPath:"none",
+        margin:"0 0 12px",
+        padding:"0",
+        color:"#281b31",
+        fontFamily:'"Playfair Display", Georgia, serif',
+        fontSize:"36px",
+        lineHeight:"1.02",
+        letterSpacing:"-.055em"
+      });
     }
   }
 
