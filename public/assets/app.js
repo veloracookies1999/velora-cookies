@@ -12,7 +12,12 @@ const S = {
   admin: false,
   channel: null,
   notificationChannel: null,
-  authListenerReady: false
+  authListenerReady: false,
+  storeSettings: {
+    storeName: "VELORA Cookies",
+    storeEmail: "",
+    storePhone: ""
+  }
 };
 
 const $ = (q, p = document) => p.querySelector(q);
@@ -142,6 +147,12 @@ async function api(url, options = {}) {
 async function boot() {
   try {
     S.cfg = await fetch("/api/config").then((r) => r.json());
+
+    try {
+      S.storeSettings = await fetch("/api/store-settings").then((r) => r.json());
+    } catch (settingsError) {
+      console.warn("STORE SETTINGS LOAD ERROR:", settingsError);
+    }
 
     if (
       !S.cfg?.supabaseUrl ||
@@ -593,16 +604,16 @@ function foot() {
 
           <h3>Kontak</h3>
 
-          <a href="mailto:veloracookies1999@gmail.com">
-            veloracookies1999@gmail.com
+          <a href="mailto:${esc(S.storeSettings.storeEmail || S.cfg.storeEmail || "")}">
+            ${esc(S.storeSettings.storeEmail || S.cfg.storeEmail || "Email belum diatur")}
           </a>
 
           <a
-            href="https://wa.me/6285864306671"
+            href="https://wa.me/${String(S.storeSettings.storePhone || S.cfg.storePhone || "").replace(/\\D/g, "")}"
             target="_blank"
             rel="noopener"
           >
-            +62 858-6430-6671
+            ${esc(S.storeSettings.storePhone || S.cfg.storePhone || "WhatsApp belum diatur")}
           </a>
 
           <span>
@@ -12217,12 +12228,14 @@ function adminBind(section) {
           );
 
           try {
-            S.cfg = await fetch("/api/config").then(response => response.json());
-          } catch (configError) {
-            console.warn("CONFIG REFRESH ERROR:", configError);
+            S.storeSettings = await fetch("/api/store-settings").then(response => response.json());
+          } catch (settingsError) {
+            console.warn("STORE SETTINGS REFRESH ERROR:", settingsError);
           }
 
           toast("Pengaturan toko berhasil disimpan.", "good");
+
+          await render();
 
         } catch (error) {
 
