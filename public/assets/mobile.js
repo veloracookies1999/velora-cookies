@@ -103,23 +103,45 @@
     const title = document.querySelector(".m3-title");
     const first = title?.querySelector(".m3-type-one");
     const second = title?.querySelector(".m3-type-two");
-    if (!title || !first || !second || title.dataset.typewriterRunning === "1") return;
-    title.dataset.typewriterRunning = "1";
-    const a = first.dataset.text || first.textContent.trim();
-    const b = second.dataset.text || second.textContent.trim();
+    if (!title || !first || !second) {
+      window.setTimeout(startMobileTypewriter, 120);
+      return;
+    }
+    if (title.dataset.typewriterDone === "1" || title.dataset.typewriterRunning === "1") return;
+
+    const a = first.dataset.text || "Cookies kecil,";
+    const b = second.dataset.text || "mood besar.";
     first.dataset.text = a;
     second.dataset.text = b;
+    title.dataset.typewriterRunning = "1";
     first.textContent = "";
     second.textContent = "";
-    let i = 0, j = 0;
+
+    let i = 0;
+    let j = 0;
+    const finish = () => {
+      first.textContent = a;
+      second.textContent = b;
+      title.dataset.typewriterRunning = "0";
+      title.dataset.typewriterDone = "1";
+    };
     const typeSecond = () => {
       if (!document.body.contains(title) || !mobile()) return;
-      if (j < b.length) { second.textContent = b.slice(0, ++j); window.setTimeout(typeSecond, 72); }
+      if (j < b.length) {
+        second.textContent = b.slice(0, ++j);
+        window.setTimeout(typeSecond, 65);
+      } else {
+        finish();
+      }
     };
     const typeFirst = () => {
       if (!document.body.contains(title) || !mobile()) return;
-      if (i < a.length) { first.textContent = a.slice(0, ++i); window.setTimeout(typeFirst, 72); }
-      else window.setTimeout(typeSecond, 260);
+      if (i < a.length) {
+        first.textContent = a.slice(0, ++i);
+        window.setTimeout(typeFirst, 65);
+      } else {
+        window.setTimeout(typeSecond, 220);
+      }
     };
     typeFirst();
   }
@@ -149,6 +171,7 @@
 
     markExistingMobileRegions();
     startMobileTypewriter();
+    window.setTimeout(startMobileTypewriter, 180);
     bindSearch();
     refreshNav();
   }
@@ -170,6 +193,7 @@
       else {
         markExistingMobileRegions();
         startMobileTypewriter();
+        window.setTimeout(startMobileTypewriter, 180);
         refreshNav();
         bindSearch();
       }
