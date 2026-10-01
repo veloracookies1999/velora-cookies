@@ -1183,25 +1183,25 @@ function home() {
             </h1>
             <p class="m3-description">Cookies premium yang dibuat fresh untuk menemani hari kamu dengan rasa yang lebih berkesan.</p>
             <div class="m3-actions">
-              <a href="#/shop" class="m3-primary">Belanja sekarang \${icon("arrow-up-right",15)}</a>
+              <a href="#/shop" class="m3-primary">Belanja sekarang ${icon("arrow-up-right",15)}</a>
               <a href="#/shop" class="m3-secondary">Lihat koleksi</a>
             </div>
           </div>
           <div class="m3-visual">
             <img src="/assets/hero-cookies.png" alt="VELORA Cookies">
-            <span class="m3-photo-badge">\${icon("sparkles",13)} Made with care</span>
-            <span class="m3-photo-rating"><b>4.9</b> \${icon("star",11)} favorite</span>
+            <span class="m3-photo-badge">${icon("sparkles",13)} Made with care</span>
+            <span class="m3-photo-rating"><b>4.9</b> ${icon("star",11)} favorite</span>
           </div>
         </section>
         <section class="m3-quick">
-          <a href="#/shop?sort=featured" class="m3-quick-card"><span>\${icon("sparkles",17)}</span><b>Best seller</b><small>Paling dicari</small></a>
-          <a href="#/shop?sort=newest" class="m3-quick-card"><span>\${icon("flame",17)}</span><b>Fresh baked</b><small>Batch terbaru</small></a>
-          <a href="#/shop" class="m3-quick-card"><span>\${icon("gift",17)}</span><b>Gift box</b><small>Untuk spesial</small></a>
+          <a href="#/shop?sort=featured" class="m3-quick-card"><span>${icon("sparkles",17)}</span><b>Best seller</b><small>Paling dicari</small></a>
+          <a href="#/shop?sort=newest" class="m3-quick-card"><span>${icon("flame",17)}</span><b>Fresh baked</b><small>Batch terbaru</small></a>
+          <a href="#/shop" class="m3-quick-card"><span>${icon("gift",17)}</span><b>Gift box</b><small>Untuk spesial</small></a>
         </section>
         <section class="m3-section">
-          <div class="m3-section-head"><div><small>CURATED FOR YOU</small><h2>Best sellers</h2></div><a href="#/shop">Lihat semua \${icon("arrow-right",14)}</a></div>
+          <div class="m3-section-head"><div><small>CURATED FOR YOU</small><h2>Best sellers</h2></div><a href="#/shop">Lihat semua ${icon("arrow-right",14)}</a></div>
           <div class="m3-products">
-            \${best.length ? best.map(card).join("") : '<div class="m3-empty">Belum ada produk unggulan.</div>'}
+            ${best.length ? best.map(card).join("") : '<div class="m3-empty">Belum ada produk unggulan.</div>'}
           </div>
         </section>
         <section class="m3-story">
@@ -1209,16 +1209,16 @@ function home() {
             <small>THE VELORA STANDARD</small>
             <h2>Fresh from<br><em>our oven.</em></h2>
             <p>Setiap batch dibuat dalam jumlah terkontrol untuk menjaga rasa, aroma, dan tekstur.</p>
-            <a href="#/about">Kenal VELORA \${icon("arrow-right",14)}</a>
+            <a href="#/about">Kenal VELORA ${icon("arrow-right",14)}</a>
           </div>
           <span class="m3-story-mark">V</span>
         </section>
         <section class="m3-section m3-faq">
-          <div class="m3-section-head"><div><small>NEED TO KNOW</small><h2>Sebelum checkout</h2></div><a href="#/faq">FAQ \${icon("arrow-right",14)}</a></div>
+          <div class="m3-section-head"><div><small>NEED TO KNOW</small><h2>Sebelum checkout</h2></div><a href="#/faq">FAQ ${icon("arrow-right",14)}</a></div>
           <div class="m3-faq-list">
-            <a href="#/faq"><b>01</b><span>Berapa lama pengiriman?<small>Cek estimasi saat checkout.</small></span>\${icon("chevron-right",15)}</a>
-            <a href="#/faq"><b>02</b><span>Apakah cookies fresh?<small>Setiap batch dibuat dengan perhatian.</small></span>\${icon("chevron-right",15)}</a>
-            <a href="#/faq"><b>03</b><span>Bagaimana cara order?<small>Pilih, masukkan keranjang, checkout.</small></span>\${icon("chevron-right",15)}</a>
+            <a href="#/faq"><b>01</b><span>Berapa lama pengiriman?<small>Cek estimasi saat checkout.</small></span>${icon("chevron-right",15)}</a>
+            <a href="#/faq"><b>02</b><span>Apakah cookies fresh?<small>Setiap batch dibuat dengan perhatian.</small></span>${icon("chevron-right",15)}</a>
+            <a href="#/faq"><b>03</b><span>Bagaimana cara order?<small>Pilih, masukkan keranjang, checkout.</small></span>${icon("chevron-right",15)}</a>
           </div>
         </section>
       </main>
