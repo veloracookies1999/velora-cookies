@@ -101,50 +101,10 @@
   function startMobileTypewriter() {
     if (!mobile()) return;
     const title = document.querySelector(".m3-title");
-    const first = title?.querySelector(".m3-type-one");
-    const second = title?.querySelector(".m3-type-two");
-    if (!title || !first || !second) {
-      window.setTimeout(startMobileTypewriter, 120);
-      return;
-    }
-    if (title.dataset.typewriterDone === "1" || title.dataset.typewriterRunning === "1") return;
-
-    const a = first.dataset.text || "Cookies kecil,";
-    const b = second.dataset.text || "mood besar.";
-    first.dataset.text = a;
-    second.dataset.text = b;
-    title.dataset.typewriterRunning = "1";
-    first.textContent = "";
-    second.textContent = "";
-
-    let i = 0;
-    let j = 0;
-    const finish = () => {
-      first.textContent = a;
-      second.textContent = b;
-      title.dataset.typewriterRunning = "0";
-      title.dataset.typewriterDone = "1";
-    };
-    const typeSecond = () => {
-      if (!document.body.contains(title) || !mobile()) return;
-      if (j < b.length) {
-        second.textContent = b.slice(0, ++j);
-        window.setTimeout(typeSecond, 65);
-      } else {
-        finish();
-      }
-    };
-    const typeFirst = () => {
-      if (!document.body.contains(title) || !mobile()) return;
-      if (i < a.length) {
-        first.textContent = a.slice(0, ++i);
-        window.setTimeout(typeFirst, 65);
-      } else {
-        window.setTimeout(typeSecond, 220);
-      }
-    };
-    typeFirst();
+    if (!title) return;
+    title.dataset.typewriterReady = "1";
   }
+
   function bindSearch() {
     const form = document.querySelector("[data-vm-search]");
     if (!form || form.dataset.bound) return;
