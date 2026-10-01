@@ -3173,3 +3173,376 @@
     }
   }
 }
+
+/* ============================================================
+   VELORA MOBILE FINAL — TYPEWRITER + AUTH
+   This is the final mobile override. Desktop is untouched.
+============================================================ */
+@media (max-width:767px){
+
+  /* ---------- REAL TYPEWRITER, SAME TIMING LANGUAGE AS DESKTOP ---------- */
+  body.vm-active .m3-home .m3-title .m3-type{
+    display:inline-block!important;
+    width:0!important;
+    max-width:max-content!important;
+    min-width:0!important;
+    height:1.04em!important;
+    min-height:1.04em!important;
+    max-height:1.04em!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    clip-path:none!important;
+    opacity:1!important;
+    visibility:visible!important;
+    vertical-align:bottom!important;
+    animation-duration:12s!important;
+    animation-timing-function:linear!important;
+    animation-iteration-count:infinite!important;
+    animation-fill-mode:none!important;
+  }
+
+  body.vm-active .m3-home .m3-title .m3-type-one{
+    animation-name:veloraMobileTypeOneFinal!important;
+  }
+
+  body.vm-active .m3-home .m3-title .m3-type-two{
+    animation-name:veloraMobileTypeTwoFinal!important;
+  }
+
+  @keyframes veloraMobileTypeOneFinal{
+    0%,5%{width:0}
+    27%,68%,76%{width:100%}
+    86%,100%{width:0}
+  }
+
+  @keyframes veloraMobileTypeTwoFinal{
+    0%,27%,28%{width:0}
+    49%,68%,76%{width:100%}
+    86%,100%{width:0}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    body.vm-active .m3-home .m3-title .m3-type{
+      width:auto!important;
+      max-width:none!important;
+      overflow:visible!important;
+      animation:none!important;
+    }
+  }
+
+  /* ---------- AUTH: APP-LIKE MOBILE SHEET ---------- */
+  body.vm-active #authModal{
+    position:fixed!important;
+    inset:0!important;
+    z-index:99999!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:center!important;
+    padding:0!important;
+    background:
+      radial-gradient(circle at 85% 10%,rgba(150,83,235,.28),transparent 32%),
+      linear-gradient(145deg,rgba(28,17,35,.88),rgba(67,36,88,.76))!important;
+    backdrop-filter:blur(16px)!important;
+    -webkit-backdrop-filter:blur(16px)!important;
+  }
+
+  body.vm-active #authModal .auth-shell{
+    position:relative!important;
+    width:100%!important;
+    max-width:520px!important;
+    min-height:0!important;
+    padding:0!important;
+    background:transparent!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:center!important;
+  }
+
+  body.vm-active #authModal .auth-glow{
+    display:none!important;
+  }
+
+  body.vm-active #authModal .auth-card{
+    position:relative!important;
+    width:100%!important;
+    max-width:520px!important;
+    max-height:calc(100dvh - 24px)!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:20px 18px calc(22px + env(safe-area-inset-bottom))!important;
+    border:1px solid rgba(255,255,255,.72)!important;
+    border-bottom:0!important;
+    border-radius:28px 28px 0 0!important;
+    background:
+      linear-gradient(180deg,#ffffff 0%,#fbf8fd 100%)!important;
+    box-shadow:0 -18px 55px rgba(23,12,31,.32)!important;
+    color:#281b31!important;
+    scrollbar-width:none!important;
+  }
+
+  body.vm-active #authModal .auth-card::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  body.vm-active #authModal .auth-card::before{
+    content:""!important;
+    display:block!important;
+    width:42px!important;
+    height:4px!important;
+    margin:0 auto 17px!important;
+    border-radius:999px!important;
+    background:#d9cde1!important;
+  }
+
+  body.vm-active #authModal .auth-topbar{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    margin:0 0 19px!important;
+  }
+
+  body.vm-active #authModal .auth-brand-mark{
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    color:#281b31!important;
+    font-size:11px!important;
+    font-weight:900!important;
+    letter-spacing:.22em!important;
+  }
+
+  body.vm-active #authModal .auth-brand-dot{
+    width:9px!important;
+    height:9px!important;
+    border-radius:50%!important;
+    background:linear-gradient(135deg,#7135dd,#a04be9)!important;
+    box-shadow:0 0 0 5px #f0e7fb!important;
+  }
+
+  body.vm-active #authModal .auth-close{
+    width:38px!important;
+    height:38px!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border:1px solid #e7dfeb!important;
+    border-radius:12px!important;
+    background:#fff!important;
+    color:#65586b!important;
+  }
+
+  body.vm-active #authModal .auth-intro{
+    margin-bottom:20px!important;
+  }
+
+  body.vm-active #authModal .auth-eyebrow{
+    display:block!important;
+    margin-bottom:7px!important;
+    color:#8751c1!important;
+    font-size:8px!important;
+    line-height:1!important;
+    letter-spacing:.18em!important;
+    font-weight:900!important;
+  }
+
+  body.vm-active #authModal #authTitle{
+    margin:0!important;
+    color:#281b31!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:29px!important;
+    line-height:1.02!important;
+    letter-spacing:-.035em!important;
+  }
+
+  body.vm-active #authModal #authSubtitle{
+    margin:8px 0 0!important;
+    max-width:340px!important;
+    color:#827686!important;
+    font-size:12px!important;
+    line-height:1.55!important;
+  }
+
+  body.vm-active #authModal .auth-form{
+    display:flex!important;
+    flex-direction:column!important;
+    gap:12px!important;
+  }
+
+  body.vm-active #authModal .auth-field{
+    margin:0!important;
+  }
+
+  body.vm-active #authModal .auth-field label,
+  body.vm-active #authModal .auth-label-row label{
+    display:block!important;
+    margin:0 0 6px!important;
+    color:#3c3041!important;
+    font-size:10px!important;
+    line-height:1.2!important;
+    font-weight:800!important;
+  }
+
+  body.vm-active #authModal .auth-input-wrap{
+    position:relative!important;
+    width:100%!important;
+  }
+
+  body.vm-active #authModal .auth-input{
+    width:100%!important;
+    height:50px!important;
+    min-height:50px!important;
+    margin:0!important;
+    padding:0 44px 0 42px!important;
+    border:1px solid #e4dce8!important;
+    border-radius:14px!important;
+    background:#fff!important;
+    color:#2d2331!important;
+    font-size:13px!important;
+    outline:none!important;
+    box-shadow:0 3px 12px rgba(52,31,64,.035)!important;
+  }
+
+  body.vm-active #authModal .auth-input:focus{
+    border-color:#8b4ce0!important;
+    box-shadow:0 0 0 4px rgba(139,76,224,.11)!important;
+  }
+
+  body.vm-active #authModal .auth-input::placeholder{
+    color:#aaa0ad!important;
+  }
+
+  body.vm-active #authModal .auth-input-icon{
+    position:absolute!important;
+    left:14px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    z-index:2!important;
+    color:#927e9b!important;
+    pointer-events:none!important;
+  }
+
+  body.vm-active #authModal .auth-password-toggle{
+    position:absolute!important;
+    right:7px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:36px!important;
+    height:36px!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border:0!important;
+    border-radius:10px!important;
+    background:#f7f3f9!important;
+    color:#77687e!important;
+  }
+
+  body.vm-active #authModal .auth-forgot{
+    align-self:flex-end!important;
+    margin:-4px 1px 1px!important;
+    padding:0!important;
+    border:0!important;
+    background:none!important;
+    color:#7540b6!important;
+    font-size:10px!important;
+    font-weight:800!important;
+  }
+
+  body.vm-active #authModal .auth-forgot.is-hidden{
+    display:none!important;
+  }
+
+  body.vm-active #authModal .auth-name-field{
+    display:none!important;
+  }
+
+  body.vm-active #authModal .auth-name-field.is-visible{
+    display:block!important;
+  }
+
+  body.vm-active #authModal .auth-submit{
+    width:100%!important;
+    height:51px!important;
+    min-height:51px!important;
+    margin:3px 0 0!important;
+    border:0!important;
+    border-radius:14px!important;
+    background:linear-gradient(135deg,#7637dd,#9849e9)!important;
+    color:#fff!important;
+    font-size:12px!important;
+    font-weight:900!important;
+    letter-spacing:.01em!important;
+    box-shadow:0 10px 22px rgba(118,55,221,.22)!important;
+  }
+
+  body.vm-active #authModal .auth-divider{
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+    margin:16px 0 12px!important;
+    color:#a095a4!important;
+    font-size:9px!important;
+  }
+
+  body.vm-active #authModal .auth-divider::before,
+  body.vm-active #authModal .auth-divider::after{
+    content:""!important;
+    flex:1!important;
+    height:1px!important;
+    background:#e9e2ed!important;
+  }
+
+  body.vm-active #authModal .auth-divider span{
+    white-space:nowrap!important;
+  }
+
+  body.vm-active #authModal .auth-google{
+    width:100%!important;
+    height:48px!important;
+    min-height:48px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:9px!important;
+    border:1px solid #e1d9e5!important;
+    border-radius:14px!important;
+    background:#fff!important;
+    color:#352b39!important;
+    font-size:11px!important;
+    font-weight:800!important;
+  }
+
+  body.vm-active #authModal .auth-google-logo{
+    display:flex!important;
+    align-items:center!important;
+  }
+
+  body.vm-active #authModal .auth-switch{
+    width:100%!important;
+    margin:12px 0 0!important;
+    padding:7px!important;
+    border:0!important;
+    background:transparent!important;
+    color:#7440b4!important;
+    font-size:10px!important;
+    font-weight:900!important;
+  }
+
+  body.vm-active #authModal .auth-secure{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    margin-top:11px!important;
+    color:#9a8e9f!important;
+    font-size:8px!important;
+    text-align:center!important;
+  }
+
+  body.vm-active #authModal .auth-secure-icon{
+    display:flex!important;
+    color:#8050bd!important;
+  }
+}
