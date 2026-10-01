@@ -1201,10 +1201,7 @@ function home() {
         <section class="m3-hero">
           <div class="m3-hero-copy">
             <div class="m3-eyebrow-row"><span>VELORA COOKIES</span><i></i><small>SMALL BATCH</small></div>
-            <h1 class="m3-title" aria-label="Cookies kecil, mood besar.">
-              <span class="m3-type m3-type-one">Cookies kecil,</span>
-              <span class="m3-type m3-type-two">mood besar.</span>
-            </h1>
+            <h1 class="m3-title">Cookies kecil,<br>mood besar.</h1>
             <p class="m3-description">Cookies premium yang dibuat fresh untuk menemani hari kamu dengan rasa yang lebih berkesan.</p>
             <div class="m3-actions">
               <a href="#/shop" class="m3-primary">Belanja sekarang ${icon("arrow-up-right",15)}</a>
