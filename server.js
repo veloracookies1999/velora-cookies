@@ -3367,6 +3367,104 @@ app.get(
 
 
 app.post(
+  "/api/notifications/:id/read",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      const x = await actor(req, res);
+
+      if (!x) return;
+
+      const { data, error } = await sb
+        .from("notifications")
+        .update({
+          is_read: true
+        })
+        .eq("id", req.params.id)
+        .eq("user_id", x.auth.id)
+        .select("id")
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (!data) {
+        return res.status(404).json({
+          ok: false,
+          message: "Notifikasi tidak ditemukan."
+        });
+      }
+
+      res.json({
+        ok: true,
+        message: "Notifikasi ditandai telah dibaca."
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        ok: false,
+        message: error?.message || "Gagal menandai notifikasi."
+      });
+
+    }
+
+  }
+);
+
+
+app.delete(
+  "/api/notifications/:id",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      const x = await actor(req, res);
+
+      if (!x) return;
+
+      const { data, error } = await sb
+        .from("notifications")
+        .delete()
+        .eq("id", req.params.id)
+        .eq("user_id", x.auth.id)
+        .select("id")
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (!data) {
+        return res.status(404).json({
+          ok: false,
+          message: "Notifikasi tidak ditemukan."
+        });
+      }
+
+      res.json({
+        ok: true,
+        message: "Notifikasi berhasil dihapus."
+      });
+
+    } catch (error) {
+
+      res.status(400).json({
+        ok: false,
+        message: error?.message || "Gagal menghapus notifikasi."
+      });
+
+    }
+
+  }
+);
+
+
+app.post(
   "/api/notifications/read",
   async (
     req,
