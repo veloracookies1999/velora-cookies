@@ -111,6 +111,7 @@
 
   function mount() {
     if (!mobile()) return;
+
     setBodyState();
 
     document.querySelectorAll("[data-vm-ui]").forEach(el => el.remove());
@@ -118,44 +119,70 @@
     const app = document.querySelector("#app");
     if (!app) return;
 
-    /* IMPORTANT: header belongs BEFORE app content, never after it. */
-    app.insertAdjacentHTML("beforebegin", header());
-    document.body.insertAdjacentHTML("beforeend", bottom());
-
-    markExistingMobileRegions();
-
-    const homeRoot = document.querySelector(".velora-home");
-    const desktopHome = homeRoot?.querySelector(":scope > main:not(.mobile-commerce-home)");
+    const homeRoot = app.querySelector(".velora-home");
     const mobileHome = homeRoot?.querySelector(":scope > main.mobile-commerce-home");
 
-    if (mobileHome) {
-      mobileHome.style.display = "block";
-      mobileHome.style.visibility = "visible";
-      mobileHome.style.opacity = "1";
-      mobileHome.style.width = "100%";
-      mobileHome.style.maxWidth = "100%";
-      mobileHome.style.height = "auto";
-      mobileHome.hidden = false;
+    /*
+     * HARD MOBILE HOME ISOLATION:
+     * The mobile homepage is detached from the desktop .velora-home
+     * wrapper so legacy desktop/mobile CSS can no longer hide it.
+     */
+    if (mobileHome && !mobileHome.dataset.vmDetached) {
+      mobileHome.dataset.vmDetached = "1";
 
-      const title = mobileHome.querySelector(".m3-title");
-      if (title) {
-        title.textContent = "Cookies kecil, mood besar.";
-        title.style.display = "block";
-        title.style.width = "100%";
-        title.style.height = "auto";
-        title.style.minHeight = "0";
-        title.style.overflow = "visible";
-        title.style.visibility = "visible";
-        title.style.opacity = "1";
-        title.style.animation = "none";
-        title.style.clipPath = "none";
+      const shell = document.createElement("div");
+      shell.className = "vm-home-shell";
+      shell.setAttribute("data-vm-home-shell", "1");
+
+      mobileHome.parentNode.insertBefore(shell, mobileHome);
+      shell.appendChild(mobileHome);
+
+      const footer = homeRoot?.querySelector(":scope > .footer");
+      if (footer) {
+        footer.classList.add("vm-mobile-footer");
+        shell.appendChild(footer);
+      }
+
+      if (homeRoot) {
+        homeRoot.remove();
       }
     }
 
-    if (desktopHome) {
-      desktopHome.style.display = "none";
-      desktopHome.style.visibility = "hidden";
+    const detachedHome = document.querySelector(".vm-home-shell .m3-home");
+
+    if (detachedHome) {
+      detachedHome.style.setProperty("display", "block", "important");
+      detachedHome.style.setProperty("visibility", "visible", "important");
+      detachedHome.style.setProperty("opacity", "1", "important");
+      detachedHome.hidden = false;
+
+      const title = detachedHome.querySelector(".m3-title");
+      if (title) {
+        title.textContent = "Cookies kecil, mood besar.";
+        title.style.setProperty("display", "block", "important");
+        title.style.setProperty("width", "100%", "important");
+        title.style.setProperty("height", "auto", "important");
+        title.style.setProperty("min-height", "0", "important");
+        title.style.setProperty("max-height", "none", "important");
+        title.style.setProperty("overflow", "visible", "important");
+        title.style.setProperty("visibility", "visible", "important");
+        title.style.setProperty("opacity", "1", "important");
+        title.style.setProperty("animation", "none", "important");
+        title.style.setProperty("transition", "none", "important");
+        title.style.setProperty("clip-path", "none", "important");
+        title.style.setProperty("white-space", "normal", "important");
+      }
     }
+
+    const shell = document.querySelector(".vm-home-shell");
+    if (shell) {
+      shell.style.setProperty("display", "block", "important");
+      shell.style.setProperty("visibility", "visible", "important");
+      shell.style.setProperty("opacity", "1", "important");
+    }
+
+    document.body.insertAdjacentHTML("afterbegin", header());
+    document.body.insertAdjacentHTML("beforeend", bottom());
 
     bindSearch();
     refreshNav();
