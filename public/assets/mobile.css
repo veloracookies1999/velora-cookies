@@ -3655,3 +3655,40 @@
     font-size:33px!important;
   }
 }
+
+
+/* VELORA MOBILE — CLEAN STATIC HERO / NO TYPEWRITER */
+@media (max-width:767px){
+  body.vm-active .velora-home > main.mobile-commerce-home.m3-home{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+  body.vm-active .velora-home > main:not(.mobile-commerce-home){
+    display:none !important;
+  }
+  body.vm-active .mobile-commerce-home .m3-title{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    width:auto !important;
+    height:auto !important;
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+    margin:0 0 12px !important;
+    padding:0 !important;
+    white-space:normal !important;
+    animation:none !important;
+    transform:none !important;
+    clip-path:none !important;
+    font-family:"Playfair Display",Georgia,serif !important;
+    font-size:36px !important;
+    line-height:1.02 !important;
+    letter-spacing:-.055em !important;
+    color:#281b31 !important;
+  }
+}
+@media (max-width:430px){
+  body.vm-active .mobile-commerce-home .m3-title{font-size:33px !important;}
+}
