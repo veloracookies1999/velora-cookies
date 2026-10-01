@@ -2213,3 +2213,275 @@
     }
   }
 }
+
+
+/* ============================================================
+   VELORA MOBILE — HOMEPAGE STABLE FINAL
+   Typewriter stays visible after typing; product cards compact.
+============================================================ */
+@media (max-width:767px){
+
+  /* TYPEWRITER — reliable one-time desktop-style reveal */
+  html body.vm-active .m3-title{
+    display:block!important;
+    height:78px!important;
+    min-height:78px!important;
+    overflow:visible!important;
+    margin:0 0 9px!important;
+  }
+
+  html body.vm-active .m3-title .m3-type{
+    display:block!important;
+    width:max-content!important;
+    max-width:100%!important;
+    height:1em!important;
+    min-height:1em!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    opacity:1!important;
+    visibility:visible!important;
+    border:0!important;
+    padding:0!important;
+    clip-path:inset(0 100% 0 0)!important;
+    animation-fill-mode:forwards!important;
+  }
+
+  html body.vm-active .m3-title .m3-type-one{
+    animation:veloraMobileTypeOne 1.35s steps(14,end) .12s forwards!important;
+  }
+
+  html body.vm-active .m3-title .m3-type-two{
+    animation:veloraMobileTypeTwo 1.15s steps(12,end) 1.48s forwards!important;
+  }
+
+  @keyframes veloraMobileTypeOne{
+    from{clip-path:inset(0 100% 0 0)}
+    to{clip-path:inset(0 0 0 0)}
+  }
+
+  @keyframes veloraMobileTypeTwo{
+    from{clip-path:inset(0 100% 0 0)}
+    to{clip-path:inset(0 0 0 0)}
+  }
+
+  /* Product rail */
+  html body.vm-active .m3-section{
+    padding-top:25px!important;
+  }
+
+  html body.vm-active .m3-section-head{
+    margin-bottom:11px!important;
+  }
+
+  html body.vm-active .m3-section-head h2{
+    font-size:24px!important;
+  }
+
+  html body.vm-active .m3-section .m3-products{
+    width:calc(100% + 32px)!important;
+    margin-left:-16px!important;
+    padding:2px 16px 13px!important;
+    gap:11px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    align-items:stretch!important;
+    scroll-snap-type:x mandatory!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product{
+    flex:0 0 76vw!important;
+    width:76vw!important;
+    max-width:292px!important;
+    min-height:0!important;
+    height:auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    overflow:hidden!important;
+    border-radius:18px!important;
+    border:1px solid #e8e0ee!important;
+    box-shadow:0 7px 20px rgba(43,27,57,.06)!important;
+    scroll-snap-align:start!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .media{
+    flex:none!important;
+    height:auto!important;
+    aspect-ratio:1.20/1!important;
+    min-height:0!important;
+    border-radius:18px 18px 0 0!important;
+    overflow:hidden!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .media img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .product-body{
+    display:flex!important;
+    flex-direction:column!important;
+    flex:1 1 auto!important;
+    min-height:126px!important;
+    padding:11px 12px 10px!important;
+    box-sizing:border-box!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .product-body .eyebrow{
+    margin:0 0 4px!important;
+    font-size:7px!important;
+    line-height:1.15!important;
+    letter-spacing:.18em!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .product-body h3{
+    margin:0!important;
+    min-height:31px!important;
+    max-height:31px!important;
+    overflow:hidden!important;
+    font-size:12px!important;
+    line-height:1.3!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .product-body .price{
+    margin-top:6px!important;
+    font-size:12px!important;
+    line-height:1.15!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .meta{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    width:100%!important;
+    min-width:0!important;
+    min-height:33px!important;
+    margin-top:auto!important;
+    padding-top:8px!important;
+    gap:7px!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .meta .stars{
+    display:block!important;
+    flex:0 0 auto!important;
+    width:auto!important;
+    white-space:nowrap!important;
+    font-size:7px!important;
+    letter-spacing:.5px!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .meta > div{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    gap:0!important;
+    overflow:visible!important;
+  }
+
+  /* Hide secondary Buy Now on the home rail */
+  html body.vm-active .m3-section .m3-products > .card.product .meta .btn[data-buy]{
+    display:none!important;
+  }
+
+  /* ADD button: fixed footprint, never shrinks/clips */
+  html body.vm-active .m3-section .m3-products > .card.product .meta .btn[data-add]{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:0 0 76px!important;
+    width:76px!important;
+    min-width:76px!important;
+    max-width:76px!important;
+    height:33px!important;
+    min-height:33px!important;
+    max-height:33px!important;
+    margin:0!important;
+    padding:0 8px!important;
+    box-sizing:border-box!important;
+    border-radius:10px!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    text-overflow:clip!important;
+    font-size:9px!important;
+    font-weight:800!important;
+    line-height:1!important;
+    gap:4px!important;
+  }
+
+  html body.vm-active .m3-section .m3-products > .card.product .meta .btn[data-add] svg{
+    flex:0 0 11px!important;
+    width:11px!important;
+    height:11px!important;
+  }
+
+  /* Story: tighter transition from carousel */
+  html body.vm-active .m3-story{
+    width:calc(100% - 32px)!important;
+    margin:18px 16px 0!important;
+    min-height:226px!important;
+    padding:23px 22px!important;
+    border-radius:22px!important;
+  }
+
+  html body.vm-active .m3-story h2{
+    margin:0!important;
+    font-size:30px!important;
+    line-height:.98!important;
+  }
+
+  html body.vm-active .m3-story p{
+    margin:11px 0 15px!important;
+    max-width:270px!important;
+    font-size:10px!important;
+    line-height:1.58!important;
+  }
+
+  /* FAQ follows story without excessive whitespace */
+  html body.vm-active .m3-faq{
+    padding:23px 16px 22px!important;
+  }
+
+  html body.vm-active .m3-faq-list{
+    gap:7px!important;
+  }
+
+  html body.vm-active .m3-faq-list > a{
+    min-height:63px!important;
+    padding:10px 11px!important;
+    border-radius:15px!important;
+  }
+
+  @media(max-width:380px){
+    html body.vm-active .m3-title{
+      height:72px!important;
+      min-height:72px!important;
+      font-size:32px!important;
+    }
+
+    html body.vm-active .m3-section .m3-products > .card.product{
+      flex-basis:79vw!important;
+      width:79vw!important;
+    }
+
+    html body.vm-active .m3-section .m3-products > .card.product .product-body{
+      min-height:122px!important;
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    html body.vm-active .m3-title .m3-type{
+      clip-path:none!important;
+      animation:none!important;
+    }
+  }
+}
