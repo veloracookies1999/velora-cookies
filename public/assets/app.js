@@ -4004,40 +4004,21 @@ function notes() {
   };
 
   const renderItem = item => {
-
-    const type =
-      getType(item);
-
-    const config =
-      typeConfig[type];
-
-    const isUnread =
-      !item.read &&
-      !item.is_read;
+    const type = getType(item);
+    const config = typeConfig[type];
+    const isUnread = !item.read && !item.is_read;
+    const id = String(item.id || "").trim();
 
     const title =
-      item.title ||
-      item.name ||
-      item.subject ||
-      "Notifikasi Velora";
+      item.title || item.name || item.subject || "Notifikasi Velora";
 
     const message =
-      item.message ||
-      item.body ||
-      item.content ||
-      item.description ||
-      "";
+      item.message || item.body || item.content || item.description || "";
 
     const time =
-      item.created_at ||
-      item.createdAt ||
-      item.time ||
-      item.date;
+      item.created_at || item.createdAt || item.time || item.date;
 
-    const href =
-      item.link ||
-      item.href ||
-      "";
+    const href = item.link || item.href || "";
 
     const content = `
       <div class="notification-icon ${type}">
@@ -4045,98 +4026,67 @@ function notes() {
       </div>
 
       <div class="notification-content">
-
         <div class="notification-top">
-
           <div class="notification-heading">
-
-            <span class="notification-type">
-              ${esc(config.label)}
-            </span>
-
-            <h3>
-              ${esc(title)}
-            </h3>
-
+            <span class="notification-type">${esc(config.label)}</span>
+            <h3>${esc(title)}</h3>
           </div>
 
-          ${
-            isUnread
-              ? `
-                <span
-                  class="notification-unread-dot"
-                  aria-label="Belum dibaca"
-                ></span>
-              `
-              : ""
-          }
-
+          ${isUnread ? `
+            <span class="notification-unread-dot" aria-label="Belum dibaca"></span>
+          ` : ""}
         </div>
 
-        ${
-          message
-            ? `
-              <p>
-                ${esc(message)}
-              </p>
-            `
-            : ""
-        }
+        ${message ? `<p>${esc(message)}</p>` : ""}
 
         <div class="notification-meta">
-
           <span>
             ${icon("clock-3", 12)}
             ${esc(formatTime(time))}
           </span>
 
-          ${
-            isUnread
-              ? `
-                <span class="notification-status">
-                  Baru
-                </span>
-              `
-              : `
-                <span class="notification-read">
-                  Dibaca
-                </span>
-              `
-          }
-
+          <span class="notification-status ${isUnread ? "is-new" : "is-read"}">
+            ${isUnread ? "Belum dibaca" : "Dibaca"}
+          </span>
         </div>
-
-      </div>
-
-      <div class="notification-arrow">
-        ${icon("chevron-right", 16)}
       </div>
     `;
 
-    if (href) {
-
-      return `
-        <a
-          class="
-            notification-card
-            ${isUnread ? "unread" : ""}
-          "
-          href="${esc(href)}"
-        >
-          ${content}
-        </a>
-      `;
-
-    }
-
     return `
       <article
-        class="
-          notification-card
-          ${isUnread ? "unread" : ""}
-        "
+        class="notification-card ${isUnread ? "unread" : "is-read"}"
+        data-notification-card
+        data-notification-id="${esc(id)}"
       >
-        ${content}
+        ${href ? `
+          <a class="notification-main" href="${esc(href)}">
+            ${content}
+          </a>
+        ` : content}
+
+        <div class="notification-actions">
+          ${isUnread ? `
+            <button
+              type="button"
+              class="notification-action notification-read-btn"
+              data-notification-read="${esc(id)}"
+              ${id ? "" : "disabled"}
+            >
+              ${icon("check", 14)}
+              Tandai dibaca
+            </button>
+          ` : ""}
+
+          <button
+            type="button"
+            class="notification-action notification-delete-btn"
+            data-notification-delete="${esc(id)}"
+            ${id ? "" : "disabled"}
+          >
+            ${icon("trash-2", 14)}
+            Hapus
+          </button>
+        </div>
       </article>
     `;
   };
@@ -4328,15 +4278,22 @@ function notes() {
           <div class="notification-section-head">
 
             <div>
+              <h2>Aktivitas terbaru</h2>
+              <span>Update terbaru dari Velora Cookies</span>
+            </div>
 
-              <h2>
-                Aktivitas terbaru
-              </h2>
+            <div class="notification-toolbar">
+              ${unread ? `
+                <button type="button" class="btn soft sm" id="markAllNotifications">
+                  ${icon("check-check", 15)}
+                  Tandai semua dibaca
+                </button>
+              ` : ""}
 
-              <span>
-                Update terbaru dari Velora Cookies
-              </span>
-
+              <button type="button" class="btn ghost sm" id="deleteAllNotifications">
+                ${icon("trash-2", 15)}
+                Hapus semua
+              </button>
             </div>
 
           </div>
@@ -4359,6 +4316,110 @@ function notes() {
     </div>
   `;
 }
+
+async function initNotificationActions() {
+
+  if (route() !== "/notifications" || !S.user) return;
+
+  $$("[data-notification-read]").forEach(button => {
+    button.addEventListener("click", async event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const id = String(button.dataset.notificationRead || "").trim();
+      if (!id) return;
+
+      button.disabled = true;
+
+      try {
+        await api(`/api/notifications/${encodeURIComponent(id)}/read`, {
+          method: "POST",
+          body: {}
+        });
+
+        await data();
+        await render();
+        toast("Notifikasi ditandai telah dibaca.", "good");
+      } catch (error) {
+        button.disabled = false;
+        toast(error.message || "Gagal menandai notifikasi.", "bad");
+      }
+    });
+  });
+
+  $$("[data-notification-delete]").forEach(button => {
+    button.addEventListener("click", async event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const id = String(button.dataset.notificationDelete || "").trim();
+      if (!id) return;
+
+      if (!confirm("Hapus notifikasi ini?")) return;
+
+      button.disabled = true;
+
+      try {
+        await api(`/api/notifications/${encodeURIComponent(id)}`, {
+          method: "DELETE"
+        });
+
+        await data();
+        await render();
+        toast("Notifikasi berhasil dihapus.", "good");
+      } catch (error) {
+        button.disabled = false;
+        toast(error.message || "Gagal menghapus notifikasi.", "bad");
+      }
+    });
+  });
+
+  $("#markAllNotifications")?.addEventListener("click", async event => {
+    event.preventDefault();
+
+    const button = event.currentTarget;
+    button.disabled = true;
+
+    try {
+      await api("/api/notifications/read", {
+        method: "POST",
+        body: {}
+      });
+
+      await data();
+      await render();
+      toast("Semua notifikasi ditandai telah dibaca.", "good");
+    } catch (error) {
+      button.disabled = false;
+      toast(error.message || "Gagal menandai semua notifikasi.", "bad");
+    }
+  });
+
+  $("#deleteAllNotifications")?.addEventListener("click", async event => {
+    event.preventDefault();
+
+    if (!confirm("Hapus semua notifikasi kamu? Tindakan ini tidak dapat dibatalkan.")) {
+      return;
+    }
+
+    const button = event.currentTarget;
+    button.disabled = true;
+
+    try {
+      await api("/api/notifications", {
+        method: "DELETE"
+      });
+
+      await data();
+      await render();
+      toast("Semua notifikasi berhasil dihapus.", "good");
+    } catch (error) {
+      button.disabled = false;
+      toast(error.message || "Gagal menghapus semua notifikasi.", "bad");
+    }
+  });
+}
+
 /* =========================================================
    CHAT
 ========================================================= */
@@ -5946,6 +6007,8 @@ async function render() {
 
       app.innerHTML =
         notes();
+
+      initNotificationActions();
 
 
     /* =====================================================
