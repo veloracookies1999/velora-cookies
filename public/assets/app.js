@@ -289,19 +289,11 @@ initPasswordRecovery();
         async (_event, session) => {
           S.session = session || null;
 
-          if (
+          const shouldWelcome =
             _event === "SIGNED_IN" &&
-            !S.__welcomeShownForSession &&
-            session &&
-            S.__authAction !== "email"
-          ) {
-            S.__welcomeShownForSession = session.user?.id || true;
-            setTimeout(() => welcomeOverlay(), 260);
-          }
-
-          if (_event === "SIGNED_IN") {
-            S.__authAction = null;
-          }
+            !!session &&
+            S.__authAction !== "email" &&
+            !S.__welcomeShownForSession;
 
           if (!session) {
             S.__welcomeShownForSession = null;
@@ -311,8 +303,22 @@ initPasswordRecovery();
             await me();
             await data();
             await render();
+
+            if (shouldWelcome && S.user) {
+              S.__welcomeShownForSession =
+                session.user?.id || true;
+
+              setTimeout(
+                () => welcomeOverlay(),
+                180
+              );
+            }
           } catch (error) {
             console.error("Auth state error:", error);
+          }
+
+          if (_event === "SIGNED_IN") {
+            S.__authAction = null;
           }
         }
       );
