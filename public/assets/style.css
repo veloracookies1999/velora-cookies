@@ -20404,18 +20404,16 @@ body:has(.hero) .top .nav a[href="#/"]{
       border-color .2s ease!important;
   }
 
-  @media(hover:none){
-    .product-card:active{
-      transform:scale(.985);
-    }
+  .product-card:active{
+    transform:scale(.985);
+  }
 
-    .mobile-bottom-item:active{
-      transform:scale(.96);
-    }
+  .mobile-bottom-item:active{
+    transform:scale(.96);
+  }
 
-    .btn:active{
-      transform:translateY(1px);
-    }
+  .btn:active{
+    transform:translateY(1px);
   }
 }
 
