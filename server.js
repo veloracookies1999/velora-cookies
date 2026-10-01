@@ -5317,6 +5317,78 @@ app.put(
 
 
 /* =========================================================
+   PUBLIC STORE SETTINGS
+========================================================= */
+
+app.get(
+  "/api/store-settings",
+  async (
+    req,
+    res
+  ) => {
+
+    try {
+
+      const {
+        data,
+        error
+      } =
+        await sb
+          .from("settings")
+          .select("name,value")
+          .in(
+            "name",
+            [
+              "store_name",
+              "store_email",
+              "store_phone"
+            ]
+          );
+
+      if (error) {
+        throw error;
+      }
+
+      const values =
+        Object.fromEntries(
+          (data || []).map(
+            item => [
+              item.name,
+              item.value || ""
+            ]
+          )
+        );
+
+      res.json({
+        ok: true,
+        storeName:
+          values.store_name ||
+          process.env.STORE_NAME ||
+          "VELORA Cookies",
+        storeEmail:
+          values.store_email ||
+          process.env.STORE_EMAIL ||
+          "",
+        storePhone:
+          values.store_phone ||
+          process.env.STORE_PHONE ||
+          ""
+      });
+
+    } catch (error) {
+
+      res.status(500).json({
+        ok: false,
+        message: error.message
+      });
+
+    }
+
+  }
+);
+
+
+/* =========================================================
    ADMIN APPEARANCE / HERO
 ========================================================= */
 
