@@ -573,6 +573,24 @@ function top() {
         </span>
       </a>
 
+      <div class="mobile-appbar">
+        <a class="mobile-appbar-brand" href="#/">
+          <span class="mobile-appbar-logo">${icon("cookie",17)}</span>
+          <span>
+            <b>VELORA</b>
+            <small>COOKIES</small>
+          </span>
+        </a>
+        <div class="mobile-appbar-actions">
+          <a href="#/shop" class="mobile-appbar-action" aria-label="Cari cookies">
+            ${icon("search",18)}
+          </a>
+          ${S.user
+            ? `<a href="${S.admin ? "#/admin" : "#/profile"}" class="mobile-appbar-avatar" aria-label="Akun">${esc((S.user.name || "V").slice(0,1).toUpperCase())}</a>`
+            : `<button class="mobile-appbar-login" id="openAuthMobile" type="button">Masuk</button>`}
+        </div>
+      </div>
+
       <form class="search" id="search">
         <input name="q" placeholder="Cari cookies favoritmu...">
         <span>${icon('search',18)}</span>
@@ -7608,6 +7626,11 @@ function initHeroSlider(){
     authModal
   );
 
+  $("#openAuthMobile")?.addEventListener(
+    "click",
+    authModal
+  );
+
 
   /* =========================================================
      WISHLIST
@@ -9165,14 +9188,20 @@ function authModal() {
 
         welcomeOverlay(welcomeName);
 
+        requestAnimationFrame(async () => {
+          try {
+            await me();
+            await data();
+            await render();
+          } catch (error) {
+            console.error("POST LOGIN RENDER ERROR:", error);
+          }
+        });
+
         toast(
           "Login berhasil.",
           "good"
         );
-
-        await me();
-        await data();
-        await render();
 
       } catch (error) {
 
