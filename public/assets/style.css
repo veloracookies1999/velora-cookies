@@ -24366,3 +24366,814 @@ body:has(.hero) .top .nav a[href="#/"]{
     .mobile-bottom-nav{left:7px!important;right:7px!important}
   }
 }
+
+
+/* =========================================================
+   VELORA MOBILE — FINAL REBUILD / M4
+   IMPORTANT: mobile-only. Desktop is untouched.
+   This is the final cascade layer for <=650px.
+========================================================= */
+@media (max-width:650px){
+
+  html,body{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    overflow-x:hidden!important;
+    background:#faf8fc!important;
+  }
+
+  body{
+    padding-bottom:0!important;
+  }
+
+  #app{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    overflow:hidden!important;
+  }
+
+  /* ---------- HEADER ---------- */
+
+  .velora-home > .top{
+    position:sticky!important;
+    top:0!important;
+    z-index:8000!important;
+    width:100%!important;
+    min-height:70px!important;
+    height:70px!important;
+    padding:10px 14px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+    background:rgba(255,255,255,.94)!important;
+    border-bottom:1px solid rgba(91,65,105,.08)!important;
+    box-shadow:0 5px 22px rgba(37,24,45,.06)!important;
+    backdrop-filter:blur(18px)!important;
+    -webkit-backdrop-filter:blur(18px)!important;
+  }
+
+  .velora-home > .top .logo{
+    flex:0 0 auto!important;
+    min-width:0!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:9px!important;
+  }
+
+  .velora-home > .top .logo > span:first-child,
+  .velora-home > .top .logo > svg{
+    width:38px!important;
+    height:38px!important;
+    flex:0 0 38px!important;
+  }
+
+  .velora-home > .top .logo strong,
+  .velora-home > .top .logo b{
+    font-size:13px!important;
+    letter-spacing:.16em!important;
+  }
+
+  .velora-home > .top .logo small{
+    font-size:6px!important;
+    letter-spacing:.2em!important;
+  }
+
+  .velora-home > .top .search{
+    flex:1 1 auto!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0!important;
+  }
+
+  .velora-home > .top .search input{
+    height:40px!important;
+    min-width:0!important;
+    font-size:11px!important;
+  }
+
+  .velora-home > .top nav,
+  .velora-home > .top .nav,
+  .velora-home > .top .desktop-nav{
+    display:none!important;
+  }
+
+  .velora-home > .top .actions{
+    flex:0 0 auto!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:6px!important;
+  }
+
+  .velora-home > .top .actions > *{
+    min-width:38px!important;
+    width:38px!important;
+    height:38px!important;
+  }
+
+  /* Keep only useful mobile actions visible in header. */
+  .velora-home > .top .actions .icon-btn:nth-child(n+3){
+    display:none!important;
+  }
+
+  /* ---------- HIDE OLD DESKTOP HOMEPAGE ---------- */
+
+  .velora-home > main:not(.mobile-commerce-home){
+    display:none!important;
+    visibility:hidden!important;
+    height:0!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+
+  .velora-home > main.mobile-commerce-home{
+    display:block!important;
+    visibility:visible!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    background:#faf8fc!important;
+    overflow:visible!important;
+  }
+
+  /* ---------- M4 HERO ---------- */
+
+  .mobile-commerce-home.m3-home{
+    --m4-purple:#7c3aed;
+    --m4-purple2:#a855f7;
+    --m4-ink:#241a2d;
+    --m4-muted:#756a7e;
+    --m4-line:#ebe4ef;
+    --m4-surface:#fff;
+  }
+
+  .m3-hero{
+    width:100%!important;
+    padding:20px 16px 18px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    background:
+      radial-gradient(circle at 100% 0,rgba(168,85,247,.12),transparent 34%),
+      linear-gradient(180deg,#fff 0%,#fbf9fd 100%)!important;
+  }
+
+  .m3-hero-copy{
+    width:100%!important;
+    min-width:0!important;
+    display:block!important;
+  }
+
+  .m3-eyebrow-row{
+    width:100%!important;
+    margin:0 0 13px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:7px!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+  }
+
+  .m3-eyebrow-row span{
+    color:#806e89!important;
+    font-size:7px!important;
+    letter-spacing:.19em!important;
+    font-weight:900!important;
+  }
+
+  .m3-eyebrow-row small{
+    color:#9c8fa2!important;
+    font-size:7px!important;
+    letter-spacing:.12em!important;
+  }
+
+  .m3-eyebrow-row i{
+    flex:0 0 4px!important;
+    width:4px!important;
+    height:4px!important;
+    background:#8b5cf6!important;
+    border-radius:50%!important;
+  }
+
+  .m3-title{
+    width:100%!important;
+    height:auto!important;
+    min-height:100px!important;
+    margin:0!important;
+    padding:0!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    gap:0!important;
+    overflow:visible!important;
+    color:var(--m4-ink)!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:43px!important;
+    line-height:.94!important;
+    letter-spacing:-.065em!important;
+  }
+
+  /* Reliable Android/iOS typewriter.
+     Width animation is deliberately isolated from old rules. */
+  .m3-title .m3-type{
+    display:block!important;
+    position:relative!important;
+    width:0!important;
+    max-width:none!important;
+    height:auto!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+    padding:0 4px 0 0!important;
+    margin:0!important;
+    box-sizing:content-box!important;
+    border-right:2px solid #7c3aed!important;
+    opacity:1!important;
+    visibility:visible!important;
+    animation-timing-function:steps(16,end)!important;
+    animation-fill-mode:both!important;
+    animation-iteration-count:infinite!important;
+    animation-play-state:running!important;
+  }
+
+  .m3-title .m3-type-one{
+    animation-name:m4TypeOne!important;
+    animation-duration:5.8s!important;
+  }
+
+  .m3-title .m3-type-two{
+    animation-name:m4TypeTwo!important;
+    animation-duration:5.8s!important;
+  }
+
+  @keyframes m4TypeOne{
+    0%,5%{width:0}
+    34%,55%{width:14ch}
+    67%,100%{width:0}
+  }
+
+  @keyframes m4TypeTwo{
+    0%,38%{width:0;border-right-color:transparent}
+    40%{width:0;border-right-color:#7c3aed}
+    67%,84%{width:11ch;border-right-color:#7c3aed}
+    96%,100%{width:0;border-right-color:transparent}
+  }
+
+  .m3-description{
+    width:100%!important;
+    max-width:335px!important;
+    margin:14px 0 0!important;
+    color:var(--m4-muted)!important;
+    font-size:11px!important;
+    line-height:1.7!important;
+  }
+
+  .m3-actions{
+    width:100%!important;
+    margin:16px 0 0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
+    gap:8px!important;
+  }
+
+  .m3-primary,
+  .m3-secondary{
+    width:100%!important;
+    min-width:0!important;
+    min-height:46px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    border-radius:14px!important;
+    font-size:10px!important;
+    font-weight:850!important;
+    text-decoration:none!important;
+    white-space:nowrap!important;
+  }
+
+  .m3-primary{
+    color:#fff!important;
+    background:linear-gradient(135deg,#8b42ef,#6d28d9)!important;
+    box-shadow:0 12px 24px rgba(124,58,237,.18)!important;
+  }
+
+  .m3-secondary{
+    color:#302638!important;
+    background:#fff!important;
+    border:1px solid #e7e0eb!important;
+  }
+
+  /* ---------- HERO IMAGE ---------- */
+
+  .m3-visual{
+    position:relative!important;
+    width:100%!important;
+    height:auto!important;
+    aspect-ratio:1.15 / 1!important;
+    margin:16px 0 0!important;
+    overflow:hidden!important;
+    border-radius:22px!important;
+    background:#eee!important;
+    box-shadow:0 20px 45px rgba(44,28,53,.14)!important;
+  }
+
+  .m3-visual img{
+    width:100%!important;
+    height:100%!important;
+    display:block!important;
+    object-fit:cover!important;
+    object-position:center!important;
+  }
+
+  .m3-photo-badge,
+  .m3-photo-rating{
+    position:absolute!important;
+    bottom:10px!important;
+    min-height:32px!important;
+    padding:0 10px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:5px!important;
+    border:1px solid rgba(255,255,255,.7)!important;
+    border-radius:999px!important;
+    background:rgba(255,255,255,.92)!important;
+    box-shadow:0 8px 20px rgba(37,24,45,.12)!important;
+    backdrop-filter:blur(12px)!important;
+    -webkit-backdrop-filter:blur(12px)!important;
+    color:#51475a!important;
+    font-size:8px!important;
+    font-weight:800!important;
+  }
+
+  .m3-photo-badge{left:10px!important}
+  .m3-photo-rating{right:10px!important}
+  .m3-photo-rating b{color:#271d30!important}
+
+  /* ---------- QUICK CATEGORIES ---------- */
+
+  .m3-quick{
+    width:100%!important;
+    margin:0!important;
+    padding:12px 16px 0!important;
+    box-sizing:border-box!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+
+  .m3-quick-card{
+    width:100%!important;
+    min-width:0!important;
+    min-height:91px!important;
+    padding:11px 9px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    gap:5px!important;
+    border:1px solid var(--m4-line)!important;
+    border-radius:16px!important;
+    background:#fff!important;
+    box-shadow:0 7px 20px rgba(43,28,52,.045)!important;
+    text-decoration:none!important;
+  }
+
+  .m3-quick-card > span{
+    width:30px!important;
+    height:30px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:9px!important;
+    background:#f1e9ff!important;
+    color:#7c3aed!important;
+  }
+
+  .m3-quick-card b{
+    display:block!important;
+    max-width:100%!important;
+    color:#2a2030!important;
+    font-size:8.5px!important;
+    line-height:1.2!important;
+  }
+
+  .m3-quick-card small{
+    display:block!important;
+    max-width:100%!important;
+    color:#9a8e9f!important;
+    font-size:7px!important;
+    line-height:1.25!important;
+  }
+
+  /* ---------- PRODUCT SECTION ---------- */
+
+  .m3-section{
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:29px 16px 0!important;
+    box-sizing:border-box!important;
+  }
+
+  .m3-section-head{
+    width:100%!important;
+    min-width:0!important;
+    margin:0 0 13px!important;
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+  }
+
+  .m3-section-head > div{
+    min-width:0!important;
+  }
+
+  .m3-section-head small,
+  .m3-story small{
+    display:block!important;
+    margin:0 0 5px!important;
+    color:#8b54d5!important;
+    font-size:7px!important;
+    font-weight:900!important;
+    letter-spacing:.18em!important;
+  }
+
+  .m3-section-head h2{
+    margin:0!important;
+    color:#251b2c!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:27px!important;
+    line-height:1!important;
+    letter-spacing:-.04em!important;
+  }
+
+  .m3-section-head > a{
+    flex:0 0 auto!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:3px!important;
+    color:#7040b7!important;
+    font-size:8px!important;
+    font-weight:850!important;
+    text-decoration:none!important;
+    white-space:nowrap!important;
+  }
+
+  .m3-products{
+    width:100%!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .m3-products .card.product{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+    overflow:hidden!important;
+    border-radius:16px!important;
+  }
+
+  .m3-empty{
+    grid-column:1/-1!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+    padding:24px 12px!important;
+    border:1px dashed #ddd2e7!important;
+    border-radius:16px!important;
+    text-align:center!important;
+    color:#887a91!important;
+    font-size:10px!important;
+  }
+
+  /* ---------- STORY ---------- */
+
+  .m3-story{
+    position:relative!important;
+    width:calc(100% - 32px)!important;
+    min-width:0!important;
+    min-height:230px!important;
+    margin:30px 16px 0!important;
+    padding:24px!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    border-radius:23px!important;
+    color:#fff!important;
+    background:
+      radial-gradient(circle at 100% 0,rgba(168,85,247,.25),transparent 42%),
+      linear-gradient(145deg,#211827,#30203a)!important;
+    box-shadow:0 18px 42px rgba(30,19,38,.17)!important;
+  }
+
+  .m3-story h2{
+    margin:0!important;
+    color:#fff!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:31px!important;
+    line-height:1!important;
+    letter-spacing:-.04em!important;
+  }
+
+  .m3-story h2 em{color:#d3b5ff!important}
+
+  .m3-story p{
+    max-width:245px!important;
+    margin:13px 0 17px!important;
+    color:#c5bacb!important;
+    font-size:10px!important;
+    line-height:1.65!important;
+  }
+
+  .m3-story a{
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:5px!important;
+    color:#fff!important;
+    font-size:9px!important;
+    font-weight:850!important;
+    text-decoration:none!important;
+  }
+
+  .m3-story-mark{
+    position:absolute!important;
+    right:-10px!important;
+    bottom:-25px!important;
+    color:rgba(255,255,255,.055)!important;
+    font-family:"Playfair Display",Georgia,serif!important;
+    font-size:170px!important;
+    line-height:1!important;
+    pointer-events:none!important;
+  }
+
+  /* ---------- FAQ ---------- */
+
+  .m3-faq{
+    padding-bottom:28px!important;
+  }
+
+  .m3-faq-list{
+    width:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:7px!important;
+  }
+
+  .m3-faq-list > a{
+    width:100%!important;
+    min-width:0!important;
+    min-height:61px!important;
+    display:grid!important;
+    grid-template-columns:28px minmax(0,1fr) 16px!important;
+    align-items:center!important;
+    gap:9px!important;
+    padding:10px 12px!important;
+    box-sizing:border-box!important;
+    border:1px solid #ebe4ef!important;
+    border-radius:15px!important;
+    background:#fff!important;
+    color:#2b2131!important;
+    text-decoration:none!important;
+  }
+
+  .m3-faq-list > a > span{
+    min-width:0!important;
+    overflow:hidden!important;
+    font-size:9px!important;
+    font-weight:800!important;
+  }
+
+  .m3-faq-list > a small{
+    display:block!important;
+    margin-top:3px!important;
+    color:#96899d!important;
+    font-size:7px!important;
+    font-weight:500!important;
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  .velora-home .velora-footer{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:22px 16px calc(104px + env(safe-area-inset-bottom))!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  .velora-home .velora-footer .footer-main{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+  }
+
+  .velora-home .velora-footer .footer-brand{
+    grid-column:1/-1!important;
+    min-width:0!important;
+    padding:19px!important;
+    border-radius:20px!important;
+  }
+
+  .velora-home .velora-footer .footer-column{
+    min-width:0!important;
+    padding:16px 14px!important;
+    border-radius:18px!important;
+  }
+
+  .velora-home .velora-footer .footer-contact{
+    grid-column:1/-1!important;
+  }
+
+  .velora-home .velora-footer .footer-column a,
+  .velora-home .velora-footer .footer-column span{
+    max-width:100%!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+
+  .velora-home .footer-payment{
+    width:100%!important;
+    margin:9px 0 0!important;
+    padding:17px!important;
+    box-sizing:border-box!important;
+    border-radius:20px!important;
+  }
+
+  .velora-home .payment-logo-row{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:6px!important;
+  }
+
+  .velora-home .payment-logo{
+    min-width:0!important;
+    min-height:34px!important;
+    padding:5px!important;
+    border-radius:9px!important;
+  }
+
+  .velora-home .payment-logo img{
+    max-width:100%!important;
+    max-height:22px!important;
+    object-fit:contain!important;
+  }
+
+  /* ---------- BOTTOM NAV ---------- */
+
+  .mobile-bottom-nav{
+    position:fixed!important;
+    left:10px!important;
+    right:10px!important;
+    bottom:calc(9px + env(safe-area-inset-bottom))!important;
+    z-index:9000!important;
+    width:auto!important;
+    max-width:none!important;
+    min-height:68px!important;
+    padding:7px!important;
+    box-sizing:border-box!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:3px!important;
+    border:1px solid rgba(91,65,105,.12)!important;
+    border-radius:25px!important;
+    background:rgba(255,255,255,.95)!important;
+    box-shadow:0 15px 42px rgba(37,24,45,.18)!important;
+    backdrop-filter:blur(20px)!important;
+    -webkit-backdrop-filter:blur(20px)!important;
+  }
+
+  .mobile-bottom-item{
+    min-width:0!important;
+    height:54px!important;
+    padding:4px 2px!important;
+    box-sizing:border-box!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:3px!important;
+    border-radius:19px!important;
+    color:#8b8290!important;
+    font-size:7px!important;
+    font-weight:800!important;
+  }
+
+  .mobile-bottom-item svg{
+    width:19px!important;
+    height:19px!important;
+  }
+
+  .mobile-bottom-item.active{
+    color:#6d28d9!important;
+    background:#f0e8ff!important;
+  }
+
+  /* ---------- GLOBAL MOBILE PAGES ---------- */
+
+  .container,
+  .page,
+  .notification-page,
+  .live-chat-page,
+  .cart-page,
+  .wishlist-page{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+  }
+
+  .container{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+
+  .page{
+    padding-top:20px!important;
+    padding-bottom:105px!important;
+  }
+
+  .page-title{
+    width:100%!important;
+    min-width:0!important;
+    gap:10px!important;
+    flex-wrap:wrap!important;
+  }
+
+  .page-title h1,
+  .notification-hero h1,
+  .cart-heading h1,
+  .wishlist-shell h1{
+    max-width:100%!important;
+    font-size:34px!important;
+    line-height:1!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  .grid,
+  .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+  }
+
+  .panel,
+  .card,
+  .notification-card{
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+  }
+
+  img{
+    max-width:100%!important;
+  }
+
+  input,select,textarea,button{
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Prevent long email/phone strings from exploding layouts. */
+  a,span,p,h1,h2,h3,h4,strong,b{
+    overflow-wrap:anywhere;
+  }
+
+  /* ---------- SMALL PHONES ---------- */
+
+  @media(max-width:380px){
+    .m3-hero{padding-left:13px!important;padding-right:13px!important}
+    .m3-title{font-size:38px!important;min-height:91px!important}
+    .m3-description{font-size:10.5px!important}
+    .m3-quick{padding-left:13px!important;padding-right:13px!important;gap:6px!important}
+    .m3-quick-card{padding-left:8px!important;padding-right:8px!important}
+    .m3-section{padding-left:13px!important;padding-right:13px!important}
+    .m3-story{width:calc(100% - 26px)!important;margin-left:13px!important;margin-right:13px!important}
+    .mobile-bottom-nav{left:7px!important;right:7px!important}
+  }
+
+  /* If Android reports reduced motion, keep the hero readable.
+     Do NOT leave the title at width:0. */
+  @media(prefers-reduced-motion:reduce){
+    .m3-title .m3-type{
+      width:auto!important;
+      max-width:none!important;
+      overflow:visible!important;
+      border-right:0!important;
+      animation:none!important;
+    }
+  }
+}
