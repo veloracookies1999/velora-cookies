@@ -98,6 +98,31 @@
   }
 
 
+  function startMobileTypewriter() {
+    if (!mobile()) return;
+    const title = document.querySelector(".m3-title");
+    const first = title?.querySelector(".m3-type-one");
+    const second = title?.querySelector(".m3-type-two");
+    if (!title || !first || !second || title.dataset.typewriterRunning === "1") return;
+    title.dataset.typewriterRunning = "1";
+    const a = first.dataset.text || first.textContent.trim();
+    const b = second.dataset.text || second.textContent.trim();
+    first.dataset.text = a;
+    second.dataset.text = b;
+    first.textContent = "";
+    second.textContent = "";
+    let i = 0, j = 0;
+    const typeSecond = () => {
+      if (!document.body.contains(title) || !mobile()) return;
+      if (j < b.length) { second.textContent = b.slice(0, ++j); window.setTimeout(typeSecond, 72); }
+    };
+    const typeFirst = () => {
+      if (!document.body.contains(title) || !mobile()) return;
+      if (i < a.length) { first.textContent = a.slice(0, ++i); window.setTimeout(typeFirst, 72); }
+      else window.setTimeout(typeSecond, 260);
+    };
+    typeFirst();
+  }
   function bindSearch() {
     const form = document.querySelector("[data-vm-search]");
     if (!form || form.dataset.bound) return;
