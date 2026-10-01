@@ -12182,32 +12182,60 @@ function adminBind(section) {
 
         event.preventDefault();
 
+        const form = event.currentTarget;
+        const button = form.querySelector("button[type=\"submit\"]");
+        const payload = Object.fromEntries(new FormData(form).entries());
+
+        payload.store_name = String(payload.store_name || "").trim();
+        payload.store_email = String(payload.store_email || "").trim();
+        payload.store_phone = String(payload.store_phone || "").trim();
+
+        if (!payload.store_name) {
+          toast("Nama toko wajib diisi.", "bad");
+          return;
+        }
+
+        if (payload.store_email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(payload.store_email)) {
+          toast("Format email toko tidak valid.", "bad");
+          return;
+        }
+
         try {
+
+          if (button) {
+            button.disabled = true;
+            button.dataset.originalText = button.textContent.trim();
+            button.textContent = "Menyimpan...";
+          }
 
           await api(
             "/api/admin/settings",
             {
               method: "PUT",
-              body: Object.fromEntries(
-                new FormData(
-                  event.currentTarget
-                ).entries()
-              )
+              body: payload
             }
           );
 
-          toast(
-            "Pengaturan disimpan.",
-            "good"
-          );
+          try {
+            S.cfg = await fetch("/api/config").then(response => response.json());
+          } catch (configError) {
+            console.warn("CONFIG REFRESH ERROR:", configError);
+          }
+
+          toast("Pengaturan toko berhasil disimpan.", "good");
 
         } catch (error) {
 
           toast(
-            error.message,
+            error.message || "Pengaturan gagal disimpan.",
             "bad"
           );
 
+        } finally {
+          if (button) {
+            button.disabled = false;
+            button.textContent = button.dataset.originalText || "Simpan";
+          }
         }
 
       }
