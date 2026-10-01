@@ -25177,3 +25177,99 @@ body:has(.hero) .top .nav a[href="#/"]{
     }
   }
 }
+
+
+/* =========================================================
+   VELORA MOBILE FINAL — HOME FIX
+   Typewriter is driven by mobile.js; horizontal rails are
+   explicit here so they cannot fall back to the desktop grid.
+========================================================= */
+@media (max-width:767px){
+  body.vm-active .m3-title{
+    height:auto!important;
+    min-height:76px!important;
+    overflow:visible!important;
+    margin-bottom:7px!important;
+  }
+
+  body.vm-active .m3-type{
+    width:auto!important;
+    max-width:none!important;
+    height:1em!important;
+    overflow:visible!important;
+    animation:none!important;
+    border-right:2px solid transparent!important;
+    padding-right:3px!important;
+  }
+
+  body.vm-active .m3-type.is-typing{
+    border-right-color:#7c3aed!important;
+  }
+
+  body.vm-active .m3-products{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    grid-template-columns:none!important;
+    width:calc(100% + 32px)!important;
+    margin-left:-16px!important;
+    padding:2px 16px 14px!important;
+    gap:12px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+
+  body.vm-active .m3-products::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  body.vm-active .m3-products > .card.product{
+    flex:0 0 76%!important;
+    width:76%!important;
+    max-width:286px!important;
+    min-width:0!important;
+    scroll-snap-align:start!important;
+  }
+
+  body.vm-active .m3-products > .card.product .media{
+    height:190px!important;
+  }
+
+  body.vm-active .m3-products > .card.product .body{
+    min-width:0!important;
+    padding:12px!important;
+  }
+
+  body.vm-active .m3-products > .card.product .actions{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:6px!important;
+    min-width:0!important;
+  }
+
+  body.vm-active .m3-products > .card.product .actions .btn{
+    min-width:0!important;
+    max-width:100%!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+    white-space:nowrap!important;
+  }
+
+  body.vm-active .m3-products > .card.product .actions .btn.primary{
+    flex:0 1 auto!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  body.vm-active .m3-hero{
+    padding-top:24px!important;
+  }
+
+  body.vm-active .m3-hero-copy{
+    min-height:0!important;
+  }
+}
