@@ -10589,8 +10589,8 @@ const kp = (
 ) => `
   <div class="kpi">
 
-    <div class="top">
-      ${esc(label)}
+    <div class="kpi-head">
+      <span>${esc(label)}</span>
       ${icon(iconName, 17)}
     </div>
 
