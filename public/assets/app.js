@@ -11631,9 +11631,23 @@ async function adminAppearance() {
         </h3>
 
         <p class="muted">
-          Gambar ini khusus untuk halaman awal
-          dan tidak berhubungan dengan gambar produk.
+          Kelola gambar utama yang tampil di Hero halaman awal.
+          Perubahan berlaku setelah berhasil disimpan.
         </p>
+
+        <div class="appearance-status">
+          ${
+            heroImage
+              ? `
+                ${icon("check-circle-2",14)}
+                <span>Hero aktif</span>
+              `
+              : `
+                ${icon("circle-dashed",14)}
+                <span>Belum ada Hero khusus</span>
+              `
+          }
+        </div>
 
         <div
           class="hero-admin-preview"
