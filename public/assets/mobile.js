@@ -123,7 +123,41 @@
     document.body.insertAdjacentHTML("beforeend", bottom());
 
     markExistingMobileRegions();
-bindSearch();
+
+    const homeRoot = document.querySelector(".velora-home");
+    const desktopHome = homeRoot?.querySelector(":scope > main:not(.mobile-commerce-home)");
+    const mobileHome = homeRoot?.querySelector(":scope > main.mobile-commerce-home");
+
+    if (mobileHome) {
+      mobileHome.style.display = "block";
+      mobileHome.style.visibility = "visible";
+      mobileHome.style.opacity = "1";
+      mobileHome.style.width = "100%";
+      mobileHome.style.maxWidth = "100%";
+      mobileHome.style.height = "auto";
+      mobileHome.hidden = false;
+
+      const title = mobileHome.querySelector(".m3-title");
+      if (title) {
+        title.textContent = "Cookies kecil, mood besar.";
+        title.style.display = "block";
+        title.style.width = "100%";
+        title.style.height = "auto";
+        title.style.minHeight = "0";
+        title.style.overflow = "visible";
+        title.style.visibility = "visible";
+        title.style.opacity = "1";
+        title.style.animation = "none";
+        title.style.clipPath = "none";
+      }
+    }
+
+    if (desktopHome) {
+      desktopHome.style.display = "none";
+      desktopHome.style.visibility = "hidden";
+    }
+
+    bindSearch();
     refreshNav();
   }
 
