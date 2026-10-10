@@ -43,6 +43,7 @@
             <span class="vm-brand-copy"><strong>VELORA</strong><small>COOKIES</small></span>
           </a>
           <div class="vm-header-actions">
+            <button class="vm-head-icon vm-theme-toggle" data-theme-toggle type="button" aria-label="Aktifkan dark mode" title="Dark mode" aria-pressed="false"><svg data-theme-icon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"/></svg></button>
             <a class="vm-head-icon" href="#/notifications" aria-label="Notifikasi">${svg("bell")}<i></i></a>
             <a class="vm-head-icon" href="#/cart" aria-label="Keranjang">${svg("bag")}</a>
           </div>
