@@ -124,23 +124,9 @@
       title.style.setProperty("transform", "none", "important");
       title.style.setProperty("clip-path", "none", "important");
       title.style.setProperty("color", "var(--vm-ink, #281b31)", "important");
-      if (title.dataset.vmTypewriter !== "started") {
-        title.dataset.vmTypewriter = "started";
-        const phrase = "Cookies kecil, mood besar.";
-        title.replaceChildren();
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          title.textContent = phrase;
-        } else {
-          let i = 0;
-          const typeNext = () => {
-            if (!title.isConnected) return;
-            title.textContent = phrase.slice(0, i++);
-            if (i <= phrase.length) window.setTimeout(typeNext, i < 14 ? 58 : 43);
-            else title.classList.add("vm-typewriter-done");
-          };
-          title.classList.add("vm-typewriter-active");
-          typeNext();
-        }
+      title.innerHTML = "Cookies kecil,<br>mood besar.";
+      title.classList.remove("vm-typewriter-active", "vm-typewriter-done");
+      delete title.dataset.vmTypewriter;
       }
     }
   }
