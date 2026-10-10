@@ -41,6 +41,21 @@
 
   <!-- Safety net runs independently of app.js and external mobile.js. -->
   <script>
+    // Emergency watchdog: force-hide the overlay even if CSS class rules fail.
+    window.setTimeout(() => {
+      const loader = document.getElementById("veloraPageLoader");
+      if (loader) {
+        loader.style.setProperty("display", "none", "important");
+        loader.classList.remove("is-active");
+        loader.classList.add("is-hidden");
+      }
+      const app = document.getElementById("app");
+      if (app && !app.children.length) {
+        app.innerHTML = '<main style="min-height:70vh;display:grid;place-items:center;padding:24px;font-family:system-ui,sans-serif;text-align:center;color:#30213d"><div style="max-width:360px"><h2>VELORA belum berhasil dimuat</h2><p style="color:#786b82;line-height:1.6">Aplikasi belum berhasil dimulai. Coba muat ulang. Jika tetap muncul, periksa deployment dan JavaScript aplikasi.</p><button onclick="location.reload()" style="padding:12px 18px;border:0;border-radius:10px;background:#7c3aed;color:white;font-weight:700">Muat ulang</button></div></main>';
+      }
+    }, 5000);
+  </script>
+  <script>
     window.setTimeout(() => {
       const loader = document.getElementById("veloraPageLoader");
       if (!loader || !loader.classList.contains("is-active")) return;
