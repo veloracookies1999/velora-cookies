@@ -18,7 +18,7 @@
       search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
       bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>',
       arrow:'<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
-      moon:'<path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/>',
+
       sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>'
     };
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(p[name]||p.grid)+'</svg>';
@@ -43,7 +43,6 @@
             <span class="vm-brand-copy"><strong>VELORA</strong><small>COOKIES</small></span>
           </a>
           <div class="vm-header-actions">
-            <button class="vm-head-icon vm-theme-toggle" data-theme-toggle type="button" aria-label="Aktifkan dark mode" title="Dark mode">${svg("moon")}</button>
             <a class="vm-head-icon" href="#/notifications" aria-label="Notifikasi">${svg("bell")}<i></i></a>
             <a class="vm-head-icon" href="#/cart" aria-label="Keranjang">${svg("bag")}</a>
           </div>
@@ -147,45 +146,6 @@
     });
   }
 
-  const THEME_KEY = "velora-theme";
-  const isDark = () => document.body.classList.contains("velora-dark");
-  function syncThemeButtons() {
-    const mobile = isMobile();
-    const host = mobile ? document.querySelector(".vm-header-actions") : document.querySelector(".top .actions");
-    if (host && !host.querySelector("[data-theme-toggle]")) {
-      host.insertAdjacentHTML(mobile ? "afterbegin" : "afterbegin",
-        '<button class="icon-btn velora-theme-toggle" data-theme-toggle type="button" aria-label="Aktifkan dark mode" title="Dark mode">'+svg("moon")+'</button>');
-    }
-    document.querySelectorAll("[data-theme-toggle]").forEach(button => {
-      const dark = isDark();
-      button.innerHTML = svg(dark ? "sun" : "moon");
-      button.setAttribute("aria-label", dark ? "Aktifkan light mode" : "Aktifkan dark mode");
-      button.title = dark ? "Light mode" : "Dark mode";
-      button.classList.toggle("is-dark", dark);
-    });
-  }
-  function applyTheme(dark, save = true) {
-    document.body.classList.toggle("velora-dark", !!dark);
-    document.documentElement.style.colorScheme = dark ? "dark" : "light";
-    if (save) {
-      try { localStorage.setItem(THEME_KEY, dark ? "dark" : "light"); } catch (_) {}
-    }
-    syncThemeButtons();
-  }
-  function initTheme() {
-    let saved = "light";
-    try { saved = localStorage.getItem(THEME_KEY) || "light"; } catch (_) {}
-    applyTheme(saved === "dark", false);
-    document.addEventListener("click", event => {
-      const button = event.target.closest("[data-theme-toggle]");
-      if (button) {
-        event.preventDefault();
-        applyTheme(!isDark());
-      }
-    });
-    syncThemeButtons();
-  }
-
   function mount() {
     if (!isMobile()) return;
     document.body.classList.add("vm-active");
@@ -199,7 +159,7 @@
     }
 
     bindSearch();
-    syncThemeButtons();
+
     updateNav();
     ensureStaticHome();
   }
@@ -220,13 +180,13 @@
   }
 
   function init() {
-    initTheme();
+
     refresh();
     window.addEventListener("hashchange", refresh);
     window.addEventListener("resize", refresh);
 
     const observer = new MutationObserver(records => {
-      syncThemeButtons();
+
       if (!isMobile()) return;
       const relevant = records.some(record =>
         [...record.addedNodes, ...record.removedNodes].some(node =>
