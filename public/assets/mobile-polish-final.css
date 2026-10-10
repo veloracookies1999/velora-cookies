@@ -592,3 +592,214 @@
     display: none !important;
   }
 }
+
+
+/* ============================================================
+   VELORA MOBILE RESPONSIVE PATCH — 2026-10
+   Strictly mobile-only. Keep the router's homepage inside #app.
+   Static heading only; no typewriter or clipping.
+   ============================================================ */
+@media screen and (max-width: 767px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  body.vm-active #app,
+  body.vm-active #app > *,
+  body.vm-active .velora-home,
+  body.vm-active .velora-mobile-home {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .velora-mobile-home > main.mobile-commerce-home.m3-home {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding-bottom: 26px !important;
+    overflow: visible !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  body.vm-active .velora-mobile-home > main:not(.mobile-commerce-home) {
+    display: none !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-hero {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(112px, 38%) !important;
+    align-items: center !important;
+    gap: clamp(10px, 3vw, 18px) !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-hero-copy,
+  body.vm-active .mobile-commerce-home .m3-visual {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-title {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    color: #281b31 !important;
+    font-family: "Playfair Display", Georgia, serif !important;
+    font-size: clamp(29px, 8.2vw, 38px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.045em !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-indent: 0 !important;
+    clip-path: none !important;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-title * {
+    display: inline !important;
+    position: static !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    clip-path: none !important;
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-visual img {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-quick {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-section {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-products {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-product-card {
+    flex: 0 0 min(78vw, 285px) !important;
+    width: min(78vw, 285px) !important;
+    min-width: min(78vw, 285px) !important;
+    max-width: 285px !important;
+    scroll-snap-align: start !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-product-body,
+  body.vm-active .mobile-commerce-home .m3-product-footer {
+    min-width: 0 !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-product-add {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    min-height: 36px !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-story,
+  body.vm-active .mobile-commerce-home .m3-faq {
+    max-width: calc(100% - 30px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .vm-header {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .vm-bottom {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+    max-width: calc(100% - 20px) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.vm-active .velora-mobile-home .velora-footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  body.vm-active .mobile-commerce-home .m3-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(100px, 36%) !important;
+    gap: 9px !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-title {
+    font-size: clamp(27px, 8vw, 32px) !important;
+  }
+
+  body.vm-active .mobile-commerce-home .m3-actions a {
+    min-height: 36px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    font-size: 10px !important;
+  }
+}
