@@ -3867,3 +3867,72 @@
     clip-path:none!important;
   }
 }
+
+
+/* VELORA THEME SYSTEM — dedicated mobile surface */
+@media (max-width: 767px) {
+  html[data-theme="dark"] {
+    --vm-ink:#f5f0fb;
+    --vm-text:#eee8f7;
+    --vm-muted:#aaa0b9;
+    --vm-bg:#111019;
+    --vm-white:#1c1a26;
+    --vm-lav:#292238;
+    --vm-lav-2:#342947;
+    --vm-line:#343041;
+    --vm-shadow:0 10px 28px rgba(0,0,0,.2);
+    --vm-shadow-lg:0 18px 44px rgba(0,0,0,.3);
+  }
+  html[data-theme="dark"] body.vm-active {
+    background:var(--vm-bg) !important;
+    color:var(--vm-text) !important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-header,
+  html[data-theme="dark"] body.vm-active .vm-bottom {
+    background:rgba(28,26,38,.94) !important;
+    color:var(--vm-text) !important;
+    border-color:var(--vm-line) !important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-search,
+  html[data-theme="dark"] body.vm-active .vm-search input,
+  html[data-theme="dark"] body.vm-active .vm-head-icon,
+  html[data-theme="dark"] body.vm-active .vm-theme-toggle,
+  html[data-theme="dark"] body.vm-active .vm-quick-card,
+  html[data-theme="dark"] body.vm-active .m3-product-card,
+  html[data-theme="dark"] body.vm-active .m3-faq-list a,
+  html[data-theme="dark"] body.vm-active .vm-nav-item {
+    background-color:#1c1a26 !important;
+    color:var(--vm-text) !important;
+    border-color:var(--vm-line) !important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-hero,
+  html[data-theme="dark"] body.vm-active .m3-story,
+  html[data-theme="dark"] body.vm-active .m3-section,
+  html[data-theme="dark"] body.vm-active .m3-quick {
+    color:var(--vm-text) !important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-hero {
+    background:radial-gradient(ellipse at 85% 10%,rgba(124,58,237,.22),transparent 48%),#15131e !important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-product-body h3,
+  html[data-theme="dark"] body.vm-active .m3-section-head h2,
+  html[data-theme="dark"] body.vm-active .m3-story h2,
+  html[data-theme="dark"] body.vm-active .m3-title,
+  html[data-theme="dark"] body.vm-active .m3-faq-list span {
+    color:var(--vm-text) !important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-description,
+  html[data-theme="dark"] body.vm-active .m3-product-eyebrow,
+  html[data-theme="dark"] body.vm-active .m3-product-price span,
+  html[data-theme="dark"] body.vm-active .m3-faq-list small {
+    color:var(--vm-muted) !important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-nav-item.active {
+    background:#34234f !important;
+    color:#cdb3ff !important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-search input::placeholder {
+    color:#a39ab1 !important;
+  }
+  .vm-theme-toggle { cursor:pointer; }
+}
