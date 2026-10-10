@@ -25465,3 +25465,106 @@ html[data-theme="dark"] .grain { opacity: .012; }
 @media (prefers-reduced-motion: reduce) {
   [data-theme-toggle] svg { transition:none; }
 }
+
+
+/* =========================================================
+   VELORA DESKTOP DARK-MODE CONTRAST + PRODUCT CARD POLISH
+   Desktop-only rules. Mobile presentation is handled by its own layer.
+========================================================= */
+@media (min-width: 768px) {
+  html[data-theme="dark"] .hero-home,
+  html[data-theme="dark"] .hero-home-inner,
+  html[data-theme="dark"] .hero-home-copy {
+    color: #f7f2ff !important;
+  }
+  html[data-theme="dark"] .hero-home .eyebrow,
+  html[data-theme="dark"] .hero-home .hero-title-type,
+  html[data-theme="dark"] .hero-home .hero-title-type span,
+  html[data-theme="dark"] .hero-home h1,
+  html[data-theme="dark"] .hero-home h2 {
+    color: #f7f2ff !important;
+    -webkit-text-fill-color: #f7f2ff !important;
+    opacity: 1 !important;
+    text-shadow: 0 2px 24px rgba(124,58,237,.16);
+  }
+  html[data-theme="dark"] .hero-home .hero-description,
+  html[data-theme="dark"] .hero-home .hero-meta {
+    color: #c9bfd8 !important;
+  }
+  html[data-theme="dark"] .home-products,
+  html[data-theme="dark"] .home-faq,
+  html[data-theme="dark"] .section {
+    background: #111019 !important;
+    color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .section-head h2,
+  html[data-theme="dark"] .section-head .eyebrow,
+  html[data-theme="dark"] .home-faq h2 {
+    color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .product-grid .card.product,
+  html[data-theme="dark"] .product-grid .product {
+    background: #1c1a26 !important;
+    border: 1px solid #353044 !important;
+    color: #eee8f7 !important;
+    box-shadow: 0 14px 34px rgba(0,0,0,.22) !important;
+  }
+  html[data-theme="dark"] .product-grid .product h3,
+  html[data-theme="dark"] .product-grid .product .eyebrow,
+  html[data-theme="dark"] .product-grid .product .price {
+    color: #f2eafa !important;
+  }
+  html[data-theme="dark"] .product-grid .product .muted {
+    color: #b8adc7 !important;
+  }
+  html[data-theme="dark"] .product-grid .product .media {
+    background: #282333 !important;
+  }
+  html[data-theme="dark"] .product-grid .product .btn.soft {
+    background: #30283f !important;
+    border-color: #493c5b !important;
+    color: #f0e8fb !important;
+  }
+  html[data-theme="dark"] .home-faq .faq-preview-item,
+  html[data-theme="dark"] .home-story .story-point {
+    background: #1c1a26 !important;
+    border-color: #353044 !important;
+    color: #f2eafa !important;
+  }
+  html[data-theme="dark"] .home-faq .faq-preview-item strong,
+  html[data-theme="dark"] .home-story .story-point strong {
+    color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .home-faq .faq-preview-item p,
+  html[data-theme="dark"] .home-story .story-point p {
+    color: #b8adc7 !important;
+  }
+  .home-products .product-grid {
+    align-items: stretch;
+  }
+  .home-products .product-grid > .product,
+  .home-products .product-grid > .card.product {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+  .home-products .product .product-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 17px;
+  }
+  .home-products .product .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .home-products .product .meta > div {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 7px !important;
+  }
+}
