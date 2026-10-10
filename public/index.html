@@ -111,5 +111,29 @@
     src="/assets/mobile.js"
   ></script>
 
+  <!-- Safety net: never leave visitors trapped on the loading screen. -->
+  <script>
+    window.setTimeout(() => {
+      const loader = document.getElementById("veloraPageLoader");
+      if (!loader || !loader.classList.contains("is-active")) return;
+
+      loader.classList.remove("is-active");
+      loader.classList.add("is-hidden");
+
+      const app = document.getElementById("app");
+      if (app && !app.children.length) {
+        app.innerHTML = `
+          <main style="min-height:70vh;display:grid;place-items:center;padding:24px;font-family:system-ui,sans-serif;text-align:center;color:#30213d">
+            <div style="max-width:360px">
+              <div style="font-size:34px;margin-bottom:12px">VELORA</div>
+              <h2 style="margin:0 0 10px">Halaman belum selesai dimuat</h2>
+              <p style="color:#786b82;line-height:1.6">Koneksi server atau database sedang lambat. Coba muat ulang halaman.</p>
+              <button onclick="location.reload()" style="border:0;border-radius:12px;background:#7040c7;color:white;padding:12px 20px;font-weight:700;cursor:pointer">Muat ulang</button>
+            </div>
+          </main>`;
+      }
+    }, 18000);
+  </script>
+
 </body>
 </html>
