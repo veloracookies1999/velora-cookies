@@ -2,85 +2,27 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  >
-
-  <meta
-    name="theme-color"
-    content="#7c3aed"
-  >
-
-  <meta
-    name="description"
-    content="VELORA Cookies - premium cookies experience"
-  >
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="description" content="VELORA Cookies - premium cookies experience">
   <title>VELORA Cookies</title>
 
-  <!-- Fonts -->
-  <link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- Lucide -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"
-  ></script>
-
-  <!-- Chart.js -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"
-  ></script>
-
-  <!-- Supabase -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-  ></script>
-
-  <!-- VELORA CSS -->
-  <link
-    rel="stylesheet"
-    href="/assets/style.css"
-  >
-
-  <!-- Dedicated mobile experience -->
-  <link
-    rel="stylesheet"
-    href="/assets/mobile.css"
-  >
-
-  <!-- Final mobile polish: intentionally loaded last -->
-  <link
-    rel="stylesheet"
-    href="/assets/mobile-polish-final.css"
-  >
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/mobile.css">
+  <link rel="stylesheet" href="/assets/mobile-polish-final.css">
 </head>
-
 <body>
-
   <div class="grain"></div>
 
-  <div
-    id="veloraPageLoader"
-    class="velora-page-loader is-active"
-    aria-live="polite"
-    aria-label="Memuat VELORA"
-  >
+  <div id="veloraPageLoader" class="velora-page-loader is-active" aria-live="polite" aria-label="Memuat VELORA">
     <div class="velora-loader-orbit">
       <div class="velora-loader-cookie">
         <span></span><span></span><span></span>
@@ -91,27 +33,13 @@
       <strong>VELORA</strong>
       <span>Menyiapkan pengalamanmu...</span>
     </div>
-    <div class="velora-loader-line">
-      <i></i>
-    </div>
+    <div class="velora-loader-line"><i></i></div>
   </div>
 
   <div id="app"></div>
-
   <div id="toast"></div>
 
-  <!-- VELORA APP -->
-  <script
-    type="module"
-    src="/assets/app.js"
-  ></script>
-
-  <!-- Dedicated mobile UI controller -->
-  <script
-    src="/assets/mobile.js"
-  ></script>
-
-  <!-- Safety net: never leave visitors trapped on the loading screen. -->
+  <!-- Safety net runs independently of app.js and external mobile.js. -->
   <script>
     window.setTimeout(() => {
       const loader = document.getElementById("veloraPageLoader");
@@ -127,13 +55,15 @@
             <div style="max-width:360px">
               <div style="font-size:34px;margin-bottom:12px">VELORA</div>
               <h2 style="margin:0 0 10px">Halaman belum selesai dimuat</h2>
-              <p style="color:#786b82;line-height:1.6">Koneksi server atau database sedang lambat. Coba muat ulang halaman.</p>
+              <p style="color:#786b82;line-height:1.6">Koneksi server, konfigurasi, atau database sedang bermasalah. Muat ulang halaman atau coba beberapa saat lagi.</p>
               <button onclick="location.reload()" style="border:0;border-radius:12px;background:#7040c7;color:white;padding:12px 20px;font-weight:700;cursor:pointer">Muat ulang</button>
             </div>
           </main>`;
       }
-    }, 18000);
+    }, 12000);
   </script>
 
+  <script type="module" src="/assets/app.js"></script>
+  <script defer src="/assets/mobile.js"></script>
 </body>
 </html>
