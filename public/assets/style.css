@@ -25568,3 +25568,82 @@ html[data-theme="dark"] .grain { opacity: .012; }
     gap: 7px !important;
   }
 }
+
+
+/* =========================================================
+   VELORA DESKTOP RECOVERY — 2026-10-10
+   Hard boundary: the dedicated mobile storefront must never
+   affect the desktop layout. Keep the original desktop home.
+========================================================= */
+@media screen and (min-width: 768px) {
+  body:not(.vm-active) .velora-home > main.mobile-commerce-home,
+  body .velora-home > main.mobile-commerce-home {
+    display: none !important;
+  }
+
+  body .velora-home > main:not(.mobile-commerce-home) {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body .velora-home > .top,
+  body .velora-home > .velora-footer {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  body .velora-home .hero-home,
+  body .velora-home .brand-strip,
+  body .velora-home .home-products,
+  body .velora-home .home-story,
+  body .velora-home .home-faq {
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  body .velora-home .hero-home-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr) !important;
+    align-items: center !important;
+    gap: clamp(32px, 5vw, 76px) !important;
+  }
+
+  body .velora-home .hero-home-copy,
+  body .velora-home .hero-home-visual {
+    min-width: 0 !important;
+    width: auto !important;
+  }
+
+  body .velora-home .hero-main-image {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  body .velora-home .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+  }
+
+  body .velora-home .home-story-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr) !important;
+    align-items: center !important;
+    gap: clamp(36px, 6vw, 90px) !important;
+  }
+
+  body .velora-home .faq-preview-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+}
