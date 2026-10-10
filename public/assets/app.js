@@ -6084,371 +6084,77 @@ function faqpage() {
 ========================================================= */
 
 async function render() {
-
   const r = route();
   const app = $("#app");
-
-  if (!app) return;
-
-  try {
-async function render() {
-  const r = route();
-  const app = $("#app");
-
   if (!app) return;
 
   try {
     await data();
-
     let html = "";
 
-    switch (r) {
-      case "/":
-      case "":
-        html = home();
-        break;
-
-      case "/shop":
-        html = shop();
-        break;
-
-      case "/cart":
-        html = cart();
-        break;
-
-      case "/checkout":
-        html = checkout();
-        break;
-
-      case "/wishlist":
-        html = wish();
-        break;
-
-      case "/orders":
-        html = orders();
-        break;
-
-      case "/profile":
-        html = profile();
-        break;
-
-      case "/about":
-        html = about();
-        break;
-
-      case "/faq":
-        html = faq();
-        break;
-
-      default:
-        html = home();
-        break;
+    if (r === "/" || r === "") {
+      await catalog();
+      html = home();
+    } else if (r === "/customer") {
+      await catalog();
+      html = customerDashboard();
+    } else if (r === "/shop" || r.startsWith("/shop/")) {
+      await catalog();
+      html = shop();
+    } else if (r.startsWith("/product/")) {
+      html = await detail(r.split("/")[2]);
+    } else if (r === "/cart") {
+      html = cart();
+    } else if (r === "/wishlist") {
+      html = wish();
+    } else if (r === "/checkout") {
+      html = checkout();
+    } else if (r === "/orders") {
+      html = orders();
+    } else if (r === "/profile") {
+      html = profile();
+    } else if (r === "/notifications") {
+      html = notes();
+    } else if (r === "/chat") {
+      html = chat();
+    } else if (r === "/about") {
+      html = about();
+    } else if (r === "/faq") {
+      html = faqpage();
+    } else if (r === "/admin" || r.startsWith("/admin/")) {
+      if (!S.admin) {
+        html = wrap("Admin", loginBox("Akses admin diperlukan."));
+      } else {
+        await adminRender(r.split("/")[2] || "dashboard");
+        return;
+      }
+    } else {
+      await catalog();
+      html = home();
     }
 
     app.innerHTML = html;
     bind();
-
-    if (typeof initOrdersPage === "function") {
-      initOrdersPage();
-    }
-
-    if (typeof lucide !== "undefined") {
-      lucide.createIcons();
-    }
-
-  } catch (error) {
-    console.error("RENDER ERROR:", error);
-
-    app.innerHTML = `
-      <div class="container page">
-        <div class="panel empty">
-          <h3>Terjadi kesalahan</h3>
-          <p class="muted">
-            Halaman gagal dimuat. Cek Console untuk detail error.
-          </p>
-        </div>
-      </div>
-    `;
-  }
-}
-    /* =====================================================
-       HOME
-    ===================================================== */
-
-    if (r === "/") {
-
-      await catalog();
-      await data();
-
-      app.innerHTML =
-        home();
-
-
-    /* =====================================================
-       CUSTOMER DASHBOARD
-    ===================================================== */
-
-    } else if (r === "/customer") {
-
-      await catalog();
-      await data();
-
-      app.innerHTML =
-        customerDashboard();
-
-
-    /* =====================================================
-       SHOP
-    ===================================================== */
-
-    } else if (r.startsWith("/shop")) {
-
-      await catalog();
-      await data();
-
-      app.innerHTML =
-        shop();
-
-
-    /* =====================================================
-       PRODUCT DETAIL
-    ===================================================== */
-
-    } else if (r.startsWith("/product/")) {
-
-      await data();
-
-      app.innerHTML =
-        await detail(
-          r.split("/")[2]
-        );
-
-
-    /* =====================================================
-       CART
-    ===================================================== */
-
-    } else if (r === "/cart") {
-
-      await data();
-
-      app.innerHTML =
-        cart();
-
-
-    /* =====================================================
-       WISHLIST
-    ===================================================== */
-
-    } else if (r === "/wishlist") {
-
-      await data();
-
-      app.innerHTML =
-        wish();
-
-
-    /* =====================================================
-       CHECKOUT
-    ===================================================== */
-
-    } else if (r === "/checkout") {
-
-      await data();
-
-      app.innerHTML =
-        checkout();
-
-
-    /* =====================================================
-       ORDERS
-    ===================================================== */
-
-    } else if (r === "/orders") {
-
-      await data();
-
-      app.innerHTML =
-        orders();
-
-
-    /* =====================================================
-       PROFILE
-    ===================================================== */
-
-    } else if (r === "/profile") {
-
-      await data();
-
-      app.innerHTML =
-        profile();
-
-
-    /* =====================================================
-       NOTIFICATIONS
-    ===================================================== */
-
-    } else if (r === "/notifications") {
-
-      await data();
-
-      app.innerHTML =
-        notes();
-
-      initNotificationActions();
-
-
-    /* =====================================================
-       CHAT
-    ===================================================== */
-
-    } else if (r === "/chat") {
-
-      app.innerHTML =
-        chat();
-
-
-    /* =====================================================
-       ABOUT
-    ===================================================== */
-
-    } else if (r === "/about") {
-
-      app.innerHTML =
-        about();
-
-
-    /* =====================================================
-       FAQ
-    ===================================================== */
-
-    } else if (r === "/faq") {
-
-      app.innerHTML =
-        faqpage();
-
-
-    /* =====================================================
-       ADMIN
-    ===================================================== */
-
-    } else if (
-      r === "/admin" ||
-      r.startsWith("/admin/")
-    ) {
-
-      if (!S.admin) {
-
-        app.innerHTML =
-          wrap(
-            "Admin",
-            loginBox(
-              "Akses admin diperlukan."
-            )
-          );
-
-      } else {
-
-        await adminRender(
-          r.split("/")[2] ||
-          "dashboard"
-        );
-
-        return;
-      }
-
-
-    /* =====================================================
-       FALLBACK
-    ===================================================== */
-
-    } else {
-
-      await catalog();
-      await data();
-
-      app.innerHTML =
-        home();
-
-    }
-
-
-    /* =====================================================
-       BIND UI
-    ===================================================== */
-
-    bind();
-refreshIcons();
-
-if(r === "/orders"){
-  initOrdersPage();
-}
-
-
-
-
-    /* =====================================================
-       REALTIME CHAT
-    ===================================================== */
-
-    if (
-      r === "/chat" &&
-      S.user
-    ) {
-
-      await initChat();
-
-    }
-
-
-  } catch (error) {
-
-    console.error(
-      "RENDER ERROR:",
-      error
-    );
-
-
-    app.innerHTML = `
-
-      <main class="container page">
-
-        <div class="panel empty">
-
-          ${icon(
-            "triangle-alert",
-            42
-          )}
-
-          <h2>
-            Terjadi kesalahan
-          </h2>
-
-          <p class="muted">
-            ${esc(
-              error.message
-            )}
-          </p>
-
-          <button
-            class="btn primary"
-            onclick="location.reload()"
-          >
-            Muat ulang
-          </button>
-
-        </div>
-
-      </main>
-
-    `;
-
     refreshIcons();
 
+    if (r === "/orders" && typeof initOrdersPage === "function") initOrdersPage();
+    if (r === "/notifications" && typeof initNotificationActions === "function") initNotificationActions();
+    if (r === "/chat" && S.user && typeof initChat === "function") await initChat();
+  } catch (error) {
+    console.error("RENDER ERROR:", error);
+    app.innerHTML = `
+      <main class="container page">
+        <div class="panel empty">
+          ${icon("triangle-alert", 42)}
+          <h2>Terjadi kesalahan</h2>
+          <p class="muted">${esc(error?.message || "Halaman gagal dimuat.")}</p>
+          <button class="btn primary" onclick="location.reload()">Muat ulang</button>
+        </div>
+      </main>
+    `;
+    refreshIcons();
   }
-
 }
-
 function orders() {
   const orders = Array.isArray(S.orders) ? S.orders : [];
 
