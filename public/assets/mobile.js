@@ -127,7 +127,6 @@
       title.innerHTML = "Cookies kecil,<br>mood besar.";
       title.classList.remove("vm-typewriter-active", "vm-typewriter-done");
       delete title.dataset.vmTypewriter;
-      }
     }
   }
 
