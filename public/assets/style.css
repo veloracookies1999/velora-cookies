@@ -25321,3 +25321,147 @@ body:has(.hero) .top .nav a[href="#/"]{
 
 
 
+
+
+/* =========================================================
+   VELORA THEME SYSTEM — desktop + shared surfaces
+   Theme preference is applied by data-theme on <html>.
+========================================================= */
+:root {
+  color-scheme: light;
+  --theme-bg: #fbf9fd;
+  --theme-surface: #ffffff;
+  --theme-surface-soft: #f8f5fb;
+  --theme-text: #211a2b;
+  --theme-muted: #746b80;
+  --theme-line: #ebe4f2;
+  --theme-shadow: 0 18px 48px rgba(22, 12, 34, .08);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111019;
+  --white: #1c1a26;
+  --ink: #f5f1fa;
+  --muted: #aaa1b8;
+  --line: #343041;
+  --light: #2a2238;
+  --theme-bg: #111019;
+  --theme-surface: #1c1a26;
+  --theme-surface-soft: #242130;
+  --theme-text: #f5f1fa;
+  --theme-muted: #aaa1b8;
+  --theme-line: #343041;
+  --theme-shadow: 0 18px 48px rgba(0, 0, 0, .24);
+}
+html[data-theme] body,
+html[data-theme] #app {
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+html[data-theme="dark"] body {
+  background-image: none;
+}
+html[data-theme="dark"] .top,
+html[data-theme="dark"] .velora-footer,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .modal-card,
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .dropdown,
+html[data-theme="dark"] .table-wrap,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .admin-card,
+html[data-theme="dark"] .chat-panel,
+html[data-theme="dark"] .checkout-panel,
+html[data-theme="dark"] .order-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .faq-preview-item,
+html[data-theme="dark"] .story-point {
+  background-color: var(--theme-surface) !important;
+  color: var(--theme-text);
+  border-color: var(--theme-line) !important;
+}
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-theme="dark"] .search input,
+html[data-theme="dark"] .filters .input,
+html[data-theme="dark"] .filters .select {
+  background-color: #211e2d !important;
+  color: #f5f1fa !important;
+  border-color: #40394f !important;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #a39ab1 !important;
+}
+html[data-theme="dark"] .nav,
+html[data-theme="dark"] .muted,
+html[data-theme="dark"] .footer-column,
+html[data-theme="dark"] .footer-brand p,
+html[data-theme="dark"] .hero-description,
+html[data-theme="dark"] .section p,
+html[data-theme="dark"] .page p {
+  color: var(--theme-muted);
+}
+html[data-theme="dark"] .hero-home,
+html[data-theme="dark"] .brand-strip,
+html[data-theme="dark"] .home-story,
+html[data-theme="dark"] .section,
+html[data-theme="dark"] .page,
+html[data-theme="dark"] .container {
+  color: var(--theme-text);
+}
+html[data-theme="dark"] .hero-home {
+  background: radial-gradient(ellipse at 80% 25%, rgba(124,58,237,.2), transparent 45%), #15131e !important;
+}
+html[data-theme="dark"] .brand-strip {
+  background: #191623 !important;
+  border-color: var(--theme-line) !important;
+}
+html[data-theme="dark"] .home-story {
+  background: #191623 !important;
+}
+html[data-theme="dark"] .icon-btn {
+  background: var(--theme-surface) !important;
+  color: var(--theme-text);
+  border-color: var(--theme-line) !important;
+}
+html[data-theme="dark"] .btn.soft,
+html[data-theme="dark"] .btn.ghost {
+  background: #292438 !important;
+  color: #e9defb !important;
+  border-color: #40394f !important;
+}
+html[data-theme="dark"] .velora-footer {
+  background: #15131e !important;
+}
+html[data-theme="dark"] .velora-footer a,
+html[data-theme="dark"] .velora-footer h3,
+html[data-theme="dark"] .velora-footer strong {
+  color: var(--theme-text);
+}
+html[data-theme="dark"] .grain { opacity: .012; }
+.theme-toggle-desktop { flex: 0 0 42px; }
+[data-theme-toggle] { -webkit-tap-highlight-color: transparent; }
+[data-theme-toggle] svg { display:block; width:18px; height:18px; transition:transform .32s cubic-bezier(.2,.75,.25,1); }
+[data-theme-toggle]:active svg { transform:rotate(-18deg) scale(.9); }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme] body,
+  html[data-theme] #app,
+  html[data-theme] .top,
+  html[data-theme] .card,
+  html[data-theme] .panel,
+  html[data-theme] .velora-footer,
+  html[data-theme] input,
+  html[data-theme] textarea,
+  html[data-theme] select,
+  html[data-theme] .icon-btn,
+  html[data-theme] .faq-preview-item,
+  html[data-theme] .story-point {
+    transition: background-color .32s ease, color .28s ease, border-color .32s ease, box-shadow .32s ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme-toggle] svg { transition:none; }
+}
