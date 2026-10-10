@@ -43,6 +43,7 @@
             <span class="vm-brand-copy"><strong>VELORA</strong><small>COOKIES</small></span>
           </a>
           <div class="vm-header-actions">
+            <button class="vm-head-icon vm-theme-toggle" data-theme-toggle type="button" aria-label="Aktifkan dark mode" title="Dark mode">${svg("moon")}</button>
             <a class="vm-head-icon" href="#/notifications" aria-label="Notifikasi">${svg("bell")}<i></i></a>
             <a class="vm-head-icon" href="#/cart" aria-label="Keranjang">${svg("bag")}</a>
           </div>
@@ -213,6 +214,7 @@
     }
 
     bindSearch();
+    syncThemeButtons();
     updateNav();
     ensureStaticHome();
   }
@@ -233,11 +235,13 @@
   }
 
   function init() {
+    initTheme();
     refresh();
     window.addEventListener("hashchange", refresh);
     window.addEventListener("resize", refresh);
 
     const observer = new MutationObserver(records => {
+      syncThemeButtons();
       if (!isMobile()) return;
       const relevant = records.some(record =>
         [...record.addedNodes, ...record.removedNodes].some(node =>
