@@ -803,3 +803,191 @@
     font-size: 10px !important;
   }
 }
+
+
+/* ============================================================
+   VELORA MOBILE FINAL OVERRIDE — dark surfaces + responsive
+   Mobile only. Desktop layout remains untouched.
+============================================================ */
+@media screen and (max-width:767px){
+  html body.vm-active .velora-home,
+  html body.vm-active #app,
+  html body.vm-active .mobile-commerce-home{
+    background:var(--vm-bg,#faf9fc)!important;
+    color:var(--vm-text,#302638)!important;
+  }
+
+  html body.vm-active .m3-hero{
+    grid-template-columns:minmax(0,1fr) minmax(112px,38%)!important;
+    gap:clamp(10px,3vw,18px)!important;
+    padding:28px 15px 24px!important;
+    overflow:hidden!important;
+  }
+  html body.vm-active .m3-hero-copy{min-width:0!important}
+  html body.vm-active .m3-title{
+    min-height:0!important;
+    font-size:clamp(29px,8.4vw,38px)!important;
+    line-height:1.04!important;
+    margin:0 0 10px!important;
+    color:var(--vm-ink,#21182b)!important;
+  }
+  html body.vm-active .m3-description{
+    font-size:clamp(11px,3.2vw,13px)!important;
+    line-height:1.55!important;
+    overflow-wrap:break-word!important;
+  }
+  html body.vm-active .m3-actions{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,.82fr)!important;
+    gap:7px!important;
+  }
+  html body.vm-active .m3-actions a{
+    min-width:0!important;
+    min-height:42px!important;
+    padding:9px 8px!important;
+    justify-content:center!important;
+    text-align:center!important;
+    font-size:clamp(9px,2.8vw,12px)!important;
+    white-space:normal!important;
+  }
+  html body.vm-active .m3-visual{
+    width:100%!important;min-width:0!important;
+    aspect-ratio: .88 / 1!important;
+    height:auto!important;margin:0!important;
+    border-radius:20px!important;overflow:hidden!important;
+  }
+  html body.vm-active .m3-visual img{
+    width:100%!important;height:100%!important;aspect-ratio:auto!important;
+    object-fit:cover!important;
+  }
+  html body.vm-active .m3-photo-badge,
+  html body.vm-active .m3-photo-rating{
+    max-width:calc(100% - 12px)!important;
+    white-space:nowrap!important;
+    font-size:clamp(7px,2.2vw,10px)!important;
+  }
+
+  html body.vm-active .m3-quick{
+    display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;padding:12px 15px 0!important;
+  }
+  html body.vm-active .m3-quick-card{min-width:0!important;overflow:hidden!important}
+  html body.vm-active .m3-quick-card b,
+  html body.vm-active .m3-quick-card small{overflow-wrap:anywhere!important}
+
+  html body.vm-active .m3-section{padding:26px 15px 0!important;min-width:0!important}
+  html body.vm-active .m3-section-head{gap:8px!important;min-width:0!important}
+  html body.vm-active .m3-section-head h2{
+    font-size:clamp(22px,6.3vw,28px)!important;
+    line-height:1.08!important;color:var(--vm-ink,#21182b)!important;
+  }
+  html body.vm-active .m3-section-head>a{flex:0 0 auto!important;font-size:11px!important}
+
+  html body.vm-active .m3-products{
+    display:flex!important;flex-flow:row nowrap!important;
+    gap:12px!important;width:calc(100% + 30px)!important;
+    margin-left:-15px!important;padding:3px 15px 16px!important;
+    overflow-x:auto!important;overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;-webkit-overflow-scrolling:touch!important;
+  }
+  html body.vm-active .m3-product-card{
+    flex:0 0 min(78vw,285px)!important;width:min(78vw,285px)!important;
+    min-width:0!important;max-width:285px!important;
+    scroll-snap-align:start!important;overflow:hidden!important;
+  }
+  html body.vm-active .m3-product-media{height:auto!important;aspect-ratio:1.1/1!important;overflow:hidden!important}
+  html body.vm-active .m3-product-media>img,
+  html body.vm-active .m3-product-media img{width:100%!important;height:100%!important;object-fit:cover!important}
+  html body.vm-active .m3-product-body{padding:12px!important;min-width:0!important}
+  html body.vm-active .m3-product-body h3{
+    color:var(--vm-ink,#21182b)!important;
+    font-size:14px!important;line-height:1.3!important;
+    display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;
+    overflow:hidden!important;
+  }
+  html body.vm-active .m3-product-price{color:var(--vm-purple-dark,#4c209f)!important;font-weight:800!important}
+  html body.vm-active .m3-product-footer{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important}
+  html body.vm-active .m3-product-add{min-height:37px!important;padding:8px 11px!important;border-radius:11px!important}
+
+  html body.vm-active .m3-story,
+  html body.vm-active .m3-faq{
+    width:calc(100% - 30px)!important;max-width:calc(100% - 30px)!important;
+    margin-left:15px!important;margin-right:15px!important;
+  }
+  html body.vm-active .m3-faq-list a{min-width:0!important}
+  html body.vm-active .velora-footer{padding-bottom:calc(105px + env(safe-area-inset-bottom))!important}
+
+  /* Dark mode: every mobile homepage surface gets a matching dark palette. */
+  html[data-theme="dark"] body.vm-active,
+  html[data-theme="dark"] body.vm-active #app,
+  html[data-theme="dark"] body.vm-active .velora-home,
+  html[data-theme="dark"] body.vm-active .mobile-commerce-home{
+    background:#111019!important;color:#eee8f7!important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-header,
+  html[data-theme="dark"] body.vm-active .vm-bottom{
+    background:rgba(25,23,34,.97)!important;
+    border-color:#353044!important;color:#f3edf9!important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-brand,
+  html[data-theme="dark"] body.vm-active .vm-brand-copy strong,
+  html[data-theme="dark"] body.vm-active .vm-nav-item{color:#e9e1f2!important}
+  html[data-theme="dark"] body.vm-active .vm-brand-copy small{color:#a99db8!important}
+  html[data-theme="dark"] body.vm-active .vm-head-icon,
+  html[data-theme="dark"] body.vm-active .vm-search{
+    background:#201d2b!important;color:#f4edf9!important;border-color:#3a3348!important;
+  }
+  html[data-theme="dark"] body.vm-active .vm-search input{background:transparent!important;color:#f4edf9!important}
+  html[data-theme="dark"] body.vm-active .m3-hero{
+    background:radial-gradient(ellipse at 82% 8%,rgba(124,58,237,.2),transparent 50%),#15131e!important;
+    color:#f5f0fb!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-title,
+  html[data-theme="dark"] body.vm-active .m3-section-head h2,
+  html[data-theme="dark"] body.vm-active .m3-product-body h3,
+  html[data-theme="dark"] body.vm-active .m3-faq-list span,
+  html[data-theme="dark"] body.vm-active .m3-story h2{
+    color:#f5f0fb!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-eyebrow-row,
+  html[data-theme="dark"] body.vm-active .m3-section-head small,
+  html[data-theme="dark"] body.vm-active .m3-description,
+  html[data-theme="dark"] body.vm-active .m3-product-eyebrow,
+  html[data-theme="dark"] body.vm-active .m3-product-price span,
+  html[data-theme="dark"] body.vm-active .m3-faq-list small{
+    color:#b8adc7!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-quick,
+  html[data-theme="dark"] body.vm-active .m3-section{
+    background:#111019!important;color:#eee8f7!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-quick-card,
+  html[data-theme="dark"] body.vm-active .m3-product-card,
+  html[data-theme="dark"] body.vm-active .m3-faq-list>a{
+    background:#1c1a26!important;color:#eee8f7!important;
+    border-color:#353044!important;box-shadow:0 8px 24px rgba(0,0,0,.2)!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-quick-card b{color:#f5f0fb!important}
+  html[data-theme="dark"] body.vm-active .m3-quick-card small{color:#a99db8!important}
+  html[data-theme="dark"] body.vm-active .m3-product-price{color:#c6a7ff!important}
+  html[data-theme="dark"] body.vm-active .m3-product-add{
+    background:#7138cf!important;color:#fff!important;border:1px solid #8754df!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-story{
+    background:linear-gradient(135deg,#21192f,#171521)!important;border-color:#393047!important;
+  }
+  html[data-theme="dark"] body.vm-active .m3-faq-list>a>b{color:#c4a4ff!important}
+  html[data-theme="dark"] body.vm-active .m3-section-head>a{color:#c5a8f7!important}
+  html[data-theme="dark"] body.vm-active .vm-nav-item.active{
+    color:#d5bcff!important;background:#382650!important;
+  }
+}
+@media screen and (max-width:390px){
+  html body.vm-active .m3-hero{grid-template-columns:minmax(0,1fr) minmax(96px,34%)!important;gap:9px!important}
+  html body.vm-active .m3-title{font-size:clamp(27px,8vw,32px)!important}
+  html body.vm-active .m3-actions{grid-template-columns:1fr!important}
+  html body.vm-active .m3-visual{aspect-ratio: .9 / 1!important}
+  html body.vm-active .m3-quick{gap:6px!important;padding-left:12px!important;padding-right:12px!important}
+  html body.vm-active .m3-quick-card{padding:9px 7px!important}
+  html body.vm-active .m3-quick-card b{font-size:9px!important}
+}
