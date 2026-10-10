@@ -15,7 +15,40 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <link rel="stylesheet" href="/assets/style.css">
+  <script>
+    (() => {
+      let saved = "light";
+      try { saved = localStorage.getItem("velora-theme") || "light"; } catch (_) {}
+      const theme = saved === "dark" ? "dark" : "light";
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      window.veloraSetTheme = (next) => {
+        const value = next === "dark" ? "dark" : "light";
+        document.documentElement.dataset.theme = value;
+        document.documentElement.style.colorScheme = value;
+        try { localStorage.setItem("velora-theme", value); } catch (_) {}
+        document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+          const dark = value === "dark";
+          button.setAttribute("aria-label", dark ? "Aktifkan light mode" : "Aktifkan dark mode");
+          button.setAttribute("title", dark ? "Light mode" : "Dark mode");
+          button.setAttribute("aria-pressed", String(dark));
+          const label = button.querySelector("[data-theme-label]");
+          if (label) label.textContent = dark ? "Light" : "Dark";
+          const icon = button.querySelector("[data-theme-icon]");
+          if (icon) icon.innerHTML = dark
+            ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>'
+            : '<path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"/>';
+        });
+      };
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-theme-toggle]");
+        if (!button) return;
+        event.preventDefault();
+        window.veloraSetTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+      });
+    })();
+  </script>
+\n  <link rel="stylesheet" href="/assets/style.css">
   <link rel="stylesheet" href="/assets/mobile.css">
   <link rel="stylesheet" href="/assets/mobile-polish-final.css">
 </head>
