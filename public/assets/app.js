@@ -195,7 +195,8 @@ async function api(url, options = {}) {
     response = await fetch(url, {
       ...options,
       headers,
-      body
+      body,
+      signal: options.signal || AbortSignal.timeout(12000)
     });
   } catch (error) {
     console.error("FETCH ERROR:", error);
@@ -240,12 +241,27 @@ async function api(url, options = {}) {
 async function boot() {
   showPageLoader("Menyiapkan VELORA...");
   try {
-    S.cfg = await fetch("/api/config").then((r) => r.json());
+    const configResponse = await fetch(
+      "/api/config",
+      { signal: AbortSignal.timeout(10000), cache: "no-store" }
+    );
+    if (!configResponse.ok) {
+      throw new Error(`Gagal memuat konfigurasi toko (HTTP ${configResponse.status}).`);
+    }
+    S.cfg = await configResponse.json();
 
+    // Pengaturan toko hanya pelengkap. Jangan biarkan endpoint ini
+    // menahan seluruh halaman saat server/database sedang lambat.
     try {
-      S.storeSettings = await fetch("/api/store-settings").then((r) => r.json());
+      const settingsResponse = await fetch(
+        "/api/store-settings",
+        { signal: AbortSignal.timeout(5000), cache: "no-store" }
+      );
+      if (settingsResponse.ok) {
+        S.storeSettings = await settingsResponse.json();
+      }
     } catch (settingsError) {
-      console.warn("STORE SETTINGS LOAD ERROR:", settingsError);
+      console.warn("STORE SETTINGS LOAD ERROR (non-blocking):", settingsError);
     }
 
     if (
@@ -280,7 +296,12 @@ async function boot() {
 
 initPasswordRecovery();
 
-    const sessionResult = await S.sb.auth.getSession();
+    const sessionResult = await Promise.race([
+      S.sb.auth.getSession(),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Pemeriksaan sesi terlalu lama. Coba muat ulang halaman.")), 8000)
+      )
+    ]);
     S.session = sessionResult.data?.session || null;
 
     if (!S.authListenerReady) {
