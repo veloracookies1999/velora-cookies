@@ -77,72 +77,53 @@
   }
 
   function ensureStaticHome() {
+    if (!isMobile()) return;
+
     const app = document.querySelector("#app");
     const home = app?.querySelector(".velora-home");
     if (!home) return;
 
-    const mobile = home.querySelector(":scope > main.mobile-commerce-home.m3-home");
+    const mobile = home.querySelector("main.mobile-commerce-home.m3-home");
     const desktop = home.querySelector(":scope > main:not(.mobile-commerce-home)");
 
+    /* Never move the homepage out of #app. The router owns that DOM.
+       Moving it caused the mobile home to detach during rerenders. */
     if (desktop) {
-      desktop.style.setProperty("display","none","important");
-      desktop.style.setProperty("visibility","hidden","important");
-      desktop.style.setProperty("opacity","0","important");
+      desktop.style.setProperty("display", "none", "important");
+      desktop.style.setProperty("visibility", "hidden", "important");
     }
-
     if (!mobile) return;
 
-    /*
-      IMPORTANT:
-      The old homepage CSS contains several legacy selectors that can hide
-      .mobile-commerce-home even when the mobile stylesheet is loaded.
-      Move the dedicated mobile homepage outside .velora-home and give it
-      its own isolated shell. Desktop markup stays untouched.
-    */
-    let shell = document.querySelector(".vm-home-shell");
-
-    if (!shell) {
-      shell = document.createElement("div");
-      shell.className = "vm-home-shell";
-      shell.setAttribute("data-vm-ui", "");
-      document.body.appendChild(shell);
-    }
-
-    if (mobile.parentElement !== shell) {
-      shell.appendChild(mobile);
-    }
-
-    shell.style.setProperty("display","block","important");
-    shell.style.setProperty("visibility","visible","important");
-    shell.style.setProperty("opacity","1","important");
-    shell.style.setProperty("width","100%","important");
-    shell.style.setProperty("max-width","100%","important");
-    shell.style.setProperty("overflow","visible","important");
-
-    mobile.style.setProperty("display","block","important");
-    mobile.style.setProperty("visibility","visible","important");
-    mobile.style.setProperty("opacity","1","important");
-    mobile.style.setProperty("width","100%","important");
-    mobile.style.setProperty("max-width","100%","important");
-    mobile.style.setProperty("height","auto","important");
-    mobile.style.setProperty("overflow","visible","important");
+    mobile.style.setProperty("display", "block", "important");
+    mobile.style.setProperty("visibility", "visible", "important");
+    mobile.style.setProperty("opacity", "1", "important");
+    mobile.style.setProperty("position", "relative", "important");
+    mobile.style.setProperty("width", "100%", "important");
+    mobile.style.setProperty("max-width", "100%", "important");
+    mobile.style.setProperty("min-width", "0", "important");
+    mobile.style.setProperty("height", "auto", "important");
+    mobile.style.setProperty("min-height", "0", "important");
+    mobile.style.setProperty("overflow", "visible", "important");
 
     const title = mobile.querySelector(".m3-title");
     if (title) {
-      title.textContent = "Cookies kecil, mood besar.";
-      title.style.setProperty("display","block","important");
-      title.style.setProperty("visibility","visible","important");
-      title.style.setProperty("opacity","1","important");
-      title.style.setProperty("width","100%","important");
-      title.style.setProperty("height","auto","important");
-      title.style.setProperty("min-height","0","important");
-      title.style.setProperty("max-height","none","important");
-      title.style.setProperty("overflow","visible","important");
-      title.style.setProperty("white-space","normal","important");
-      title.style.setProperty("animation","none","important");
-      title.style.setProperty("transition","none","important");
-      title.style.setProperty("transform","none","important");
-      title.style.setProperty("clip-path","none","important");
+      /* Plain static heading — no typewriter and no nested clipped spans. */
+      title.replaceChildren(document.createTextNode("Cookies kecil, mood besar."));
+      title.style.setProperty("display", "block", "important");
+      title.style.setProperty("position", "relative", "important");
+      title.style.setProperty("width", "100%", "important");
+      title.style.setProperty("height", "auto", "important");
+      title.style.setProperty("min-height", "0", "important");
+      title.style.setProperty("max-height", "none", "important");
+      title.style.setProperty("overflow", "visible", "important");
+      title.style.setProperty("white-space", "normal", "important");
+      title.style.setProperty("visibility", "visible", "important");
+      title.style.setProperty("opacity", "1", "important");
+      title.style.setProperty("animation", "none", "important");
+      title.style.setProperty("transition", "none", "important");
+      title.style.setProperty("transform", "none", "important");
+      title.style.setProperty("clip-path", "none", "important");
+      title.style.setProperty("color", "#281b31", "important");
     }
   }
 
