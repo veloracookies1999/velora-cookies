@@ -27275,3 +27275,42 @@ html[data-theme="dark"] .live-chat-page .live-chat-community-card{
   html[data-theme="dark"] .live-chat-page .live-chat-send{width:100%!important}
   html[data-theme="dark"] .live-chat-page .live-chat-footer{gap:8px!important}
 }
+
+
+/* LIVE CHAT — fix the actual community info-card selectors in dark mode */
+html[data-theme="dark"] .live-chat-page .live-chat-info-card,
+html[data-theme="dark"] .live-chat-page .live-chat-info-card.accent{
+  color:#f5efff!important;
+  background:
+    radial-gradient(circle at 100% 0,rgba(139,92,246,.12),transparent 42%),
+    linear-gradient(145deg,#211a2d,#191522)!important;
+  border-color:#40334f!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-info-card h3{
+  color:#f5efff!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-info-card p{
+  color:#bdb0ce!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-info-icon{
+  color:#d9b8ff!important;
+  background:#342344!important;
+  border:1px solid #59406d!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-info-card .btn{
+  color:#fff!important;
+  background:linear-gradient(135deg,#7029cb,#8b35e8)!important;
+  border-color:#9c5bea!important;
+}
+@media(max-width:760px){
+  html[data-theme="dark"] .live-chat-page .live-chat-community-grid{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:12px!important;
+  }
+  html[data-theme="dark"] .live-chat-page .live-chat-info-card{
+    min-width:0!important;
+    padding:15px!important;
+    border-radius:16px!important;
+  }
+}
