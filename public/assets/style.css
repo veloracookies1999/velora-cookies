@@ -26452,3 +26452,91 @@ html[data-theme="dark"] .about-manifesto blockquote {
 html[data-theme="dark"] .about-manifesto blockquote span {
   color: #c59be8 !important;
 }
+
+
+/* =========================================================
+   DARK MODE HEADER POLISH
+   Fix the light active navigation pill and bright controls.
+========================================================= */
+html[data-theme="dark"] .top {
+  background: rgba(18, 15, 25, .94) !important;
+  color: #f5effb !important;
+  border-bottom: 1px solid #342a43 !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.24) !important;
+  backdrop-filter: blur(22px) saturate(140%);
+}
+html[data-theme="dark"] .top .brand,
+html[data-theme="dark"] .top .brand b,
+html[data-theme="dark"] .top .nav,
+html[data-theme="dark"] .top .nav a,
+html[data-theme="dark"] .top .actions,
+html[data-theme="dark"] .top .actions a {
+  color: #e8def3 !important;
+}
+html[data-theme="dark"] .top .nav a {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  border-radius: 999px;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+html[data-theme="dark"] .top .nav a:hover,
+html[data-theme="dark"] .top .nav a.active,
+html[data-theme="dark"] .top .nav a.is-active,
+html[data-theme="dark"] .top .nav a[aria-current="page"],
+html[data-theme="dark"] .top .nav a[aria-current="true"] {
+  color: #f7f0ff !important;
+  background: rgba(155, 82, 244, .16) !important;
+  border-color: rgba(190, 145, 242, .20) !important;
+}
+html[data-theme="dark"] .top .nav a:after {
+  background: #b77aff !important;
+}
+html[data-theme="dark"] .top .search input,
+html[data-theme="dark"] .top input[type="search"],
+html[data-theme="dark"] .top .search-field {
+  background: #191522 !important;
+  color: #f5effb !important;
+  border: 1px solid #443650 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+html[data-theme="dark"] .top .search input::placeholder,
+html[data-theme="dark"] .top input[type="search"]::placeholder {
+  color: #a99bb8 !important;
+}
+html[data-theme="dark"] .top .search svg {
+  color: #b9a5cd !important;
+}
+html[data-theme="dark"] .top .icon-btn,
+html[data-theme="dark"] .top button.icon-btn,
+html[data-theme="dark"] .top .actions .icon-btn {
+  background: #1b1725 !important;
+  color: #eee4f8 !important;
+  border: 1px solid #43344f !important;
+  box-shadow: none !important;
+}
+html[data-theme="dark"] .top .icon-btn:hover,
+html[data-theme="dark"] .top button.icon-btn:hover {
+  background: #2a2038 !important;
+  border-color: #72508f !important;
+  box-shadow: 0 7px 20px rgba(0,0,0,.22) !important;
+}
+html[data-theme="dark"] .top .avatar {
+  background: #332344 !important;
+  color: #e7ceff !important;
+  border: 1px solid #4b365e !important;
+}
+html[data-theme="dark"] .top .actions .btn:not(.primary) {
+  background: #eee5f8 !important;
+  color: #21172d !important;
+  border-color: #eee5f8 !important;
+}
+html[data-theme="dark"] .top .actions .btn.primary {
+  color: #fff !important;
+  background: linear-gradient(135deg, #8b3df0, #a044f5) !important;
+}
+html[data-theme="dark"] .top .count {
+  background: #a34cf4 !important;
+  color: #fff !important;
+  border: 2px solid #17131f !important;
+}
