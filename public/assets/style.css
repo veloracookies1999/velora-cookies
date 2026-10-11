@@ -27367,3 +27367,78 @@ html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi small{
   .admin .admin-content .kpis > .kpi{min-width:0!important}
   .admin .admin-content .kpis > .kpi strong{overflow-wrap:anywhere!important}
 }
+
+
+/* VELORA ADMIN DASHBOARD — consistent theme surfaces and contrast */
+html[data-theme="dark"] body .admin .admin-content .kpis .kpi,
+html[data-theme="dark"] body .admin .kpis .kpi,
+html[data-theme="dark"] body .admin .kpis .kpi:nth-child(n),
+html[data-theme="dark"] body .admin .kpis .kpi:nth-child(odd),
+html[data-theme="dark"] body .admin .kpis .kpi:nth-child(even) {
+  color: #f7f1ff !important;
+  background: linear-gradient(145deg, #261d33 0%, #191421 100%) !important;
+  border: 1px solid #443550 !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.22) !important;
+}
+html[data-theme="dark"] body .admin .kpis .kpi .kpi-head,
+html[data-theme="dark"] body .admin .kpis .kpi .kpi-head span {
+  color: #cbbbdc !important;
+}
+html[data-theme="dark"] body .admin .kpis .kpi .kpi-head svg,
+html[data-theme="dark"] body .admin .kpis .kpi .kpi-head i {
+  color: #c084fc !important;
+}
+html[data-theme="dark"] body .admin .kpis .kpi strong {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+html[data-theme="dark"] body .admin .kpis .kpi small {
+  color: #86efac !important;
+  background: rgba(34,197,94,.12) !important;
+  border: 1px solid rgba(74,222,128,.2) !important;
+}
+html[data-theme="dark"] body .admin .kpis .kpi::before,
+html[data-theme="dark"] body .admin .kpis .kpi::after {
+  color: #c084fc !important;
+}
+html:not([data-theme="dark"]) body .admin .kpis .kpi,
+html:not([data-theme="dark"]) body .admin .kpis .kpi:nth-child(n) {
+  color: #281d35 !important;
+  background: linear-gradient(145deg, #fff 0%, #fbf8ff 100%) !important;
+  border: 1px solid #e8dfef !important;
+  box-shadow: 0 12px 30px rgba(42,20,61,.06) !important;
+}
+html:not([data-theme="dark"]) body .admin .kpis .kpi .kpi-head,
+html:not([data-theme="dark"]) body .admin .kpis .kpi .kpi-head span {
+  color: #766783 !important;
+}
+html:not([data-theme="dark"]) body .admin .kpis .kpi strong {
+  color: #281d35 !important;
+  opacity: 1 !important;
+}
+html:not([data-theme="dark"]) body .admin .kpis .kpi small {
+  color: #16803d !important;
+  background: #ecfdf3 !important;
+  border: 1px solid #d0f4dd !important;
+}
+.admin .admin-content .kpis {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.admin .admin-content .kpis .kpi {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+@media (hover:hover) {
+  .admin .admin-content .kpis .kpi:hover {
+    transform: translateY(-2px);
+  }
+}
+@media (max-width: 900px) {
+  .admin .admin-content .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  .admin .admin-content .kpis { grid-template-columns: minmax(0, 1fr); }
+}
