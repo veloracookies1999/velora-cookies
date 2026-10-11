@@ -25774,3 +25774,95 @@ html[data-theme="dark"] .grain { opacity: .012; }
     font-size: clamp(48px, 5.3vw, 64px) !important;
   }
 }
+
+
+/* =========================================================
+   VELORA DARK MODE — DESKTOP CONTRAST FIX
+   Dark-only overrides; preserve light theme and mobile styling.
+========================================================= */
+@media (min-width: 768px) {
+  html[data-theme="dark"] body,
+  html[data-theme="dark"] #app,
+  html[data-theme="dark"] .velora-home {
+    background-color: #111019 !important;
+    color: #f5f0fb !important;
+  }
+
+  html[data-theme="dark"] .brand-strip {
+    background: #191623 !important;
+    color: #c8bdd8 !important;
+    border-color: #353044 !important;
+  }
+  html[data-theme="dark"] .brand-strip-inner,
+  html[data-theme="dark"] .brand-strip-inner span {
+    color: #c8bdd8 !important;
+  }
+
+  html[data-theme="dark"] .home-products,
+  html[data-theme="dark"] .home-faq,
+  html[data-theme="dark"] .section {
+    background: #111019 !important;
+    color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .section-head h2,
+  html[data-theme="dark"] .home-faq .section-head h2 {
+    color: #f5f0fb !important;
+    -webkit-text-fill-color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .section-head .eyebrow,
+  html[data-theme="dark"] .home-story-copy > .eyebrow {
+    color: #c4a4ff !important;
+  }
+  html[data-theme="dark"] .section-head .text-link,
+  html[data-theme="dark"] .section-head > a {
+    color: #c5a8f7 !important;
+  }
+
+  html[data-theme="dark"] .home-story {
+    background: radial-gradient(ellipse at 78% 35%, rgba(124,58,237,.13), transparent 44%), #191623 !important;
+    color: #f5f0fb !important;
+    border-color: #353044 !important;
+  }
+  html[data-theme="dark"] .home-story-copy h2,
+  html[data-theme="dark"] .home-story-copy h2 span {
+    color: #f5f0fb !important;
+    -webkit-text-fill-color: #f5f0fb !important;
+    opacity: 1 !important;
+  }
+  html[data-theme="dark"] .home-story-copy h2 span {
+    color: #c9a7ff !important;
+    -webkit-text-fill-color: #c9a7ff !important;
+  }
+  html[data-theme="dark"] .home-story-copy p,
+  html[data-theme="dark"] .velora-emblem-caption {
+    color: #b8adc7 !important;
+  }
+  html[data-theme="dark"] .home-story .story-point {
+    background: #211e2d !important;
+    color: #f5f0fb !important;
+    border-color: #393247 !important;
+  }
+  html[data-theme="dark"] .home-story .story-point strong {
+    color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .home-story .story-point p {
+    color: #b8adc7 !important;
+  }
+  html[data-theme="dark"] .home-story .story-actions .btn.dark {
+    background: #f2eaff !important;
+    color: #21182b !important;
+    border-color: #f2eaff !important;
+  }
+
+  html[data-theme="dark"] .home-faq .faq-preview-item {
+    background: #1c1a26 !important;
+    color: #f5f0fb !important;
+    border-color: #353044 !important;
+  }
+  html[data-theme="dark"] .home-faq .faq-preview-item strong {
+    color: #f5f0fb !important;
+  }
+  html[data-theme="dark"] .home-faq .faq-preview-item p {
+    color: #b8adc7 !important;
+  }
+}
