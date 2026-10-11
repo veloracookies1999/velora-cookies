@@ -26962,3 +26962,115 @@ html:not([data-theme="dark"]) .auth-card .auth-close{
 html:not([data-theme="dark"]) .auth-card .divider{color:#8a7b97!important}
 html:not([data-theme="dark"]) .auth-card .divider:before,
 html:not([data-theme="dark"]) .auth-card .divider:after{background:#e7dced!important}
+
+
+/* =========================================================
+   VELORA — ORDERS PAGE DARK MODE POLISH
+   Keep the order history consistent, readable and responsive.
+========================================================= */
+html[data-theme="dark"] .orders-page{
+  color:#f5effb!important;
+  background:
+    radial-gradient(ellipse at 90% 5%,rgba(126,54,190,.13),transparent 32%),
+    linear-gradient(180deg,#15111d 0%,#100e17 100%)!important;
+}
+html[data-theme="dark"] .orders-page .orders-header h1{
+  color:#fbf7ff!important;
+  text-shadow:0 4px 24px rgba(170,115,255,.08);
+}
+html[data-theme="dark"] .orders-page .orders-header p{color:#b9aec8!important}
+html[data-theme="dark"] .orders-page .orders-filter-label{color:#eee5f7!important}
+html[data-theme="dark"] .orders-page .orders-toolbar{border-bottom-color:#33283f!important}
+html[data-theme="dark"] .orders-page .orders-stat{
+  background:linear-gradient(145deg,#211a2b 0%,#191521 100%)!important;
+  border:1px solid #3a2d49!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.16)!important;
+}
+html[data-theme="dark"] .orders-page .orders-stat.featured{
+  background:radial-gradient(ellipse at 100% 0%,rgba(168,85,247,.19),transparent 62%),linear-gradient(145deg,#30203e,#211829)!important;
+  border-color:#5a3a70!important;
+}
+html[data-theme="dark"] .orders-page .orders-stat span{color:#c7b8d7!important}
+html[data-theme="dark"] .orders-page .orders-stat strong{color:#fff8ff!important}
+html[data-theme="dark"] .orders-page .orders-stat small{color:#a99ab9!important}
+html[data-theme="dark"] .orders-page .orders-filter{
+  color:#c4b6d1!important;border:1px solid transparent!important;
+}
+html[data-theme="dark"] .orders-page .orders-filter:hover{
+  color:#f6eaff!important;background:#2a2035!important;border-color:#49345b!important;
+}
+html[data-theme="dark"] .orders-page .orders-filter.active{
+  color:#fff!important;
+  background:linear-gradient(135deg,#9333ea,#7c3aed)!important;
+  border-color:#a855f7!important;
+  box-shadow:0 5px 16px rgba(124,58,237,.22)!important;
+}
+html[data-theme="dark"] .orders-page .order-card{
+  background:linear-gradient(145deg,#211b2b 0%,#191521 100%)!important;
+  border:1px solid #3a2e49!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.20)!important;
+}
+html[data-theme="dark"] .orders-page .order-card:hover{
+  border-color:#765091!important;
+  box-shadow:0 18px 42px rgba(0,0,0,.28)!important;
+}
+html[data-theme="dark"] .orders-page .order-number{color:#f8f1ff!important}
+html[data-theme="dark"] .orders-page .order-date{color:#a99bb7!important}
+html[data-theme="dark"] .orders-page .order-card-content{
+  border-top-color:#35293f!important;border-bottom-color:#35293f!important;
+}
+html[data-theme="dark"] .orders-page .order-item-image{
+  background:#2a2234!important;border-color:#493852!important;
+}
+html[data-theme="dark"] .orders-page .order-item-info strong{color:#f5ecff!important}
+html[data-theme="dark"] .orders-page .order-item-info span,
+html[data-theme="dark"] .orders-page .order-more-items,
+html[data-theme="dark"] .orders-page .order-total span,
+html[data-theme="dark"] .orders-page .order-footer-label{color:#b4a5c2!important}
+html[data-theme="dark"] .orders-page .order-more-items{background:#2b2235!important;border:1px solid #40314e!important}
+html[data-theme="dark"] .orders-page .order-total strong,
+html[data-theme="dark"] .orders-page .order-payment strong{color:#fff7ff!important}
+html[data-theme="dark"] .orders-page .order-card-footer{background:rgba(10,8,15,.14)!important}
+html[data-theme="dark"] .orders-page .order-timeline > i{background:#45364f!important}
+html[data-theme="dark"] .orders-page .timeline-step{color:#9f91ad!important}
+html[data-theme="dark"] .orders-page .timeline-step span{background:#4a3c54!important;box-shadow:0 0 0 4px #211b2b!important}
+html[data-theme="dark"] .orders-page .timeline-step.is-done{color:#e1c8fa!important}
+html[data-theme="dark"] .orders-page .timeline-step.is-done span{background:#b47ae8!important}
+html[data-theme="dark"] .orders-page .order-timeline > i.is-done{background:#8b5eae!important}
+html[data-theme="dark"] .orders-page .orders-empty-state{
+  background:radial-gradient(ellipse at 50% 0%,rgba(147,51,234,.17),transparent 58%),linear-gradient(145deg,#211a2b,#17131f)!important;
+  border-color:#40304f!important;box-shadow:0 18px 48px rgba(0,0,0,.18)!important;
+}
+html[data-theme="dark"] .orders-page .orders-empty-art{color:#dfc1ff;background:#332341;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+html[data-theme="dark"] .orders-page .orders-empty-state h2{color:#fff7ff!important}
+html[data-theme="dark"] .orders-page .orders-empty-state p{color:#b9aec8!important}
+html[data-theme="dark"] .orders-page .order-status.pending{color:#f5d48b!important;background:#3b2d19!important}
+html[data-theme="dark"] .orders-page .order-status.processing{color:#e0c2ff!important;background:#352342!important}
+html[data-theme="dark"] .orders-page .order-status.shipped{color:#b8e5ff!important;background:#1d3341!important}
+html[data-theme="dark"] .orders-page .order-status.completed{color:#b4f0c8!important;background:#1e382a!important}
+html[data-theme="dark"] .orders-page .order-status.cancelled{color:#ffc1c6!important;background:#40232a!important}
+html[data-theme="dark"] .orders-page .order-actions .btn.ghost{
+  color:#e8d9f5!important;background:#292033!important;border-color:#4b395a!important;
+}
+html[data-theme="dark"] .orders-page .order-actions .btn.ghost:hover{
+  color:#fff!important;background:#392646!important;border-color:#8154a1!important;
+}
+html[data-theme="dark"] .orders-page .orders-shop-btn{
+  color:#eee0ff!important;background:#292033!important;border-color:#4b395a!important;
+}
+html[data-theme="dark"] .orders-page .orders-shop-btn:hover{background:#392646!important;border-color:#8154a1!important}
+
+@media(max-width:700px){
+  html[data-theme="dark"] .orders-page .orders-header h1{font-size:clamp(2.35rem,10vw,3rem);line-height:1.02}
+  html[data-theme="dark"] .orders-page .orders-stat{min-width:0;padding:16px;border-radius:16px}
+  html[data-theme="dark"] .orders-page .orders-stat strong{font-size:27px}
+  html[data-theme="dark"] .orders-page .orders-filters{scrollbar-width:thin;scrollbar-color:#64447c transparent}
+  html[data-theme="dark"] .orders-page .order-card-top{gap:12px}
+  html[data-theme="dark"] .orders-page .order-card-content{gap:14px}
+  html[data-theme="dark"] .orders-page .order-item-info{min-width:0}
+  html[data-theme="dark"] .orders-page .order-item-info strong{max-width:min(48vw,190px)}
+  html[data-theme="dark"] .orders-page .order-total{align-items:flex-start;border-top:1px solid #35293f;padding-top:14px}
+  html[data-theme="dark"] .orders-page .order-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  html[data-theme="dark"] .orders-page .order-actions .btn{min-width:0;padding-inline:10px;font-size:11px}
+  html[data-theme="dark"] .orders-page .order-actions .order-delete-btn{grid-column:1/-1}
+}
