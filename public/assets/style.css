@@ -26835,3 +26835,130 @@ html[data-theme="dark"] .top .count {
 @media(prefers-reduced-motion:reduce){
   .admin .kpi,.admin .side a{transition:none!important}
 }
+
+
+/* =========================================================
+   THEME-AWARE ADMIN + AUTH OVERRIDES
+   The admin/auth refresh above is dark-styled by default.
+   Explicitly restore a true light palette when the site is
+   in light mode; dark mode remains unchanged.
+========================================================= */
+html:not([data-theme="dark"]) .admin{
+  --admin-bg:#f7f4fb;
+  --admin-panel:#ffffff;
+  --admin-panel-2:#f8f5fc;
+  --admin-border:rgba(69,45,91,.14);
+  --admin-text:#251b31;
+  --admin-muted:#776b85;
+  color:var(--admin-text)!important;
+  background:
+    radial-gradient(ellipse at 80% 0%,rgba(168,85,247,.10),transparent 36%),
+    linear-gradient(145deg,#fbf9fd 0%,#f4eff9 58%,#fbf9fd 100%)!important;
+}
+html:not([data-theme="dark"]) .admin .side{
+  background:linear-gradient(180deg,#fff 0%,#f8f4fc 100%)!important;
+  border-right:1px solid #e8dfef!important;
+  box-shadow:8px 0 30px rgba(42,20,61,.05)!important;
+}
+html:not([data-theme="dark"]) .admin .side .brand,
+html:not([data-theme="dark"]) .admin .side .brand b,
+html:not([data-theme="dark"]) .admin .side .brand strong{color:#281d35!important}
+html:not([data-theme="dark"]) .admin .side a{color:#71627f!important}
+html:not([data-theme="dark"]) .admin .side a:hover{
+  color:#6d28d9!important;background:#f2e8ff!important;border-color:#ead8ff!important;
+}
+html:not([data-theme="dark"]) .admin .side a.active{
+  color:#6d28d9!important;
+  background:linear-gradient(110deg,#f0e4ff,#faf6ff)!important;
+  border-color:#e6d2ff!important;
+  box-shadow:inset 3px 0 #9333ea,0 6px 18px rgba(109,40,217,.07)!important;
+}
+html:not([data-theme="dark"]) .admin .side > div[style*="background:#fff1"]{
+  background:linear-gradient(135deg,#fff,#f8f1ff)!important;
+  border-color:#e8dcf3!important;color:#281d35!important;
+}
+html:not([data-theme="dark"]) .admin .side > div[style*="background:#fff1"] b{color:#281d35!important}
+html:not([data-theme="dark"]) .admin .side > div[style*="background:#fff1"] div{color:#81738e!important}
+html:not([data-theme="dark"]) .admin .admin-top{
+  background:rgba(255,255,255,.88)!important;
+  color:#281d35!important;border-bottom:1px solid #e8dfef!important;
+  box-shadow:0 8px 30px rgba(42,20,61,.04)!important;
+}
+html:not([data-theme="dark"]) .admin .admin-top h1,
+html:not([data-theme="dark"]) .admin .chart h3,
+html:not([data-theme="dark"]) .admin .panel h3,
+html:not([data-theme="dark"]) .admin .page-title h1,
+html:not([data-theme="dark"]) .admin .page-title h2{color:#281d35!important}
+html:not([data-theme="dark"]) .admin .kpi,
+html:not([data-theme="dark"]) .admin .chart,
+html:not([data-theme="dark"]) .admin .admin-grid>.panel,
+html:not([data-theme="dark"]) .admin .panel{
+  color:#281d35!important;
+  border-color:#e8dfef!important;
+  background:linear-gradient(145deg,#fff 0%,#fdfbff 100%)!important;
+  box-shadow:0 12px 32px rgba(42,20,61,.055)!important;
+}
+html:not([data-theme="dark"]) .admin .kpi:after{background:rgba(168,85,247,.055)}
+html:not([data-theme="dark"]) .admin .kpi .kpi-head{color:#766783!important}
+html:not([data-theme="dark"]) .admin .kpi strong{color:#281d35!important}
+html:not([data-theme="dark"]) .admin .kpi small{
+  background:#ecfdf3!important;color:#16803d!important;border-color:#d0f4dd!important;
+}
+html:not([data-theme="dark"]) .admin .table{color:#352744!important}
+html:not([data-theme="dark"]) .admin .table th{
+  color:#6b587d!important;background:#f7f1fc!important;border-color:#eee5f5!important;
+}
+html:not([data-theme="dark"]) .admin .table td{color:#493957!important;border-color:#f0e8f5!important}
+html:not([data-theme="dark"]) .admin .table tr:hover td{background:#fcf8ff!important}
+html:not([data-theme="dark"]) .admin .badge{background:#f1e6ff!important;color:#7526bf!important}
+html:not([data-theme="dark"]) .admin .btn.soft{
+  color:#5f267e!important;border-color:#e4d3f0!important;background:#faf5ff!important;
+}
+html:not([data-theme="dark"]) .admin .btn.soft:hover{background:#f1e5ff!important}
+html:not([data-theme="dark"]) .admin .input,
+html:not([data-theme="dark"]) .admin input,
+html:not([data-theme="dark"]) .admin select,
+html:not([data-theme="dark"]) .admin textarea{
+  color:#281d35!important;background:#fff!important;border-color:#e4d8ed!important;
+}
+html:not([data-theme="dark"]) .admin .input::placeholder,
+html:not([data-theme="dark"]) .admin input::placeholder,
+html:not([data-theme="dark"]) .admin textarea::placeholder{color:#9a8ba6!important}
+html:not([data-theme="dark"]) .admin .mobile{color:#5c3b70!important;background:#fff!important;border-color:#e6d9ef!important}
+
+/* Login, register and recovery surfaces follow the active site theme. */
+html:not([data-theme="dark"]) .auth-overlay{
+  background:
+    radial-gradient(ellipse at 18% 18%,rgba(168,85,247,.13),transparent 38%),
+    radial-gradient(ellipse at 84% 82%,rgba(196,181,253,.18),transparent 34%),
+    rgba(35,23,46,.38)!important;
+}
+html:not([data-theme="dark"]) .auth-card{
+  color:#281d35!important;
+  border-color:rgba(126,80,158,.18)!important;
+  background:
+    radial-gradient(ellipse at 100% 0%,rgba(192,132,252,.12),transparent 42%),
+    linear-gradient(145deg,rgba(255,255,255,.99),rgba(250,246,255,.99))!important;
+  box-shadow:0 30px 90px rgba(39,18,55,.20),0 0 0 1px rgba(168,85,247,.04)!important;
+}
+html:not([data-theme="dark"]) .auth-card h1,
+html:not([data-theme="dark"]) .auth-card h2,
+html:not([data-theme="dark"]) .auth-card h3,
+html:not([data-theme="dark"]) .auth-card label{color:#281d35!important}
+html:not([data-theme="dark"]) .auth-card p,
+html:not([data-theme="dark"]) .auth-card .muted,
+html:not([data-theme="dark"]) .auth-card small{color:#766783!important}
+html:not([data-theme="dark"]) .auth-card input,
+html:not([data-theme="dark"]) .auth-card select,
+html:not([data-theme="dark"]) .auth-card textarea,
+html:not([data-theme="dark"]) .auth-card .input{
+  color:#281d35!important;background:#fff!important;border-color:#e5d9ee!important;
+}
+html:not([data-theme="dark"]) .auth-card input::placeholder,
+html:not([data-theme="dark"]) .auth-card textarea::placeholder{color:#a092ad!important}
+html:not([data-theme="dark"]) .auth-card .auth-close{
+  color:#493657!important;background:#f8f3fc!important;border-color:#e7dced!important;
+}
+html:not([data-theme="dark"]) .auth-card .divider{color:#8a7b97!important}
+html:not([data-theme="dark"]) .auth-card .divider:before,
+html:not([data-theme="dark"]) .auth-card .divider:after{background:#e7dced!important}
