@@ -27314,3 +27314,56 @@ html[data-theme="dark"] .live-chat-page .live-chat-info-card .btn{
     border-radius:16px!important;
   }
 }
+
+
+/* =========================================================
+   ADMIN DASHBOARD — FIX ALL KPI CARDS IN BOTH THEMES
+   Explicitly target both KPI rows to prevent inherited
+   light card styles from whitening the second row.
+========================================================= */
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi,
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi:nth-child(n){
+  color:#f6f0ff!important;
+  background:linear-gradient(145deg,#251d31 0%,#191521 100%)!important;
+  border:1px solid #40334f!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.2)!important;
+}
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi .kpi-head,
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi .kpi-head span{
+  color:#cbbbdc!important;
+}
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi .kpi-head svg{
+  color:#c084fc!important;
+}
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi strong{
+  color:#fff!important;
+}
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi small{
+  color:#86efac!important;
+  background:rgba(34,197,94,.12)!important;
+  border-color:rgba(74,222,128,.2)!important;
+}
+html[data-theme="dark"] .admin .admin-content .kpis > .kpi::after{
+  background:rgba(168,85,247,.11)!important;
+}
+html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi,
+html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi:nth-child(n){
+  color:#281d35!important;
+  background:linear-gradient(145deg,#fff 0%,#fdfbff 100%)!important;
+  border:1px solid #e8dfef!important;
+  box-shadow:0 12px 32px rgba(42,20,61,.055)!important;
+}
+html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi .kpi-head,
+html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi .kpi-head span{
+  color:#766783!important;
+}
+html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi strong{
+  color:#281d35!important;
+}
+html:not([data-theme="dark"]) .admin .admin-content .kpis > .kpi small{
+  color:#16803d!important;background:#ecfdf3!important;border-color:#d0f4dd!important;
+}
+@media(max-width:650px){
+  .admin .admin-content .kpis > .kpi{min-width:0!important}
+  .admin .admin-content .kpis > .kpi strong{overflow-wrap:anywhere!important}
+}
