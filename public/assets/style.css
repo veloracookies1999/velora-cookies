@@ -27074,3 +27074,129 @@ html[data-theme="dark"] .orders-page .orders-shop-btn:hover{background:#392646!i
   html[data-theme="dark"] .orders-page .order-actions .btn{min-width:0;padding-inline:10px;font-size:11px}
   html[data-theme="dark"] .orders-page .order-actions .order-delete-btn{grid-column:1/-1}
 }
+
+
+/* =========================================================
+   VELORA — DARK MODE FINISHING PASS
+   Orders, wishlist, live chat and notifications.
+   Scoped to dark mode only; light mode and other pages untouched.
+========================================================= */
+html[data-theme="dark"] .orders-page,
+html[data-theme="dark"] .wishlist-page,
+html[data-theme="dark"] .live-chat-page,
+html[data-theme="dark"] .notification-page{
+  color:#f4effb!important;
+  background:
+    radial-gradient(ellipse at 92% 0%,rgba(124,58,237,.13),transparent 34%),
+    linear-gradient(180deg,#171320 0%,#100e17 72%,#100e17 100%)!important;
+}
+html[data-theme="dark"] .orders-page :is(h1,h2,h3,h4,strong,.orders-header h1),
+html[data-theme="dark"] .wishlist-page :is(h1,h2,h3,h4,strong),
+html[data-theme="dark"] .live-chat-page :is(h1,h2,h3,h4,strong),
+html[data-theme="dark"] .notification-page :is(h1,h2,h3,h4,strong){
+  color:#f7f2ff!important;
+}
+html[data-theme="dark"] .orders-page :is(p,.muted,small,.eyebrow),
+html[data-theme="dark"] .wishlist-page :is(p,.muted,small,.eyebrow),
+html[data-theme="dark"] .live-chat-page :is(p,.muted,small,.eyebrow),
+html[data-theme="dark"] .notification-page :is(p,.muted,small,.eyebrow){
+  color:#b9aec9;
+}
+html[data-theme="dark"] .orders-page :is(.orders-stat,.orders-card,.orders-empty,.order-card,.order-item,.orders-filter,.orders-tabs,.orders-summary,.orders-list),
+html[data-theme="dark"] .wishlist-page :is(.wishlist-stat,.wishlist-card,.wishlist-item,.wishlist-empty,.wishlist-toolbar,.wishlist-summary,.wishlist-product),
+html[data-theme="dark"] .live-chat-page :is(.live-chat-panel,.live-chat-card,.live-chat-window,.live-chat-sidebar,.live-chat-conversation,.live-chat-composer,.live-chat-message,.live-chat-empty,.live-chat-input-wrap),
+html[data-theme="dark"] .notification-page :is(.notification-counter,.notification-card,.notification-item,.notification-list,.notification-empty,.notification-toolbar,.notification-filter){
+  color:#f1eafa!important;
+  background:linear-gradient(145deg,rgba(37,30,49,.97),rgba(27,22,37,.98))!important;
+  border-color:#40354f!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+html[data-theme="dark"] .orders-page :is(.orders-stat,.orders-card,.order-card,.orders-filter,.orders-tabs),
+html[data-theme="dark"] .wishlist-page :is(.wishlist-card,.wishlist-item,.wishlist-toolbar),
+html[data-theme="dark"] .live-chat-page :is(.live-chat-panel,.live-chat-window,.live-chat-sidebar,.live-chat-conversation),
+html[data-theme="dark"] .notification-page :is(.notification-counter,.notification-card,.notification-item,.notification-toolbar){
+  border-radius:20px;
+}
+html[data-theme="dark"] .orders-page :is(button,.btn,.orders-filter button,.orders-tabs button),
+html[data-theme="dark"] .wishlist-page :is(button,.btn),
+html[data-theme="dark"] .live-chat-page :is(button,.btn),
+html[data-theme="dark"] .notification-page :is(button,.btn){
+  border-color:#514264;
+}
+html[data-theme="dark"] .orders-page :is(input,select,textarea),
+html[data-theme="dark"] .wishlist-page :is(input,select,textarea),
+html[data-theme="dark"] .live-chat-page :is(input,select,textarea),
+html[data-theme="dark"] .notification-page :is(input,select,textarea){
+  color:#f6f0ff!important;background:#171320!important;border-color:#514264!important;
+}
+html[data-theme="dark"] .orders-page :is(input,textarea)::placeholder,
+html[data-theme="dark"] .wishlist-page :is(input,textarea)::placeholder,
+html[data-theme="dark"] .live-chat-page :is(input,textarea)::placeholder,
+html[data-theme="dark"] .notification-page :is(input,textarea)::placeholder{color:#9e91b1!important}
+html[data-theme="dark"] .orders-page :is(.orders-stat span,.orders-stat small,.order-meta,.order-date,.order-number,.order-detail),
+html[data-theme="dark"] .wishlist-page :is(.wishlist-meta,.wishlist-category,.wishlist-empty p),
+html[data-theme="dark"] .live-chat-page :is(.chat-time,.message-time,.conversation-preview,.conversation-meta,.live-chat-subtitle),
+html[data-theme="dark"] .notification-page :is(.notification-time,.notification-meta,.notification-description,.notification-counter small){
+  color:#b7abc8!important;
+}
+html[data-theme="dark"] .orders-page :is(.orders-stat strong,.orders-total,.order-price,.order-status),
+html[data-theme="dark"] .wishlist-page :is(.wishlist-price,.wishlist-product-name),
+html[data-theme="dark"] .live-chat-page :is(.message-bubble,.chat-bubble,.conversation-title),
+html[data-theme="dark"] .notification-page :is(.notification-title,.notification-counter strong){
+  color:#f6f0ff!important;
+}
+html[data-theme="dark"] .orders-page :is(.order-status,.status-pill,.badge),
+html[data-theme="dark"] .notification-page :is(.notification-badge,.notification-counter-icon){
+  background:#342348!important;color:#d9baff!important;border-color:#60447a!important;
+}
+html[data-theme="dark"] .wishlist-page .wishlist-heart-mark{
+  background:radial-gradient(circle at 30% 20%,#39264d,#241a31 70%)!important;
+  border-color:#554064!important;color:#d9b5ff!important;
+}
+html[data-theme="dark"] .notification-page .notification-counter{
+  background:linear-gradient(145deg,#2b2039,#20192c)!important;border-color:#4b3a5e!important;
+}
+html[data-theme="dark"] .notification-page .notification-counter-icon{
+  background:#38264b!important;color:#d9b5ff!important;border-color:#57416e!important;
+}
+html[data-theme="dark"] .live-chat-page :is(.live-chat-messages,.live-chat-thread,.live-chat-body){
+  background:rgba(16,13,23,.72)!important;
+}
+html[data-theme="dark"] .live-chat-page :is(.message-bubble,.chat-bubble){
+  background:#2b2338!important;border:1px solid #443653!important;
+}
+html[data-theme="dark"] .live-chat-page :is(.message-bubble.mine,.chat-bubble.mine,.is-mine .message-bubble){
+  background:linear-gradient(135deg,#7029cb,#8b35e8)!important;color:#fff!important;border-color:#9c5bea!important;
+}
+html[data-theme="dark"] .orders-page :is(.order-card,.orders-stat,.orders-empty),
+html[data-theme="dark"] .wishlist-page :is(.wishlist-card,.wishlist-item),
+html[data-theme="dark"] .notification-page :is(.notification-card,.notification-item){
+  transition:background-color .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+@media(hover:hover){
+  html[data-theme="dark"] .orders-page :is(.order-card,.orders-stat):hover,
+  html[data-theme="dark"] .wishlist-page :is(.wishlist-card,.wishlist-item):hover,
+  html[data-theme="dark"] .notification-page :is(.notification-card,.notification-item):hover{
+    border-color:#76549a!important;box-shadow:0 18px 38px rgba(0,0,0,.24),0 0 0 1px rgba(168,85,247,.07)!important;
+  }
+}
+@media(max-width:767px){
+  html[data-theme="dark"] .orders-page :is(.orders-summary,.orders-list),
+  html[data-theme="dark"] .wishlist-page :is(.wishlist-grid,.wishlist-list),
+  html[data-theme="dark"] .notification-page :is(.notification-list),
+  html[data-theme="dark"] .live-chat-page :is(.live-chat-layout,.live-chat-shell){
+    min-width:0!important;width:100%!important;
+  }
+  html[data-theme="dark"] .orders-page :is(.orders-header,.orders-toolbar),
+  html[data-theme="dark"] .wishlist-page :is(.wishlist-heading,.wishlist-toolbar),
+  html[data-theme="dark"] .notification-page :is(.notification-hero,.notification-toolbar),
+  html[data-theme="dark"] .live-chat-page :is(.live-chat-hero,.live-chat-title-row){
+    gap:14px!important;
+  }
+  html[data-theme="dark"] .live-chat-page :is(.live-chat-panel,.live-chat-window,.live-chat-sidebar),
+  html[data-theme="dark"] .notification-page :is(.notification-card,.notification-item),
+  html[data-theme="dark"] .orders-page :is(.orders-stat,.order-card),
+  html[data-theme="dark"] .wishlist-page :is(.wishlist-card,.wishlist-item){
+    max-width:100%!important;min-width:0!important;
+  }
+}
