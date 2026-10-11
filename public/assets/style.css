@@ -26540,3 +26540,58 @@ html[data-theme="dark"] .top .count {
   color: #fff !important;
   border: 2px solid #17131f !important;
 }
+
+
+/* =========================================================
+   HEADER POSITION CONSISTENCY — all desktop routes
+   The home-only header override was causing the nav/search
+   to shift when navigating to Cerita and other pages.
+========================================================= */
+@media screen and (min-width: 768px) {
+  body .velora-home > .top {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 22px !important;
+    width: 100% !important;
+    height: 78px !important;
+    min-height: 78px !important;
+    padding: 0 4vw !important;
+    box-sizing: border-box !important;
+  }
+
+  body .velora-home > .top .brand {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+
+  body .velora-home > .top .search,
+  body .velora-home > .top form.search {
+    flex: 1 1 320px !important;
+    width: auto !important;
+    max-width: 470px !important;
+    min-width: 180px !important;
+    margin: 0 !important;
+  }
+
+  body .velora-home > .top .nav {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 19px !important;
+    width: auto !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  body .velora-home > .top .actions {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    margin-left: auto !important;
+  }
+}
