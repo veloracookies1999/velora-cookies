@@ -26071,3 +26071,292 @@ html[data-theme="dark"] .grain { opacity: .012; }
     line-height: 1.65 !important;
   }
 }
+
+
+/* =========================================================
+   VELORA — SITE-WIDE DARK THEME
+   Shared pages, authentication, FAQ, account, cart, checkout,
+   chat, wishlist, forms, dialogs and footer.
+   Activated only when html[data-theme="dark"] is present.
+========================================================= */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111019;
+  --white: #1c1a26;
+  --ink: #f5f1fa;
+  --muted: #b4a9c4;
+  --line: #393247;
+  --light: #272132;
+  --theme-bg: #111019;
+  --theme-surface: #1b1826;
+  --theme-surface-soft: #231e30;
+  --theme-text: #f5f1fa;
+  --theme-muted: #b4a9c4;
+  --theme-line: #393247;
+  --theme-shadow: 0 20px 55px rgba(0,0,0,.3);
+}
+html[data-theme="dark"] body,
+html[data-theme="dark"] #app {
+  background: #111019 !important;
+  color: #f5f1fa !important;
+}
+html[data-theme="dark"] body {
+  background-image:
+    radial-gradient(ellipse at 85% 0%, rgba(116, 57, 170, .08), transparent 34%),
+    linear-gradient(180deg, #12101a 0%, #100f17 100%) !important;
+}
+html[data-theme="dark"] #app > * {
+  color: inherit;
+}
+
+/* Common page shells and content surfaces */
+html[data-theme="dark"] .page,
+html[data-theme="dark"] main.page,
+html[data-theme="dark"] .wishlist-page,
+html[data-theme="dark"] .cart-page,
+html[data-theme="dark"] .checkout-page,
+html[data-theme="dark"] .profile-page,
+html[data-theme="dark"] .orders-page,
+html[data-theme="dark"] .notifications-page,
+html[data-theme="dark"] .chat-page,
+html[data-theme="dark"] .faq-page,
+html[data-theme="dark"] .about-page {
+  background-color: transparent !important;
+  color: #f5f1fa !important;
+}
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .modal-card,
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .dropdown,
+html[data-theme="dark"] .table-wrap,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .admin-card,
+html[data-theme="dark"] .chat-panel,
+html[data-theme="dark"] .checkout-panel,
+html[data-theme="dark"] .order-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .wishlist-empty-shell,
+html[data-theme="dark"] .wishlist-summary,
+html[data-theme="dark"] .cart-summary,
+html[data-theme="dark"] .cart-item,
+html[data-theme="dark"] .checkout-summary,
+html[data-theme="dark"] .checkout-section,
+html[data-theme="dark"] .notification-card,
+html[data-theme="dark"] .empty,
+html[data-theme="dark"] .faq details,
+html[data-theme="dark"] .faq-item,
+html[data-theme="dark"] .accordion-item {
+  background: linear-gradient(145deg, #211c2d 0%, #191622 100%) !important;
+  color: #f5f1fa !important;
+  border-color: #3b304b !important;
+  box-shadow: 0 12px 35px rgba(0,0,0,.15);
+}
+html[data-theme="dark"] .faq details {
+  margin-block: 12px !important;
+  padding: 19px 22px !important;
+  border: 1px solid #3b304b !important;
+  border-radius: 16px !important;
+}
+html[data-theme="dark"] .faq details summary {
+  color: #f8f3ff !important;
+  cursor: pointer;
+}
+html[data-theme="dark"] .faq details summary::marker {
+  color: #bd8aff;
+}
+html[data-theme="dark"] .faq details p {
+  color: #bdb2cc !important;
+  line-height: 1.75 !important;
+}
+
+/* Login, sign-up, password reset and other modal layers */
+html[data-theme="dark"] .modal,
+html[data-theme="dark"] .modal-overlay,
+html[data-theme="dark"] #authModal,
+html[data-theme="dark"] #forgotPasswordModal,
+html[data-theme="dark"] #resetPasswordModal {
+  background-color: rgba(8, 7, 13, .82) !important;
+  color: #f5f1fa !important;
+  backdrop-filter: blur(12px);
+}
+html[data-theme="dark"] .auth-shell {
+  color: #f5f1fa !important;
+}
+html[data-theme="dark"] .auth-card {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(139, 75, 220, .17), transparent 42%),
+    linear-gradient(145deg, #211b2d, #17141f) !important;
+  border: 1px solid #443454 !important;
+  box-shadow: 0 30px 90px rgba(0,0,0,.48) !important;
+}
+html[data-theme="dark"] .auth-intro h1,
+html[data-theme="dark"] .auth-intro h2,
+html[data-theme="dark"] .auth-intro h3,
+html[data-theme="dark"] .auth-brand-mark,
+html[data-theme="dark"] .auth-form label,
+html[data-theme="dark"] .auth-field label {
+  color: #f8f3ff !important;
+  -webkit-text-fill-color: #f8f3ff !important;
+}
+html[data-theme="dark"] .auth-intro p,
+html[data-theme="dark"] .auth-eyebrow,
+html[data-theme="dark"] .auth-subtitle {
+  color: #bdb0cd !important;
+}
+html[data-theme="dark"] .auth-close {
+  background: #2a2237 !important;
+  color: #f4eaff !important;
+  border-color: #49375d !important;
+}
+
+/* All forms and editable controls */
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-theme="dark"] .input,
+html[data-theme="dark"] .search input,
+html[data-theme="dark"] .filters .input,
+html[data-theme="dark"] .filters .select,
+html[data-theme="dark"] .auth-input,
+html[data-theme="dark"] .auth-input-wrap {
+  background: #15121e !important;
+  color: #f5f1fa !important;
+  border-color: #463752 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.015) !important;
+}
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus {
+  border-color: #a46af0 !important;
+  outline-color: rgba(164,106,240,.22) !important;
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #9387a5 !important;
+  opacity: 1;
+}
+html[data-theme="dark"] input[type="checkbox"],
+html[data-theme="dark"] input[type="radio"] {
+  accent-color: #9b52f4;
+}
+
+/* Typography, links, separators and page headings */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html[data-theme="dark"] .page-title,
+html[data-theme="dark"] .section-title {
+  color: #f8f3ff;
+}
+html[data-theme="dark"] p,
+html[data-theme="dark"] .muted,
+html[data-theme="dark"] .help-text,
+html[data-theme="dark"] .form-hint,
+html[data-theme="dark"] .empty p {
+  color: #b7acc6;
+}
+html[data-theme="dark"] a:not(.btn):not(.mobile-bottom-item):not(.mobile-appbar-login) {
+  text-decoration-color: rgba(197, 155, 255, .35);
+}
+html[data-theme="dark"] hr,
+html[data-theme="dark"] .divider,
+html[data-theme="dark"] .auth-topbar,
+html[data-theme="dark"] .auth-field {
+  border-color: #393047 !important;
+}
+
+/* Shared buttons and small status chips */
+html[data-theme="dark"] .btn.soft,
+html[data-theme="dark"] .btn.ghost,
+html[data-theme="dark"] .btn.secondary {
+  background: #2a2238 !important;
+  color: #f1e7ff !important;
+  border-color: #4a3b5c !important;
+}
+html[data-theme="dark"] .badge,
+html[data-theme="dark"] .chip,
+html[data-theme="dark"] .status,
+html[data-theme="dark"] .tag {
+  border-color: #49365e;
+}
+html[data-theme="dark"] .top {
+  background: rgba(20, 17, 28, .94) !important;
+  border-bottom-color: #342a43 !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
+}
+html[data-theme="dark"] .nav a,
+html[data-theme="dark"] .top .brand,
+html[data-theme="dark"] .top .actions {
+  color: #e9e0f4 !important;
+}
+html[data-theme="dark"] .mobile-bottom-nav,
+html[data-theme="dark"] .mobile-bottom-bar,
+html[data-theme="dark"] nav.mobile-bottom-nav {
+  background: rgba(24, 20, 33, .96) !important;
+  border-color: #3b304b !important;
+  color: #f5f1fa !important;
+}
+html[data-theme="dark"] .mobile-bottom-item {
+  color: #b6a9c8 !important;
+}
+html[data-theme="dark"] .mobile-bottom-item.active {
+  color: #d0a8ff !important;
+}
+
+/* Tables, lists, chat bubbles and checkout summaries */
+html[data-theme="dark"] table,
+html[data-theme="dark"] th,
+html[data-theme="dark"] td,
+html[data-theme="dark"] .table,
+html[data-theme="dark"] .list-row,
+html[data-theme="dark"] .cart-line,
+html[data-theme="dark"] .order-row {
+  color: #eee7f7 !important;
+  border-color: #393047 !important;
+}
+html[data-theme="dark"] th {
+  background: #272132 !important;
+}
+html[data-theme="dark"] .chat-message,
+html[data-theme="dark"] .message-bubble {
+  border-color: #40344f !important;
+}
+html[data-theme="dark"] .chat-message:not(.own),
+html[data-theme="dark"] .message-bubble:not(.own) {
+  background: #272132 !important;
+  color: #f5f1fa !important;
+}
+
+/* Footer is dark in every route, with legible secondary text */
+html[data-theme="dark"] .velora-footer {
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(119, 62, 179, .10), transparent 35%),
+    #14111c !important;
+  color: #f5f1fa !important;
+  border-top: 1px solid #342a43 !important;
+}
+html[data-theme="dark"] .velora-footer a,
+html[data-theme="dark"] .velora-footer h3,
+html[data-theme="dark"] .velora-footer strong {
+  color: #eee5fa !important;
+}
+html[data-theme="dark"] .velora-footer p,
+html[data-theme="dark"] .velora-footer small,
+html[data-theme="dark"] .velora-footer .muted {
+  color: #b4a8c4 !important;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="dark"] *,
+  html[data-theme="dark"] *::before,
+  html[data-theme="dark"] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
