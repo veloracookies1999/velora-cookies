@@ -26360,3 +26360,95 @@ html[data-theme="dark"] .velora-footer .muted {
     animation-iteration-count: 1 !important;
   }
 }
+
+
+/* =========================================================
+   DARK MODE REFINEMENT — STORY / ABOUT PAGE
+   Fix light sections and pale headings visible in dark mode.
+========================================================= */
+html[data-theme="dark"] .velora-about,
+html[data-theme="dark"] .about-hero,
+html[data-theme="dark"] .about-story,
+html[data-theme="dark"] .about-standard,
+html[data-theme="dark"] .about-cta {
+  background: #111019 !important;
+  color: #f5f1fa !important;
+  border-color: #342a43 !important;
+}
+html[data-theme="dark"] .about-hero {
+  background:
+    radial-gradient(ellipse at 82% 34%, rgba(131, 76, 177, .16), transparent 34%),
+    linear-gradient(135deg, #17131f 0%, #121019 58%, #1b1424 100%) !important;
+}
+html[data-theme="dark"] .about-story {
+  background: linear-gradient(180deg, #121019, #17131f) !important;
+}
+html[data-theme="dark"] .about-standard,
+html[data-theme="dark"] .about-cta {
+  background:
+    radial-gradient(ellipse at 90% 10%, rgba(115, 66, 158, .12), transparent 38%),
+    #17131f !important;
+}
+html[data-theme="dark"] .about-hero-copy h1,
+html[data-theme="dark"] .about-story-content h2,
+html[data-theme="dark"] .about-standard-head h2,
+html[data-theme="dark"] .about-cta h2 {
+  color: #f7f2fc !important;
+  -webkit-text-fill-color: #f7f2fc !important;
+}
+html[data-theme="dark"] .about-hero-copy h1 span,
+html[data-theme="dark"] .about-story-content h2 span,
+html[data-theme="dark"] .about-standard-head h2 span,
+html[data-theme="dark"] .about-cta h2 span {
+  color: #c59be8 !important;
+  -webkit-text-fill-color: #c59be8 !important;
+}
+html[data-theme="dark"] .about-hero-copy > p,
+html[data-theme="dark"] .about-standard-head > p,
+html[data-theme="dark"] .about-story-content p,
+html[data-theme="dark"] .about-standard-card p {
+  color: #b9aec8 !important;
+}
+html[data-theme="dark"] .about-scroll-note,
+html[data-theme="dark"] .about-story-label p,
+html[data-theme="dark"] .about-story-label span,
+html[data-theme="dark"] .about-card-number {
+  color: #aa9ab9 !important;
+}
+html[data-theme="dark"] .about-story-label {
+  border-top-color: #40344f !important;
+}
+html[data-theme="dark"] .about-standard-card,
+html[data-theme="dark"] .about-standard-card.featured {
+  background: linear-gradient(145deg, #241e30, #191622) !important;
+  border-color: #40334f !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.18) !important;
+}
+html[data-theme="dark"] .about-standard-card h3 {
+  color: #f5effb !important;
+}
+html[data-theme="dark"] .about-card-icon {
+  color: #d1aaff !important;
+  background: #332344 !important;
+}
+html[data-theme="dark"] .about-floating-note {
+  background: rgba(31, 25, 41, .92) !important;
+  border-color: #4a3a5a !important;
+  box-shadow: 0 18px 38px rgba(0,0,0,.32) !important;
+}
+html[data-theme="dark"] .about-floating-note strong {
+  color: #f6efff !important;
+}
+html[data-theme="dark"] .about-floating-note span {
+  color: #b9aec8 !important;
+}
+html[data-theme="dark"] .about-manifesto {
+  background: linear-gradient(135deg, #21172c, #121019) !important;
+  border-block: 1px solid #3a2b4a !important;
+}
+html[data-theme="dark"] .about-manifesto blockquote {
+  color: #f8f3ff !important;
+}
+html[data-theme="dark"] .about-manifesto blockquote span {
+  color: #c59be8 !important;
+}
