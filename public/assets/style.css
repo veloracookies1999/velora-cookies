@@ -27200,3 +27200,78 @@ html[data-theme="dark"] .notification-page :is(.notification-card,.notification-
     max-width:100%!important;min-width:0!important;
   }
 }
+
+
+/* LIVE CHAT DARK MODE — targeted contrast and layout fix */
+html[data-theme="dark"] .live-chat-page .live-chat-online-card,
+html[data-theme="dark"] .live-chat-page .live-chat-shell,
+html[data-theme="dark"] .live-chat-page .live-chat-header,
+html[data-theme="dark"] .live-chat-page .live-chat-composer,
+html[data-theme="dark"] .live-chat-page .live-chat-footer,
+html[data-theme="dark"] .live-chat-page .live-chat-community-card{
+  background:#201a2b!important;
+  color:#f5efff!important;
+  border-color:#40344f!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-messages{
+  background:
+    radial-gradient(circle at 8% 10%,rgba(168,85,247,.09),transparent 24%),
+    radial-gradient(circle at 90% 85%,rgba(124,58,237,.08),transparent 26%),
+    #14111d!important;
+  border-color:#40344f!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-room strong,
+html[data-theme="dark"] .live-chat-page .live-chat-title-row h1,
+html[data-theme="dark"] .live-chat-page .live-chat-hero h1,
+html[data-theme="dark"] .live-chat-page .live-chat-community-card :is(h3,h4,strong),
+html[data-theme="dark"] .live-chat-page .live-chat-online-card strong{
+  color:#faf6ff!important;
+}
+html[data-theme="dark"] .live-chat-page :is(.live-chat-room span,.live-chat-hero-copy>p,.live-chat-online-card small,.live-chat-footer,.live-chat-community-card p,.live-chat-community-card small){
+  color:#bdb0ce!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-room-avatar,
+html[data-theme="dark"] .live-chat-page .live-chat-online-icon{
+  color:#d9b8ff!important;background:#342344!important;border-color:#59406d!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-messages .msg{
+  color:#f3ecfc!important;background:#292236!important;border-color:#443650!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.12)!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-messages .msg.mine{
+  color:#fff!important;background:linear-gradient(135deg,#7029cb,#8b35e8)!important;border-color:#9c5bea!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-messages .msg small{
+  color:#cfc0e1!important;opacity:.85!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-input,
+html[data-theme="dark"] .live-chat-page .live-chat-input:focus,
+html[data-theme="dark"] .live-chat-page .live-chat-composer :is(input,textarea){
+  color:#f7f1ff!important;background:#171320!important;border-color:#514264!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-input::placeholder,
+html[data-theme="dark"] .live-chat-page .live-chat-counter{
+  color:#9f91b2!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-footer{border-top-color:#40344f!important}
+html[data-theme="dark"] .live-chat-page .live-chat-live-pill{
+  color:#fca5a5!important;background:#351e2a!important;border-color:#673044!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-send{
+  color:#fff!important;background:linear-gradient(135deg,#7029cb,#8b35e8)!important;border-color:#9c5bea!important;
+}
+html[data-theme="dark"] .live-chat-page .live-chat-community-card{
+  box-shadow:0 12px 30px rgba(0,0,0,.16)!important;
+}
+@media(max-width:767px){
+  html[data-theme="dark"] .live-chat-page{overflow-x:hidden!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-hero{align-items:stretch!important;flex-direction:column!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-shell{width:100%!important;min-width:0!important;border-radius:18px!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-header{gap:9px!important;padding:12px!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-room{min-width:0!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-messages{padding:12px!important;min-height:300px!important;height:48vh!important;max-height:500px!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-messages .msg{max-width:88%!important;overflow-wrap:anywhere!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-composer{grid-template-columns:minmax(0,1fr)!important;padding:10px!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-send{width:100%!important}
+  html[data-theme="dark"] .live-chat-page .live-chat-footer{gap:8px!important}
+}
